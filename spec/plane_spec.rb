@@ -1,6 +1,7 @@
 require 'plane'
 
 describe Plane do
+  # Initialisaiton and method behaviour
 
   it { should respond_to(:takeoff).with(1).argument }
 
@@ -16,6 +17,11 @@ describe Plane do
     expect(subject.location.class).to be Airport
   end
 
+end
+
+describe Plane do
+  # Landing behaviours
+
   it "should store a plane at a specified airport when landed" do
     airport = Airport.new
     weather = Weather.new
@@ -26,6 +32,46 @@ describe Plane do
 
     expect(airport.docked_planes).to include(subject)
   end
+
+  it "should store the plane location as an instance variable when it lands" do
+    airport = Airport.new
+    weather = Weather.new
+    allow(weather).to receive(:stormy?) { false }
+
+    subject.takeoff(weather)
+    subject.land(airport, weather)
+
+    expect(subject.location).to eq airport
+  end
+
+  it "cannot land if it is already at an airport" do
+    weather = Weather.new
+    allow(weather).to receive(:stormy?) { false }
+
+    subject.takeoff(weather)
+    subject.land(Airport.new, weather)
+
+    expect { subject.land(Airport.new, weather) }.to raise_error "The plane is already docked at an airport."
+  end
+
+  it "should raise an error if told to land at a full airport" do
+    airport = Airport.new
+    weather = Weather.new
+    allow(weather).to receive(:stormy?) { false }
+   
+    Airport::DEFAULT_CAPACITY.times { 
+      plane = Plane.new
+      plane.takeoff(weather)
+      plane.land(airport, weather) 
+    }
+
+    expect { subject.land(airport, weather) }.to raise_error "Cannot land at a full airport."
+  end
+
+end
+
+describe Plane do
+  # Take off behaviours
 
   it "should notify air traffic control that it has left an airport" do
     weather = Weather.new
@@ -48,31 +94,6 @@ describe Plane do
     expect(subject.location).to eq "In-flight"
   end
 
-  it "should raise an error if told to land at a full airport" do
-    airport = Airport.new
-    weather = Weather.new
-    allow(weather).to receive(:stormy?) { false }
-   
-    Airport::DEFAULT_CAPACITY.times { 
-      plane = Plane.new
-      plane.takeoff(weather)
-      plane.land(airport, weather) 
-    }
-
-    expect { subject.land(airport, weather) }.to raise_error "Cannot land at a full airport."
-  end
-
-  it "should store the plane location as an instance variable when it lands" do
-    airport = Airport.new
-    weather = Weather.new
-    allow(weather).to receive(:stormy?) { false }
-
-    subject.takeoff(weather)
-    subject.land(airport, weather)
-
-    expect(subject.location).to eq airport
-  end
-
   it "should remove a plane from airport array when it takes off" do
     airport = Airport.new
     weather = Weather.new
@@ -91,16 +112,10 @@ describe Plane do
 
     expect { subject.takeoff(weather) }.to raise_error "The plane is already in the air."
   end
+end
 
-  it "cannot land if it is already at an airport" do
-    weather = Weather.new
-    allow(weather).to receive(:stormy?) { false }
-
-    subject.takeoff(weather)
-    subject.land(Airport.new, weather)
-
-    expect { subject.land(Airport.new, weather) }.to raise_error "The plane is already docked at an airport."
-  end
+context Plane do
+  # When stormy
 
   it "should raise an error when trying to take off in stormy weather" do
     plane = Plane.new
