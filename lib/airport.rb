@@ -8,7 +8,7 @@ class Airport
   end
   
   def full?
-    return true if @docked_planes.count >= DEFAULT_CAPACITY
+    @docked_planes.count >= DEFAULT_CAPACITY
   end
 
 end
