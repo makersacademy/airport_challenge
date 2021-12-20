@@ -94,3 +94,5 @@ The solution I have designed uses three classes: Airport, Plane and Weather. The
 
 ### Object Interaction Diagram
 ![Object_Interaction_Diagram](https://github.com/jyoung-gds/airport_challenge/blob/main/Object%20Interaction%20Diagram.png?raw=true)
+
+The user stories relating to safety (i.e. preventing takeoff/landing when the weather is stormy, and preventing landing when the airport is full) have been built into the software in the form of error messages. This functionality automatically prevents events, given certain circumstances, rather than the user manually preventing the events.

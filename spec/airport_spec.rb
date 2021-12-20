@@ -7,6 +7,7 @@ describe Airport do
   it "should return true when asked if full when default capacity is reached" do
     weather = Weather.new
     allow(weather).to receive(:stormy?) { false }
+    
     Airport::DEFAULT_CAPACITY.times { 
       plane = Plane.new
       plane.takeoff(weather)
