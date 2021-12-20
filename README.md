@@ -87,3 +87,5 @@ Finally, don’t overcomplicate things. This task isn’t as hard as it may seem
 * **Submit a pull request early.**
 
 * Finally, please submit a pull request before Monday at 9am with your solution or partial solution.  However much or little amount of code you wrote please please please submit a pull request before Monday at 9am.
+
+![Object_Interactio_Diagram](https://github.com/jyoung-gds/airport_challenge/blob/main/Object%20Interaction%20Diagram.png?raw=true)
