@@ -5,6 +5,7 @@ class Airport
 
   def initialize
     @docked_planes = []
+    return "A new airport has been created"
   end
   
   def full?

@@ -3,10 +3,6 @@ require 'plane'
 describe Plane do
   # Initialisaiton and method behaviour
 
-  it { should respond_to(:takeoff).with(1).argument }
-
-  it { should respond_to(:land).with(2).arguments }
-
   it "should be assigned an location upon creation" do
     expect(subject.location).to_not be nil
   end
@@ -47,17 +43,19 @@ describe Plane do
   it "cannot land if it is already at an airport" do
     weather = Weather.new
     allow(weather).to receive(:stormy?) { false }
+    message = "The plane is already docked at an airport."
 
     subject.takeoff(weather)
     subject.land(Airport.new, weather)
 
-    expect { subject.land(Airport.new, weather) }.to raise_error "The plane is already docked at an airport."
+    expect { subject.land(Airport.new, weather) }.to raise_error message
   end
 
   it "should raise an error if told to land at a full airport" do
     airport = Airport.new
     weather = Weather.new
     allow(weather).to receive(:stormy?) { false }
+    message = "Cannot land at a full airport."
    
     Airport::DEFAULT_CAPACITY.times { 
       plane = Plane.new
@@ -65,7 +63,7 @@ describe Plane do
       plane.land(airport, weather) 
     }
 
-    expect { subject.land(airport, weather) }.to raise_error "Cannot land at a full airport."
+    expect { subject.land(airport, weather) }.to raise_error message
   end
 
 end
@@ -77,11 +75,12 @@ describe Plane do
     weather = Weather.new
     airport = Airport.new
     allow(weather).to receive(:stormy?) { false }
+    message = "#{subject} has departed from #{airport}.\n"
     
     subject.takeoff(weather)
     subject.land(airport,weather)
   
-    expect { subject.takeoff(weather) }.to output("#{subject} has departed from #{airport}.\n").to_stdout
+    expect { subject.takeoff(weather) }.to output(message).to_stdout
   end
 
   it "should update the planes location to 'in-flight' after takeoff" do
@@ -107,10 +106,11 @@ describe Plane do
   it "cannot take off if already in-flight" do
     weather = Weather.new
     allow(weather).to receive(:stormy?) { false }
+    message = "The plane is already in the air."
 
     subject.takeoff(weather)
 
-    expect { subject.takeoff(weather) }.to raise_error "The plane is already in the air."
+    expect { subject.takeoff(weather) }.to raise_error message
   end
 end
 
@@ -121,22 +121,24 @@ context Plane do
     plane = Plane.new
     airport = Airport.new
     weather = Weather.new
+    message = "The weather is too stormy to take off at the moment."
 
     allow(weather).to receive(:stormy?) { true }
     
-    expect { plane.takeoff(weather) }.to raise_error "The weather is too stormy to take off at the moment."
+    expect { plane.takeoff(weather) }.to raise_error message
   end
 
   it "should raise an error when trying to land in stormy weather" do
     plane = Plane.new
     airport = Airport.new
     weather = Weather.new
+    message = "The weather is too stormy to land at the moment."
     allow(weather).to receive(:stormy?) { false }
     plane.takeoff(weather)
     allow(weather).to receive(:stormy?) { true }
 
     
-    expect { plane.land(airport, weather) }.to raise_error "The weather is too stormy to land at the moment."
+    expect { plane.land(airport, weather) }.to raise_error message
   end
 
 end
