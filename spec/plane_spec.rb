@@ -6,8 +6,6 @@ describe Plane do
 
   it { should respond_to(:land).with(2).arguments }
 
-  it { should respond_to(:in_airport?) }
-
   it "should be assigned an location upon creation" do
     expect(subject.location).to_not be nil
   end
