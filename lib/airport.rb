@@ -1,7 +1,7 @@
 require_relative "airplane"
 
 class Airport
-attr_accessor :planes
+  attr_accessor :planes
   def initialize
     @planes = []
     # @capacity
