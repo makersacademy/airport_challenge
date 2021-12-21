@@ -15,6 +15,7 @@ class Airport
   end 
 
   def take_off
+    fail 'Weather too bad to take off' if stormy?
     @planes.pop
   end
 
@@ -23,4 +24,9 @@ class Airport
   def full?
     @planes.length >= @capacity
   end
+
+  def stormy?
+    rand(1..6) > 4
+  end
+  
 end
