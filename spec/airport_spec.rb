@@ -1,6 +1,5 @@
 require "airport"
 
-
 describe Airport do
 
   it "can create an instance of airport" do
@@ -28,10 +27,9 @@ describe Airport do
     expect(airport).to respond_to(:weather)
   end 
 
-  # it "prevents landing when the fleet is full" do
-  #   airport = Airport.new
-  #   expect(airport).to respond_to(:planes)
-  # end 
-
+  it "prevents landing when the fleet is full" do
+    airport = Airport.new
+    expect(airport).to respond_to(:fleet)
+  end 
 
 end

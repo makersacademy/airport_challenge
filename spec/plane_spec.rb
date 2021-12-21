@@ -1,5 +1,7 @@
- 
-#    it "can get passengers to a destination" do
-#     airport = Airport.new
-#     expect(airport).to respond_to(:destination)
-#   end
+require "plane"
+describe Plane do
+  it "given a destination take you to that location" do
+    plane = Plane.new
+    expect(plane).to respond_to(:destination)
+  end
+end
