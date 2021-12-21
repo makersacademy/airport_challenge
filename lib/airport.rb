@@ -14,8 +14,9 @@ class Airport
     @planes.push(plane) 
   end
 
-  def take_off(*)
-    
+  def take_off(plane)
+    # "Plane is no longer at the Airport"
+    @planes.delete(plane)
   end
 
   private
