@@ -11,6 +11,7 @@ class Airport
 
   def land(plane)
     fail 'Airport is full' if full?
+    fail 'Weather too bad to land plane' if stormy?
     @planes << plane 
   end 
 
@@ -28,5 +29,5 @@ class Airport
   def stormy?
     rand(1..6) > 4
   end
-  
+
 end
