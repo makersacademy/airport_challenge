@@ -1,7 +1,6 @@
 class Weather
-  attr_accessor :weather_today
-
-  def initialize
-    ["sunny", "stormy"].sample
-  end 
-end 
+ 
+  def weather_today 
+   Random.rand(1..10) < 7 ? "sunny" : "stormy"     
+  end
+end
