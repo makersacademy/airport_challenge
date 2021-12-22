@@ -1,11 +1,13 @@
 require_relative 'plane'
+require_relative 'weather'
 
 class Airport
   DEFAULT_CAPACITY = 5
-  attr_reader :planes, :capacity
+  attr_reader :planes, :capacity, :weather
   
-  def initialize(capacity=DEFAULT_CAPACITY)
+  def initialize(capacity=DEFAULT_CAPACITY, weather)
     @capacity = capacity
+    @weather = weather
     @planes = []
   end
 
@@ -27,7 +29,7 @@ class Airport
   end
 
   def stormy?
-    rand(1..6) > 4
+    @weather.stormy?
   end
 
 end
