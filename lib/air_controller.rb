@@ -1,4 +1,13 @@
+require "weather"
+require "plane"
+
 class Aircontroller
-  def Landing
-  do
+
+  def land
+    "sunny"
+  end
+
+
+
+
 end
