@@ -29,7 +29,7 @@ describe Airport do
         #end 
     # end 
 
-    context 'when airport is at max capacity' do
+    describe 'when airport is at max capacity' do
         it 'raises an error when full' do
             Airport::DEFAULT_CAPACITY.times do
                 subject.land Plane.new
