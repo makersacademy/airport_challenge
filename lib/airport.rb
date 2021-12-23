@@ -1,19 +1,28 @@
 class Airport
-    def max_capacity
-    end 
+    DEFAULT_CAPACITY = 3
 
     def initialize 
         @planehangar = []
     end 
 
     def land(plane)
-        fail 'Airport Full' if @planehangar.count >= 3
+        fail 'Airport Full' if full?
         @planehangar << plane
     end 
 
     def takeoff(plane)
-        fail 'No planes for takeoff' if @planehangar.empty?
+        fail 'No planes for takeoff' if empty?
         @planehangar.pop
+    end 
+
+    private 
+
+    def full?
+        @planehangar.count >= DEFAULT_CAPACITY
+    end 
+
+    def empty?
+        @planehangar.empty?
     end 
 
 end 

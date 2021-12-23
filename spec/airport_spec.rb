@@ -2,10 +2,6 @@ require 'airport'
 
 describe Airport do
     attr_reader :plane
-    
-    it 'responds to max capacity' do
-        expect(subject).to respond_to :max_capacity
-    end 
 
     it 'lands plane' do 
         plane = Plane.new
@@ -35,8 +31,9 @@ describe Airport do
 
     context 'when airport is at max capacity' do
         it 'raises an error when full' do
-            3.times { subject.land Plane.new }
-            expect { subject.land Plane.new }.to raise_error 'Airport Full'
+            Airport::DEFAULT_CAPACITY.times do
+                subject.land Plane.new
+            end
         end 
     end 
 end 
