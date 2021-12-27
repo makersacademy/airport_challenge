@@ -14,7 +14,7 @@ describe Airport do
 
     it 'does not allow landing when at capacity' do
         # creating a double for the plane class
-        airport = double :plane
+        plane = double :plane
         20.times do
             airport.land(plane)
         end 
