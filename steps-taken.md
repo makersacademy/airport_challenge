@@ -17,7 +17,7 @@ Nouns - controller, passengers, plane, airport
 
 Verbs - instruct, land 
 
-- the airport is instructing the plane to land 
+
 
 Objects         Messages 
 Controller      
@@ -26,7 +26,9 @@ Plane           land?
 Airport         check if a plane has landed?
 
 irb feature test
+- require './lib/airport'
 - airport = Airport.new 
+- require './lib/plane'
 - plane = Plane.new
 - airport.land(plane)
 
