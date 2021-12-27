@@ -25,7 +25,7 @@ describe "User stories/Feature tests" do
     end 
 
 
-    it "the airport a default capacity" do
+    it "the airport has a default capacity" do
         plane = Plane.new
         airport = Airport.new(plane)
         Airport::DEFAULT_CAPACITY.times { airport.land(plane) }
