@@ -58,9 +58,15 @@ As an air traffic controller
 To ensure safety 
 I want to prevent landing when the airport is full 
 
-Nouns - 
+Nouns - controller, airport 
 
-Verbs -  
+Verbs -  prevent landing
+
+Objects         Messages 
+
+Plane           
+Airport         full?
+
 
 </br>
 
