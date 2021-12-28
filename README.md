@@ -63,7 +63,7 @@ Then you would need to just use irb using `irb -r './lib/airport.rb'`
 
 Here is a list of the technologies used:
 
-- Ruby 2.4.0
+- Ruby 3.0.2
 - Rspec to testing
 - Simplecov for testing coverage
 - Rubocop to maintain styling
