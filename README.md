@@ -1,4 +1,4 @@
-# Airport Challenge [![Coverage Status](https://coveralls.io/repos/github/blessingaliu/airport-challenge/badge.svg?branch=main)](https://coveralls.io/github/blessingaliu/airport-challenge?branch=main)
+# Airport Challenge
 
 ## Weekend 1 Challenge at Makers Academy
 
