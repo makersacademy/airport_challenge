@@ -67,3 +67,6 @@ Here is a list of the technologies used:
 - Rspec to testing
 - Simplecov for testing coverage
 - Rubocop to maintain styling
+
+
+### Read steps-taken.md to see how it was done 
