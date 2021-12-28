@@ -1,7 +1,5 @@
 # Airport Challenge
 
-## Weekend 1 Challenge at Makers Academy
-
 ```
         ______
         _\____\___
