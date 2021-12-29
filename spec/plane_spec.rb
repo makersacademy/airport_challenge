@@ -1,10 +1,9 @@
 require "plane"
 
 describe Plane do
-
   describe "#initialize" do
     it "sets @location to :air" do
-      expect { (Plane.new.location).to eq (:air) }
+      expect { (subject.location).to eq (:air) }
     end
 
   end
@@ -33,5 +32,5 @@ describe Plane do
     end
 
   end
-
+  
 end
