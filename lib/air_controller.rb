@@ -1,13 +1,10 @@
-require "weather"
-require "plane"
+require_relative "weather"
 
 class Aircontroller
 
-  def land
-    "sunny"
-  end
+  FLEET_SIZE = 10
 
-
-
+  def land(weather, planes)
+  end 
 
 end
