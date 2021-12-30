@@ -14,7 +14,7 @@ class Plane
     raise 'Landing prevented: Airport full' if airport.full?
     @landed = true
     airport.send_to_hangar(self)
-    airport
+    # airport
   end
 
   def take_off(airport)

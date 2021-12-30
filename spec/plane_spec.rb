@@ -15,7 +15,8 @@ describe Plane do
   it { is_expected.to respond_to(:land).with(1).argument }
   describe '#land' do
     it 'lands at an airport' do
-      expect(subject.land(airport)).to eq airport  
+      subject.land(airport)
+      expect(airport.hangar).to include(subject)
     end
     it 'gives an error when airport is full' do
       5.times { Plane.new.land(airport) }
@@ -34,7 +35,8 @@ describe Plane do
   describe '#take_off' do
     it 'takes off from an airport' do
       subject.land(airport)
-      expect(subject.take_off(airport)).to eq "#{subject} is no longer in #{airport}"
+      subject.take_off(airport)
+      expect(airport.hangar).not_to include(subject)      
     end
     it 'prevents taking off when weather is stormy' do
       allow(stormy_airport.hangar).to receive(:include?).and_return(true)
