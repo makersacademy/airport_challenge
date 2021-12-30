@@ -22,7 +22,6 @@ describe Plane do
   # let(:airport) { Airport.new }
   # let(:weather) { double("sunny") }
 
-
   it { is_expected.to respond_to(:land).with(1).argument }
   describe '#land' do
     it 'lands at an airport' do

@@ -29,4 +29,15 @@ describe Airport do
       expect(subject.full?).to eq true
     end
   end
+
+  it { is_expected.to respond_to(:check_weather) }
+  describe '#check_weather' do
+    it 'returns random weather' do
+      expect(subject.check_weather)
+      .to eq("sunny")
+      .or eq("cloudy")
+      .or eq("rain")
+      .or eq("stormy")
+    end
+  end
 end

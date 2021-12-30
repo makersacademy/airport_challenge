@@ -23,7 +23,7 @@ class Airport
   end
 
   def check_weather
-    weather_chances = ["sunny", "cloudy", "rain", "not stormy"]
+    weather_chances = ["sunny", "cloudy", "rain", "stormy"]
     weather = weather_chances.sample
   end
 end
