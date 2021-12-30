@@ -10,8 +10,8 @@ class Plane
 
   def land(airport)
     raise 'Unable to land, plane is already landed' if landed == true
-    return "Unable to land. Weather is stormy" if airport.check_weather == "stormy"
     raise 'Landing prevented: Airport full' if airport.full?
+    return "Unable to land. Weather is stormy" if airport.check_weather == "stormy"
     @landed = true
     airport.send_to_hangar(self)
     # airport
