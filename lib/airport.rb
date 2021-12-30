@@ -21,4 +21,9 @@ class Airport
     return true if @hangar.count >= CAPACITY
     false
   end
+
+  def check_weather
+    weather_chances = ["sunny", "cloudy", "rain", "not stormy"]
+    weather = weather_chances.sample
+  end
 end
