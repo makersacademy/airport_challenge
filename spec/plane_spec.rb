@@ -12,7 +12,6 @@ describe Plane do
     stormy_airport
   end
 
-  it { is_expected.to respond_to(:land).with(1).argument }
   describe '#land' do
     it 'lands at an airport' do
       subject.land(airport)
@@ -31,7 +30,6 @@ describe Plane do
     end
   end
 
-  it { is_expected.to respond_to(:take_off).with(1).argument }
   describe '#take_off' do
     it 'takes off from an airport' do
       subject.land(airport)

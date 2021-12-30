@@ -86,7 +86,9 @@ Finally, try and take off again and get the expected error as the plane has take
 
 ## Further thoughts
 
-To come
+I often wondered which object was the most appropriate for which method. I originally planned the airport object to take the methods `land` and `take_off` however the user stories implied it should be the plane objects that should take those methods. Although its true that 'the plane lands at the airport' it should really be the airport that controls if the plane can land or take-off. Without being able to further question the 'client' I stuck to the user story to allow a user 'to instruct a plane to land at an airport.' This did result in me calling `airport.full?` from the plane object when the `full?` method could have been kept as a private method within `airport`
+
+Similarly, checking the weather is done with a method within `airport` but is called from `plane` and seems counter-intuitive but as it stands - and without being able to further query the client or get a better understanding of the user needs - the tests pass and the script meets the need of controlloing the flow of planes at an airport. As a further thought, checking the weather may be more likely to be done with an API.
 
 ## Task
 
