@@ -5,32 +5,25 @@ describe Plane do
     it "sets @location to :air" do
       expect { (subject.location).to eq (:air) }
     end
-
   end
 
-  describe "#grounded" do
-    it "responds to grounded" do
-      expect { subject.to respond_to(:grounded) }
-    end
+  describe "#ground" do
+    it { is_expected.to respond_to(:ground) }
 
-    it "changes @location to :grounded" do
+    it "changes @location to :ground" do
       subject.ground
-      expect { (subject.location).to eq (:grounded) }
+      expect { (subject.location).to eq (:ground) }
     end
-
   end
 
   describe "#air" do
-    it "responds to air" do
-      expect { subject.to respond_to(:air) }
-    end
+    it { is_expected.to respond_to(:air) }
 
     it "changes @location to :air" do
       subject.ground
       subject.air
       expect { (subject.location).to eq (:air) }
     end
-
   end
   
 end
