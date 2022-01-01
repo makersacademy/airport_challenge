@@ -1,54 +1,76 @@
 require 'airport'
+require 'plane'
 
 describe Airport do
-  it { is_expected.to respond_to(:land).with(1).argument }
-  it { is_expected.to respond_to :planes }
-  it { is_expected.to respond_to(:take_off) }
+  subject (:airport) { Airport.new }
 
   let (:plane) { Plane.new }
+  let (:land_plane) { airport.land(plane) }
+  let (:plane_take_off) do
+    airport.land(plane)
+    airport.take_off(plane)
+  end
 
   describe '#initialize' do
     it 'has a default capacity' do
-      expect(subject.capacity).to eq Airport::DEFAULT_CAPACITY
+      expect(airport.capacity).to eq Airport::DEFAULT_CAPACITY
     end
   end
 
   describe '#capacity' do
     it 'has variable capacity' do
-      subject.capacity = 50
-      subject.capacity.times { subject.land(plane) }
-      expect { subject.land(plane) }.to raise_error 'Airport full'
+      airport.capacity = 50
+      airport.capacity.times { airport.land(Plane.new) }
+      expect { land_plane }.to raise_error 'Airport full'
     end
   end
 
   describe '#land' do
+    it { is_expected.to respond_to(:land).with(1).argument }
+
     it 'raises an error when full' do
-      subject.capacity.times { subject.land(plane) }
-      expect { subject.land(Plane.new) }.to raise_error 'Airport full'
+      airport.capacity.times { airport.land(Plane.new) }
+      expect { land_plane }.to raise_error 'Airport full'
     end
 
     it 'instructs a plane to land' do
-      expect(subject.land(plane)).to eq [plane]
+      expect(land_plane).to eq [plane]
     end
   end
 
   describe '#planes' do
-    it 'returns landed planes' do
-      subject.land(plane)
-      expect(subject.planes).to eq [plane]
+    it { is_expected.to respond_to :planes }
+
+    it 'shows landed planes' do
+      land_plane
+      expect(airport.planes).to eq [plane]
     end
   end
 
   describe '#take_off' do
+    it { is_expected.to respond_to(:take_off).with(1).argument }
+
     it 'instructs a plane to take off' do
-      subject.land(plane)
-      expect(subject.take_off).to eq plane
+      land_plane
+      expect(airport.take_off(plane)).to eq plane
     end
 
     it 'removes a plane' do
-      subject.land(plane)
-      subject.take_off
-      expect(subject.planes).not_to include(plane)
+      plane_take_off
+      expect(airport.planes).not_to include(plane)
+    end
+
+    it 'does not instruct a plane that is already flying' do
+      plane_take_off
+      expect { airport.take_off(plane) }.to raise_error 'Plane is already in flight'
+    end
+  end
+
+  describe '#weather_check' do
+    it { is_expected.to respond_to(:weather) }
+    
+    it 'gets the weather condition' do
+      expect(airport.weather).to be_an_instance_of Weather
     end
   end
 end

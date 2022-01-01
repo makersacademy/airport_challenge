@@ -1,13 +1,16 @@
 
-
 class Weather
   attr_reader :condition
-  
-  def stormy?
-    true
+
+  def initialize
+    update
   end
 
-  def set
-    @condition = rand(2)
+  def update
+    @condition = rand(10)
+  end
+
+  def stormy?
+    condition >= 8
   end
 end
