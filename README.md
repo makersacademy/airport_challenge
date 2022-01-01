@@ -1,5 +1,4 @@
-Airport Challenge
-=================
+# Airport Challenge
 
 ```
         ______
@@ -12,27 +11,13 @@ Airport Challenge
                 =  ===(_________)
 
 ```
+---
 
-Instructions
----------
+## Objective
 
-* Feel free to use google, your notes, books, etc. but work on your own
-* If you refer to the solution of another coach or student, please put a link to that in your README
-* If you have a partial solution, **still check in a partial solution**
-* You must submit a pull request to this repo with your code by 9am Monday morning
+The client would like software to control the passage of planes through an airport. The operation of planes will involve landing and taking off providing it is safe to do so in the current weather condition. User stories have be established for the development of the software.
 
-Steps
--------
-
-1. Fork this repo, and clone to your local machine
-2. Run the command `gem install bundler` (if you don't have bundler already)
-3. When the installation completes, run `bundle`
-4. Complete the following task:
-
-Task
------
-
-We have a request from a client to write the software to control the flow of planes at an airport. The planes can land and take off provided that the weather is sunny. Occasionally it may be stormy, in which case no planes can land or take off.  Here are the user stories that we worked out in collaboration with the client:
+### User stories
 
 ```
 As an air traffic controller 
@@ -60,30 +45,76 @@ To ensure safety
 I want to prevent landing when weather is stormy 
 ```
 
-Your task is to test drive the creation of a set of classes/modules to satisfy all the above user stories. You will need to use a random number generator to set the weather (it is normally sunny but on rare occasions it may be stormy). In your tests, you'll need to use a stub to override random weather to ensure consistent test behaviour.
+## Approach
 
-Your code should defend against [edge cases](http://programmers.stackexchange.com/questions/125587/what-are-the-difference-between-an-edge-case-a-corner-case-a-base-case-and-a-b) such as inconsistent states of the system ensuring that planes can only take off from airports they are in; planes that are already flying cannot take off and/or be in an airport; planes that are landed cannot land again and must be in an airport, etc.
+The approach is to rigorously use the red-green-refactor TDD cycle to construct the software needed to meet the client's requirements. This involves the following:
 
-For overriding random weather behaviour, please read the documentation to learn how to use test doubles: https://www.relishapp.com/rspec/rspec-mocks/docs . There’s an example of using a test double to test a die that’s relevant to testing random weather in the test.
+- [Extracting a domain model from the user stories](#domain-modelling)
+- [Feature / acceptance tests](#featur-test)
+- [Unit tests](#unit-test)
+- [Make tests pass](#make-test-pass)
+- [Refactor](#refactor)
 
-Please create separate files for every class, module and test suite.
+### Domain modelling
 
-In code review we'll be hoping to see:
+To extract the domain model from the user stories, the key nouns and verbs would be taken and sorted into objects and messages.
 
-* All tests passing
-* High [Test coverage](https://github.com/makersacademy/course/blob/main/pills/test_coverage.md) (>95% is good)
-* The code is elegant: every class has a clear responsibility, methods are short etc. 
+##### Example
+###### User story 1
+> As an air traffic controller <br>
+So I can get passengers to a destination <br>
+I want to instruct a <mark style="background-color: #00bbff">plane</mark> to <mark style="background-color: #ff9900">land</mark> at an <mark style="background-color: #00bbff">airport</mark>
 
-Reviewers will potentially be using this [code review rubric](docs/review.md).  Referring to this rubric in advance will make the challenge somewhat easier.  You should be the judge of how much challenge you want this at this moment.
+<br>
 
-**BONUS**
+<div align="center">
 
-* Write an RSpec **feature** test that lands and takes off a number of planes
+| Object (noun) | Message (verb) |
+| --- | --- |
+| Plane | land |
+| Airport | |
+</div>
 
-Note that is a practice 'tech test' of the kinds that employers use to screen developer applicants.  More detailed submission requirements/guidelines are in [CONTRIBUTING.md](CONTRIBUTING.md)
+<br>
 
-Finally, don’t overcomplicate things. This task isn’t as hard as it may seem at first.
+After sorting the words into their relative columns, a diagram with words and arrows would be used to indicate how the objects and messages would act on each other. Arrows pointing to the right would imply that the following word would be the output of the previous word. An arrow pointing left would imply that the word on the right of it would be a message or an argument passed to the word on the left of the arrow.
 
-* **Submit a pull request early.**
+##### Examples
 
-* Finally, please submit a pull request before Monday at 9am with your solution or partial solution.  However much or little amount of code you wrote please please please submit a pull request before Monday at 9am.
+```
+Airport  <---  land  <---  Plane
+```
+```
+Airport  <---  full?  --->  true/false
+```
+### Feature test
+
+A feature test would then be implimented based on the domain model.
+
+##### Example
+```irb
+3.0.2 :003 > airport = Airport.new
+ => #<Airport:0x00007f9ef814e378> 
+3.0.2 :004 > airport.full?
+(irb):4:in `<main>': undefined method `full?' for #<Airport:0x00007f9ef814e378> (NoMethodError)
+```
+
+### Unit test
+
+The creation of a unit test would happen once an error message was received from the failing feature test.
+
+### Make test pass
+
+This is the part where the implimentation of the software happens. Code is written in the simplest way to make the test pass.
+
+### Refactor
+
+When a feature is working and passes the associated tests, it would be checked to see if the code could be made simpler and more readable. After this it's back to another feature test and the cycle continues!
+
+## Improvments
+
+The weather feature for the last two user stories is not complete yet. The plan at the moment is to allow an airport to use the Weather class to check the weather condition before letting a plane take off or land. If the weather is 'stormy' an error will be raised to prevent landing and take off.
+
+So far, the Weather class has been created so the next step would be to write a test to check that a plane cannot take off from an airport in stormy weather.
+
+To finish the challenge, the same approach would be taken to prevent landing when the weather is stormy.
