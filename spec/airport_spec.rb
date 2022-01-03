@@ -1,7 +1,7 @@
 require 'airport'
 
 describe Airport do
-  airport = Airport.new
+  let(:airport) { Airport.new }
   it { is_expected.to respond_to(:capacity) }
   it { is_expected.to respond_to(:change_capacity) }
 

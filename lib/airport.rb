@@ -29,4 +29,9 @@ class Airport
     @airport.delete(plane)
   end
 
+  def has_capacity
+    return true if hanger_count < @capacity
+    false
+  end
+
 end
