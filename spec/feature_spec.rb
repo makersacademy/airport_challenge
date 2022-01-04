@@ -22,7 +22,7 @@ describe 'airport challenge' do
   end
   it 'prevents landing when airport is full' do
     airport = Airport.new
-    allow(airport).to receive(:weather).and_return('sunny')
+    allow(airport.weather).to receive(:stormy?).and_return(false)
 
     airport.capacity.times { airport.land(Plane.new) }
 
@@ -33,7 +33,7 @@ describe 'airport challenge' do
     bigger_capacity = airport_default.capacity + 10
     
     airport = Airport.new(bigger_capacity)
-    allow(airport).to receive(:weather).and_return('sunny')
+    allow(airport.weather).to receive(:stormy?).and_return(false)
     bigger_capacity.times { airport.land(Plane.new) }
 
     expect { airport.land(Plane.new) }.to raise_error('Airport full')
@@ -42,7 +42,7 @@ describe 'airport challenge' do
     airport = Airport.new
     plane = Plane.new
 
-    allow(airport).to receive(:weather).and_return('stormy')
+    allow(airport.weather).to receive(:stormy?).and_return(true)
     expect { airport.land(plane) }.to raise_error('Weather is stormy')
   end
   it 'prevents takeoff when weather is stormy' do
@@ -50,7 +50,7 @@ describe 'airport challenge' do
     plane = Plane.new
 
     airport.land(plane)
-    allow(airport).to receive(:weather).and_return('stormy')
+    allow(airport.weather).to receive(:stormy?).and_return(true)
     expect { airport.takeoff(plane) }.to raise_error('Weather is stormy')
   end
   it 'prevents a plane landing at two airports' do
@@ -58,8 +58,8 @@ describe 'airport challenge' do
     airport_two = Airport.new
     plane = Plane.new
 
-    allow(airport_one).to receive(:weather).and_return('sunny')
-    allow(airport_two).to receive(:weather).and_return('sunny')
+    allow(airport_one.weather).to receive(:stormy?).and_return(false)
+    allow(airport_two.weather).to receive(:stormy?).and_return(false)
 
     airport_one.land(plane)
     expect { airport_two.land(plane) }.to raise_error('Plane is not airborne')
