@@ -9,6 +9,7 @@ describe Weather do
       expect(weather.sunny).to be true
     end
   end
+  
   describe '#get_weather' do
     it 'can be sunny' do
       allow_any_instance_of(Weather).to receive(:rand).and_return(5)
