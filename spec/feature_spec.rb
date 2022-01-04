@@ -2,18 +2,18 @@ require 'airport'
 require 'plane'
 
 describe 'airport challenge' do
-  before :each do
-    srand(2)
-  end
   it 'lands a plane at an airport' do
     airport = Airport.new
     plane = Plane.new
 
+    allow(airport.weather).to receive(:stormy?).and_return(false)
     airport.land(plane)
   end
   it 'takes off a plane and confirms it is no longer in the airport' do
     airport = Airport.new
     plane = Plane.new
+
+    allow(airport.weather).to receive(:stormy?).and_return(false)
 
     airport.land(plane)
     airport.takeoff(plane)

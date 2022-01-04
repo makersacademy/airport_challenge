@@ -4,7 +4,8 @@ describe Airport do
   let(:plane) { double :plane }
   before :each do
     set_airborne(plane, true)
-    allow(plane).to receive(:airborne=)
+    allow(plane).to receive(:land)
+    allow(plane).to receive(:takeoff)
   end
 
   describe '#initialize' do
@@ -34,16 +35,11 @@ describe Airport do
         subject.capacity.times do
           new_plane = double(:plane)
           set_airborne(new_plane, true)
-          allow(new_plane).to receive(:airborne=)
+          allow(new_plane).to receive(:land)
           subject.land(new_plane)
         end
 
         expect { subject.land(plane) }.to raise_error('Airport full')
-      end
-
-      it 'raises an error if the plane is not airborne' do
-        set_airborne(plane, false)
-        expect { subject.land(plane) }.to raise_error('Plane is not airborne')
       end
     end
 
@@ -60,12 +56,6 @@ describe Airport do
         subject.takeoff(plane)
         set_airborne(plane, false)
         expect { subject.takeoff(plane) }.to raise_error('Plane is not in airport')
-      end
-
-      it 'raises an error if the plane is already airborne' do
-        subject.land(plane)
-        set_airborne(plane, true)
-        expect { subject.takeoff(plane) }.to raise_error('Plane is already airborne')
       end
     end
 
@@ -108,6 +98,7 @@ describe Airport do
   def set_stormy(airport, stormy)
     allow(airport.weather).to receive(:stormy?).and_return(stormy)
   end
+
   def set_airborne(plane, airborne)
     allow(plane).to receive(:airborne).and_return(airborne)
   end

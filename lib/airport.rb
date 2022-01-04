@@ -14,20 +14,18 @@ class Airport
 
   def land(plane)
     raise 'Plane is already landed in airport' if landed?(plane)
-    raise 'Plane is not airborne' unless plane.airborne
     raise 'Airport full' if full?
     raise 'Weather is stormy' if weather.stormy?
 
-    plane.airborne = false
+    plane.land
     planes << plane
   end
 
   def takeoff(plane)
     raise 'Plane is not in airport' unless landed?(plane)
-    raise 'Plane is already airborne' if plane.airborne
     raise 'Weather is stormy' if weather.stormy?
 
-    plane.airborne = true
+    plane.takeoff
     planes.delete(plane)
   end
 
