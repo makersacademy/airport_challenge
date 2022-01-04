@@ -1,0 +1,11 @@
+.DS_Store
+coverage/**/*
+.rubocop-upgraded.yml
+disabled-upgraded.yml
+enabled-upgraded.yml
+CoverallsRakefile
+analysis/**/*
+.gitignore-analysis
+
+# Local cache of Rubocop remote config
+.rubocop-*
