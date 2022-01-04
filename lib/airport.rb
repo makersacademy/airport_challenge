@@ -11,7 +11,7 @@ class Airport
     @planes.push(airplane)
   end
 
-  def take_off
+  def take_off(airplane)
   end
 
   # def full?
