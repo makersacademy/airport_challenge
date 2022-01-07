@@ -20,53 +20,53 @@ This project enables a user to simulate basic airport / airplane interactions
 Airports can instruct airborne planes to land and grounded planes to take off. A random stormy weather variable keeps budding air traffic controllers on their toes though!
 
 ## How to Use
-Airport methods:
-NAME = Airport.new(capacity) - creates a new instance of Airport. Default capacity is set to 5.
-.land(plane) - lands a plane at the airport (if there's space!).
-.take_off(plane) - launches a plane from the airport (if it's at that airport!).
+#### Airport methods:  
+NAME = Airport.new(capacity) - creates a new instance of Airport. Default capacity is set to 5.  
+.land(plane) - lands a plane at the airport (if there's space!).  
+.take_off(plane) - launches a plane from the airport (if it's at that airport!).  
 
-NAME = Plane.new - creates a new instance of Plane. New planes have their location in the air, which is not very realistic.
+#### Plane methods:
+NAME = Plane.new - creates a new instance of Plane. New planes have their location in the air, which is not very realistic.  
+.ground - updates a plane's location to ground.  
+.air - updates a plane's location to air.  
 
-.ground - updates a plane's location to ground.
-
-.air - updates a plane's location to air.
-
+#### Weather methods:
 Weather.new - rolls the virtual die to determine whether it's sunny or stormy.
 
 ## Sample IRB Interaction
-% irb 
-3.0.2 :001 > require "./lib/airport"
- => true 
-3.0.2 :002 > gatwick = Airport.new
- => #<Airport:0x000000014e2e9b50 @capacity=5, @hangar=[]> 
-3.0.2 :003 > luton = Airport.new
- => #<Airport:0x000000014e125788 @capacity=5, @hangar=[]> 
-3.0.2 :004 > and_simple = Plane.new
- => #<Plane:0x000000013f826b68 @location=:air> 
-3.0.2 :005 > ex = Plane.new
- => #<Plane:0x000000013e82d3d8 @location=:air> 
-3.0.2 :006 > gatwick.land(and_simple)
- => [#<Plane:0x000000013f826b68 @location=:ground>] 
-3.0.2 :007 > luton.land(and_simple)
-/airport_challenge/lib/airport.rb:13:in `land': This plane has already landed! (RuntimeError)
-	from (irb):7:in `<main>'
-	from /.rvm/rubies/ruby-3.0.2/lib/ruby/gems/3.0.0/gems/irb-1.3.5/exe/irb:11:in `<top (required)>'
-	from /.rvm/rubies/ruby-3.0.2/bin/irb:23:in `load'
-	from /.rvm/rubies/ruby-3.0.2/bin/irb:23:in `<main>'
-3.0.2 :008 > luton.take_off(and_simple)
-/Projects/airport_challenge/airport_challenge/lib/airport.rb:22:in `take_off': Your plane is in another airport! (RuntimeError)
-	from (irb):8:in `<main>'
-	from /.rvm/rubies/ruby-3.0.2/lib/ruby/gems/3.0.0/gems/irb-1.3.5/exe/irb:11:in `<top (required)>'
-	from /.rvm/rubies/ruby-3.0.2/bin/irb:23:in `load'
-	from /.rvm/rubies/ruby-3.0.2/bin/irb:23:in `<main>'
-3.0.2 :009 > luton.take_off(ex)
-/Projects/airport_challenge/airport_challenge/lib/airport.rb:21:in `take_off': This plane is already in the air! (RuntimeError)
-	from (irb):9:in `<main>'
-	from /.rvm/rubies/ruby-3.0.2/lib/ruby/gems/3.0.0/gems/irb-1.3.5/exe/irb:11:in `<top (required)>'
-	from /.rvm/rubies/ruby-3.0.2/bin/irb:23:in `load'
-	from /.rvm/rubies/ruby-3.0.2/bin/irb:23:in `<main>'
-3.0.2 :010 > gatwick.take_off(and_simple)
- => #<Plane:0x000000013f826b68 @location=:air> 
+% irb  
+3.0.2 :001 > require "./lib/airport"  
+ => true  
+3.0.2 :002 > gatwick = Airport.new  
+ => #<Airport:0x000000014e2e9b50 @capacity=5, @hangar=[]>  
+3.0.2 :003 > luton = Airport.new  
+ => #<Airport:0x000000014e125788 @capacity=5, @hangar=[]>  
+3.0.2 :004 > and_simple = Plane.new  
+ => #<Plane:0x000000013f826b68 @location=:air>  
+3.0.2 :005 > ex = Plane.new  
+ => #<Plane:0x000000013e82d3d8 @location=:air>  
+3.0.2 :006 > gatwick.land(and_simple)  
+ => [#<Plane:0x000000013f826b68 @location=:ground>]  
+3.0.2 :007 > luton.land(and_simple)  
+/airport_challenge/lib/airport.rb:13:in `land': This plane has already landed! (RuntimeError)  
+	from (irb):7:in `<main>'  
+	from /.rvm/rubies/ruby-3.0.2/lib/ruby/gems/3.0.0/gems/irb-1.3.5/exe/irb:11:in `<top (required)>'  
+	from /.rvm/rubies/ruby-3.0.2/bin/irb:23:in `load'  
+	from /.rvm/rubies/ruby-3.0.2/bin/irb:23:in `<main>'  
+3.0.2 :008 > luton.take_off(and_simple)  
+/Projects/airport_challenge/airport_challenge/lib/airport.rb:22:in `take_off': Your plane is in another airport! (RuntimeError)  
+	from (irb):8:in `<main>'  
+	from /.rvm/rubies/ruby-3.0.2/lib/ruby/gems/3.0.0/gems/irb-1.3.5/exe/irb:11:in `<top (required)>'  
+	from /.rvm/rubies/ruby-3.0.2/bin/irb:23:in `load'  
+	from /.rvm/rubies/ruby-3.0.2/bin/irb:23:in `<main>'  
+3.0.2 :009 > luton.take_off(ex)  
+/Projects/airport_challenge/airport_challenge/lib/airport.rb:21:in `take_off': This plane is already in the air! (RuntimeError)  
+	from (irb):9:in `<main>'  
+	from /.rvm/rubies/ruby-3.0.2/lib/ruby/gems/3.0.0/gems/irb-1.3.5/exe/irb:11:in `<top (required)>'  
+	from /.rvm/rubies/ruby-3.0.2/bin/irb:23:in `load'  
+	from /.rvm/rubies/ruby-3.0.2/bin/irb:23:in `<main>'  
+3.0.2 :010 > gatwick.take_off(and_simple)  
+ => #<Plane:0x000000013f826b68 @location=:air>  
 
 
 
