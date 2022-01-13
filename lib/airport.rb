@@ -1,12 +1,14 @@
-require_relative 'weather_reporter'
+require_relative 'weather'
 
 class Airport
 
   DEFAULT_CAPACITY = 20
 
-  def initialize(capacity = DEFAULT_CAPACITY, weather_reporter)
+  attr_reader = :plane, :capacity
+
+  def initialize(capacity = DEFAULT_CAPACITY, weather)
     @capacity = capacity
-    @weather_reporter = weather_reporter
+    @weather = weather
     @planes = []
 
 
@@ -24,8 +26,8 @@ class Airport
 
   def take_off(plane)
     raise 'weather is stormy' if stormy?
-    
-    raise 'plane not at this airport' unless at_airport?(plane)
+    raise 'plane not at this airport' unless at_airport?(plane)  
+    puts "#{@plane} has taken off"
   end
 
 
@@ -36,7 +38,7 @@ class Airport
   end  
 
   def stormy?
-    @weather_reporter.stormy?
+    @weather.stormy?
   end
   
   def full?
