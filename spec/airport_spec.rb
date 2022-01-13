@@ -63,5 +63,12 @@ describe Airport do
     end
   end
 
+  context 'default capacity' do
+    subject(:defaults_airport) { described_class.new(weather_reporter) }
 
+    it 'has a default capacity of 20' do
+      allow
+    end
+  end
+  
 end
