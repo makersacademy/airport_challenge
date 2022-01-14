@@ -2,12 +2,6 @@
 
 class Weather
   def rare_stormy_weather?
-    random_number == 1
-  end
-
-  private
-
-  def random_number
-    rand(9)
+    rand(9) == 1
   end
 end

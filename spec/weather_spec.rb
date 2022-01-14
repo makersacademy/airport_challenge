@@ -9,17 +9,18 @@ RSpec.describe Weather do
 
   describe '#rare_stormy_weather?' do
     it 'returns boolen value' do
+
       expect(weather.rare_stormy_weather?).to be(true).or be(false)
     end
 
     it 'returns true when random_number is equal to one' do
-      allow(weather).to receive(:random_number).and_return(1)
+      srand(123_456)
 
       expect(weather.rare_stormy_weather?).to eq true
     end
 
     it 'returns false when random_number does not eq 1' do
-      allow(weather).to receive(:random_number).and_return(3)
+      srand(1)
 
       expect(weather.rare_stormy_weather?).to eq false
     end
