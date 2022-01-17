@@ -15,9 +15,11 @@ class Airport
   end
 
   def land(plane)
+    raise 'This plane is not airborne' if plane.airborne == false
     raise 'Airport is full' if hanger.count >= @capacity
     check_weather('landing')
 
+    plane.land
     hanger.push(plane)
   end
 
@@ -26,7 +28,7 @@ class Airport
     check_weather('take off')
 
     hanger.delete(plane)
-    'the plane is now airborn'
+    plane.takeoff
   end
 
   private

@@ -34,6 +34,11 @@ RSpec.describe Airport do
 
       expect { airport.land(plane_one) }.to raise_error 'Airport is full'
     end
+    it 'raises error if plane is not airborne' do
+      airport.land(plane_one)
+
+      expect { airport.land(plane_one) }.to raise_error 'This plane is not airborne'
+    end
 
     context 'when capacity is set to 4' do
       let(:airport) { described_class.new(weather, 4) }
