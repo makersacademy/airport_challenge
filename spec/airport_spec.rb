@@ -20,6 +20,16 @@ RSpec.describe Airport do
     expect(capacity).to eq 3
   end
 
+  it 'takes off and lands multiple planes with no errors' do
+    multiple_planes = Array.new(20) { Plane.new }
+    airport = Airport.new(weather, multiple_planes.length)
+
+    expect do
+      multiple_planes.each { |plane| airport.land(plane) }
+      multiple_planes.each { |plane| airport.take_off(plane) }
+    end.not_to raise_error
+  end
+
   describe '#land' do
     it 'lands a plan at airport' do
       airport.land(plane_one)
