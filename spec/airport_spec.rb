@@ -3,7 +3,8 @@
 require 'airport'
 
 RSpec.describe Airport do
-  let(:plane) { Plane.new }
+  let(:plane_one) { Plane.new }
+  let(:plane_two) { Plane.new }
   let(:weather) { double('weather') }
   let(:airport) { described_class.new(weather) }
 
@@ -21,9 +22,9 @@ RSpec.describe Airport do
 
   describe '#land' do
     it 'lands a plan at airport' do
-      airport.land(plane)
+      airport.land(plane_one)
 
-      expect(airport.hanger.first).to eq plane
+      expect(airport.hanger.first).to eq plane_one
     end
 
     it 'raises error if airport is already full' do
@@ -31,7 +32,7 @@ RSpec.describe Airport do
 
       capacity.times { airport.land(Plane.new) }
 
-      expect { airport.land(plane) }.to raise_error 'Airport is full'
+      expect { airport.land(plane_one) }.to raise_error 'Airport is full'
     end
 
     context 'when capacity is set to 4' do
@@ -41,13 +42,13 @@ RSpec.describe Airport do
       it 'raises error if airport already has 4 planes' do
         capacity.times { airport.land(Plane.new) }
 
-        expect { airport.land(plane) }.to raise_error 'Airport is full'
+        expect { airport.land(plane_one) }.to raise_error 'Airport is full'
       end
 
       it 'does not raises error if airport takes a 4th plane' do
         (capacity - 1).times { airport.land(Plane.new) }
 
-        expect { airport.land(plane) }.not_to raise_error
+        expect { airport.land(plane_one) }.not_to raise_error
       end
     end
 
@@ -57,7 +58,7 @@ RSpec.describe Airport do
       end
 
       it 'raises error "landing prevented, weather is stormy"' do
-        expect { airport.land(plane) }.to raise_error 'landing prevented, weather is stormy'
+        expect { airport.land(plane_one) }.to raise_error 'landing prevented, weather is stormy'
       end
     end
   end
@@ -65,44 +66,42 @@ RSpec.describe Airport do
   describe '#take_off' do
     it 'departs plane from airport' do
       empty_hanger = []
-      airport.land(plane)
+      airport.land(plane_one)
 
-      airport.take_off(plane)
+      airport.take_off(plane_one)
 
       expect(airport.hanger).to eq empty_hanger
     end
 
     it 'only departs plane already in airport' do
-      second_plane = Plane.new
-      airport.land(plane)
-      airport.land(second_plane)
+      airport.land(plane_one)
+      airport.land(plane_two)
 
-      airport.take_off(plane)
+      airport.take_off(plane_one)
 
-      expect(airport.hanger).to include(second_plane)
+      expect(airport.hanger).to include(plane_two)
     end
 
     it "returns the plan's status" do
-      airport.land(plane)
+      airport.land(plane_one)
 
-      expect(airport.take_off(plane)).to include('the plane is now airborn')
+      expect(airport.take_off(plane_one)).to include('the plane is now airborn')
     end
 
     it 'can not take off plane that is that is not in airport' do
-      diffrent_plane = Plane.new
-      airport.land(diffrent_plane)
+      airport.land(plane_two)
 
-      expect { airport.take_off(plane) }.to raise_error 'Plane not in airport'
+      expect { airport.take_off(plane_one) }.to raise_error 'Plane not in airport'
     end
 
     context 'when weather is stormy' do
       before(:each) do
-        airport.land(plane)
+        airport.land(plane_one)
         stub_stormy_weather(true)
       end
 
       it 'raises error "take off prevented, weather is stormy"' do
-        expect { airport.take_off(plane) }.to raise_error 'take off prevented, weather is stormy'
+        expect { airport.take_off(plane_one) }.to raise_error 'take off prevented, weather is stormy'
       end
     end
   end
