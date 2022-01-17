@@ -3,11 +3,12 @@
 class Plane
   attr_reader :airborne
 
-  def initialize
-    @airborne = false
-  end
-
   def takeoff
     @airborne = true
+    'the plane is now airborn'
+  end
+
+  def land
+    @airborne = false
   end
 end
