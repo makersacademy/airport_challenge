@@ -1,7 +1,7 @@
 require 'airport_building'
 
-describe AirportBuilding do
+describe plane_landed do
 
-  it { is expected.to respond_to:red_plane_landed }
+  it { is expected.to respond_to: "red plane landed" }
 
 end
