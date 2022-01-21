@@ -36,6 +36,12 @@ describe Airport do
           expect { subject.land(plane) }.to raise_error 'The Airport is full, you cannot land'
         end
 
+        it 'does not allow planes to land when stormy' do
+          plane = Plane.new
+          allow(subject).to receive(:stormy?).and_return true
+          expect { subject.land(plane) }.to raise_error 'It is stormy, you cannot land'
+        end
+
         it 'allows system designer to set capacity' do
           expect(subject.capacity).to eq Airport::DEFAULT_CAPACITY
         end
