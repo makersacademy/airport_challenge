@@ -1,16 +1,14 @@
 require_relative 'plane'
+require_relative 'weather'
 
 class Airport
+  include Weather
   attr_accessor :hanger, :capacity
   DEFAULT_CAPACITY = 20
 
   def initialize(capacity = DEFAULT_CAPACITY)
     @capacity = capacity
     @hanger = []
-  end
-
-  def stormy?
-    rand(2).zero?
   end
 
   def land(plane)
@@ -25,7 +23,7 @@ class Airport
   end
 
   private
-
+  
   def full?
     @hanger.count >= @capacity
   end
