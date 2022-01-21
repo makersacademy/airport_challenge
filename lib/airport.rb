@@ -1,12 +1,9 @@
-require_relative 'plane'
-
 class Airport
   DEFAULT_CAPACITY = 20
 
   def initialize(capacity = DEFAULT_CAPACITY)
     @capacity = capacity
     @planes = []
-
   end
 
   def land(plane)
@@ -26,7 +23,7 @@ private
   end
 
   def stormy?
-    rand(1..6) > 4
+    rand(1..7) > 5
   end
 
 end
