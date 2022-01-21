@@ -9,16 +9,16 @@ describe Airport do
       expect(subject).to respond_to(:land_plane).with(2).argument
     end
 
-    it "override airport capacity" do
+    it "Override airport capacity" do
       new_airport = Airport.new(5)
       expect(new_airport.airport_capacity).to eq 5
     end
 
-    it "fails to send plane if not in storage" do
+    it "Fails to send plane if not in storage" do
       expect { subject.send_plane(Plane.new, "test") }.to raise_error "Plane not in storage"
     end
 
-    it "stores landed plane" do
+    it "Stores landed plane" do
       new_plane = Plane.new(true)
       subject.land_plane(new_plane, clear_weather)
       expect(subject.airport_storage).to include(new_plane)
@@ -59,7 +59,7 @@ describe Airport do
       expect { new_plane.land_at_airport(subject, stormy_weather) }.to raise_error "Too stormy"
     end
 
-    it "can't fly if stormy" do
+    it "Can't fly if stormy" do
       new_plane = Plane.new(true)
       new_plane.land_at_airport(subject, clear_weather)
       expect { new_plane.takeoff_from_airport(subject, stormy_weather) }.to raise_error "Too stormy"
