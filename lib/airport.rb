@@ -24,6 +24,8 @@ class Airport
     @hanger.delete(plane)
   end
 
+  private
+
   def full?
     @hanger.count >= @capacity
   end

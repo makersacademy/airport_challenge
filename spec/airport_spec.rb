@@ -3,8 +3,6 @@ require 'airport'
 describe Airport do
 
   let(:plane) { double :plane }
-  it { is_expected.to respond_to :land }
-
   it 'holds custom capacities' do
     airport = Airport.new(50)
     allow(airport).to receive(:stormy?).and_return false
