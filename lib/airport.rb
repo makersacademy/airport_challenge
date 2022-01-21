@@ -16,29 +16,15 @@ class Airport
   end
 
   def land(plane)
-    if stormy?
-      raise "stormy"
-    else
-      if @planes.include?(plane)
-        raise "plane already landed"
-      else
-        if full?
-          raise "no room"
-        else
-          @planes.push plane
-          plane.landed = true
-        end
-      end
-    end
+    raise "stormy" if stormy?
+    raise "plane already landed" if @planes.include?(plane)
+    raise "no room" if full?
+    add(plane)
   end
 
   def take_off(plane)
-    if stormy?
-      raise "stormy"
-    else
-      plane.landed = false
-      @planes.delete_if {|p| p.equal? plane}
-    end
+    raise "stormy" if stormy?
+    remove(plane)
   end
 
   def stormy?
@@ -46,6 +32,16 @@ class Airport
   end
   
   private
+
+  def add(plane)
+    @planes.push plane
+    plane.landed = true
+  end
+
+  def remove(plane)
+    plane.landed = false
+    @planes.delete_if {|p| p.equal? plane}
+  end
 
   def full?
     @planes.length == @capacity
