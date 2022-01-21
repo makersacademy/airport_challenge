@@ -1,0 +1,10 @@
+airports = ["Camp Vernon Medical Center Heliport",
+"Shands Landing Strip",
+"Cromwell Farm Hospital Heliport",
+"Matsushita Electric Corp of America Airport",
+"Laurens Skyways Medical Center Heliport",
+"Ganarm Intranational",
+"Wiss Air Park",
+"Ban District Airport",
+"Rus Municipal Airport",
+"Quildemantut Flightpark"]
