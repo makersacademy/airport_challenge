@@ -28,4 +28,16 @@ describe Airport do
     # ATC wants to know plane left airport
     expect(subject.planes_available).to eq (1)
   end
+
+  describe '#land_plane' do
+    # ATC wants to refuse landing if airport full
+    it 'refuse landing if airport full' do
+      subject.land_plane("747")
+      subject.land_plane("concorde")
+      subject.land_plane("xwing")
+      subject.land_plane("falcon")
+      expect { subject.land_plane("bigboy") }.to raise_error ("The Hanger is full you cannot land")
+    end
+  end
+
 end

@@ -11,6 +11,7 @@ class Airport
   end
 
   def land_plane(plane)
+    fail "The Hanger is full you cannot land" unless @planes_in_hanger.length < 4
     # add a plane to the hanger
     @planes_in_hanger << plane  
     @planes_in_hanger.length
