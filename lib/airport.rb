@@ -1,34 +1,33 @@
-require_relative 'weather.rb'
+require_relative 'weather'
 
 class Airport
 
   attr_reader :airport_storage
-  attr_reader :plane_capacity
+  attr_reader :airport_capacity
   DEFAULT_CAPACITY = 10
 
-  def initialize(plane_capacity = DEFAULT_CAPACITY)
+  def initialize(airport_capacity = DEFAULT_CAPACITY)
     @airport_storage = []
-    @plane_capacity = plane_capacity 
+    @airport_capacity = airport_capacity 
+    @weather = Weather.new
   end
 
-  def land_plane(plane)
+  def land_plane(plane, weather)
     fail "Storage full" if full?
     fail "Plane not flying" unless plane.flying?
-#   fail "Too stormy" if is_stormy
+    fail "Too stormy" if weather.stormy?
     airport_storage.push(plane)
-    return true
   end
 
-  def send_plane(plane)
+  def send_plane(plane, weather)
     fail "Plane not in storage" unless airport_storage.include? plane
     fail "Plane already flying" if plane.flying?
-#    fail "Too stormy" if is_stormy
+    fail "Too stormy" if weather.stormy?
     @airport_storage.delete(plane)
-    return true
   end
 
   def full?
-    return airport_storage.size >= plane_capacity
+    return airport_storage.size >= airport_capacity
   end
 
 end
