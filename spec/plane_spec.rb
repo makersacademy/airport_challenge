@@ -2,7 +2,7 @@ require './lib/plane.rb'
 
 # checks tells plane lands at airport
 describe Plane do
-  it "lands at airport" do
+  it "tells plane to land at airport" do
     plane = Plane.new
     expect(plane.land_plane). to eq "land"
 
