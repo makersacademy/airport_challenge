@@ -4,9 +4,6 @@ require './lib/weather'
 describe Airport do
   subject { Airport.new }
 
-  describe 'initialization' do
-  end
-
   describe "#land" do
     it 'can land a plane' do
       plane = Plane.new
