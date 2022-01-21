@@ -25,6 +25,12 @@ describe Plane do
 
 end
 
+# check from airport if safe to land
+  it "can check with airport to see if they are at full capacity when landing" do
+    airport = Airport.new
+    expect(airport).to respond_to(:full_capacity?)
+  end
+
 
 
 end

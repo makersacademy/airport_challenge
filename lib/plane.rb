@@ -13,7 +13,7 @@ class Plane
 
   end
 
-  def left?
+  def has_plane_left?
     p "has plane left"
     if instructions = true 
       p true
@@ -21,6 +21,14 @@ class Plane
       p "no. Plane is still here"
     end
   end
+
+  def full_capacity?
+    airport = Airport.new
+    airport.full_capacity?
+  end
+
+
+
 
 end
 
