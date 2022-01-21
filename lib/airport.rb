@@ -1,13 +1,11 @@
 require 'plane'
 require 'weather'
 
-
 class Airport
 
   AIRPORT_CAPACITY = 10
 
-  attr_reader :capacity
-  attr_reader :planes
+  attr_reader :capacity, :planes, :weather
 
   def initialize(capacity = AIRPORT_CAPACITY)
     @planes = []
@@ -16,21 +14,17 @@ class Airport
   end
 
   def land(plane)
-    raise "stormy" if stormy?
-    raise "plane already landed" if @planes.include?(plane)
-    raise "no room" if full?
+    raise "Cannot land until weather conditions improve" if @weather.stormy?
+    raise "Plane has already landed" if @planes.include?(plane)
+    raise "Airport is at capacity" if full?
     add(plane)
   end
 
   def take_off(plane)
-    raise "stormy" if stormy?
+    raise "Cannot take off until weather conditions improve" if @weather.stormy?
     remove(plane)
   end
 
-  def stormy?
-    @weather.stormy?
-  end
-  
   private
 
   def add(plane)
@@ -40,7 +34,7 @@ class Airport
 
   def remove(plane)
     plane.landed = false
-    @planes.delete_if {|p| p.equal? plane}
+    @planes.delete_if { |p| p.equal? plane }
   end
 
   def full?

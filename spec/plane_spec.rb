@@ -5,7 +5,7 @@ describe Plane do
   airport = Airport.new
   
   before(:example) do
-    allow(airport).to receive(:stormy?) { false }
+    allow(airport.weather).to receive(:stormy?) { false }
   end
 
   it "returns true if has landed" do
