@@ -8,24 +8,23 @@ describe Airport do
   
   it 'can land a plane' do
     plane = Plane.new
-    subject.land_plane(plane)
-      # ATC want to land the plane at the airport
+       # ATC want to land the plane at the airport
     expect(subject.land_plane(plane)).to eq (1)
   end
 
   it 'can let a plane take off' do
     plane = Plane.new
-    @planes_in_hanger = 2
-    subject.plane_takeoff(plane)
-    # ATC wants plane to take off / leave airport
-    expect(subject.plane_takeoff(plane)).to eq (1)
+    subject.land_plane("747")
+    subject.land_plane("concorde")
+     # ATC wants plane to take off / leave airport
+    expect(subject.plane_takeoff("747")).to eq (1)
   end
 
   it 'can confirm if planes at airport' do
-    plane =Plane.new
-    subject.land_plane(1)
-    subject.land_plane(1)
-    subject.plane_takeoff(1)
+    plane = Plane.new
+    subject.land_plane("747")
+    subject.land_plane("concorde")
+    subject.plane_takeoff("747")
     # ATC wants to know plane left airport
     expect(subject.planes_available).to eq (1)
   end
