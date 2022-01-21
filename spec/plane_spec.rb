@@ -17,10 +17,11 @@ plane = Plane.new
 
   end
 
-# # check if plane has left airport
-#   it 'checks if plane is still in airport'
+# check if plane has left airport
+  it 'checks if plane has left the airport' do
+  expect(plane.left?).to eq (true)
 
-# end
+end
 
 
 

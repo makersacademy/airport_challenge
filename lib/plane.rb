@@ -8,11 +8,19 @@ class Plane
 
   def take_off_plane
     p "What are the instructions for the plane?"
-    instruction = gets.chomp 
-    p instruction
+    instructions = gets.chomp 
+    p instructions
 
+  end
+
+  def left?
+    p "has plane left"
+    if instructions = true 
+      p true
+    else
+      p "no. Plane is still here"
+    end
   end
 
 end
 
-# p take_off_plane
