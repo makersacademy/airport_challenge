@@ -11,7 +11,8 @@ describe Plane do
 
 
 # instruct plane to take off
-  it "can instruct plane to take off"
+plane = Plane.new
+  it "can instruct plane to take off" do
   expect(plane.take_off_plane).to eq 'take off'
 
   end
