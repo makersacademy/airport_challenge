@@ -1,5 +1,4 @@
 require './lib/airport'
-require './lib/weather'
 
 describe Airport do
   subject { Airport.new }
