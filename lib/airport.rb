@@ -1,4 +1,5 @@
 require_relative 'plane'
+require 'weather' 
 
 class Airport
   attr_accessor :capacity
@@ -15,11 +16,18 @@ class Airport
   end
 
   def takeoff
+    fail 'It is stormy, you cannot take off' if stormy?
     @planes.pop
   end
 
+private
+
   def full?
     @planes.count >= @capacity
+  end
+
+  def stormy?
+    rand(1..6) > 5
   end
 
 end
