@@ -1,7 +1,6 @@
 require "airport"
 
 describe Airport do
-
   it "Instructs plane to land" do
     expect(subject).to respond_to(:land_plane).with(1).argument
   end
@@ -18,14 +17,14 @@ describe Airport do
   it "stores landed plane" do
     new_plane = Plane.new(true)
     subject.land_plane(new_plane)
-    expect(subject.plane_storage).to include(new_plane)
+    expect(subject.airport_storage).to include(new_plane)
   end
 
   it "Removes plane from storage upon takeoff" do
     new_plane = Plane.new(true)
-    subject.land_plane(new_plane)
-    subject.send_plane(new_plane)
-    expect(subject.plane_storage).not_to include(new_plane)
+    new_plane.land_at_airport(subject)
+    new_plane.takeoff_from_airport(subject)
+    expect(subject.airport_storage).not_to include(new_plane)
   end
 
   it "Prevents landing if airport is full" do
@@ -43,10 +42,12 @@ describe Airport do
     expect { subject.land_plane(Plane.new) }.to raise_error "Plane not flying"
   end
 
-  it "Doesn't send plane that is already flying" do
-    new_plane = Plane.new(true)
-    subject.land_plane(new_plane)
-    new_plane.takeoff
-    expect { subject.send_plane(new_plane) }.to raise_error "Plane already flying"
-  end
+#  it "Doesn't send plane that is already flying" do
+#    test_airport = double(Airport.new)
+#    new_plane = Plane.new(true)
+#    subject.land_plane(new_plane)
+#    new_plane.takeoff_from_airport(subject)
+#    expect { subject.send_plane(new_plane) }.to raise_error "Plane already flying"
+#  end
+
 end
