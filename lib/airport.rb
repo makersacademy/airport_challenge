@@ -2,22 +2,25 @@ require 'plane'
 
 class Airport
 
-  attr_reader :terminal
+  attr_accessor :capacity
+  attr_reader :planes
+  DEFAULT_CAPACITY = 10
 
   def initialize
-    @terminal = []
+    @capacity = DEFAULT_CAPACITY
+    @planes = []
   end
 
   def land_plane(plane)
-    @terminal << plane
+    @planes << plane
     "#{plane} has landed"
   end
 
   def take_off(plane)
-    fail 'There are no planes at the terminal' if @terminal.empty?
-    @terminal.each_with_index do |gate, i|
+    fail 'There are no planes at the terminal' if @planes.empty?
+    @planes.each_with_index do |gate, i|
       if gate == plane
-        @terminal.delete_at(i)
+        @planes.delete_at(i)
       else  
         raise "This plane is not at the airport"
       end
