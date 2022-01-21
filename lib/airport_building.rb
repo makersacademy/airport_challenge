@@ -1,6 +1,11 @@
 class AirportBuilding
 
-  def plane_landing
+  def initialize
+    @planes =[]
+  end
+
+  def plane_landing(plane)
+    @planes << plane
     
   end
 
