@@ -10,11 +10,11 @@ describe Plane do
 
 
 
-# # instruct plane to take off
-#   it "instruct plane to take off"
+# instruct plane to take off
+  it "can instruct plane to take off"
+  expect(plane.take_off_plane).to eq 'take off'
 
-
-#   end
+  end
 
 # # check if plane has left airport
 #   it 'checks if plane is still in airport'
