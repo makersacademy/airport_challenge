@@ -1,7 +1,7 @@
 class AirportBuilding
 
-  def plane_landed
-    "r"
+  def plane_landing
+    
   end
 
 end
