@@ -3,15 +3,15 @@ require 'plane'
 
 describe Airport do
   it "allows ATC to instruct a plane to land" do
-    airport = Airport.new
     plane = Plane.new
-    expect(airport.land(plane)).to eq("Plane landed at airport")
+    subject.land(plane)
+    expect(subject.capacity).to eq(4)
   end
 
   it "allows ATC to instruct a plane to take off" do
-    airport = Airport.new
     plane = Plane.new
-    expect(airport.take_off(plane)).to eq("Plane has taken off")
+    subject.take_off(plane)
+    expect(subject.capacity).to eq(6)
   end
 
   it "prevents landing when the airport is full" do

@@ -1,14 +1,16 @@
 class Airport
-  def initialize(capacity=5)
+  attr_accessor :capacity
+
+  def initialize(capacity = 5)
     @capacity = capacity
   end
 
   def land(plane)
     raise if @capacity.zero?
-    "Plane landed at airport"
+    @capacity -= 1
   end
 
   def take_off(plane)
-    "Plane has taken off"
+    @capacity += 1
   end
 end
