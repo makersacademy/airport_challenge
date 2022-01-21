@@ -31,12 +31,12 @@ describe Airport do
 
   it 'prevents take off if weather is stormy' do
     lennon = Airport.new
-    expect{lennon.take_off_stormy}.to raise_error "Too dangerous to take off"
+    expect{subject.take_off_stormy}.to raise_error "Too dangerous to take off"
   end
 
   it 'prevents landing if weather is stormy' do
     lennon = Airport.new
-    expect{lennon.land_stormy}.to raise_error "Too dangerous to land"
+    expect{subject.land_stormy}.to raise_error "Too dangerous to land"
   end
 
 end
