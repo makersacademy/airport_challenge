@@ -11,15 +11,17 @@ describe Plane do
 
 
 # instruct plane to take off
-plane = Plane.new
+
   it "can instruct plane to take off" do
+    plane = Plane.new
   expect(plane.take_off_plane).to eq 'take off'
 
   end
 
 # check if plane has left airport
   it 'checks if plane has left the airport' do
-  expect(plane.left?).to eq (true)
+    plane = Plane.new
+  expect(plane.has_plane_left?).to eq (true)
 
 end
 
