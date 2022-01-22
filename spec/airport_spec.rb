@@ -3,6 +3,7 @@ require './lib/airport'
 describe Airport do
   let(:airport) { Airport.new }
   let(:plane) { Plane.new }
+  let(:flying_plane) { Plane.new(in_flight = true) }
 
   # ==== HANGER TESTS ====
 
@@ -36,34 +37,40 @@ describe Airport do
   # ==== LANDING/TAKEOFF TESTS ====
 
   it '#landing planes can get to the hanger' do
-    # pending 'make hanger for planes'
+    allow(airport).to receive(:rand).and_return(5)
     
-    planeChanDesu = Plane.new(in_flight=true)
+    airport.land_plane(flying_plane)
 
-    airport.land_plane(planeChanDesu)
-
-    expect(airport.hanger).to eq([planeChanDesu])
+    expect(airport.hanger).to eq([flying_plane])
   end
 
   it '#won\'t let planes land if the hanger is full' do
-    small_airport = Airport.new(3)
+    small_airport = Airport.new(hanger_capacity = 3)
+
+    allow(small_airport).to receive(:check_weather) { "sunny" }
 
     3.times{small_airport.land_plane(Plane.new(in_flight=true))}
 
-    expect{small_airport.land_plane(Plane.new(in_flight=true))}.to raise_error("Hanger is full")
+    expect{small_airport.land_plane(flying_plane)}.to raise_error("Hanger is full")
   end
 
   it '#won\'t let a plane take off, if it isn\'t in the airport' do
+    allow(airport).to receive(:rand).and_return(5)
+
     expect { airport.take_off(plane) }.to raise_error("#{plane} not in hanger")
   end
 
   it '#let\'s a plane take off if its in the hanger' do
+    allow(airport).to receive(:rand).and_return(5)
+
     airport.hanger << plane
 
     expect(airport.take_off(plane)).to eq plane
   end
 
   it '#confirms plane has left the airport' do
+    allow(airport).to receive(:rand).and_return(5)
+
     airport.hanger << plane
 
     airport.take_off(plane)
@@ -71,22 +78,37 @@ describe Airport do
     expect(airport.contains_plane?(plane)).to eq("#{plane} departure confirmed")
   end
 
-  # ==== WEATHER TESTS ====
+# ==== WEATHER TESTS ====
 
   it '#can check local weather' do
-    # pending 'make weather using PRNG - hash table?'
-    expect(airport.weather.class).to be Integer
+    expect(airport.check_weather.class).to be String
   end
 
   it '#returns stormy if the weather is stormy' do
-    allow(airport).to receive(:change_weather).and_return(6)
-    # airport.check_weather.stub(:rand) { 6 }
+    allow(airport).to receive(:check_weather) { "stormy" }
 
     expect(airport.check_weather).to eq "stormy"
   end
 
   it '#returns sunny if the weather is sunny' do
-    pending 'nyi'
+    allow(airport).to receive(:check_weather) { "sunny" }
+
+    expect(airport.check_weather).to eq "sunny"
   end
 
+  it '#won\'t allow planes to take off if weather is stormy' do
+    airport.hanger << plane
+    # srand(1)
+
+    allow(airport).to receive(:rand).and_return(6)
+
+    expect{airport.take_off(plane)}.to raise_error "There is a storm - no planes can take off or land"
+  end
+
+  it '#won\'t allow planes to land if weather is stormy' do
+    allow(airport).to receive(:rand).and_return(6)
+    # srand(1)
+
+    expect{airport.land_plane(flying_plane)}.to raise_error "There is a storm - no planes can take off or land"
+  end
 end

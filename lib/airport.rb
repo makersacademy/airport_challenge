@@ -1,13 +1,12 @@
 class Airport
 
-  WEATHER = rand(1..6)
+  STORM_ERROR = "There is a storm - no planes can take off or land"
 
-  attr_reader :hanger, :weather
+  attr_reader :hanger # ,  :weather
 
   def initialize(hanger_capacity = 40)
     @hanger = []
     @hanger_capacity = hanger_capacity
-    @weather = WEATHER
   end
 
   def check_hanger
@@ -19,14 +18,19 @@ class Airport
   end
 
   def land_plane(plane)
+
     return raise "Hanger is full" unless @hanger.length < @hanger_capacity
+    return raise STORM_ERROR unless check_weather != "stormy"
 
     plane.land
     @hanger << plane
   end
 
   def take_off(plane)
-    return raise "#{plane} not in hanger" unless @hanger.include?(plane)
+    no_plane_error = "#{plane} not in hanger"
+
+    return raise no_plane_error unless @hanger.include?(plane)
+    return raise STORM_ERROR unless check_weather != "stormy"
 
     plane.take_off
     @hanger.delete(plane)
@@ -39,13 +43,14 @@ class Airport
   end
 
   def check_weather
-    return "stormy" unless @weather <= 5
+    return "stormy" unless rand(1..6) <= 5
     
     "sunny"
   end
 
+=begin
   def change_weather
     @weather = WEATHER
   end
-
+=end
 end
