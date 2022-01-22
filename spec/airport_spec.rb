@@ -49,9 +49,9 @@ describe Airport do
 
     allow(small_airport).to receive(:check_weather) { "sunny" }
 
-    3.times{small_airport.land_plane(Plane.new(in_flight=true))}
+    3.times { small_airport.land_plane(Plane.new(in_flight = true)) }
 
-    expect{small_airport.land_plane(flying_plane)}.to raise_error("Hanger is full")
+    expect { small_airport.land_plane(flying_plane) }.to raise_error("Hanger is full")
   end
 
   it '#won\'t let a plane take off, if it isn\'t in the airport' do
@@ -85,13 +85,13 @@ describe Airport do
   end
 
   it '#returns stormy if the weather is stormy' do
-    allow(airport).to receive(:check_weather) { "stormy" }
+    allow(airport).to receive(:rand) { 6 }
 
     expect(airport.check_weather).to eq "stormy"
   end
 
   it '#returns sunny if the weather is sunny' do
-    allow(airport).to receive(:check_weather) { "sunny" }
+    allow(airport).to receive(:rand) { 5 }
 
     expect(airport.check_weather).to eq "sunny"
   end
@@ -102,13 +102,13 @@ describe Airport do
 
     allow(airport).to receive(:rand).and_return(6)
 
-    expect{airport.take_off(plane)}.to raise_error "There is a storm - no planes can take off or land"
+    expect { airport.take_off(plane) }.to raise_error "There is a storm - no planes can take off or land"
   end
 
   it '#won\'t allow planes to land if weather is stormy' do
     allow(airport).to receive(:rand).and_return(6)
     # srand(1)
 
-    expect{airport.land_plane(flying_plane)}.to raise_error "There is a storm - no planes can take off or land"
+    expect { airport.land_plane(flying_plane) }.to raise_error "There is a storm - no planes can take off or land"
   end
 end

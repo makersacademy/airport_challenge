@@ -1,8 +1,8 @@
 class Airport
 
-  STORM_ERROR = "There is a storm - no planes can take off or land"
+  STORM_ERROR = "There is a storm - no planes can take off or land".freeze
 
-  attr_reader :hanger # ,  :weather
+  attr_reader :hanger
 
   def initialize(hanger_capacity = 40)
     @hanger = []
@@ -27,9 +27,7 @@ class Airport
   end
 
   def take_off(plane)
-    no_plane_error = "#{plane} not in hanger"
-
-    return raise no_plane_error unless @hanger.include?(plane)
+    return raise "#{plane} not in hanger" unless @hanger.include?(plane)
     return raise STORM_ERROR unless check_weather != "stormy"
 
     plane.take_off
@@ -47,10 +45,4 @@ class Airport
     
     "sunny"
   end
-
-=begin
-  def change_weather
-    @weather = WEATHER
-  end
-=end
 end
