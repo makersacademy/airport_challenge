@@ -8,13 +8,13 @@ class Plane
     @flying
   end
 
-  def land_at_airport(airport, weather)
-    airport.land_plane(self, weather)
+  def land_at_airport(airport)
+    airport.land_plane(self)
     @flying = false 
   end
 
-  def takeoff_from_airport(airport, weather)
-    airport.send_plane(self, weather)  
+  def takeoff_from_airport(airport)
+    airport.send_plane(self)  
     @flying = true
   end
 
