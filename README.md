@@ -22,6 +22,8 @@ The plane won't take off if the weather is stormy, which has a 10% chance of occ
 
 Enjoy having a snoop around :)
 ---------
+
+
 ### Land a plane
 
 Create a new airport object with
@@ -44,6 +46,8 @@ airport.land(plane)
 
 Your plane is now landed at the airport, and will be stored in the landed_planes array belonging to the airport class.
 
+
+
 ## Take off
 
 You must first have a plane landed at the airport. If you don't, please follow 'Land a Plane'.
@@ -56,6 +60,8 @@ airport.take_off(plane)
 
 this will remove your plane from the landed_planes array and it will no longer be at the airport.
 
+
+
 ## Check for planes at the airport
 
 You can check if a specific plane is at the airport by using 
@@ -65,5 +71,7 @@ at_airport?(plane)
 ```
 
 the argument will be whichever plane object you are trying to check for. The method will return true if the plane is at the airport, but false if not.
+
+
 
 # Thank you for reading, enjoy :)
