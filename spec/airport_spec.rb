@@ -28,8 +28,15 @@ describe Airport do
     expect { airport.land(plane) }.to raise_error
   end
 
+  # check that airport responds to generate_weather
   it "can receive a weather condition" do
     expect(subject).to respond_to(:generate_weather)
+  end
+
+  # check that either Sunny or Stormy is generated
+  it "can generate random weather" do
+    airport = Airport.new
+    expect(airport.generate_weather).to eq("Stormy") || "Sunny"
   end
 
   # use stub to force the generate weather method to return "Stormy", 
@@ -37,7 +44,16 @@ describe Airport do
   it "prevents planes taking off when weather is stormy" do
     airport = Airport.new
     plane = Plane.new
-    allow(airport).to receive(:weather).and_return("Stormy")
+    # allow(airport).to receive(:generate_weather).and_return("Stormy")
+    airport.weather = "Stormy"
     expect { airport.take_off(plane) }.to raise_error
+  end
+
+  it "allows takeoff when weather is sunny" do
+    airport = Airport.new
+    plane = Plane.new
+    airport.weather = "Sunny"
+    subject.take_off(plane)
+    expect(subject.capacity).to eq(6)
   end
 end

@@ -1,4 +1,4 @@
-#link to files on which this code is dependant
+# link to files on which this code is dependant
 require_relative './plane'
 require_relative './weather'
 
