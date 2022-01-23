@@ -22,6 +22,7 @@ class Airport
   def land(plane)
     raise if @weather == "Stormy"
     raise if @capacity.zero?
+    raise if plane.status == "landed"
     @capacity -= 1
   end
 
@@ -29,6 +30,7 @@ class Airport
   # unless weather is stormy
   def take_off(plane)
     raise if @weather == "Stormy"
+    raise if plane.status == "flying"
     @capacity += 1
   end
 end
