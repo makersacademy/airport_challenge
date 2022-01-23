@@ -65,4 +65,11 @@ describe Airport do
     plane = Plane.new("flying")
     expect { airport.take_off(plane) }.to raise_error
   end
+
+  # edge case (?) check to stop a landed plane from accepting land method
+  it "prevents a landed plane from trying to land again" do
+    airport = Airport.new
+    plane = Plane.new("landed")
+    expect { airport.land(plane) }.to raise_error
+  end
 end
