@@ -13,7 +13,7 @@
 
 ```
 
-##Fred Halliwell
+## Fred Halliwell
 ---------
 
 This airport challenge allows the user to create a plane class, land it in an airport class, and take off.
@@ -66,4 +66,4 @@ at_airport?(plane)
 
 the argument will be whichever plane object you are trying to check for. The method will return true if the plane is at the airport, but false if not.
 
-#Thank you for reading, enjoy :)
+# Thank you for reading, enjoy :)
