@@ -2,65 +2,49 @@ require './lib/airport.rb'
 
 describe 'control the flow of planes method' do
 
-  it 'can have a default capacity' do
-    airport = Airport.new("stormy")
+  it 'can have default values' do
+    airport = Airport.new
         
-    expect(airport.instance_variable_get(:@capacity)).to eq(3)
+    expect(airport.get_capacity).to eq(3)
+    expect(airport.get_weather).to eq("sunny")
   end
 
-  it 'can land due to less flights' do
-    airport = Airport.new(5)
-    expect(airport.land).to eq("good for landing!")
+  it 'can add a flight in the airport' do
+    airport = Airport.new
+
+    expect(airport.add_flight).to eq(1)
   end
 
-  it 'can land due to normal weather' do
-    airport = Airport.new(5, "normal")
-    
-    expect(airport.land).to eq("good for landing!")
+  it 'can remove a flight from the airport' do
+    airport = Airport.new
+    airport.add_flight
+
+    expect(airport.remove_flight).to eq(0)
   end
 
-  it 'cannot land due to more flights' do
-    airport = Airport.new(5)
-    airport.land
-    airport.land
-    airport.land
-    airport.land
-    airport.land
+  it 'raises error when there is no flight in the airport' do
+    airport = Airport.new
 
-    expect(airport.land).to eq("no landing for now!")
+    expect{airport.remove_flight}.to raise_error "no flight to be removed"
   end
 
-  it 'cannot land due to stormy weather' do
-    airport = Airport.new(5, "stormy")
-    
-    expect(airport.land).to eq("no landing for now!")
-  end
-  
-  it 'can take-off' do
-    airport = Airport.new(5)
-    airport.land
+  it 'can get the capacity of airport' do
+    airport = Airport.new(2)
 
-    expect(airport.take_off).to eq("took off! no longer in the airport")
+    expect(airport.get_capacity).to eq(2)
   end
 
-  it 'can take-off due to normal weather' do
-    airport = Airport.new(5, "normal")
-    airport.land
+  it 'can get the current number of planes in the airport' do
+    airport = Airport.new
+    airport.add_flight
 
-    expect(airport.take_off).to eq("took off! no longer in the airport")
+    expect(airport.get_current).to eq(1)
   end
 
-  it 'cannot take-off due to no flights' do
-    airport = Airport.new(5)
-    
-    expect(airport.take_off).to eq("cannot take-off")
-  end
+  it 'can get the weather of airport' do
+    airport = Airport.new(15, "stormy")
 
-  it 'cannot take-off due to stormy weather' do
-    airport = Airport.new(5, "stormy")
-    airport.land
-
-    expect(airport.take_off).to eq("cannot take-off")
+    expect(airport.get_weather).to eq("stormy")
   end
 
 end
