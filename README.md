@@ -87,3 +87,31 @@ Finally, don’t overcomplicate things. This task isn’t as hard as it may seem
 * **Submit a pull request early.**
 
 * Finally, please submit a pull request before Monday at 9am with your solution or partial solution.  However much or little amount of code you wrote please please please submit a pull request before Monday at 9am.
+
+Planning Stage:
+
+controller
+plane - land in airport
+-----------
+controller
+plane - takeoff - confirm
+-----------
+controller
+plane - prevent landing when full
+-----------
+designer
+set max capacity
+fallback to default when 
+-----------
+controller
+prevent takeoff during stormy weather
+random weather array (in favour of clear/sunny)
+-----------
+as above, but reversed
+-----------
+use a stub to override random weather to ensure consistent test behaviour
+
+
+* Airport class is using separate weather methods until I figure out 'doubles/stub'*
+
+
