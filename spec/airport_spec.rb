@@ -18,10 +18,21 @@ describe Airport do
     expect(airport.depart(plane1)).to eq("Plane no longer in airport")
   end
 
-  it "departs plane if weather is sunny" do
+  it "issues warning not to land if weather is stormy" do
     airport = Airport.new
-    weather1 = airport.weather_access
+    plane1 = airport.release_plane
+    expect(airport.not_safe_to_land(plane1)).to eq("Warning! Bad weather, do not land plane")
+  end
+
+  it "departs plane if weather is sunny" do
+    airport = Airport.new 
     expect(airport.weather_outlook).to eq("Plane has landed")
+  end
+
+  # This test does not work - need to look into why plane lands instead of issue issuing a warning?
+  it "does not land plane if weather is stormy" do
+    airport = Airport.new 
+    expect(airport.weather_outlook).to eq("Warning! Bad weather, do not land plane")
   end
   
 end 

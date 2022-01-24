@@ -7,6 +7,7 @@ class Airport
 
   def initialize 
     @planes_parking = []
+    @weather1 = Weather.new
   end 
 
   def release_plane
@@ -18,29 +19,29 @@ class Airport
     "Plane has landed"
   end
 
+  def not_safe_to_land(plane)
+    @planes_parking.push(plane)
+    "Warning! Bad weather, do not land plane"
+  end
+
   def depart(plane)
     @planes_parking.delete(plane)
     "Plane no longer in airport"
   end
 
-  def weather_access
-    weather1 = Weather.new
-  end 
-
-  # code not working for stormy weather - why does it land plane?
+  # code not working for stormy weather - why does it land plane? 
   def weather_outlook
-    weather1 = weather_access
     plane1 = release_plane
-    if weather1.conditions(0) 
+    if @weather1.conditions(0) 
       land(plane1)
-    elsif weather1.conditions(1)
+    elsif @weather1.conditions(1)
       land(plane1)    
-    elsif weather1.conditions(2)
+    elsif @weather1.conditions(2)
       land(plane1)     
-    elsif weather1.conditions(3) 
-      "Warning! Bad weather, do not land plane"  
+    elsif @weather1.conditions(3) 
+      not_safe_to_land(plane1)
     else
-      "nothing to say"
+      "weather unknown - do not land"
       end      
   end 
 
