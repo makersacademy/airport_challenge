@@ -3,9 +3,8 @@ require_relative "plane"
 class Airport
   MAX_CAPACITY = 10
 
-  attr_reader :planes
-  attr_reader :capacity
-
+  attr_reader :planes, :capacity
+  
   attr_accessor :capacity
 
   def initialize(capacity=MAX_CAPACITY)
