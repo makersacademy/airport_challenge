@@ -111,3 +111,7 @@ as above, but reversed
 -----------
 use a stub to override random weather to ensure consistent test behaviour
 
+
+* Airport class is using separate weather methods until I figure out 'doubles/stub'*
+
+
