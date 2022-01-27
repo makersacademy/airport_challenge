@@ -1,5 +1,7 @@
-module Weather
+class Weather
+  attr_reader :stormy
+  
   def stormy?
-    rand(2).zero?
+    @stormy = rand(2).zero?
   end
 end
