@@ -1,3 +1,0 @@
-
-describe Airport do
- it "
