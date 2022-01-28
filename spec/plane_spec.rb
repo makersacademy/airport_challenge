@@ -22,7 +22,7 @@ describe Plane do
       airport = Airport.new
       airport.add_plane(plane)
       plane.take_off(plane, airport)
-      expect(@plane_list).to eq nil
+      expect(plane.take_off(plane, airport)).to eq nil
     end
   end
 
