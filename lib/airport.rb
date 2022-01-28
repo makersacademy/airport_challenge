@@ -1,8 +1,9 @@
 class Airport
 
   DEFAULT_CAPACITY = 10
-  FULL_CAPACITY_ERROR_MSG = 'Airport at full capacity.'
-  STORMY_WEATHER_ERROR_MSG = 'Weather is stormy.'
+  FULL_CAPACITY_ERROR = 'Airport at full capacity.'
+  STORMY_WEATHER_ERROR = 'Weather is stormy.'
+  PLANE_NOT_AT_AIRPORT_ERROR = 'Plane not at airport'
 
   def initialize(weather, capacity = DEFAULT_CAPACITY)
     @airport_capacity = capacity
@@ -11,7 +12,9 @@ class Airport
   end
 
   def take_off(plane)
-    raise STORMY_WEATHER_ERROR_MSG if stormy?
+    raise STORMY_WEATHER_ERROR if stormy?
+    raise PLANE_NOT_AT_AIRPORT_ERROR if @planes.empty?
+    @planes.pop
   end
 
   def land(plane)
@@ -20,10 +23,10 @@ class Airport
   end
 
   private
-  
+
   def raise_error_on_landing
-    raise STORMY_WEATHER_ERROR_MSG if stormy?
-    raise FULL_CAPACITY_ERROR_MSG if airport_full?
+    raise STORMY_WEATHER_ERROR if stormy?
+    raise FULL_CAPACITY_ERROR if airport_full?
   end
 
   def airport_full?
