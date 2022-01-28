@@ -4,7 +4,8 @@ Air Traffic Controllor
 
 System Designer
 
-Plane                   
+Plane                   take_off                  needs to know if airbourne
+                        land
                         
 Airport                 land                      cannot land if full
                                                   cannot land if stormy

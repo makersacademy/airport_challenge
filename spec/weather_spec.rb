@@ -1,6 +1,5 @@
-require_relative '../lib/weather.rb'
+require_relative '../lib/weather'
 
 describe Weather do
-  it { is_expected.to respond_to(:is_stormy?) }
-
+  it { is_expected.to respond_to(:stormy?) }
 end
