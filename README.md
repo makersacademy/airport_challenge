@@ -87,3 +87,14 @@ Finally, don’t overcomplicate things. This task isn’t as hard as it may seem
 * **Submit a pull request early.**
 
 * Finally, please submit a pull request before Monday at 9am with your solution or partial solution.  However much or little amount of code you wrote please please please submit a pull request before Monday at 9am.
+
+
+# Project Title
+
+This is the Airport Challenge project.
+
+## Ruby version
+Ruby 3.0.2
+
+## Author
+Jane Parsons
