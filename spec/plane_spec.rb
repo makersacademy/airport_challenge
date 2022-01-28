@@ -7,4 +7,12 @@ describe Plane do
       expect(plane).to respond_to(:land)
     end
   end
+
+  describe "#take_off" do
+    it "should instruct a plane taking off from an airport" do
+      plane = Plane.new
+      expect(plane).to respond_to(:take_off)
+    end
+  end
+  
 end

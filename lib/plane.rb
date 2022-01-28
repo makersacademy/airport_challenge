@@ -4,4 +4,8 @@ class Plane
     plane
   end
 
+  def take_off(plane)
+    plane
+  end
+  
 end
