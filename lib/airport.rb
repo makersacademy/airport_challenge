@@ -5,5 +5,6 @@ class Airport
   end
 
   def take_off(plane)
+    "flight #{plane} has taken off from runway 1"
   end
 end
