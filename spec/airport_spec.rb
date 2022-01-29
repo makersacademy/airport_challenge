@@ -14,13 +14,14 @@ describe Airport do
     it 'instructs a plane to take off from an airport' do
       expect(subject).to respond_to(:take_off).with(1).argument
     end
+
+    it 'confirms that a plane is no longer in the airport after take off' do
+      expect { subject.take_off(plane) }.to raise_error("That plane has left the airport!")
+    end
   end
 end
 
 =begin 
-  it 'instructs a plane to take off from an airport' do
-    expect(subject).to respond_to :take_off
-  end
 
   it 'confirms that a plane is no longer in the airport after take off' do
     plane = Plane.new
