@@ -8,6 +8,7 @@ describe AirPort do
 
   it "plane is in hanger after it lands" do
     plane = Plane.new
+
     expect(subject.land(plane)).to eq [plane]
   end
 
@@ -24,12 +25,23 @@ describe AirPort do
     expect(subject.hanger). to eq []
   end
 
-  it "checks that when a number of planes are in the hanger, the correct one takes_off" do
+  it "checks that when a number of planes are in the hanger, the correct one takesoff" do
     2.times{subject.land(Plane.new)}
     vip_plane = Plane.new
     subject.land(vip_plane)
     2.times{subject.land(Plane.new)}
     expect(subject.take_off(vip_plane)).to eq vip_plane
   end
+
+  it "there is a default capcity of 5 planes, when no capacity is given" do
+    airport = AirPort.new
+    expect(airport.capacity).to eq (5)
+  end
+
+  it "there is a variable capacity of plane, when a capcity is given" do
+    airport = AirPort.new(10)
+    expect(airport.capacity).to eq (10)
+  end
+  
 
 end

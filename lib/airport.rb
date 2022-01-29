@@ -3,8 +3,10 @@ require './lib/plane.rb'
 class AirPort
 
 attr_reader :hanger
+attr_accessor :capacity
 
-  def initialize
+  def initialize(capacity = 5)
+    @capacity = capacity
     @hanger = []
   end
 
