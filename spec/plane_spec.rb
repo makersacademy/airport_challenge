@@ -6,19 +6,17 @@ describe Plane do
   subject(:plane) { described_class.new } 
 
   context "when flying" do
-    
-    let(:plane) { double(:plane, :flying? => true) }
 
     describe "#take_off" do
-
       it "raises an error" do
-        plane.take_off
+        allow(plane).to receive(:flying?).and_return(true)
         expect { plane.take_off }.to raise_error PLANE_IS_FLYING_ERROR
       end
     end
 
     describe "#land" do
       it "stops flying when it lands" do
+        plane.take_off
         plane.land
         expect(plane.flying?).to be false
       end
@@ -28,10 +26,8 @@ describe Plane do
 
   context "when landed" do
 
-    let(:plane) { double(:plane, :flying? => false) }
-
     describe "#take_off" do
-      it "begins to flay after take off" do
+      it "begins to fly after take off" do
         plane.take_off
         expect(plane.flying?).to be true
       end
@@ -39,10 +35,9 @@ describe Plane do
 
     describe "#land" do
       it "raises an error if on land" do
-        plane.land
+        allow(plane).to receive(:flying?).and_return(false)
         expect { plane.land }.to raise_error PLANE_IS_ON_LAND_ERROR
       end
-
     end
 
   end

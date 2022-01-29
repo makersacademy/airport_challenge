@@ -1,7 +1,7 @@
 require_relative '../lib/airport'
 
 describe Airport do
-#TO DO refactor to bring out stormy and fine weather conditions
+# TO DO refactor to bring out stormy and fine weather conditions
 
   AIRPORT_CAPACITY = 10
   FULL_CAPACITY_ERROR = 'Airport at full capacity.'
@@ -11,7 +11,7 @@ describe Airport do
   let(:plane) { double(:plane) }
   let(:weather) { double(:weather, :stormy? => false) }
   
-  subject(:airport) { described_class.new(weather)}
+  subject(:airport) { described_class.new(weather) }
 
   describe 'initialization' do
     it 'defaults capacity of airport' do
@@ -27,6 +27,7 @@ describe Airport do
   end
 
   describe "#take_off" do
+    
     it "takes off a plane at the airport" do
       airport.land (plane)
       expect { airport.take_off(plane) }.not_to raise_error
@@ -66,8 +67,5 @@ describe Airport do
       end
     end
   end
-
-
-
 
 end
