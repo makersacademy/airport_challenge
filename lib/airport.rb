@@ -10,11 +10,9 @@ class Airport
   end
 
   def land(plane)
-    if @capacity == @planes_in_airport.count
-      raise "Airport full, landing not possible."
-    else
-      @planes_in_airport << plane
-    end
+    raise "This plane is already in the airport." if @planes_in_airport.include?(plane)
+    raise "Airport full, landing not possible." if @capacity == @planes_in_airport.count
+    @planes_in_airport << plane
   end
 
   def take_off(plane)
