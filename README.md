@@ -58,7 +58,7 @@ As an air traffic controller
 To ensure safety
 I want to prevent landing when the airport is full
 ```
-> airport.is_full?
+> airport.full?
 => True
 > plane.land
 => False
@@ -78,7 +78,7 @@ As an air traffic controller
 To ensure safety
 I want to prevent takeoff when weather is stormy
 ```
-> weather.is_stormy?
+> weather.stormy?
 => True
 > plane.take_off
 => False
@@ -89,7 +89,7 @@ As an air traffic controller
 To ensure safety
 I want to prevent landing when weather is stormy
 ```
-> weather.is_stormy?
+> weather.stormy?
 => True
 > plane.land
 => False
