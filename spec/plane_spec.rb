@@ -1,8 +1,5 @@
 describe Plane do
 
-  PLANE_IS_FLYING_ERR = "Plane is already in the air."
-  PLANE_IS_ON_LAND_ERR = "Plane is already on the tarmac"
-
   subject(:plane) { described_class.new } 
 
   context "when flying" do
@@ -10,7 +7,7 @@ describe Plane do
     describe "#take_off" do
       it "raises an error if in the air" do
         allow(plane).to receive(:flying?).and_return(true)
-        expect { plane.take_off }.to raise_error PLANE_IS_FLYING_ERR
+        expect { plane.take_off }.to raise_error "Plane is already in the air."
       end
     end
 
@@ -36,7 +33,7 @@ describe Plane do
     describe "#land" do
       it "raises an error if on land" do
         allow(plane).to receive(:flying?).and_return(false)
-        expect { plane.land }.to raise_error PLANE_IS_ON_LAND_ERR
+        expect { plane.land }.to raise_error "Plane is already on the tarmac"
       end
     end
 

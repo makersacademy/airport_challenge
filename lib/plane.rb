@@ -1,8 +1,7 @@
-
 class Plane
 
-  PLANE_IS_ALREADY_FLYING_ERR = "Plane is already in the air."
-  PLANE_IS_ON_LAND_ERR = "Plane is already on the tarmac"
+  PLANE_IS_ALREADY_FLYING_ERR = "Plane is already in the air.".freeze
+  PLANE_IS_ON_LAND_ERR = "Plane is already on the tarmac".freeze
 
   def initialize
     @flying = true

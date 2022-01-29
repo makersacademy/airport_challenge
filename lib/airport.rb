@@ -3,9 +3,9 @@ require_relative '../lib/plane'
 class Airport
 
   DEFAULT_CAPACITY = 10
-  FULL_CAPACITY_ERR = 'Airport at full capacity.'
-  STORMY_WEATHER_ERR = 'Weather is stormy.'
-  PLANE_NOT_AT_AIRPORT_ERR = 'Plane not at airport'
+  FULL_CAPACITY_ERR = 'Airport at full capacity.'.freeze
+  STORMY_WEATHER_ERR = 'Weather is stormy.'.freeze
+  PLANE_NOT_AT_AIRPORT_ERR = 'Plane not at airport'.freeze
 
   def initialize(weather, capacity = DEFAULT_CAPACITY)
     @airport_capacity = capacity
@@ -38,7 +38,7 @@ class Airport
   end
 
   def plane_at_airport?(plane)
-    airport_location_of_plane(plane).nil? ? false : true
+    !airport_location_of_plane(plane).nil?
   end
 
   def airport_location_of_plane(plane)

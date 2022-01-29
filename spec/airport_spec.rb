@@ -2,8 +2,6 @@ require_relative '../lib/airport'
 
 describe Airport do
 
-  AIRPORT_CAPACITY = 10
-
   let(:plane) { Plane.new }
   let(:weather) { double(:weather, :stormy? => false) }
   
@@ -24,7 +22,7 @@ describe Airport do
 
     it 'sets capacity to something other than the default capacity' do
       non_default_capacity_airport = described_class.new(weather, AIRPORT_CAPACITY)
-      AIRPORT_CAPACITY.times do
+      10.times do
         non_default_capacity_airport.land(plane)
       end  
       expect { non_default_capacity_airport.land(plane) }.to raise_error 'Airport at full capacity.'
