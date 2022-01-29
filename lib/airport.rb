@@ -16,9 +16,7 @@ class Airport
   def empty?
     @planes.empty?
   end
-end
-=begin
+
   def weather
   end
 end
-=end
