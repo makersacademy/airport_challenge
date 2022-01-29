@@ -23,5 +23,4 @@ class Plane
     @flying
   end
 
-
 end

@@ -15,41 +15,43 @@ class Airport
 
   def take_off(plane)
     raise STORMY_WEATHER_ERR if stormy?
-    raise PLANE_NOT_AT_AIRPORT_ERR unless plane_at_airport?(plane)
- 
-    remove_plane_from_airport(plane).take_off
-
+    raise PLANE_NOT_AT_AIRPORT_ERR if plane_not_at_airport(plane)
+    remove_plane(plane).take_off
   end
 
   def land(plane)
-    raise_error_on_landing
-    @planes << plane.land
+    raise STORMY_WEATHER_ERR if stormy?
+    raise FULL_CAPACITY_ERR if airport_full?
+    add_plane(plane)
   end
 
   private
 
-  def remove_plane_from_airport(plane)
-    @planes.delete_at(airport_location_of_plane(plane))
+  def add_plane(plane)
+    planes << plane.land
   end
 
-  def raise_error_on_landing
-    raise STORMY_WEATHER_ERR if stormy?
-    raise FULL_CAPACITY_ERR if airport_full?
+  def remove_plane(plane)
+    planes.delete_at(airport_location_of_plane(plane))
   end
 
-  def plane_at_airport?(plane)
-    !airport_location_of_plane(plane).nil?
+  def plane_not_at_airport(plane)
+    airport_location_of_plane(plane).nil?
   end
 
   def airport_location_of_plane(plane)
-    @planes.index { |landed_plane| landed_plane.object_id == plane.object_id } 
+    planes.index { |landed_plane| landed_plane.object_id == plane.object_id } 
   end
 
   def airport_full?
-    @planes.size == @airport_capacity
+    planes.size == airport_capacity
   end
 
   def stormy?
-    @weather.stormy?
+    weather.stormy?
   end
+
+  private 
+  
+  attr_reader :planes, :airport_capacity, :weather
 end
