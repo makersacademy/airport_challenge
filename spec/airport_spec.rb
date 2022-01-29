@@ -25,4 +25,14 @@ describe Airport do
       expect(plane.flying).to eq true
     end
   end
+
+  describe "#capacity" do
+    it "Overrides default capacity value" do
+      airport = described_class.new(6)
+      expect(airport.capacity).to eq 6
+    end
+    it "Checks default value is correct" do
+      expect(subject.capacity).to eq Airport::DEFAULT_CAPACITY
+    end
+  end
 end
