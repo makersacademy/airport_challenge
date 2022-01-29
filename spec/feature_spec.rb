@@ -11,7 +11,8 @@ begin
   p "weather is: #{weather.stormy?}"
   p "weather is: #{weather.stormy?}"
   p "airport *default capacity* object instantiated: #{airport = Airport.new (weather)}"
-
+  p "airport *capacity 10* object instantiated: #{airport_10 = Airport.new (weather), 10}"
+  
   p "Airport - Land plane_one #{airport.land(plane_one)}"
   p "Airport - Land plane_one #{airport.land(plane_one)}"
   p "Airport - Takeoff plane_one: #{airport.take_off(plane_one)}"

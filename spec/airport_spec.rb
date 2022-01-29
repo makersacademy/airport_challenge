@@ -1,7 +1,6 @@
 require_relative '../lib/airport'
 
 describe Airport do
-# TO DO refactor to bring out stormy and fine weather conditions
 
   AIRPORT_CAPACITY = 10
   FULL_CAPACITY_ERR = 'Airport at full capacity.'
@@ -34,6 +33,7 @@ describe Airport do
       end  
       expect { non_default_capacity_airport.land(plane) }.to raise_error FULL_CAPACITY_ERR
     end
+
   end
 
   describe "#take_off" do
@@ -46,16 +46,18 @@ describe Airport do
 
     it "confirms that the plane has taken off from the airport" do
       airport.land(plane)
-      flying_plane = airport.take_off(plane)
-      expect(flying_plane).to be_flying
+      expect(airport.take_off(plane)).to be_flying
     end
 
-    it "confirms that the plane is in this actual airport so it can take off" do
-      test_plane = Plane.new
+    it "confirms that the plane if it is in another airport it can not take off from a different airport" do
       other_airport = Airport.new(weather)
-      other_airport.land(test_plane)
+      other_airport.land(plane)
       this_airport = Airport.new(weather)
-      expect { this_airport.take_off(test_plane) }.to raise_error PLANE_NOT_AT_AIRPORT_ERR
+      expect { this_airport.take_off(plane) }.to raise_error PLANE_NOT_AT_AIRPORT_ERR
+    end
+
+    it "confirms that a specific plane can take off from the airport" do
+      
     end
 
   end 
