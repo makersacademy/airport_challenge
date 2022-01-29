@@ -2,16 +2,25 @@ require './lib/plane'
 require './lib/airport'
 require './lib/weather'
 
-p "New plane object instantiated: #{plane = Plane.new}"
-p "New weather object instantiated: #{weather = Weather.new}"
-p "New airport *default capacity* object instantiated: #{airport = Airport.new (weather)}"
-
-p "Airport - Land a plane #{airport.land(plane)}"
-
 begin
-  p "Airport - Takeoff: #{airport.take_off(plane)}"
+p "plan_one object instantiated: #{plane_one = Plane.new}"
+p "plan_two object instantiated: #{plane_one = Plane.new}"
+p "weather object instantiated: #{weather = Weather.new}"
+p "weather is: #{weather.stormy?}"
+p "weather is: #{weather.stormy?}"
+p "weather is: #{weather.stormy?}"
+p "weather is: #{weather.stormy?}"
+
+p "airport *default capacity* object instantiated: #{airport = Airport.new (weather)}"
+
+p "Airport - Land plane_one #{airport.land(plane_one)}"
+p "Airport - Land plane_one #{airport.land(plane_one)}"
+p "Airport - Takeoff plane_one: #{airport.take_off(plane_one)}"
+
+
+
 rescue => exception
-  puts "Bad weather: #{exception}"
+  puts "Error Message: " #{exception.message}"
 end
 
 
