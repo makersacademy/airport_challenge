@@ -40,6 +40,7 @@ describe Airport do
 
     it "should confirm that, following take off, the plane is no longer at the airport" do
       plane = Plane.new
+      allow(airport).to receive(:storm?) { false }
       subject.land(plane, subject)
       subject.take_off(plane, subject)
       expect(subject.plane_list).to eq []
