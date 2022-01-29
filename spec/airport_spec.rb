@@ -57,5 +57,19 @@ describe AirPort do
     expect { subject.take_off(plane) }.to raise_error 'This plane is not landed here'
   end
 
+  it "will stop planes landing if weather is stormy" do
+    weather = Weather.new
+    plane = Plane.new
+    assume weather is stormy
+    expect(subject.land(plane)).to raise_error "Its too stormy to land"
+  end
+
+  it "will stop planes from taking off if weather is stormy" do
+    weather = Weather.new
+    plane = Plane.new
+    subject.land(plane)
+    assumer weather is stormy
+    expect (subject.take_off(plane)).to raise_error "Its too stormy to take-off"
+  end
 
 end
