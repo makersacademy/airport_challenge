@@ -28,6 +28,12 @@ describe Airport do
       plane = Plane.new
       expect(subject.take_off(plane)).to eq "#{plane} has successfully taken_off from #{subject}."
     end
+    it 'should remove the plane that has taken off from the planes_in_airport array' do 
+      plane = Plane.new
+      subject.land(plane)
+      subject.take_off(plane)
+      expect(subject.planes_in_airport).not_to include(plane)
+    end
   end
 
   #describe '#full?' do 
