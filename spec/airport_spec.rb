@@ -21,7 +21,7 @@ describe Airport do
     end
 
     it 'sets capacity to something other than the default capacity' do
-      non_default_capacity_airport = described_class.new(weather, AIRPORT_CAPACITY)
+      non_default_capacity_airport = described_class.new(weather, 10)
       10.times do
         non_default_capacity_airport.land(plane)
       end  
@@ -31,7 +31,7 @@ describe Airport do
   end
 
   describe "#take_off" do
-    
+
     it "confirms that the plane is no longer in the airport after take off" do
       airport.land (plane)
       airport.take_off(plane)
