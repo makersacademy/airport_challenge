@@ -10,7 +10,7 @@ describe Weather do
       expect(weather.stormy?).to be true
     end
 
-    it "it is good weather" do
+    it "is good weather (not stormy)" do
       allow(weather).to receive(:stormy?) { false }
       expect(weather.stormy?).to be false
     end

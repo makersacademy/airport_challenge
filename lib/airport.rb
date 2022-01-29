@@ -25,7 +25,6 @@ class Airport
     add_plane(plane)
   end
 
-
   private
 
   def add_plane(plane)
