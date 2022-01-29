@@ -1,6 +1,41 @@
 Airport Challenge
 =================
 
+## Approach by Claire Nelson
+
+#### Break down the requirements using tables and Excalidraw following techniques learnt in Intro to TDD workshop
+
+- Capture the nouns in the user stories as objects and verbs in user stories as messages. Use the techniques learnt in the first week of Makers to create [object model tables](https://github.com/nelsonclaire/airport_challenge/blob/master/task_stories/user_stories.md) which should assist with how to create the tests, classes and methods for the six user stories worked out with the client.
+- Draw a diagram using Excalidraw to outline how these interact.
+
+
+#### Write the most basic first test using techniques learnt in Intro to TDD workshop
+
+- Set up first spec file for airport_spec.rb.
+- Update airport_spec.rb on first line to say Require 'airport.rb'.
+- Run rspec and see spec file fail.
+- Create 'airport.rb' file.
+- Run rspec and see spec file pass.
+- Write basic first test and see it fail when running rspec.
+- Write the minimum code required to pass test following the red-green-refactor process.
+
+#### Debug the error messages produced when running rspec using techniques learnt in Intro to Debugging Workshop
+
+- Work from the top fixing the first error.
+- Use the full path of the error line to drill down to the exact code that is erroring.
+- Do not be tempted to fix any error other than the one that is being highlighted.
+- Move onto the next error message and repeat. 
+- Continue until all tests pass.
+
+#### Run irb features tests to confirm that the expected behaviour is being demonstrated
+
+
+
+---
+
+Airport Challenge
+=================
+
 ```
         ______
         _\____\___
