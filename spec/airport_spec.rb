@@ -44,6 +44,11 @@ describe Airport do
       subject.take_off(double)
       expect(subject.planes_in_airport).not_to include(double)
     end
+    it 'should not allow a plane to land and raises an error if the weather is stormy' do       
+      double("plane")
+      allow(subject).to receive(:weather) { true } 
+      expect { subject.land(double) }.to raise_error "Cannot enable take-off / landing during stormy weather"
+      end
   end
 
   # describe '#full?' do 
