@@ -5,11 +5,16 @@ describe Airport do
   describe "#land" do
     it { is_expected.to respond_to :land }
     it "lands a plane at the airport" do
-      expect(subject.land(Plane.new)).to eq "Landed successfully"
+      plane = Plane.new
+      expect(subject.land(plane)).to include(plane)
     end
     it "refuses to land if capacity is exceeded" do
       subject.capacity.times { subject.land(Plane.new) }
       expect { subject.land(Plane.new) }.to raise_error "The airport has no capacity."
+    end
+    it "refuses to land if weather is 'Stormy'" do
+      airport = described_class.new(weather: "Stormy")
+      expect { airport.land(Plane.new) }.to raise_error "The Plane can't land it is too stormy."
     end
 
   end
@@ -23,6 +28,10 @@ describe Airport do
       subject.land(Plane.new)
       plane = subject.take_off
       expect(plane.flying).to eq true
+    end
+    it "refuses to take off if weather is 'Stormy'" do
+      airport = described_class.new(weather: "Stormy")
+      expect { airport.take_off }.to raise_error "The Plane can't take off it is too stormy."
     end
   end
 
