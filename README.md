@@ -1,3 +1,8 @@
+# EDDIE ARNOLD'S AIRPORT CODE
+ - This is a simple program created through TDD that lands planes and allows them to take off from airports. The weather is determinant in whether the planes can land or take-off
+
+ - 
+
 # Airport Challenge
 
 ``````
@@ -47,13 +52,13 @@ I want to prevent landing when the airport is full -->
 So that the software can be used for many different airports
 I would like a default airport capacity that can be overridden as appropriate -->
 
-As an air traffic controller
+<!-- As an air traffic controller
 To ensure safety
-I want to prevent takeoff when weather is stormy
+I want to prevent takeoff when weather is stormy -->
 
-As an air traffic controller
+<!-- As an air traffic controller
 To ensure safety
-I want to prevent landing when weather is stormy
+I want to prevent landing when weather is stormy -->
 ```
 
 Your task is to test drive the creation of a set of classes/modules to satisfy all the above user stories. You will need to use a random number generator to set the weather (it is normally sunny but on rare occasions it may be stormy). In your tests, you'll need to use a stub to override random weather to ensure consistent test behaviour.

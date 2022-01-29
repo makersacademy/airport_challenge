@@ -11,12 +11,18 @@ class Airport
   end
 
   def land(plane)
+    raise "Bad weather: can't land" if stormy?
     full? ? (raise "Airport is full. Can't land") : @planes << plane
   end
 
   def take_off(plane)
+    (raise "Bad weather: can't take off") if stormy?
     (raise "No planes available to fly") if empty? 
     "flight #{plane} has taken off from runway 1"
+  end
+
+  def stormy?
+    rand(10) > 7
   end
 
   private
