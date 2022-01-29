@@ -1,6 +1,8 @@
+require "plane"
+
 describe Plane do
-  it "is a plane" do
-    it {is_expected.to respond_to :land}
+  it "is a plane that can land" do
+    expect(subject).to respond_to :land
   end
   describe "#land" do
     it "should land a plane at an airport" do
