@@ -12,8 +12,12 @@ describe Airport do
       expect(subject).to respond_to(:land).with(1).argument
     end
     it 'raise an error message and prevent landing when airport capacity is full' do
-      Airport::DEFAULT_CAPACITY.times {subject.land(Plane.new)}  
+      Airport::DEFAULT_CAPACITY.times { subject.land(Plane.new) }  
       expect { subject.land(Plane.new) }.to raise_error "Airport full, landing not possible." 
+    end
+    it 'raises an error if a plane that is already in the airport is attempted to be landed' do
+      plane = Plane.new
+      expect { 2.times { subject.land(plane) } }.to raise_error "This plane is already in the airport."
     end
   end
 
@@ -33,7 +37,7 @@ describe Airport do
     end
   end
 
-  #describe '#full?' do 
+  # describe '#full?' do 
   #  it 'give an error when trying to land a plane at an airport that is full'
   #    expect()
 
