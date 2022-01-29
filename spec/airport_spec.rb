@@ -40,9 +40,10 @@ describe Airport do
 
     it "should confirm that, following take off, the plane is no longer at the airport" do
       plane = Plane.new
+      airport = Airport.new
       allow(airport).to receive(:storm?) { false }
-      subject.land(plane, subject)
-      subject.take_off(plane, subject)
+      airport.land(plane, airport)
+      airport.take_off(plane, airport)
       expect(subject.plane_list).to eq []
     end
 
@@ -73,6 +74,8 @@ describe Airport do
     it "should prevent take-off when the weather is stormy" do
       plane = Plane.new
       airport = Airport.new
+      allow(airport).to receive(:storm?) { false }
+      airport.land(plane, airport)
       allow(airport).to receive(:storm?) { true }
       expect { airport.take_off(plane, airport) }.to raise_error("There is a storm preventing take-off") 
     end

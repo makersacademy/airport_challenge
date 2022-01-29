@@ -29,12 +29,12 @@ class Airport
     plane.in_air = true
   end
 
+  private
+
   def full?
     @plane_list.length >= capacity
   end
-
-  private
-
+  
   def storm?
     rand(20) == 20
   end
