@@ -1,3 +1,5 @@
+require 'plane'
+
 class Airport 
   attr_reader :planes
 
@@ -6,11 +8,12 @@ class Airport
   end
 
   def land_plane(plane)
+    @planes << plane
   end
 
   def take_off(plane)
     fail "That plane has left the airport!" if empty?
-    @planes.push(plane)
+    @planes.pop
   end
 
   def empty?

@@ -24,6 +24,10 @@ describe Airport do
     it 'checks the current weather conditions' do
       expect(subject).to respond_to(:weather)
     end 
+
+    it 'prevents take off when the weather is stormy' do
+      expect { subject.take_off(plane) }.to raise_error("We can't take off in stormy weather!") if subject.weather == 'stormy' 
+    end
   end
 end
 
@@ -37,10 +41,6 @@ end
   it 'allows default airport capacity to be overridden as appropriate' do
     new_capacity = capacity.rand(1000)
     expect(subject.capacity).to eq new_capacity
-  end
-
-  it 'prevents take off when the weather is stormy' do
-     expect{subject.take_off(plane)}.to raise_error("We can't take off in stormy weather!") if subject.weather == 'stormy' 
   end
 
   it 'prevents landing when weather is stormy' do
