@@ -18,8 +18,9 @@ class Airport
     @plane_list << plane
   end
 
-  def take_off(plane)
+  def take_off(plane, airport)
     raise "There is a storm preventing take-off" if storm?
+    raise "This plane doesn't exist at this airport so cannot take-off" if !exists_at_airport?(plane, airport)
     @plane_list.delete(plane)
   end
 
@@ -36,4 +37,5 @@ class Airport
   def exists_at_airport?(plane,airport)
     airport.plane_list.include?(plane)
   end
+
 end

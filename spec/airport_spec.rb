@@ -33,8 +33,13 @@ describe Airport do
     it "should confirm that, following take off, the plane is no longer at the airport" do
       plane = Plane.new
       subject.land(plane, subject)
-      subject.take_off(plane)
-      expect(subject.take_off(plane)).to eq nil
+      subject.take_off(plane, subject)
+      expect(subject.plane_list).to eq []
+    end
+
+    it "should only allow planes to take-off if they're at the airport" do
+      plane = Plane.new
+      expect { subject.take_off(plane, subject) }.to raise_error("This plane doesn't exist at this airport so cannot take-off")
     end
   end
 
@@ -56,7 +61,7 @@ describe Airport do
       plane = Plane.new
       airport = Airport.new
       allow(airport).to receive(:storm?) { true }
-      expect { airport.take_off(plane) }.to raise_error("There is a storm preventing take-off") 
+      expect { airport.take_off(plane, airport) }.to raise_error("There is a storm preventing take-off") 
     end
 
     it "should prevent landing when the weather is stormy" do
