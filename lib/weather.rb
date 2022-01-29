@@ -1,11 +1,15 @@
 class Weather
 
+attr_reader :weather
+
 def initialize
-   @condition = rand(1..4)
+  @weather = rand(1..4)
 end
 
 def stormy?
-  @condition <= 1
+  self.weather == 1
 end
 
 end
+
+# irb -r './lib/weather.rb'

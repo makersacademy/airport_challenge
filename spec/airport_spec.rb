@@ -25,14 +25,6 @@ describe AirPort do
     expect(subject.hanger). to eq []
   end
 
-  it "checks that when a number of planes are in the hanger, the correct one takesoff" do
-    2.times{subject.land(Plane.new)}
-    vip_plane = Plane.new
-    subject.land(vip_plane)
-    2.times{subject.land(Plane.new)}
-    expect(subject.take_off(vip_plane)).to eq vip_plane
-  end
-
   it "there is a default capcity of 5 planes, when no capacity is given" do
     expect(subject.capacity).to eq (5)
   end

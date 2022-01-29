@@ -7,8 +7,10 @@ describe Weather do
  end
 
  it "tells us whether the weather is stormy" do
-    allow(subject).to receive(:condition) { 1 }
+    allow(subject).to receive(:weather) { 1 }
     expect(subject.stormy?).to eq true
  end
 
 end
+
+# rspec ./spec/weather_spec.rb:9
