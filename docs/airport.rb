@@ -1,21 +1,28 @@
+require_relative 'plane'
+
 class Airport
-    attr_reader :planes
+  attr_reader :planes 
+  
   def initialize 
     @planes = []
   end
 
-  def land
-   p @planes << planes
-   p @planes
+  def land(plane)
+    #fail 'Airport full' if @planes
+    @planes = plane
+  end
+
+  def airport_full(plane)
+    fail 'Airport full' if @planes.count >= 20
+    @planes << plane
+
   end
 
   def take_off
-    if true 
-        puts "In the air"
-    else
-        puts "At airport"
-    end
-
+    @planes
   end
 
+#   def stormy_weather
+#     true
+#   end
 end
