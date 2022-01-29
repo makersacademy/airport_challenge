@@ -1,0 +1,8 @@
+# EDDIE ARNOLD'S AIRPORT CODE
+ - This is a simple program created through TDD that lands planes and allows them to take off from airports. The weather is determinant in whether the planes can land or take-off. If there is a storm the plane cannot do anything.
+
+ - This followed a similar pattern to the pairing program we completed this week. I se about creating tests that drove clear classes and methods for an airport and a plane. Then through the user stories i wrote tests to create methods for the plane to take off and land. These then changed as i had to create an initialised varaible array so that more than one plane could land. 
+
+ Then I made a new test to create a method stormy? requiring an error message if it was stormy and planes couldn't land. And the same for if they couldn't take off. This used a random number and comparison to generate a boolean. If true then it was stormy and an error message was raised. This was very complicated as i had to add a "stub" to almost all of my tests. I'm sure there is a better way to do this where the stormy method is not as invasive. I believe it has something to do with the private function but every time i tried to move it in there the tests could not read it. I remmeber from the pairing challenge that private methods should not be tested but it felt like a pretty important one!
+
+ - If i were to continue i would try and refactor out the stormy method from the land and take off methods but i couldn't quite figure that out in time. I managed to extract the full? and empty? methods trying to adhere to the single reponsibility principle but i relaise there is still a lot more to do.
