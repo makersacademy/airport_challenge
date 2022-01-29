@@ -1,12 +1,17 @@
 require 'airport'
 require 'plane'
-require DEFAULT_CAPACITY
 
 describe Airport do
-  it 'instructs a plane to land at an airport' do
-    expect(subject).to respond_to :land_plane      
-  end
+  let(:plane) { Plane.new }
 
+  describe '#land' do
+    it 'instructs a plane to land at an airport' do
+      expect(subject).to respond_to(:land_plane).with(1).argument      
+    end
+  end
+end
+
+=begin 
   it 'instructs a plane to take off from an airport' do
     expect(subject).to respond_to :take_off
   end
@@ -39,3 +44,4 @@ describe Airport do
     expect{subject.land(plane)}.to raise_error("We can't land in stormy weather!") if subject.weather == 'stormy'
   end
 end
+=end
