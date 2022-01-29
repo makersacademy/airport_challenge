@@ -34,14 +34,28 @@ describe AirPort do
   end
 
   it "there is a default capcity of 5 planes, when no capacity is given" do
-    airport = AirPort.new
-    expect(airport.capacity).to eq (5)
+    expect(subject.capacity).to eq (5)
   end
 
   it "there is a variable capacity of plane, when a capcity is given" do
-    airport = AirPort.new(10)
-    expect(airport.capacity).to eq (10)
+    expect(AirPort.new(10).capacity).to eq (10)
   end
   
+  it "will not accept a landing plane, if capacity has been reached" do
+    5.times { subject.land(Plane.new) }
+    expect { subject.land(Plane.new) }.to raise_error 'No room at airport'
+  end
+
+  it "will rasie an error if a landed plan tries to land" do
+    plane = Plane.new
+    plane.landed_plane
+    expect { subject.land(plane) }.to raise_error 'This plane is has already landed'
+  end
+
+  it "will rasie an error if a flying plane tries to take off" do
+    plane = Plane.new
+    expect { subject.take_off(plane) }.to raise_error 'This plane is not landed here'
+  end
+
 
 end

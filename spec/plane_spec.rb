@@ -13,4 +13,3 @@ describe Plane do
     end
 
 end
-
