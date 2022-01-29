@@ -51,7 +51,6 @@ class Airport
     weather.stormy?
   end
 
-  private 
   
   attr_reader :planes, :airport_capacity, :weather
 

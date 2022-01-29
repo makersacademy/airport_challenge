@@ -2,7 +2,6 @@ require_relative '../lib/airport'
 
 describe Airport do
 
-
   let(:plane) { double(:plane) }
   let(:weather) { double(:weather, :stormy? => false) }
 
@@ -37,9 +36,9 @@ describe Airport do
   end
 
   describe "#take_off" do
-    let(:plane_one) {double(:plane)}
-    let(:plane_two) {double(:plane)}
-    let(:plane_three) {double(:plane)}
+    let(:plane_one) { double(:plane) }
+    let(:plane_two) { double(:plane) }
+    let(:plane_three) { double(:plane) }
 
     before(:each) do
       allow(plane_one).to receive(:land).and_return(plane_one)
