@@ -8,7 +8,7 @@ describe Airport do
       expect(subject.land(Plane.new)).to eq "Landed successfully"
     end
     it "refuses to land if capacity is exceeded" do
-      Airport::DEFAULT_CAPACITY.times { subject.land(Plane.new) }
+      subject.capacity.times { subject.land(Plane.new) }
       expect { subject.land(Plane.new) }.to raise_error "The airport has no capacity."
     end
 
@@ -35,4 +35,5 @@ describe Airport do
       expect(subject.capacity).to eq Airport::DEFAULT_CAPACITY
     end
   end
+
 end
