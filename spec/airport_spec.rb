@@ -2,15 +2,22 @@ require_relative '../lib/airport'
 
 describe Airport do
 
-  let(:plane) { Plane.new }
+  let(:plane) { double(:plane) }
+  #let(:plane) { Plane.new }
   let(:weather) { double(:weather, :stormy? => false) }
   
   subject(:airport) { described_class.new(weather) }
+
+  before(:each) do
+    allow(plane).to receive(:land).and_return(plane)
+    allow(plane).to receive(:take_off).and_return(plane)
+  end
 
   describe 'initialization' do
 
     before(:each) do
       allow(plane).to receive(:flying?).and_return(true)
+      #allow(plane).to receive(:land).and_return(plane)
     end
 
     it 'defaults capacity of airport' do
@@ -38,11 +45,6 @@ describe Airport do
       expect { airport.take_off(plane) }.to raise_error 'Plane not at airport'
     end
 
-    it "confirms that the plane has taken off from the airport" do
-      airport.land(plane)
-      expect(airport.take_off(plane)).to be_flying
-    end
-
     it "confirms that the plane if it is in another airport it can not take off from a different airport" do
 
       other_airport = Airport.new(weather)
@@ -68,15 +70,9 @@ describe Airport do
   end 
 
   describe "#land" do
-
+    
     it "confirms that the plane has landed at the airport" do
-      airport.land (plane)
-      expect(plane).not_to be_flying
-    end
-
-    it "confirms that a landed plane cannot land" do
-      airport.land (plane)
-      expect { airport.land (plane) }.to raise_error "Plane is already on the tarmac"
+      expect { airport.land (plane) }.not_to raise_error
     end
 
   end 

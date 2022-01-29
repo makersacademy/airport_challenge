@@ -25,6 +25,7 @@ class Airport
     add_plane(plane)
   end
 
+
   private
 
   def add_plane(plane)
@@ -54,4 +55,5 @@ class Airport
   private 
   
   attr_reader :planes, :airport_capacity, :weather
+
 end
