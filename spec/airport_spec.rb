@@ -58,17 +58,15 @@ describe AirPort do
   end
 
   it "will stop planes landing if weather is stormy" do
-    weather = Weather.new
     plane = Plane.new
-    assume weather is stormy
+    allow(Weather.new).to receive(:condition) { 1 }
     expect(subject.land(plane)).to raise_error "Its too stormy to land"
   end
 
   it "will stop planes from taking off if weather is stormy" do
-    weather = Weather.new
     plane = Plane.new
+    allow(Weather.new).to receive(:condition) { 1 }
     subject.land(plane)
-    assumer weather is stormy
     expect (subject.take_off(plane)).to raise_error "Its too stormy to take-off"
   end
 
