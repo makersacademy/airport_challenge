@@ -11,9 +11,10 @@ class Airport
     @capacity = capacity
   end
 
-  def land(plane)   
+  def land(plane, airport)   
     raise "airport full" if full?
     raise "There is a storm preventing landing" if storm?
+    raise "plane already exists at airport" if exists_at_airport?(plane, airport)
     @plane_list << plane
   end
 
@@ -32,4 +33,7 @@ class Airport
     rand(20) == 20
   end
 
+  def exists_at_airport?(plane,airport)
+    airport.plane_list.include?(plane)
+  end
 end

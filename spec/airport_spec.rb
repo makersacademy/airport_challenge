@@ -12,8 +12,15 @@ describe Airport do
     it "should not allow a plane to land if airport is full" do
       plane1 = Plane.new
       plane2 = Plane.new
-      subject.land(plane1)
-      expect { subject.land(plane2) }.to raise_error("airport full")
+      airport = Airport.new(1)
+      airport.land(plane1, airport)
+      expect { airport.land(plane2, airport) }.to raise_error("airport full")
+    end
+
+    it "should not allow the same plane to land if it's already at that airport" do
+      plane = Plane.new
+      subject.land(plane, subject)
+      expect { subject.land(plane, subject) }.to raise_error("plane already exists at airport")
     end
   end
 
@@ -25,7 +32,7 @@ describe Airport do
 
     it "should confirm that, following take off, the plane is no longer at the airport" do
       plane = Plane.new
-      subject.land(plane)
+      subject.land(plane, subject)
       subject.take_off(plane)
       expect(subject.take_off(plane)).to eq nil
     end
@@ -56,7 +63,7 @@ describe Airport do
       plane = Plane.new
       airport = Airport.new
       allow(airport).to receive(:storm?) { true }
-      expect { airport.land(plane) }.to raise_error("There is a storm preventing landing")
+      expect { airport.land(plane, airport) }.to raise_error("There is a storm preventing landing")
     end
   end
 
