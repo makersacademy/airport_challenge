@@ -46,13 +46,13 @@ describe AirPort do
     expect { subject.land(Plane.new) }.to raise_error 'No room at airport'
   end
 
-  it "will rasie an error if a landed plan tries to land" do
+  it "will raise an error if a landed plan tries to land" do
     plane = Plane.new
     plane.landed_plane
     expect { subject.land(plane) }.to raise_error 'This plane is has already landed'
   end
 
-  it "will rasie an error if a flying plane tries to take off" do
+  it "will raise an error if a flying plane tries to take off" do
     plane = Plane.new
     expect { subject.take_off(plane) }.to raise_error 'This plane is not landed here'
   end
