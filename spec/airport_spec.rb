@@ -11,6 +11,13 @@ describe Airport do
     it 'should respond to land' do
       expect(subject).to respond_to(:land).with(1).argument
     end
+    it 'raise an error message and prevent landing when airport capacity is full' do
+      airport = Airport.new(1)
+      plane_1 = Plane.new
+      plane_2 = Plane.new
+      airport.land(plane_1)  
+      expect { airport.land(plane_2) }.to raise_error "Airport full, landing not possible." 
+    end
   end
 
   describe '#take_off' do 
