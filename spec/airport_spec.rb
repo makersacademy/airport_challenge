@@ -22,6 +22,14 @@ describe Airport do
       subject.land(plane, subject)
       expect { subject.land(plane, subject) }.to raise_error("plane already exists at airport")
     end
+
+    it "should not allow a plane which is not in the air to land" do
+      plane = Plane.new
+      airport1 = Airport.new
+      airport2 = Airport.new
+      airport1.land(plane, airport1)
+      expect { airport2.land(plane, airport2) }.to raise_error("This plane is not in the air so cannot land again")
+    end
   end
 
   describe "#take_off" do
@@ -39,8 +47,12 @@ describe Airport do
 
     it "should only allow planes to take-off if they're at the airport" do
       plane = Plane.new
-      expect { subject.take_off(plane, subject) }.to raise_error("This plane doesn't exist at this airport so cannot take-off")
+      airport = Airport.new
+      airport2 = Airport.new
+      airport.land(plane, airport)
+      expect { airport2.take_off(plane, airport2) }.to raise_error("Plane doesn't exist at airport, cant take-off")
     end
+
   end
 
   describe "#initialize" do
