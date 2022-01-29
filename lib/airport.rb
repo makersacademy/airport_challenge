@@ -15,8 +15,10 @@ class Airport
 
   def take_off(plane)
     raise STORMY_WEATHER_ERR if stormy?
-    raise PLANE_NOT_AT_AIRPORT_ERR if @planes.empty?
-    @planes.pop.take_off
+    raise PLANE_NOT_AT_AIRPORT_ERR unless plane_at_airport?(plane)
+ 
+    remove_plane_from_airport(plane).take_off
+
   end
 
   def land(plane)
@@ -26,9 +28,21 @@ class Airport
 
   private
 
+  def remove_plane_from_airport(plane)
+    @planes.delete_at(airport_location_of_plane(plane))
+  end
+
   def raise_error_on_landing
     raise STORMY_WEATHER_ERR if stormy?
     raise FULL_CAPACITY_ERR if airport_full?
+  end
+
+  def plane_at_airport?(plane)
+    airport_location_of_plane(plane).nil? ? false : true
+  end
+
+  def airport_location_of_plane(plane)
+    @planes.index { |landed_plane| landed_plane.object_id == plane.object_id } 
   end
 
   def airport_full?

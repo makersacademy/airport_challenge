@@ -3,10 +3,6 @@ require_relative '../lib/airport'
 describe Airport do
 
   AIRPORT_CAPACITY = 10
-  FULL_CAPACITY_ERR = 'Airport at full capacity.'
-  STORMY_WEATHER_ERR = 'Weather is stormy.'
-  PLANE_NOT_AT_AIRPORT_ERR = 'Plane not at airport'
-  PLANE_IS_ON_LAND_ERR = "Plane is already on the tarmac"
 
   let(:plane) { Plane.new }
   let(:weather) { double(:weather, :stormy? => false) }
@@ -23,7 +19,7 @@ describe Airport do
       described_class::DEFAULT_CAPACITY.times do
         airport.land(plane)
       end 
-      expect { airport.land(plane) }.to raise_error FULL_CAPACITY_ERR
+      expect { airport.land(plane) }.to raise_error 'Airport at full capacity.'
     end
 
     it 'sets capacity to something other than the default capacity' do
@@ -31,7 +27,7 @@ describe Airport do
       AIRPORT_CAPACITY.times do
         non_default_capacity_airport.land(plane)
       end  
-      expect { non_default_capacity_airport.land(plane) }.to raise_error FULL_CAPACITY_ERR
+      expect { non_default_capacity_airport.land(plane) }.to raise_error 'Airport at full capacity.'
     end
 
   end
@@ -41,7 +37,7 @@ describe Airport do
     it "confirms that the plane is no longer in the airport after take off" do
       airport.land (plane)
       airport.take_off(plane)
-      expect { airport.take_off(plane) }.to raise_error PLANE_NOT_AT_AIRPORT_ERR
+      expect { airport.take_off(plane) }.to raise_error 'Plane not at airport'
     end
 
     it "confirms that the plane has taken off from the airport" do
@@ -50,14 +46,25 @@ describe Airport do
     end
 
     it "confirms that the plane if it is in another airport it can not take off from a different airport" do
+
       other_airport = Airport.new(weather)
       other_airport.land(plane)
       this_airport = Airport.new(weather)
-      expect { this_airport.take_off(plane) }.to raise_error PLANE_NOT_AT_AIRPORT_ERR
+      other_plane = Plane.new
+      this_airport.land(other_plane)
+      expect { this_airport.take_off(plane) }.to raise_error 'Plane not at airport'
     end
 
     it "confirms that a specific plane can take off from the airport" do
-      
+      plane_one = Plane.new
+      plane_two = Plane.new
+      plane_three = Plane.new
+
+      airport.land(plane_one)
+      airport.land(plane_two)
+      airport.land(plane_three)
+
+      expect(airport.take_off(plane_two)).to be(plane_two) 
     end
 
   end 
@@ -71,7 +78,7 @@ describe Airport do
 
     it "confirms that a landed plane cannot land" do
       airport.land (plane)
-      expect { airport.land (plane) }.to raise_error PLANE_IS_ON_LAND_ERR
+      expect { airport.land (plane) }.to raise_error "Plane is already on the tarmac"
     end
 
   end 
@@ -82,14 +89,14 @@ describe Airport do
     describe "#take_off" do
       it "prevents takeoff if the weather is stormy" do
         airport = described_class.new(stormy_weather)
-        expect { airport.take_off(plane) }.to raise_error STORMY_WEATHER_ERR
+        expect { airport.take_off(plane) }.to raise_error 'Weather is stormy.'
       end
     end
 
     describe "#land" do
       it "prevents landing if the weather is stormy" do
         airport = described_class.new(stormy_weather)
-        expect { airport.land(plane) }.to raise_error STORMY_WEATHER_ERR
+        expect { airport.land(plane) }.to raise_error 'Weather is stormy.'
       end
     end
   end
