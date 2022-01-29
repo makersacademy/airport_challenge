@@ -24,4 +24,13 @@ describe Airport do
     subject.takeoff
     expect(subject.planes).to be_empty
   end
+
+  it "Prevents a plane landing when the airport is full" do
+    10.times { subject.land(Plane.new) }
+    expect { subject.land(Plane.new) }.to raise_error("Airport is full")
+  end
+
+  it "Returns the capacity" do
+    expect(subject.capacity).to eq Airport::CAPACITY
+  end
 end
