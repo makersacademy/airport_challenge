@@ -1,7 +1,8 @@
 class Airport
+  DEFAULT_CAPACITY = 5
+
   def initialize
     @planes = []
-    @capacity = 5
   end
 
   def land(plane)
@@ -20,7 +21,7 @@ class Airport
   private
   
   def full?
-    @planes.count >= @capacity
+    @planes.count >= DEFAULT_CAPACITY
   end
 
 end
