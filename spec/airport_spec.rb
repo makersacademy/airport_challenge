@@ -28,6 +28,10 @@ describe Airport do
     it 'prevents take off when the weather is stormy' do
       expect { subject.take_off(plane) }.to raise_error("We can't take off in stormy weather!") if subject.weather == 'stormy' 
     end
+
+    it 'prevents landing when weather is stormy' do
+      expect { subject.land(plane) }.to raise_error("We can't land in stormy weather!") if subject.weather == 'stormy'
+    end
   end
 end
 
@@ -43,8 +47,6 @@ end
     expect(subject.capacity).to eq new_capacity
   end
 
-  it 'prevents landing when weather is stormy' do
-    expect{subject.land(plane)}.to raise_error("We can't land in stormy weather!") if subject.weather == 'stormy'
-  end
+
 end
 =end
