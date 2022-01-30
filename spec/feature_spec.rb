@@ -21,10 +21,8 @@ begin
   p "Plane - Takeoff plane_one #{plane_one.take_off}"
   p "Plane - Takeoff plane_two #{plane_two.take_off}"
 
-
   p "Airport - land plane_one: #{airport.land(plane_one)}"
   p "Airport - land plane_two: #{airport.land(plane_two)}"
-
 
   rescue => exception
     puts "Error Message:  #{exception.message}"

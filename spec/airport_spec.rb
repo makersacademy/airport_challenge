@@ -36,6 +36,21 @@ describe Airport do
   end
 
   describe "#take_off" do
+ 
+    it "should have a plane take off and confirm not be in the airport" do
+      airport.land(plane)
+      airport.take_off(plane)
+      expect { airport.take_off(plane) }.to raise_error 'Plane not at airport'
+    end
+
+    it "confirms that a plane in another airport can not take off from another airport" do
+
+      other_airport = described_class.new(weather)
+      other_airport.land(plane)
+
+      expect { airport.take_off(plane) }.to raise_error 'Plane not at airport'
+    end
+
     let(:plane_one) { double(:plane) }
     let(:plane_two) { double(:plane) }
     let(:plane_three) { double(:plane) }
@@ -45,21 +60,6 @@ describe Airport do
       allow(plane_two).to receive(:land).and_return(plane_two)
       allow(plane_three).to receive(:land).and_return(plane_one)
       allow(plane_two).to receive(:take_off).and_return(plane_two)
-
-    end
- 
-    it "confirms that the plane is no longer in the airport after take off" do
-      airport.land (plane)
-      airport.take_off(plane)
-      expect { airport.take_off(plane) }.to raise_error 'Plane not at airport'
-    end
-
-    it "confirms that the plane if it is in another airport it can not take off from a different airport" do
-
-      other_airport = described_class.new(weather)
-      other_airport.land(plane)
-
-      expect { airport.take_off(plane) }.to raise_error 'Plane not at airport'
     end
 
     it "confirms that a specific plane can take off from the airport" do
@@ -75,7 +75,7 @@ describe Airport do
   describe "#land" do
 
     it "confirms that the plane has landed at the airport" do
-      expect { airport.land (plane) }.not_to raise_error
+      expect { airport.land (plane) }.not_to raise_error      
     end
 
   end 
