@@ -2,10 +2,7 @@ require_relative '../lib/airport'
 
 describe Airport do
 
-  let(:plane) { double(:plane) }
-  let(:weather) { double(:weather, :stormy? => false) }
-
-  subject(:airport) { described_class.new(weather) }
+  include_context "shared config"
 
   before(:each) do
     allow(plane).to receive(:land).and_return(plane)
@@ -91,27 +88,13 @@ describe Airport do
 
   context "Mulitple planes at the airport" do
 
-    RSpec.shared_context "shared planes", :shared_context => :metadata do
-      let(:plane_one) { double(:plane) }
-      let(:plane_two) { double(:plane) }
-      let(:plane_three) { double(:plane) }
-
-      def land_three_planes(plane_one, plane_two, plane_three)
-        airport.land(plane_one)
-        airport.land(plane_two)
-        airport.land(plane_three)
-      end
-    end
-
-    include_context "shared planes"
-
     before(:each) do
       allow(plane_one).to receive(:land).and_return(plane_one)
       allow(plane_two).to receive(:land).and_return(plane_two)
       allow(plane_three).to receive(:land).and_return(plane_three)
       allow(plane_two).to receive(:take_off).and_return(plane_two)
     end
-
+    
     it "should allow a specific plane to take off from the airport" do
       land_three_planes(plane_one, plane_two, plane_three)
       expect(airport.take_off(plane_two)).to be(plane_two) 

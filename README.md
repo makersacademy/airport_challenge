@@ -28,10 +28,11 @@ I feel I need to continue getting my hands dirty in TDD and the use of the testi
 
 ## Files
 
-This project contains various files
-* ./docs contains the domain_model
-* ./lib contains all core program files relating to the challenge, weather.rb, airport.rb and plane.rb
-* ./spec contains all spec files for the associated core files plus a feature_spec.rb used to test actual calls to the classes
+This project contains the following files and directories
+* `./docs` contains the domain_model
+* `./lib` contains all core program files relating to the challenge, weather.rb, airport.rb and plane.rb
+* `./spec` contains all spec files for the associated core files plus a feature_spec.rb used to test actual calls to the classes
+* `./spec/support/shared.rb` this file  contains the mock configuration and helper functions used in the tests
 
 
 
