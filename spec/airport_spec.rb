@@ -8,7 +8,7 @@ describe Airport do
 
   it "should not allow an airplane to land while airport is full" do
     Airport::DEFAULT_CAPACITY.times { subject.land(airplane) }
-    expect {subject.land(:airplane).to raisue_error ("Cannot land airplane due to airport being full")}
+    expect {subject.land(:airplane).to raise_error ("Cannot land airplane due to airport being full")}
   end
 
   describe "#take_off"
