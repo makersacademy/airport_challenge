@@ -29,6 +29,7 @@ Airport Challenge
 
 #### Run irb features tests to confirm that the expected behaviour is being demonstrated
 
+```
 Student@MA138C0DL7BH3QD airport_challenge % irb
 3.0.2 :001 > require './lib/airport.rb'
  => true 
@@ -88,7 +89,7 @@ Student@MA138C0DL7BH3QD airport_challenge % irb
  => #<Airport:0x00007fa987875680 @capacity=40, @planes=[#<Plane:0x00007fa98711a278 @flying=false>]> 
 3.0.2 :023 > airportb
  => #<Airport:0x00007fa9871d1ba8 @capacity=20, @planes=[#<Plane:0x00007fa9871bb858 @flying=false>]> 
-
+```
 
 #### What I know I need to work on
 - I have created Weather as a module as modules were mentioned but I am unclear if I have used in correctly since the documentation says to use test doubles and I have not implemented that in my code.
