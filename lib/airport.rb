@@ -4,9 +4,11 @@ require_relative 'plane'
 class Airport
   attr_accessor :plane
   attr_writer :capacity
+  attr_accessor :planes_list
 
-  def initialize(capacity, plane)
+  def initialize(capacity, planes_list, plane)
     @capacity = capacity
+    @planes_list = planes_list
     @plane = plane
   end   
 

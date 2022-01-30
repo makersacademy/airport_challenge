@@ -10,20 +10,23 @@ describe AirTrafficController do
     # end
     it "responds to land with an already grounded plane" do
       plane = Plane.new("grounded")
-      airport = Airport.new(3,plane)
+      planes_list = Array.new
+      airport = Airport.new(3,planes_list,plane)
       atc = AirTrafficController.new
       expect(atc.land(plane, airport)).to eq "Plane already grounded!"
     end
     it "responds to land at an airport with fine weather" do
       plane = Plane.new("airbourne")
-      airport = Airport.new(3,plane)
+      planes_list = Array.new
+      airport = Airport.new(3,planes_list,plane)
       allow(airport).to receive(:stormy_weather?) { false }
       atc = AirTrafficController.new
       expect(atc.land(plane, airport)).to eq "Plane landed successfully!"
     end
     it "responds to land at an airport with stormy weather" do
       plane = Plane.new("airbourne")
-      airport = Airport.new(3,plane)
+      planes_list = Array.new
+      airport = Airport.new(3,planes_list,plane)
       allow(airport).to receive(:stormy_weather?) { true }
       atc = AirTrafficController.new
       expect(atc.land(plane, airport)).to eq "Stormy weather, so in holding queue!"
