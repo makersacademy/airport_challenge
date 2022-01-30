@@ -4,7 +4,7 @@ describe Airport do
   describe 'capacity?' do
     it "responds to capacity" do
       plane = Plane.new("grounded")
-      airport = Airport.new(plane)
+      airport = Airport.new(5,plane)
       expect(airport.capacity?).to be_nil
     end  
   end
@@ -12,7 +12,7 @@ describe Airport do
   describe '#release_plane' do
     it "responds to release_plane with a plane" do
       plane = Plane.new("grounded")
-      airport = Airport.new(plane)
+      airport = Airport.new(3,plane)
       expect(airport.release_plane).to be_instance_of Plane
     end  
   end
@@ -20,13 +20,13 @@ describe Airport do
   describe '#dock_plane' do
     it "responds to dock_plane with 1 argument" do
       plane = Plane.new("airbourne")
-      airport = Airport.new(plane)
+      airport = Airport.new(6,plane)
       expect(airport).to respond_to(:dock_plane).with(1).argument
     end
 
     it "responds to dock_plane with plane" do
       plane = Plane.new("airbourne")
-      airport = Airport.new(plane)
+      airport = Airport.new(3,plane)
       expect(airport.dock_plane(plane)).to eq plane
     end
   end
@@ -49,14 +49,14 @@ describe Airport do
     # TODO - come back to this
     it "responds to stormy_weather with a stubbed return of false" do
       plane = Plane.new("grounded")
-      airport = Airport.new(plane)
+      airport = Airport.new(2,plane)
       allow(airport).to receive(:stormy_weather) { false }
       expect(airport.stormy_weather).to eq false
     end
 
     it "responds to stormy_weather with a stubbed return of true" do
       plane = Plane.new("airbourne")
-      airport = Airport.new(plane)
+      airport = Airport.new(2,plane)
       allow(airport).to receive(:stormy_weather) { true }
       expect(airport.stormy_weather).to eq true
     end
@@ -67,7 +67,7 @@ describe Airport do
   describe 'Predicate matchers' do
     it 'this is to test plane attribute' do
       plane = Plane.new("grounded")
-      airport = Airport.new(plane)
+      airport = Airport.new(11,plane)
       expect(airport.plane).to eq plane
     end
   end
