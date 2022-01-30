@@ -23,6 +23,7 @@ class Airport
     raise STORMY_WEATHER_ERR if stormy?
     raise FULL_CAPACITY_ERR if airport_full?
     add_plane(plane.land)
+    plane
   end
 
   private

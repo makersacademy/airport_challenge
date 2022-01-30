@@ -39,11 +39,12 @@ begin
 
   
   p "Airport - land plane_one: #{land_plane_at_airport(airport,plane_one)}"
-  p "Airport - take off plane_one: #{takeoff_plane_from_airport(airport,plane_one)}"
-  
+  p "Airport - takeoff plane_one: #{takeoff_plane_from_airport(airport,plane_one)}"
+
+
   p "Airport - land plane_two: #{land_plane_at_airport(airport,plane_two)}"
-  p "Airport - take off plane_two: #{takeoff_plane_from_airport(airport,plane_two)}"
- 
+  p "Airport - takeoff plane_two: #{takeoff_plane_from_airport(airport,plane_two)}"
+
   rescue => exception
     puts "Error Message:  #{exception.message}"
 end
