@@ -16,19 +16,19 @@ class Airport
   def take_off(plane)
     raise STORMY_WEATHER_ERR if stormy?
     raise PLANE_NOT_AT_AIRPORT_ERR if plane_not_at_airport(plane)
-    remove_plane(plane).take_off
+    remove_plane(plane.take_off)
   end
 
   def land(plane)
     raise STORMY_WEATHER_ERR if stormy?
     raise FULL_CAPACITY_ERR if airport_full?
-    add_plane(plane)
+    add_plane(plane.land)
   end
 
   private
 
   def add_plane(plane)
-    planes << plane.land
+    planes << plane
   end
 
   def remove_plane(plane)
