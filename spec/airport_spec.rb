@@ -38,6 +38,12 @@ describe Airport do
       expect { subject.land(plane) }.to raise_error("We can't land in stormy weather!") if subject.weather == 'stormy'
     end
   end
+
+  describe '#hangar' do
+    it 'has a default capacity' do
+      expect(subject.capacity).to eq Airport::DEFAULT_CAPACITY 
+    end
+  end
 end
 
 =begin 
