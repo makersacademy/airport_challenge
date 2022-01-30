@@ -90,3 +90,9 @@ Plane <-- flying? --> true/false
 Airport <-- take_off --> if !flying?
 
 ----------------------------------------
+
+## Issues
+- I need to learn how to access methods within other classes?
+- I need to better understand the use of .self within a class/it's use for accessing methods
+- I need to continue getting more familiar with rspec syntax 
+- I need to continue learning how to test 'behaviour > state'
