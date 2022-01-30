@@ -2,10 +2,6 @@ require './lib/plane'
 require './lib/airport'
 require './lib/weather'
 
-def land_plane (plane)
-
-end
-
 begin
   p "plane_one object instantiated: #{plane_one = Plane.new}"
   p "plane_two object instantiated: #{plane_two = Plane.new}"
