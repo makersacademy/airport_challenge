@@ -1,18 +1,25 @@
-# Defines the class Aitport
+# Defines the class Airport
 require_relative 'plane'
 
 class Airport
-  def plane
-  end   
+  attr_accessor :plane
+
+  def initialize(plane)
+    @plane = plane
+  end  
+
+  # def plane
+  #  @plane
+  # end   
 
   def capacity?
   end
 
   def release_plane
-    Plane.new
+    @plane
   end 
 
   def dock_plane(plane)
-    plane
+    @plane
   end  
 end
