@@ -43,16 +43,10 @@ describe Airport do
     it 'has a default capacity' do
       expect(subject.capacity).to eq Airport::DEFAULT_CAPACITY 
     end
+
+    it 'allows default airport capacity to be overridden as appropriate' do
+      new_capacity = Airport.new(50)
+      expect { new_capacity.size != Airport::DEFAULT_CAPACITY }
+    end
   end
 end
-
-=begin 
-
-  it 'allows default airport capacity to be overridden as appropriate' do
-    new_capacity = capacity.rand(1000)
-    expect(subject.capacity).to eq new_capacity
-  end
-
-
-end
-=end
