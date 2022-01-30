@@ -26,6 +26,10 @@ class Airport
     plane
   end
 
+  def plane_inventory
+    planes
+  end
+
   private
 
   def add_plane(plane)
@@ -52,7 +56,6 @@ class Airport
     weather.stormy?
   end
 
-  
   attr_reader :planes, :airport_capacity, :weather
 
 end

@@ -37,7 +37,7 @@ describe Airport do
 
   describe "#take_off" do
  
-    it "should have a plane take off and confirm not be in the airport" do
+    it "should have a plane take off and not be in the airport" do
       airport.land(plane)
       airport.take_off(plane)
       expect { airport.take_off(plane) }.to raise_error 'Plane not at airport'
@@ -50,26 +50,6 @@ describe Airport do
 
       expect { airport.take_off(plane) }.to raise_error 'Plane not at airport'
     end
-
-    let(:plane_one) { double(:plane) }
-    let(:plane_two) { double(:plane) }
-    let(:plane_three) { double(:plane) }
-
-    before(:each) do
-      allow(plane_one).to receive(:land).and_return(plane_one)
-      allow(plane_two).to receive(:land).and_return(plane_two)
-      allow(plane_three).to receive(:land).and_return(plane_one)
-      allow(plane_two).to receive(:take_off).and_return(plane_two)
-    end
-
-    it "confirms that a specific plane can take off from the airport" do
-      airport.land(plane_one)
-      airport.land(plane_two)
-      airport.land(plane_three)
-
-      expect(airport.take_off(plane_two)).to be(plane_two) 
-    end
-
   end 
 
   describe "#land" do
@@ -78,24 +58,72 @@ describe Airport do
       expect(airport.land(plane)).to be(plane)       
     end
 
-  end 
+  end
+
+  describe "#plane_inventory" do
+    it "should show a plane at the airport" do
+      airport.land(plane)
+      expect(airport.plane_inventory).to include(plane)
+    end
+
+    it "should be empty when no planes in the airport" do
+      expect(airport.plane_inventory).to be_empty
+    end
+  end
 
   context "stormy weather" do
     let(:stormy_weather) { double(:weather, :stormy? => true) }
 
     describe "#take_off" do
-      it "prevents takeoff if the weather is stormy" do
+      it "prevent takeoff if the weather is stormy" do
         airport = described_class.new(stormy_weather)
         expect { airport.take_off(plane) }.to raise_error 'Weather is stormy.'
       end
     end
 
     describe "#land" do
-      it "prevents landing if the weather is stormy" do
+      it "prevent landing if the weather is stormy" do
         airport = described_class.new(stormy_weather)
         expect { airport.land(plane) }.to raise_error 'Weather is stormy.'
       end
     end
   end
 
+  context "Mulitple planes at the airport" do
+    let(:plane_one) { double(:plane) }
+    let(:plane_two) { double(:plane) }
+    let(:plane_three) { double(:plane) }
+
+    before(:each) do
+      allow(plane_one).to receive(:land).and_return(plane_one)
+      allow(plane_two).to receive(:land).and_return(plane_two)
+      allow(plane_three).to receive(:land).and_return(plane_three)
+      allow(plane_two).to receive(:take_off).and_return(plane_two)
+    end
+
+    it "should allow a specific plane to take off from the airport" do
+      airport.land(plane_one)
+      airport.land(plane_two)
+      airport.land(plane_three)
+
+      expect(airport.take_off(plane_two)).to be(plane_two) 
+    end
+
+    it "confirm that a plane is no longer at the airport after taking off" do
+      airport.land(plane_one)
+      airport.land(plane_two)
+      airport.land(plane_three)
+      airport.take_off(plane_two)
+
+      expect(airport.plane_inventory).not_to include(plane_two)
+    end
+
+    it "should give the inventory of the airport " do
+      airport.land(plane_one)
+      airport.land(plane_two)
+      airport.land(plane_three)
+      expect(airport.plane_inventory).to include(plane_one, plane_two, plane_three)
+    end
+
+  end
 end
