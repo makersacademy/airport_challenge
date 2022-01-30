@@ -17,7 +17,7 @@ class Airport
     @plane
   end 
 
-  def dock_plane(plane)
+  def dock_plane(_plane)
     @plane
   end
   
