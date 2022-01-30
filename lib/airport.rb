@@ -5,6 +5,13 @@ class Airport
     plane
   end
 
+  def take_off(plane)
+    plane
+  end
+
+  def take_off_message
+    "Plane has left the runway"
+  end
 
 end
 
