@@ -1,6 +1,6 @@
 require 'simplecov'
 require 'simplecov-console'
-require_relative '../spec/support/mock_config.rb'
+require_relative '../spec/support/mock_config'
 
 include MockConfig
 
