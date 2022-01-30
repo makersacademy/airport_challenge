@@ -69,7 +69,6 @@ describe Airport do
   end
 
   context "stormy weather" do
-    let(:stormy_weather) { double(:weather, :stormy? => true) }
 
     describe "#take_off" do
       it "should prevent takeoff if the weather is stormy" do

@@ -4,7 +4,8 @@ module MockConfig
 
     let(:plane) { double(:plane) }
     let(:weather) { double(:weather, :stormy? => false) }
-  
+    let(:stormy_weather) { double(:weather, :stormy? => true) }
+    
     subject(:airport) { described_class.new(weather) }
   
     let(:plane_one) { double(:plane) }
@@ -30,8 +31,5 @@ module MockConfig
     let(:weather) { described_class.new }
 
   end
-
-
-
 
 end
