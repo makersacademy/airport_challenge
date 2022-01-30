@@ -51,3 +51,42 @@ Plane <-- land --> Airport
 |------------|-----------|  
 | VARIABLES  |           |
 | METHODS    | stormy?() | 
+
+----------------------------------------
+
+## User Story 2
+```
+As an air traffic controller 
+So I can get passengers on the way to their destination 
+I want to instruct a plane to take off from an airport and confirm that it is no longer in the airport.
+```
+
+### Nouns:
+- air traffic controller
+- passengers
+- destination
+- plane
+- airport
+
+### Verbs:
+- instruct
+- take off
+- confirm
+
+### Behaviour:
+"take off a plane"
+"confirm the plane is flying"
+
+### Functional representation:
+
+|         Objects        | Messages     |
+|------------------------|--------------|
+| air traffic controller |              |
+| plane                  | take_off()   |
+|                        | flying?      |
+
+### Diagram to show interaction:
+Plane <-- flying? --> true/false
+Airport <-- take_off --> if !flying?
+
+----------------------------------------
