@@ -1,9 +1,23 @@
 require 'airport'
 describe Airport do
-  it "instructs the plane to land" do
-    expect(subject).to respond_to(:land_plane).with(1).argument
+  describe '#land_plane' do
+    it "instructs the plane to land" do
+        plane = Aeroplane.new
+      expect(subject.land_plane(plane)).to eq plane
+    end
   end
-    it "instructs the plane to landtakeoff" do
-    expect(subject).to respond_to(:takeoff_plane).with(1).argument
+  describe '#land_plane' do
+    it 'Do not land if the Airport is full' do
+        20.times { subject.land_plane Aeroplane.new}
+        expect { subject.land_plane Aeroplane.new}. to raise_error 'Airport full'
+    end
   end
+  describe '#takeoff_plane' do
+    it "instructs the plane to takeoff" do
+       plane = Aeroplane.new
+
+       expect(subject.takeoff_plane(plane)).to eq plane
+    end
+  end
+
 end
