@@ -3,13 +3,19 @@ class AirTrafficController
   def initialize
   end  
 
-  # I think the following two methods are too early to define
-  # but keeping them in here for now    
-  def land(_plane, _airport)
+  def land(plane, airport)
     # puts plane.airbourne? ? "Ok to land plane" : "Plane already grounded"
-    result = "Plane landed successfully!"
+    if plane.airbourne? 
+      if !airport.stormy_weather?
+        result = "Plane landed successfully!"
+      else
+        result = "Stormy weather, so in holding queue!"
+      end    
+    else
+      result = "Plane already grounded!"
+    end 
     puts result
-    return result
+    return result 
   end
   
   def take_off
