@@ -1,3 +1,5 @@
+require 'weather.rb'
+
 class Airport
 
     attr_reader :hanger
@@ -13,7 +15,8 @@ class Airport
         @hanger.push(plane)
     end
 
-    def takeoff(plane)
+    def takeoff(plane, weather=weather())
+        fail 'Weather is stormy' if weather == 'stormy'
         @hanger.delete(plane)
     end
 

@@ -5,11 +5,13 @@ describe Airport do
 
     it "lands a plane at an airport" do
         plane = Plane.new
-        subject.land(plane)
+        subject.land(plane, "clear")
         expect(subject.hanger.last).to eq plane
     end
 
     it "takes off from an airport" do
+        allow(self).to receive(:weather) { 'stormy' }
+
         plane = Plane.new
         subject.land(plane)
         subject.takeoff(plane)
@@ -35,6 +37,16 @@ describe Airport do
     it "after initializing, can override the default capacity to 5" do
         subject.hanger_capacity = 5
         expect(subject.hanger_capacity).to eq 5
+    end
+
+    it "prevents takeoff if weather is stormy" do
+        #allow(self).to receive(:weather.weather) { 'stormy' }
+        #weather = double("stormy")
+
+        plane = Plane.new
+        subject.land(plane)
+        
+        expect { subject.takeoff(plane, "stormy") }.to raise_error "Weather is stormy"
     end
 
 end
