@@ -21,5 +21,11 @@ class Airport
 
   def dock_plane(plane)
     @plane
+  end
+  
+  def stormy_weather?
+    # currently set up to be a 1 in 3 chance of stormy weather
+    # return rand(2) == 1 ? true : false
+    return rand(2) == 1
   end  
 end
