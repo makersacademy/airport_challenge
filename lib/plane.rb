@@ -1,8 +1,7 @@
 class Plane
 
-    @current_airport
-
     def land(airport)
+        fail 'Airport is full' if airport.hanger.length >= 1
         airport.hanger.push(self)
         @current_airport = airport
     end
