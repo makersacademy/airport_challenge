@@ -96,3 +96,13 @@ Airport <-- take_off --> if !flying?
 - I need to better understand the use of .self within a class/it's use for accessing methods
 - I need to continue getting more familiar with rspec syntax 
 - I need to continue learning how to test 'behaviour > state'
+- I can't figure out how to get line airport_spec.rb:18 to not throw an error (no1)
+
+## Errors
+- no1: 
+```
+1) Airport#take_off instructs a plane to take off
+     Failure/Error: expect { subject.take_off }.to change(planes, :length).by(-1)
+       expected `Array#length` to have changed by -1, but was changed by 0
+     # ./spec/airport_spec.rb:18:in `block (3 levels) in <top (required)>'
+```

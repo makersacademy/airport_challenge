@@ -10,5 +10,7 @@ class Plane
   def flying?
     true
   end
+  # I need to add in this functionality once I know how to access
+  # methods in another class (see MYREADME.md 'Issues')
 
 end
