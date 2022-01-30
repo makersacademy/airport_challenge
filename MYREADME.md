@@ -38,7 +38,6 @@ Plane <-- land --> Airport
 | CLASS NAME | Airport                 | 
 |------------|-------------------------|  
 | VARIABLES  | @DEFAULT_CAPACITY : var |
-| VARIABLES  | @                       |
 | METHODS    | land()                  |
 | METHODS    | take_off()              |
 
@@ -46,6 +45,8 @@ Plane <-- land --> Airport
 |------------|-----------------|  
 | VARIABLES  |                 |
 | METHODS    | ready_to_land?  |
+| METHODS    | flying?         |
+
 
 | CLASS NAME | Weather   | 
 |------------|-----------|  
