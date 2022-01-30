@@ -3,7 +3,7 @@ require_relative '../lib/airport'
 describe Airport do
   describe 'capacity?' do
     it "responds to capacity" do
-      plane = Plane.new
+      plane = Plane.new("grounded")
       airport = Airport.new(plane)
       expect(airport.capacity?).to be_nil
     end  
@@ -11,7 +11,7 @@ describe Airport do
 
   describe '#release_plane' do
     it "responds to release_plane with a plane" do
-      plane = Plane.new
+      plane = Plane.new("grounded")
       airport = Airport.new(plane)
       expect(airport.release_plane).to be_instance_of Plane
     end  
@@ -19,13 +19,13 @@ describe Airport do
 
   describe '#dock_plane' do
     it "responds to dock_plane with 1 argument" do
-      plane = Plane.new
+      plane = Plane.new("airbourne")
       airport = Airport.new(plane)
       expect(airport).to respond_to(:dock_plane).with(1).argument
     end
 
     it "responds to dock_plane with plane" do
-      plane = Plane.new
+      plane = Plane.new("airbourne")
       airport = Airport.new(plane)
       expect(airport.dock_plane(plane)).to eq plane
     end
@@ -48,14 +48,14 @@ describe Airport do
     # and therefore, it is never gatting called
     # TODO - come back to this
     it "responds to stormy_weather with a stubbed return of false" do
-      plane = Plane.new
+      plane = Plane.new("grounded")
       airport = Airport.new(plane)
       allow(airport).to receive(:stormy_weather) { false }
       expect(airport.stormy_weather).to eq false
     end
 
     it "responds to stormy_weather with a stubbed return of true" do
-      plane = Plane.new
+      plane = Plane.new("airbourne")
       airport = Airport.new(plane)
       allow(airport).to receive(:stormy_weather) { true }
       expect(airport.stormy_weather).to eq true
@@ -66,7 +66,7 @@ describe Airport do
   # attribute testing here
   describe 'Predicate matchers' do
     it 'this is to test plane attribute' do
-      plane = Plane.new
+      plane = Plane.new("grounded")
       airport = Airport.new(plane)
       expect(airport.plane).to eq plane
     end
