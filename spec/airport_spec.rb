@@ -43,7 +43,7 @@ describe Airport do
       expect { airport.take_off(plane) }.to raise_error 'Plane not at airport'
     end
 
-    it "confirms that a plane in another airport can not take off from another airport" do
+    it "confirms that a plane in an airport can not take off from a different airport" do
 
       other_airport = described_class.new(weather)
       other_airport.land(plane)
