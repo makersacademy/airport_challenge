@@ -10,7 +10,21 @@ describe Airport do
     expect(plane.plane_landed).to eq true
   end
 
-  it 'instructs a plane to take off and confirms it is not longer in the airport' do
-
+  it { is_expected.to respond_to :take_off }
+  
+  it 'instructs a plane to take off' do
+    airport = Airport.new
+    plane = Plane.new
+    expect(airport.take_off(plane)).to eq plane
   end
+
+  it { is_expected.to respond_to :plane }
+
+  it 'confirms the plane has taken off' do
+    airport = Airport.new
+    plane = Plane.new
+    airport.take_off(plane)
+    expect(airport.plane).to eq plane
+  end
+
 end
