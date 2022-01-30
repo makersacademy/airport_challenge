@@ -4,11 +4,11 @@ require_relative "../lib/plane"
 describe Airport do
 # Landing
   it { is_expected.to respond_to :land }
-  it "responds to landing a plane with 1 argument" do
+  it "Responds to landing a plane with 1 argument" do
     expect(subject).to respond_to(:land).with(1).argument
   end
 
-  it "responds to landing a plane at the airport" do
+  it "Responds to landing a plane at the airport" do
     plane = Plane.new
     allow(subject).to receive(:weatherbad?).and_return (false)
     subject.land(plane)
@@ -49,7 +49,7 @@ describe Airport do
     expect(subject.capacity).to eq 20
   end
 
-  it "Allow DEFAULT capcity to be overwritten with 100" do
+  it "Allow DEFAULT capacity to be overwritten with 100" do
     airport = Airport.new(100)
     expect(airport.capacity).to eq 100
   end
