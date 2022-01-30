@@ -31,3 +31,25 @@ I want to instruct a plane to land at an airport
 
 ### Diagram to show interaction:
 Plane <-- land --> Airport
+
+<br>
+--------------------------------
+<br>
+
+## Class Diagram
+| CLASS NAME | Airport                 | 
+|------------|-------------------------|  
+| VARIABLES  | @DEFAULT_CAPACITY : var |
+| VARIABLES  | @                       |
+| METHODS    | land()                  |
+| METHODS    | take_off()              |
+
+| CLASS NAME | Plane   | 
+|------------|---------|  
+| VARIABLES  |         |
+| METHODS    | land()  |
+
+| CLASS NAME | Weather | 
+|------------|---------|  
+| VARIABLES  |         |
+| METHODS    |         | 
