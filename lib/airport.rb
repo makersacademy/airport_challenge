@@ -6,4 +6,8 @@ class Airport
     # if ready_to_land? == true ? true : false
   end
 
+  def take_off 
+    
+  end
+
 end
