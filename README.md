@@ -92,7 +92,7 @@ Student@MA138C0DL7BH3QD airport_challenge % irb
 ```
 
 #### What I know I need to work on
-- I have created Weather as a module as modules were mentioned but I am unclear if I have used in correctly since the documentation says to use test doubles and I have not implemented that in my code.
+- I have created Weather as a module as modules were mentioned but I am unclear if I have used it correctly since the documentation says to use test doubles and I have not implemented that in my code.
 
 
 
