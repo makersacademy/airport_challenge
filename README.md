@@ -83,7 +83,6 @@ I want to prevent takeoff when weather is stormy
 > plane.take_off
 => "Plane cannot take off"
 
-
 ```
 As an air traffic controller
 To ensure safety
