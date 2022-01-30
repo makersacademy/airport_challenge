@@ -19,7 +19,7 @@ describe Airport do
       described_class::DEFAULT_CAPACITY.times do
         airport.land(plane)
       end 
-      expect { airport.land(plane) }.to raise_error 'Airport at full capacity.'
+      expect { airport.land(plane) }.to raise_error 'Cannot land, airport at full capacity.'
     end
 
     it 'should support non default capacity' do
@@ -27,7 +27,7 @@ describe Airport do
       10.times do
         non_default_capacity_airport.land(plane)
       end  
-      expect { non_default_capacity_airport.land(plane) }.to raise_error 'Airport at full capacity.'
+      expect { non_default_capacity_airport.land(plane) }.to raise_error 'Cannot land, airport at full capacity.'
     end
 
   end
@@ -37,7 +37,7 @@ describe Airport do
     it "should raise an error when plane not at the airport" do
       airport.land(plane)
       airport.take_off(plane)
-      expect { airport.take_off(plane) }.to raise_error 'Plane not at airport'
+      expect { airport.take_off(plane) }.to raise_error 'This plane is not at this airport.'
     end
 
     it "confirms that a plane in an airport can not take off from a different airport" do
@@ -45,7 +45,7 @@ describe Airport do
       other_airport = described_class.new(weather)
       other_airport.land(plane)
 
-      expect { airport.take_off(plane) }.to raise_error 'Plane not at airport'
+      expect { airport.take_off(plane) }.to raise_error 'This plane is not at this airport.'
     end
   end 
 
@@ -74,14 +74,14 @@ describe Airport do
     describe "#take_off" do
       it "should prevent takeoff if the weather is stormy" do
         airport = described_class.new(stormy_weather)
-        expect { airport.take_off(plane) }.to raise_error 'Weather is stormy.'
+        expect { airport.take_off(plane) }.to raise_error 'Cannot take off, weather is stormy.'
       end
     end
 
     describe "#land" do
       it "should prevent landing if the weather is stormy" do
         airport = described_class.new(stormy_weather)
-        expect { airport.land(plane) }.to raise_error 'Weather is stormy.'
+        expect { airport.land(plane) }.to raise_error 'Cannot land, weather is stormy.'
       end
     end
   end
