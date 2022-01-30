@@ -14,7 +14,5 @@ describe Plane do
     it "confirms whether the plane is in flight" do
       expect(subject.flying?).to eq(true)
     end
-
-    it ""
   end
 end
