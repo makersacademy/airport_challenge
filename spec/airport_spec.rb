@@ -45,9 +45,11 @@ describe 'Airport' do
     end
   end
 
+  
   let(:weather) { double :weather }
   it 'should be able to override default capcaity of 5' do
     allow(weather).to receive(:flying_conditions).and_return(false)
+    # intention for stub/ double is to allow the weather to always be false, so planes can all land
     airport = Airport.new(10)
     10.times { airport.land_plane Plane.new }  
     expect { airport.land_plane(Plane.new) }.to raise_error("airport is full, no landing space available")

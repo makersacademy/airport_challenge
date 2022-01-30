@@ -7,7 +7,7 @@ class Weather
 
   def flying_conditions
     counter = Random.rand(1..6)
-    flying_conditions = (counter == 6)
+    counter == 6
     # when true, weather is stormy
     # when false, weather is clear
   end
