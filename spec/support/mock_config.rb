@@ -1,6 +1,6 @@
 
-module SharedConfig
-  RSpec.shared_context "shared config", :shared_context => :metadata do
+module MockConfig
+  RSpec.shared_context "mock config", :shared_context => :metadata do
 
     let(:plane) { double(:plane) }
     let(:weather) { double(:weather, :stormy? => false) }

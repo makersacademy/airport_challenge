@@ -2,7 +2,7 @@ require_relative '../lib/airport'
 
 describe Airport do
 
-  include_context "shared config"
+  include_context "mock config"
 
   before(:each) do
     allow(plane).to receive(:land).and_return(plane)

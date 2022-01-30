@@ -1,8 +1,8 @@
 require 'simplecov'
 require 'simplecov-console'
-require_relative '../spec/support/shared.rb'
+require_relative '../spec/support/mock_config.rb'
 
-include SharedConfig
+include MockConfig
 
 SimpleCov.formatter = SimpleCov::Formatter::MultiFormatter.new([
   SimpleCov::Formatter::Console,
@@ -21,5 +21,5 @@ end
 
 RSpec.configure do |rspec|
   rspec.shared_context_metadata_behavior = :apply_to_host_groups
-  rspec.include_context "shared config", :include_shared => true
+  rspec.include_context "mock config", :include_shared => true
 end
