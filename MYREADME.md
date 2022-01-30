@@ -32,11 +32,9 @@ I want to instruct a plane to land at an airport
 ### Diagram to show interaction:
 Plane <-- land --> Airport
 
-<br>
---------------------------------
-<br>
+----------------------------------------
 
-## Class Diagram
+## Class Diagrams
 | CLASS NAME | Airport                 | 
 |------------|-------------------------|  
 | VARIABLES  | @DEFAULT_CAPACITY : var |
@@ -44,12 +42,12 @@ Plane <-- land --> Airport
 | METHODS    | land()                  |
 | METHODS    | take_off()              |
 
-| CLASS NAME | Plane   | 
-|------------|---------|  
-| VARIABLES  |         |
-| METHODS    | land()  |
+| CLASS NAME | Plane           | 
+|------------|-----------------|  
+| VARIABLES  |                 |
+| METHODS    | ready_to_land?  |
 
-| CLASS NAME | Weather | 
-|------------|---------|  
-| VARIABLES  |         |
-| METHODS    |         | 
+| CLASS NAME | Weather   | 
+|------------|-----------|  
+| VARIABLES  |           |
+| METHODS    | stormy?() | 
