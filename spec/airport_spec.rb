@@ -90,9 +90,20 @@ describe Airport do
   end
 
   context "Mulitple planes at the airport" do
-    let(:plane_one) { double(:plane) }
-    let(:plane_two) { double(:plane) }
-    let(:plane_three) { double(:plane) }
+
+    RSpec.shared_context "shared planes", :shared_context => :metadata do
+      let(:plane_one) { double(:plane) }
+      let(:plane_two) { double(:plane) }
+      let(:plane_three) { double(:plane) }
+
+      def land_three_planes(plane_one, plane_two, plane_three)
+        airport.land(plane_one)
+        airport.land(plane_two)
+        airport.land(plane_three)
+      end
+    end
+
+    include_context "shared planes"
 
     before(:each) do
       allow(plane_one).to receive(:land).and_return(plane_one)
@@ -102,26 +113,19 @@ describe Airport do
     end
 
     it "should allow a specific plane to take off from the airport" do
-      airport.land(plane_one)
-      airport.land(plane_two)
-      airport.land(plane_three)
-
+      land_three_planes(plane_one, plane_two, plane_three)
       expect(airport.take_off(plane_two)).to be(plane_two) 
     end
 
     it "confirm that a plane is no longer at the airport after taking off" do
-      airport.land(plane_one)
-      airport.land(plane_two)
-      airport.land(plane_three)
+      land_three_planes(plane_one, plane_two, plane_three)
       airport.take_off(plane_two)
 
       expect(airport.plane_inventory).not_to include(plane_two)
     end
 
     it "should give the inventory of the airport " do
-      airport.land(plane_one)
-      airport.land(plane_two)
-      airport.land(plane_three)
+      land_three_planes(plane_one, plane_two, plane_three)
       expect(airport.plane_inventory).to include(plane_one, plane_two, plane_three)
     end
 
