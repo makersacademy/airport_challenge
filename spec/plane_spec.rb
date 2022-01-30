@@ -1,6 +1,6 @@
 describe Plane do
 
-  subject(:plane) { described_class.new } 
+  include_context "plane mock config"
 
   context "when flying" do
 

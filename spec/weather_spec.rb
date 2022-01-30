@@ -2,7 +2,7 @@ require_relative '../lib/weather'
 
 describe Weather do
 
-  let(:weather) { described_class.new }
+  include_context "weather mock config" 
 
   describe "#stormy?" do
     it "is stormy weather" do

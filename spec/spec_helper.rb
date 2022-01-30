@@ -21,5 +21,7 @@ end
 
 RSpec.configure do |rspec|
   rspec.shared_context_metadata_behavior = :apply_to_host_groups
-  rspec.include_context "mock config", :include_shared => true
+  rspec.include_context "airport mock config", :include_shared => true
+  rspec.include_context "plane mock config", :include_shared => true
+  rspec.include_context "weather mock config", :include_shared => true
 end
