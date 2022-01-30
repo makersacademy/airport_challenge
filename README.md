@@ -24,6 +24,8 @@ As I look at what I have done retrospectively, I can see that I have not worked 
 
 I also spent a fair amount of time trying to write good tidy code from the outset, so in essence refactoring to soon. So my take away here is.. just get it working and then worry about the refactor. Hence the Green, Red, Refactor mantra!
 
+I have also dabbled with the use of shared context from RSpec to see how I could take mock configuration out of the test scripts, the initial idea was to reduce some of the repetitive code I had regarding landing lots of plans, I then thought I'd take the lions share of the config into a seperate file. Whether this is good practice, it's a conversation I need to have with my peers and coaches
+
 I feel I need to continue getting my hands dirty in TDD and the use of the testing frameworks available.
 
 ## Files
