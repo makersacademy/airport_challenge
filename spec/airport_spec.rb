@@ -12,20 +12,20 @@ describe Airport do
     allow(plane).to receive(:take_off).and_return(plane)
   end
 
-  describe 'initialization' do
+  describe 'airport capacity' do
 
     before(:each) do
       allow(plane).to receive(:flying?).and_return(true)
     end
 
-    it 'default capacity of airport' do
+    it 'should support default capacity of airport' do
       described_class::DEFAULT_CAPACITY.times do
         airport.land(plane)
       end 
       expect { airport.land(plane) }.to raise_error 'Airport at full capacity.'
     end
 
-    it 'prevents a non default capacity being exceeded' do
+    it 'should support non default capacity' do
       non_default_capacity_airport = described_class.new(weather, 10)
       10.times do
         non_default_capacity_airport.land(plane)
@@ -37,7 +37,7 @@ describe Airport do
 
   describe "#take_off" do
  
-    it "should have a plane take off and not be in the airport" do
+    it "should raise an error when plane not at the airport" do
       airport.land(plane)
       airport.take_off(plane)
       expect { airport.take_off(plane) }.to raise_error 'Plane not at airport'
@@ -66,7 +66,7 @@ describe Airport do
       expect(airport.plane_inventory).to include(plane)
     end
 
-    it "should be empty when no planes in the airport" do
+    it "should show no planes in the airport" do
       expect(airport.plane_inventory).to be_empty
     end
   end
@@ -75,14 +75,14 @@ describe Airport do
     let(:stormy_weather) { double(:weather, :stormy? => true) }
 
     describe "#take_off" do
-      it "prevent takeoff if the weather is stormy" do
+      it "should prevent takeoff if the weather is stormy" do
         airport = described_class.new(stormy_weather)
         expect { airport.take_off(plane) }.to raise_error 'Weather is stormy.'
       end
     end
 
     describe "#land" do
-      it "prevent landing if the weather is stormy" do
+      it "should prevent landing if the weather is stormy" do
         airport = described_class.new(stormy_weather)
         expect { airport.land(plane) }.to raise_error 'Weather is stormy.'
       end
