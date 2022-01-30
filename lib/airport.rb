@@ -10,7 +10,8 @@ class Airport
         @hanger_capacity = hanger_capacity
     end
 
-    def land(plane)
+    def land(plane, weather=weather())
+        fail 'Weather is stormy' if weather == 'stormy'
         fail 'Airport is full' if @hanger.length >= @hanger_capacity
         @hanger.push(plane)
     end

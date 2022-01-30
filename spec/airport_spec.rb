@@ -5,23 +5,20 @@ describe Airport do
 
     it "lands a plane at an airport" do
         plane = Plane.new
-        subject.land(plane, "clear")
+        subject.land(plane, 'clear')
         expect(subject.hanger.last).to eq plane
     end
 
     it "takes off from an airport" do
-        allow(self).to receive(:weather) { 'stormy' }
-
         plane = Plane.new
-        subject.land(plane)
-        subject.takeoff(plane)
+        subject.land(plane, 'clear')
+        subject.takeoff(plane, 'clear')
         expect(subject.hanger.last).to eq nil
     end
 
     it "can't land if airport is full" do       
-        subject.land(Plane.new)
+        subject.land(Plane.new, 'clear')
         plane_2 = Plane.new
-
         expect { subject.land(plane_2) }.to raise_error "Airport is full"
     end
 
@@ -40,13 +37,19 @@ describe Airport do
     end
 
     it "prevents takeoff if weather is stormy" do
+        plane = Plane.new
+        subject.land(plane, 'clear')
+        
+        expect { subject.takeoff(plane, "stormy") }.to raise_error "Weather is stormy"
+    end
+
+    it "prevents landing if weather is stormy" do
         #allow(self).to receive(:weather.weather) { 'stormy' }
         #weather = double("stormy")
 
         plane = Plane.new
-        subject.land(plane)
-        
-        expect { subject.takeoff(plane, "stormy") }.to raise_error "Weather is stormy"
+                
+        expect { subject.land(plane, "stormy") }.to raise_error "Weather is stormy"
     end
 
 end
