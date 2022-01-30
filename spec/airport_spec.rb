@@ -1,7 +1,5 @@
 require 'airport'
 
-
-
 describe Airport do
   it {is_expected.to respond_to :land_plane}
   it {is_expected.to respond_to :take_off}
@@ -12,6 +10,13 @@ describe Airport do
       expect(subject.land_plane(plane)).to eq plane
     end
 
+    it "should not land a plane if the airport is full" do
+      plane = Plane.new
+      subject.land_plane(plane)
+      expect{subject.land_plane(plane)}.to raise_error "Airport full"
+    end
+
+  
   end  
 
   describe "#take_off" do
@@ -23,17 +28,5 @@ describe Airport do
     end
   end
 
-  describe "#airport_capacity" do
-    it "should not land a plane if the airport is full" do
-      plane = Plane.new
-      subject.land_plane(plane)
-      expect{subject.land_plane(plane)}.to raise_error "Airport full"
-    end
-  end
 end
-
-
-# As an air traffic controller 
-# To ensure safety 
-# I want to prevent landing when the airport is full 
 

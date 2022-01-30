@@ -1,6 +1,5 @@
 require_relative "plane"
 
-# @capacity = 1
 def initialize
 @planes = []
 @capacity = 1
@@ -18,6 +17,5 @@ class Airport
     fail "Plane has left airport" if @planes.empty?
     @planes.pop
   end
-
 end
 
