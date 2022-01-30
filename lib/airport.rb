@@ -3,9 +3,10 @@ require_relative 'plane'
 class Airport
 
   attr_reader :plane
-    
+
   def land_plane
-    Plane.new
+    fail 'The airport is full' unless @plane
+    @plane
   end
 
   def take_off(plane)
