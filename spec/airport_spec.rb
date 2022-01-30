@@ -20,4 +20,12 @@ describe Airport do
       expect(airport).to respond_to(:dock_plane).with(1).argument
     end  
   end
+  # attribute testing here
+  it { is_expected.to respond_to(:plane) }
+
+  it 'docks a plane' do
+    plane = Plane.new
+    # We want to return the plane we dock
+    expect(subject.dock_plane(plane)).to eq plane
+  end
 end
