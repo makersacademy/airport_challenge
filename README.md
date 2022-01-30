@@ -13,6 +13,28 @@ Airport Challenge
 
 ```
 
+## Airport Challenge
+
+This program emulates an airport with the take off and landing of airplanes. The airport is subject to weather conditions which can prohibit the take off and landing of planes.
+
+## Author Notes
+This project is an end of week project to practice the concepts of test deriven development based on the user stories provided.
+
+As I look at what I have done retrospectively, I can see and that I have not worked on each user story in a methodical way. This is apparent in the commit notes and the way the code got constructed. I am aware of this and it goes a long to to explain why I spent so much trying to get things to work. If I had stayed focused on a user story and just worked on each I feel I would have had a better time.
+
+I also spent a fair amount of time trying to write good tidy code on the outset, so in essence refactoring to soon. So another take away here is.. just get it working and then worry about the refactor. Hence the Green, Red, Refactor mantra!
+
+Overall I am reasonably happy with this product, however I feel I need to really get continue getting my hands dirty in TDD and using of the testing frameworks available.
+
+## Files
+
+This project contains various files
+* ./docs contains the domain_model
+* ./lib contains all core program files relating to the challenge, weather.rb, airport.rb and plane.rb
+* ./spec contains all spec files for the associated core files plus a feature_spec.rb used to test actual calls to the classes
+
+
+
 Instructions
 ---------
 
