@@ -16,7 +16,8 @@ class Airport
 
   def take_off 
     "Plane has left the airport" if @planes.count.zero?
-    
+    # Do I have a test for this?
+
     @planes.pop if @planes.length >= 1
 
     # fail "This plane is already in flight" unless !flying?
