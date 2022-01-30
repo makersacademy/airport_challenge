@@ -23,4 +23,18 @@ describe Airport do
         expect { subject.land(plane_2) }.to raise_error "Airport is full"
     end
 
+    it "has a default capacity of 1" do
+        expect(subject.hanger_capacity).to eq 1
+    end
+
+    it "when initializing, can override the default capacity to 5" do
+        airport = Airport.new(5)
+        expect(airport.hanger_capacity).to eq 5
+    end
+
+    it "after initializing, can override the default capacity to 5" do
+        subject.hanger_capacity = 5
+        expect(subject.hanger_capacity).to eq 5
+    end
+
 end

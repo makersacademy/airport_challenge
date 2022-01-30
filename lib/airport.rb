@@ -1,6 +1,7 @@
 class Airport
 
-    attr_reader :hanger, :hanger_capacity
+    attr_reader :hanger
+    attr_accessor :hanger_capacity
 
     def initialize(hanger_capacity=1)
         @hanger = []
@@ -8,7 +9,7 @@ class Airport
     end
 
     def land(plane)
-        fail 'Airport is full' if @hanger.length >= 1
+        fail 'Airport is full' if @hanger.length >= @hanger_capacity
         @hanger.push(plane)
     end
 
