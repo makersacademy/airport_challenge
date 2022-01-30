@@ -41,11 +41,10 @@ describe AirPort do
     expect { subject.land(Plane.new) }.to raise_error 'No room at airport'
   end
 
-
   it "will raise an error if a landed plan tries to land" do
     plane = Plane.new
-    allow(plane).to receive(:flying) { false }
     allow(subject).to receive(:good_weather?) { true }
+    plane.landed_plane
     expect { subject.land(plane) }.to raise_error 'This plane is has already landed'
   end
 
@@ -58,14 +57,14 @@ describe AirPort do
   it "will stop planes landing if weather is stormy" do
     plane = Plane.new
     allow(subject).to receive(:good_weather?) { false }
-    expect{ subject.land(plane) }.to raise_error "Its too stormy to land"
+    expect { subject.land(plane) }.to raise_error "Its too stormy to land"
   end
 
   it "will stop planes from taking off if weather is stormy" do
     plane = Plane.new
     allow(subject).to receive(:land).with(plane).and_return([plane])
     allow(subject).to receive(:good_weather?) { false }
-    expect{ subject.take_off(plane) }.to raise_error "Its too stormy to take-off!"
+    expect { subject.take_off(plane) }.to raise_error "Its too stormy to take-off!"
   end
 
 end
