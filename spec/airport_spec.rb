@@ -27,14 +27,16 @@ describe Airport do
 
   describe '#weather' do
     it 'checks the current weather conditions' do
-      expect(subject).to respond_to(:weather)
+      expect(subject).to respond_to(:current_weather)
     end 
 
     it 'prevents take off when the weather is stormy' do
+      allow(subject).to receive(:current_weather) { "sunny" }  
       expect { subject.take_off(plane) }.to raise_error("We can't take off in stormy weather!") if subject.weather == 'stormy' 
     end
 
     it 'prevents landing when weather is stormy' do
+      allow(subject).to receive(:current_weather) { "sunny" }
       expect { subject.land(plane) }.to raise_error("We can't land in stormy weather!") if subject.weather == 'stormy'
     end
   end
