@@ -7,9 +7,13 @@ class AirTrafficController
     # puts plane.airbourne? ? "Ok to land plane" : "Plane already grounded"
     if plane.airbourne? 
       if !airport.stormy_weather?
-        result = "Plane landed successfully!"
+        if airport.planes_list.length < airport.capacity
+          result = "Plane landed successfully!"
+        else
+          result = "Destination airport is full, go to holding queue!"
+        end    
       else
-        result = "Stormy weather, so in holding queue!"
+        result = "Stormy weather, go to holding queue!"
       end    
     else
       result = "Plane already grounded!"
