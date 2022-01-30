@@ -14,16 +14,16 @@ describe AirPort do
 
   it "once a plane has landed, we would like to tell a plane to take off" do
     plane = Plane.new
-    subject.land(plane)
     allow(subject).to receive(:good_weather?) { true }
+    subject.land(plane)
     expect(subject.take_off(plane)).to eq plane
   end
 
   it "once a plane has taken off, check it is no longer in the hanger" do
     plane = Plane.new
+    allow(subject).to receive(:good_weather?) { true }
     subject.land(plane)
     subject.take_off(plane)
-    allow(subject).to receive(:good_weather?) { true }
     expect(subject.hanger).to eq []
   end
 
@@ -57,15 +57,15 @@ describe AirPort do
 
   it "will stop planes landing if weather is stormy" do
     plane = Plane.new
-    allow(subject).to receive(:good_weather?) { nil }
-    expect(subject.land(plane)).to raise_error "Its too stormy to land"
+    allow(subject).to receive(:good_weather?) { false }
+    expect{ subject.land(plane) }.to raise_error "Its too stormy to land"
   end
 
   it "will stop planes from taking off if weather is stormy" do
     plane = Plane.new
     allow(subject).to receive(:land).with(plane).and_return([plane])
-    allow(subject).to receive(:good_weather?) { nil }
-    expect (subject.take_off(plane)).to raise_error "Its too stormy to take-off"
+    allow(subject).to receive(:good_weather?) { false }
+    expect{ subject.take_off(plane) }.to raise_error "Its too stormy to take-off!"
   end
 
 end
