@@ -22,14 +22,14 @@ DEFAULT_CAP = 5
 
   def take_off(plane)
     raise "Its too stormy to take-off!" unless good_weather?
-      raise 'This plane is not landed here' unless @hanger.include?(plane) && !(plane.flying)
+      raise 'This plane is not landed here' unless self.hanger.include?(plane) && !(plane.flying)
         plane.starts_flying
         @hanger.delete(plane)
   end
 
 
   def room_in_hanger?
-    @hanger.length < DEFAULT_CAP
+    @hanger.length < @capacity
   end
 
   def good_weather?
