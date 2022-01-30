@@ -15,9 +15,10 @@ describe Airport do
       expect(subject.take_off).to eq(true)
     end
 
-    # it "Raise error if plane is already in flight" do
-    #   expect(subject.take_off).to raise_error("This plane is already in flight")
-    # end
+    it "Raise error if plane is already in flight" do
+      expect{ subject.take_off }.to raise_error("This plane is already in flight")
+    end
+     # Code commented out on lib file = reason for current error
   end
 
 end
