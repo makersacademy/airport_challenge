@@ -1,6 +1,5 @@
-require "plane"
-require "airport"
-
-# describe Plane do
-
-# end
+class Plane 
+  def land
+    
+  end
+end
