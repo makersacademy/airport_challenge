@@ -61,7 +61,7 @@ I want to prevent landing when the airport is full
 > airport.full?
 => True
 > plane.land
-=> False
+=> "Plane cannot land"
 
 ```
 As the system designer
@@ -81,7 +81,7 @@ I want to prevent takeoff when weather is stormy
 > weather.stormy?
 => True
 > plane.take_off
-=> False
+=> "Plane cannot take off"
 
 
 ```
@@ -92,7 +92,7 @@ I want to prevent landing when weather is stormy
 > weather.stormy?
 => True
 > plane.land
-=> False
+=> "Plane cannot land"
 
 Your task is to test drive the creation of a set of classes/modules to satisfy all the above user stories. You will need to use a random number generator to set the weather (it is normally sunny but on rare occasions it may be stormy). In your tests, you'll need to use a stub to override random weather to ensure consistent test behaviour.
 
