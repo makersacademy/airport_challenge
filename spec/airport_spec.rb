@@ -15,6 +15,10 @@ describe Airport do
     # end
 
     it "should not allow a plane to land if airport is full" do
+      # Airport::DEFAULT_CAPACITY.times do
+      #   subject.land Plane.new
+      #   p subject.land Plane.new
+      # end
       expect { subject.land Plane.new }.to raise_error("Airport full! Plane cannot land")
     end
 
@@ -29,7 +33,7 @@ describe Airport do
 
     it "should lift a plane from an airport and returna confirmation" do
       plane = Plane.new
-      expect(subject.lift(plane)).to eq "Plane has taken off"
+      expect(subject.lift(plane)).to eq "Plane has taken off and is no longer in airport"
     end
 
     it "sends a plane to flying mode" do

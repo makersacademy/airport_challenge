@@ -1,20 +1,26 @@
 require_relative "plane.rb"
 
 class Airport
-
-# plane = Plane.new
+  DEFAULT_CAPACITY = 20
+  
+  def initialize
+    @planes = []
+  end
 
   def land(plane)
     fail("Airport full! Plane cannot land") if full?
-    return "Plane has landed"
   end
 
   def lift(plane)
-    "Plane has taken off"
+    "Plane has taken off and is no longer in airport"
   end
+
+  private # as per walkthrough 15
 
   def full?
     true
   end
 
+  def empty?
+  end
 end
