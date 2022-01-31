@@ -7,4 +7,8 @@ class Airport
     airport = Airport.new
     plane
   end
+
+  def takeoff(plane)
+    "#{plane} has taken off"
+  end
 end
