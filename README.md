@@ -47,6 +47,8 @@ run `rspec` from the command line
 * What is best practice regarding where to place mock config and how much config should be in that file
 * I am testing for a returned plane in both land and take off. I could test for no error and test against the plane_inventory (I could then drop some tests).. However, I have added this extra public method to enable this. Is there a design pattern to test for what planes are in the airport without the creation of the public plane_inventory method
 
+OK, I have thought about this.. I think there's an opportunity for a Hanger class, this is a collection of planes with maybe other functionality. This can be passed into the Airport. I can then test the Hanger class for the planes inside the hanger. This can then do away with the plane_inventory public method and simplify testing of planes in the airport. I have however run out of time! :(
+
 Instructions
 ---------
 
