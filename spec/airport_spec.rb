@@ -27,9 +27,10 @@ describe Airport do
   end
 
   describe '#land' do
+    
     it 'raises an error when the airport is full' do
       airport = Airport.new
-      airport.capacity.times { airport.land Plane.new }
+      airport.capacity.times { airport.land(Plane) }
       expect { airport.land(Plane) }.to raise_error 'The airport is full'
     end
 
@@ -45,10 +46,9 @@ describe Airport do
     #   airport.land(plane)
     #   expect(airport.plane).to eq plane
     # end
-  end
 
   # it { is_expected.to respond_to :land }
   
   # it { is_expected.to respond_to :plane }
-
+  end
 end
