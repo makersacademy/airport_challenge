@@ -22,17 +22,26 @@
 # To ensure safety 
 # I want to prevent landing when weather is stormy 
 
-require_relative './lib/plane'
+class Plane
 
-describe Plane do
-    subject {Class.new}
+    attr_reader :flying
+    attr_accessor :flying
   
-    it 'Plane is flying.  Responds to the flying method.' do
-      expect(subject).to respond_to (:flying?)
+    def initialize
+      @flying = true
     end
   
-    it 'Plane has landed and so is not flying' do
-      subject.land?
-      expect(subject).not_to respond_to (:flying?)
+    def flying?
+      @flying = true
+    end
+  
+    def land?
+      @flying = false
+      return self
+    end
+  
+    def take_off?
+      @flying = true
+      return self
     end
   end
