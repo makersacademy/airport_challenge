@@ -4,11 +4,13 @@ class Plane
   end
 
   def land
-    @in_flight = false 
+    @in_flight = false
+    "Plane has landed" 
   end
 
   def takeoff
     @in_flight = true
+    puts "Plane has taken off"
   end
 
   def flying?

@@ -8,7 +8,6 @@ describe Airport do
     it 'should allow a plane to land if airport is not full' do
       plane = Plane.new
       plane.land 
-
     end 
     
     it 'prevents landing when airport is full' do
