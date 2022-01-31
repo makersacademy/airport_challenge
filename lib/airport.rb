@@ -2,14 +2,14 @@
 require_relative 'plane'
 
 class Airport
+  attr_accessor :planes_list
   attr_accessor :plane
   attr_accessor :capacity
-  attr_accessor :planes_list
 
-  def initialize(capacity, planes_list, plane)
-    @capacity = capacity
+  def initialize(planes_list, plane, capacity = 111)
     @planes_list = planes_list
     @plane = plane
+    @capacity = capacity
   end   
 
   def capacity?
@@ -20,9 +20,12 @@ class Airport
   end 
 
   def dock_plane(plane)
-    # if plane.grounded?
-    # fail 'Plane already grounded!' unless @plane.airbourne?
-    @plane
+    # At this point, the plane has landed successfully.
+    # now set the plane's status to "grounded"
+    # and dock it into the airport
+    @plane.status = "grounded"
+    return @planes_list.push(plane)
+    # @plane
   end
   
   def stormy_weather?

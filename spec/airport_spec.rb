@@ -5,7 +5,7 @@ describe Airport do
     it "responds to capacity" do
       plane = Plane.new("grounded")
       planes_list = Array.new
-      airport = Airport.new(5,planes_list,plane)
+      airport = Airport.new(planes_list,plane,5)
       expect(airport.capacity?).to be_nil
     end  
   end
@@ -14,7 +14,7 @@ describe Airport do
     it "responds to release_plane with a plane" do
       plane = Plane.new("grounded")
       planes_list = Array.new
-      airport = Airport.new(3,planes_list,plane)
+      airport = Airport.new(planes_list,plane,3)
       expect(airport.release_plane).to be_instance_of Plane
     end  
   end
@@ -23,15 +23,15 @@ describe Airport do
     it "responds to dock_plane with 1 argument" do
       plane = Plane.new("airbourne")
       planes_list = Array.new
-      airport = Airport.new(6,planes_list,plane)
+      airport = Airport.new(planes_list,plane,6)
       expect(airport).to respond_to(:dock_plane).with(1).argument
     end
 
     it "responds to dock_plane with plane" do
       plane = Plane.new("airbourne")
       planes_list = Array.new
-      airport = Airport.new(3,planes_list,plane)
-      expect(airport.dock_plane(plane)).to eq plane
+      airport = Airport.new(planes_list,plane,3)
+      expect(airport.dock_plane(plane)).to eq planes_list
     end
   end
 
@@ -54,7 +54,7 @@ describe Airport do
     it "responds to stormy_weather with a stubbed return of false" do
       plane = Plane.new("grounded")
       planes_list = Array.new
-      airport = Airport.new(2,planes_list,plane)
+      airport = Airport.new(planes_list,plane,2)
       allow(airport).to receive(:stormy_weather) { false }
       expect(airport.stormy_weather).to eq false
     end
@@ -62,7 +62,7 @@ describe Airport do
     it "responds to stormy_weather with a stubbed return of true" do
       plane = Plane.new("airbourne")
       planes_list = Array.new
-      airport = Airport.new(2,planes_list,plane)
+      airport = Airport.new(planes_list,plane,2)
       allow(airport).to receive(:stormy_weather) { true }
       expect(airport.stormy_weather).to eq true
     end
@@ -74,8 +74,20 @@ describe Airport do
     it 'this is to test plane attribute' do
       plane = Plane.new("grounded")
       planes_list = Array.new
-      airport = Airport.new(11,planes_list,plane)
+      airport = Airport.new(planes_list,plane,11)
       expect(airport.plane).to eq plane
+    end
+    it 'this is to test plane attribute' do
+      plane = Plane.new("grounded")
+      planes_list = Array.new
+      airport = Airport.new(planes_list,plane,11)
+      expect(airport.capacity).to eq 11
+    end
+    it 'this is to test plane attribute' do
+      plane = Plane.new("grounded")
+      planes_list = Array.new
+      airport = Airport.new(planes_list,plane)
+      expect(airport.capacity).to eq 111
     end
   end
 

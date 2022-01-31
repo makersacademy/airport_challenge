@@ -5,22 +5,20 @@ require_relative 'airport'
 
 class AirTrafficController
 
+  attr_accessor :airport
+
   def initialize
   end  
 
   def land(plane, airport)
-    # puts plane.airbourne? ? "Ok to land plane" : "Plane already grounded"
-
     fail 'Plane already grounded!' unless plane.airbourne?
-    fail 'Stormy weather, go to holding queue!' unless !airport.stormy_weather?
+    fail 'Stormy weather, go to holding queue!' if airport.stormy_weather?
     fail 'Destination airport is full, go to holding queue!' unless airport.planes_list.length < airport.capacity
-    "Plane landed successfully!"
-  
+    puts "Plane landed successfully!"
+    airport.dock_plane(plane)
   end
   
   def take_off
     # puts !plane.airbourne? ? "Ready for take off" : "Plane already airbourne"
   end  
 end
-
-
