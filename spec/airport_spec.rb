@@ -40,4 +40,15 @@ describe Airport do
       expect(airport.takeoff(plane)).to eq "#{plane} has taken off"
     end
   end
+
+# As the system designer
+# So that the software can be used for many different airports
+# I would like a default airport capacity that can be overridden as appropriate
+
+  describe "#initialise" do
+    it "should set a default airport capacity" do
+      airport = Airport.new
+      expect(airport.initialise(5)).to be_truthy # expecting evaluation to not be nil but does not check for boolean value true
+    end
+  end
 end
