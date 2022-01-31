@@ -1,0 +1,71 @@
+As an air traffic controller 
+So I can get passengers to a destination 
+I want to instruct a plane to land at an airport
+
+Objects                | Messages
+---------------------------------------
+air traffic controller | get
+passengers             | 
+destination            | land
+Plane                  | 
+airport                |
+
+air traffic controller >>> instruct plane to land at airport
+
+*****
+
+As an air traffic controller 
+So I can get passengers on the way to their destination 
+I want to instruct a plane to take off from an airport and confirm that it's no longer in the airport
+
+Objects | Messages
+------------------------
+Plane   |  take off
+airport |  confirm no longer in airport
+
+air traffice controller >>> instruct plane to take off from airport >>> plane confirm it's no longer in airport
+
+*****
+
+As an air traffic controller 
+To ensure safety 
+I want to prevent landing when the airport is full 
+
+Objects | Messages
+----------------------
+air traffic controller | prevent landing when 
+airport                | is full?
+
+air traffic controller >> prevent landing when airport is full
+
+*****
+
+As the system designer
+So that the software can be used for many different airports
+I would like a default airport capacity that can be overridden as appropriate
+
+Objects   | Messages
+---------------------------------------------
+airport   | show capacity
+airport   | set capacity
+
+*****
+
+As an air traffic controller 
+To ensure safety 
+I want to prevent takeoff when weather is stormy 
+
+Objects | Messages
+---------------------------------------------
+weather is stormy | prevent takeoff
+
+*****
+
+As an air traffic controller 
+To ensure safety 
+I want to prevent landing when weather is stormy 
+
+Objects | Messages
+------------------------------------------
+weather | is stormy?
+        | prevent landing
