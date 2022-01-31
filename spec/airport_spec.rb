@@ -12,7 +12,7 @@ describe Airport do
   it "should not allow an airplane to land while airport is full" do
     allow(subject).to receive(:stormy?).and_return false
     Airport::DEFAULT_CAPACITY.times { subject.land(airplane) }
-    expect {subject.land(airplane).to raise_error ("Cannot land due to airport being full")}
+    expect { subject.land(airplane) }.to raise_error "Cannot land due to airport being full"
   end
 
   it "should prevent landing when weather is stormy" do

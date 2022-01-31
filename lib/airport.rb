@@ -10,7 +10,7 @@ class Airport
   end
 
   def land(airplane)
-    raise 'Cannot land airplane due to airport being full' if full?
+    raise 'Cannot land due to airport being full' if full?
     raise 'Cannot land due to stormy weather' if stormy?
     @airplanes << airplane
   end
