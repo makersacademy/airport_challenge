@@ -23,16 +23,16 @@ class Airport
     # At this point, the plane has landed successfully.
     # now set the plane's status to "grounded"
     # and dock it into the airport
-    @plane.status = "grounded"
-    return @planes_list.push(plane)
-    # @plane
+    plane.status = "grounded"
+    @planes_list.push(plane)
+    return @planes_list
   end
   
   def stormy_weather?
-    # currently set up to be a 1 in 3 chance of stormy weather
+    # currently set up to be a 1 in 10 chance of stormy weather
     # TODO for now, keeping the longer version of the uncommented line below
-    # return rand(2) == 1 ? true : false
+    # return rand(10) == 1 ? true : false
     # shorten to below as suggested by rubocop
-    return rand(2) == 1
+    return rand(10) == 1
   end  
 end

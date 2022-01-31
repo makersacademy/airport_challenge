@@ -50,7 +50,8 @@ describe Airport do
     # Ok, the following works, but line 28 remains uncovered in the coverage report
     # I think this is because we are "stubbing" the whole stormy_weather method
     # and therefore, it is never gatting called
-    # TODO - come back to this
+    # TODO - come back to this - the following "allow" line did not work
+    # allow(airport.stormy_weather?).to receive(:rand) { 0 }
     it "responds to stormy_weather with a stubbed return of false" do
       plane = Plane.new("grounded")
       planes_list = Array.new

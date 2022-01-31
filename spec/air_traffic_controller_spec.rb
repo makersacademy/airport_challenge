@@ -5,12 +5,6 @@ require 'find'
 
 describe AirTrafficController do
   describe '#land' do
-    # it "responds to land with an airbourne plane" do
-    #  plane = Plane.new("airbourne")
-    #  airport = Airport.new(3,plane)
-    #  atc = AirTrafficController.new
-    #  expect(atc.land(plane, airport)).to eq "Plane landed successfully!"
-    # end
     it "responds to land with an already grounded plane" do
       plane = Plane.new("grounded")
       planes_list = Array.new
@@ -19,12 +13,14 @@ describe AirTrafficController do
       expect { atc.land(plane, airport) }.to raise_error("Plane already grounded!")
     end
     it "responds to land at an airport with fine weather" do
+      atc = AirTrafficController.new
       plane = Plane.new("airbourne")
       planes_list = Array.new
       airport = Airport.new(planes_list,plane,3)
+      # better define expectations - check on length of the planes_list
+      exp_list_length = airport.planes_list.length + 1
       allow(airport).to receive(:stormy_weather?) { false }
-      atc = AirTrafficController.new
-      expect(atc.land(plane, airport)).to eq planes_list
+      expect(atc.land(plane, airport).length).to eq exp_list_length
     end
     it "responds to land at an airport with full capacity" do
       plane = Plane.new("airbourne")

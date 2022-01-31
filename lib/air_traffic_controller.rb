@@ -5,8 +5,6 @@ require_relative 'airport'
 
 class AirTrafficController
 
-  attr_accessor :airport
-
   def initialize
   end  
 
@@ -16,6 +14,7 @@ class AirTrafficController
     fail 'Destination airport is full, go to holding queue!' unless airport.planes_list.length < airport.capacity
     puts "Plane landed successfully!"
     airport.dock_plane(plane)
+    airport.planes_list
   end
   
   def take_off
