@@ -36,7 +36,10 @@ This project contains the following files and directories
 * `./spec` contains all spec files for the associated core files plus a feature_spec.rb used to test actual calls to the classes
 * `./spec/support/mock_config.rb` this file  contains the mock configuration and helper functions used in the tests
 
+## Question For Coaches
 
+* What is best practice regarding where to place mock config and how much config should be in that file
+* I am testing for a returned plane in both land and take off. I could test for no error and test against the airport_inventory (I could then drop some tests).. However, I have added this extra public method to enable this. Is there a design pattern to test for what planes are in the airport without the creation of the public airport_inventory method
 
 Instructions
 ---------
