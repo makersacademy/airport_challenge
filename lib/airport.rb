@@ -19,7 +19,9 @@ class Airport
     @plane
   end 
 
-  def dock_plane(_plane)
+  def dock_plane(plane)
+    # if plane.grounded?
+    # fail 'Plane already grounded!' unless @plane.airbourne?
     @plane
   end
   

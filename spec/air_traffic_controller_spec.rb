@@ -1,4 +1,7 @@
 require_relative '../lib/air_traffic_controller'
+require_relative '../lib/airport'
+require 'air_traffic_controller'
+require 'find'
 
 describe AirTrafficController do
   describe '#land' do
@@ -13,7 +16,7 @@ describe AirTrafficController do
       planes_list = Array.new
       airport = Airport.new(3,planes_list,plane)
       atc = AirTrafficController.new
-      expect(atc.land(plane, airport)).to eq "Plane already grounded!"
+      expect { atc.land(plane, airport) }.to raise_error("Plane already grounded!")
     end
     it "responds to land at an airport with fine weather" do
       plane = Plane.new("airbourne")
@@ -31,7 +34,7 @@ describe AirTrafficController do
       airport = Airport.new(2,planes_list,plane)
       allow(airport).to receive(:stormy_weather?) { false }
       atc = AirTrafficController.new
-      expect(atc.land(plane, airport)).to eq "Destination airport is full, go to holding queue!"
+      expect { atc.land(plane, airport) }.to raise_error("Destination airport is full, go to holding queue!")
     end
     it "responds to land at an airport with stormy weather" do
       plane = Plane.new("airbourne")
@@ -39,9 +42,10 @@ describe AirTrafficController do
       airport = Airport.new(3,planes_list,plane)
       allow(airport).to receive(:stormy_weather?) { true }
       atc = AirTrafficController.new
-      expect(atc.land(plane, airport)).to eq "Stormy weather, go to holding queue!"
+      expect { atc.land(plane, airport) }.to raise_error("Stormy weather, go to holding queue!")
     end
   end
+
   describe '#take_off' do
     it { is_expected.to respond_to(:take_off) }
   end
