@@ -24,7 +24,6 @@
 
 class Plane
 
-    attr_reader :flying
     attr_accessor :flying
   
     def initialize
