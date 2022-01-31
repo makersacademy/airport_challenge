@@ -24,7 +24,6 @@ class Airport
     raise LAND_STORMY_WEATHER_ERR if stormy?
     raise LAND_FULL_CAPACITY_ERR if airport_full?
     add_plane(plane.land)
-    plane
   end
 
   def plane_inventory

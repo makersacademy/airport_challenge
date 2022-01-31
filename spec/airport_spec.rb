@@ -52,7 +52,7 @@ describe Airport do
   describe "#land" do
 
     it "confirms that the plane has landed at the airport" do
-      expect(airport.land(plane)).to be(plane)       
+      expect { airport.land(plane) }.not_to raise_error       
     end
 
   end
