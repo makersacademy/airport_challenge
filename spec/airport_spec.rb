@@ -41,6 +41,7 @@ describe Airport do
     it "should confirm that, following take off, the plane is no longer at the airport" do
       plane = Plane.new
       airport = Airport.new
+      #airport_double = double('plane',:storm? => false) - how to use double
       allow(airport).to receive(:storm?) { false }
       airport.land(plane, airport)
       airport.take_off(plane, airport)
