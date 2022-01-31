@@ -18,6 +18,14 @@ describe Airport do
       expect(airport.take_off).to eq plane
     end
 
+    it 'does not allow a plane to take off if weather is stormy' do
+      plane = Plane.new
+      plane.check_weather
+      airport = Airport.new
+      airport.land plane
+      expect { airport.take_off}.to raise_error 'Cannot take off, weather is stormy'
+    end
+
     it 'raises an error when no planes are available' do
       airport = Airport.new
       expect { airport.take_off }.to raise_error 'No planes available to take-off'
