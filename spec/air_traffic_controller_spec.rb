@@ -43,6 +43,36 @@ describe AirTrafficController do
   end
 
   describe '#take_off' do
-    it { is_expected.to respond_to(:take_off) }
+    it "responds to take_off at an airport with no grounded planes" do
+      plane = Plane.new("airbourne")
+      # plane1 = Plane.new("grounded")
+      # plane2 = Plane.new("grounded")
+      planes_list = Array.new
+      # planes_list = [plane1, plane2]
+      airport = Airport.new(planes_list,plane,2)
+      allow(airport).to receive(:stormy_weather?) { false }
+      atc = AirTrafficController.new
+      expect { atc.take_off(airport) }.to raise_error("There are no plans landed for turnaround at the moment!")
+    end
+    it "responds to take_off with stormy weather" do
+      plane = Plane.new("airbourne")
+      plane1 = Plane.new("grounded")
+      planes_list = [plane1]
+      airport = Airport.new(planes_list,plane,6)
+      allow(airport).to receive(:stormy_weather?) { true }
+      atc = AirTrafficController.new
+      expect { atc.take_off(airport) }.to raise_error("Stormy weather, flight delayed!")
+    end
+    it "responds to take_off with fine weather" do
+      atc = AirTrafficController.new
+      plane = Plane.new("airbourne")
+      plane1 = Plane.new("grounded")
+      planes_list = [plane1]
+      airport = Airport.new(planes_list,plane,3)
+      # better define expectations - check on length of the planes_list
+      exp_list_length = airport.planes_list.length - 1
+      allow(airport).to receive(:stormy_weather?) { false }
+      expect(atc.take_off(airport).length).to eq exp_list_length
+    end
   end
 end

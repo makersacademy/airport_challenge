@@ -12,12 +12,8 @@ class Airport
     @capacity = capacity
   end   
 
-  def capacity?
-  end
-
-  def release_plane
-    @plane
-  end 
+  # def capacity?
+  # ßend
 
   def dock_plane(plane)
     # At this point, the plane has landed successfully.

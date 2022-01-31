@@ -17,7 +17,11 @@ class AirTrafficController
     airport.planes_list
   end
   
-  def take_off
-    # puts !plane.airbourne? ? "Ready for take off" : "Plane already airbourne"
+  def take_off(airport)
+    fail 'There are no plans landed for turnaround at the moment!' if airport.planes_list.length <= 0
+    fail 'Stormy weather, flight delayed!' if airport.stormy_weather?
+    puts "We have take-off!"
+    airport.planes_list.pop
+    airport.planes_list
   end  
 end

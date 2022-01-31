@@ -98,3 +98,7 @@ Ruby 3.0.2
 
 ## Author
 Jane Parsons
+
+## TODO
+Further amend to call andlink the classes together so that Planes and Airports can be updated iteratively, and controller through user input
+Possibly have two further "Collection"s at the AirTrafficController level, one to hold the airports, and the other to hold the planes 
