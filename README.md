@@ -87,3 +87,12 @@ Finally, don’t overcomplicate things. This task isn’t as hard as it may seem
 * **Submit a pull request early.**
 
 * Finally, please submit a pull request before Monday at 9am with your solution or partial solution.  However much or little amount of code you wrote please please please submit a pull request before Monday at 9am.
+
+
+My Approach to the Challenge
+---------
+
+The airport system is a system to allow airports to control the take offs and landings of planes. It does this by taking into consideration whether there is enough space to hold the plane and taking into consideration the weather. 
+
+
+I followed the TDD process that we have previously learned in the Boris Bikes challenge. I revised the code and process for that challenge and adapted it to this one. I have managed to complete the first 4 user stories but have struggled to incorporate the weather factor. I also had trouble grasping mocking behaviour on doubles. 
