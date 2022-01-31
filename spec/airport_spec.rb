@@ -19,7 +19,7 @@ describe Airport do
   it "can't land if airport is full" do       
     subject.land(Plane.new, 'clear')
     plane2 = Plane.new
-    expect { subject.land(plane_2) }.to raise_error "Airport is full"
+    expect { subject.land(plane2) }.to raise_error "Airport is full"
   end
 
   it "has a default capacity of 1" do
