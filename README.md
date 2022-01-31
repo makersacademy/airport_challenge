@@ -20,7 +20,7 @@ This program emulates an airport with the take off and landing of airplanes. The
 ## Author Notes
 This project is an end of week challenge to practice the concepts of test driven development based on the user stories provided.
 
-As I look at what I have done retrospectively, I can see that I have not worked on each user story in a methodical way. This is apparent in the commit notes and the way the code got constructed. I am aware of this and it goes a long to explain why I spent so much trying to get things to work. If I had stayed focused on a single user story I feel I would have had a better time of it and thus constructed better code with less edits later on down the line.
+As I look at what I have done retrospectively, I can see that I have not worked on each user story in a methodical way. This is apparent in the commit notes and the way the code got constructed. I am aware of this and it goes a long to explain why I spent so much time trying to get things to work. If I had stayed focused on a single user story I feel I would have had a better time of it and thus constructed better code with less edits later on down the line.
 
 I also spent a fair amount of time trying to write good tidy code from the outset, so in essence refactoring to soon. So my take away here is.. just get it working and then worry about the refactor. Hence the Green, Red, Refactor mantra!
 
@@ -39,7 +39,7 @@ This project contains the following files and directories
 ## Question For Coaches
 
 * What is best practice regarding where to place mock config and how much config should be in that file
-* I am testing for a returned plane in both land and take off. I could test for no error and test against the airport_inventory (I could then drop some tests).. However, I have added this extra public method to enable this. Is there a design pattern to test for what planes are in the airport without the creation of the public airport_inventory method
+* I am testing for a returned plane in both land and take off. I could test for no error and test against the plane_inventory (I could then drop some tests).. However, I have added this extra public method to enable this. Is there a design pattern to test for what planes are in the airport without the creation of the public plane_inventory method
 
 Instructions
 ---------
