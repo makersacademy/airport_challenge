@@ -1,1 +1,0 @@
-I will continue improving my knowledge and skills in the field of RSpec test driven development.
