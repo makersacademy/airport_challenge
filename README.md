@@ -14,24 +14,56 @@ Airport Challenge
 ```
 
 ## Motivation
-This project enables a user to simulate basic airport / airplane interactions
+This project enables a user to simulate basic airport / airplane interactions. It is intended to satisfy the following user stories:
+```
+As an air traffic controller 
+So I can get passengers to a destination 
+I want to instruct a plane to land at an airport
+
+As an air traffic controller 
+So I can get passengers on the way to their destination 
+I want to instruct a plane to take off from an airport and confirm that it is no longer in the airport
+
+As an air traffic controller 
+To ensure safety 
+I want to prevent landing when the airport is full 
+
+As the system designer
+So that the software can be used for many different airports
+I would like a default airport capacity that can be overridden as appropriate
+
+As an air traffic controller 
+To ensure safety 
+I want to prevent takeoff when weather is stormy 
+
+As an air traffic controller 
+To ensure safety 
+I want to prevent landing when weather is stormy 
+```
 
 ## Features
 Airports can instruct airborne planes to land and grounded planes to take off. A random stormy weather variable keeps budding air traffic controllers on their toes though!
 
+## Set-Up
+1. Fork this repository and clone it to your machine.
+2. Run ```bundle install``` to install the necessary gems.
+3. Run ```irb``` to initialise your REPL.
+4. Enter ```require "./lib/airport"``` to load the airport program.
+5. Play to your heart's content using the commands listed below.
+
 ## How to Use
 #### Airport methods:  
-NAME = Airport.new(capacity) - creates a new instance of Airport. Default capacity is set to 5.  
-.land(plane) - lands a plane at the airport (if there's space!).  
-.take_off(plane) - launches a plane from the airport (if it's at that airport!).  
+```NAME = Airport.new(capacity)``` - creates a new instance of Airport. Default capacity is set to 5.  
+```.land(plane)``` - lands a plane at the airport (if there's space!).  
+```.take_off(plane)``` - launches a plane from the airport (if it's at that airport!).  
 
 #### Plane methods:
-NAME = Plane.new - creates a new instance of Plane. New planes have their location in the air, which is not very realistic.  
-.ground - updates a plane's location to ground.  
-.air - updates a plane's location to air.  
+```NAME = Plane.new``` - creates a new instance of Plane. New planes have their location in the air, which is not very realistic.  
+```.ground``` - updates a plane's location to ground.  
+```.air``` - updates a plane's location to air.  
 
 #### Weather methods:
-Weather.new - rolls the virtual die to determine whether it's sunny or stormy.
+```Weather.new``` - rolls the virtual die to determine whether it's sunny or stormy.
 
 ## Sample IRB Interaction
 ```
