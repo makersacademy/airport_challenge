@@ -34,6 +34,7 @@ NAME = Plane.new - creates a new instance of Plane. New planes have their locati
 Weather.new - rolls the virtual die to determine whether it's sunny or stormy.
 
 ## Sample IRB Interaction
+```
 % irb  
 3.0.2 :001 > require "./lib/airport"  
  => true  
@@ -67,6 +68,7 @@ Weather.new - rolls the virtual die to determine whether it's sunny or stormy.
 	from /.rvm/rubies/ruby-3.0.2/bin/irb:23:in `<main>'  
 3.0.2 :010 > gatwick.take_off(and_simple)  
  => #<Plane:0x000000013f826b68 @location=:air>  
+```
 
 
 
