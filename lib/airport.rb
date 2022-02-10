@@ -1,4 +1,4 @@
-require './lib/plane.rb'
+require 'plane'
 
 class Airport
 
@@ -14,19 +14,21 @@ class Airport
   def land_plane(plane)
     fail 'Bad Weather' if stormy
     @planes << plane
-    "Successful Landing"
   end
 
+  #should ramove plane from @planes
   def take_off(plane)
-    fail 'There are no planes at the terminal' if @planes.empty?
-    fail 'Bad Weather' if stormy
-    @planes.each_with_index do |gate, i|
-      if gate == plane
-        @planes.delete_at(i)
-      else  
-        "This plane is not at the airport"
-      end
-    end 
+    # fail 'There are no planes at the terminal' if @planes.empty?
+    @planes.delete(plane) unless stormy || @planes.empty?
+    
+    # fail 'Bad Weather' if stormy
+    # @planes.each_with_index do |gate, i|
+    #   if gate == plane
+    #     @planes.delete_at(i)
+    #   else  
+    #     "This plane is not at the airport"
+    #   end
+    # end 
   end
 
   private

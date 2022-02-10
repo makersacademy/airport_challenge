@@ -1,5 +1,7 @@
 class Plane
+
   def initialize
-    true
+    @flying = false
   end
+
 end

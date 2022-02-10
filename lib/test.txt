@@ -1,0 +1,64 @@
+
+An error occurred while loading ./spec/airport_spec.rb.
+Failure/Error: __send__(method, file)
+
+LoadError:
+  cannot load such file -- /mnt/c/Users/Ben Fielding/Documents/DevOps/week3/airport_challenge/lib/spec/airport_spec.rb
+# /home/thelazydiarist/.rvm/gems/ruby-3.0.2/gems/rspec-core-3.10.1/lib/rspec/core/configuration.rb:2112:in `load'
+# /home/thelazydiarist/.rvm/gems/ruby-3.0.2/gems/rspec-core-3.10.1/lib/rspec/core/configuration.rb:2112:in `load_file_handling_errors'
+# /home/thelazydiarist/.rvm/gems/ruby-3.0.2/gems/rspec-core-3.10.1/lib/rspec/core/configuration.rb:1615:in `block in load_spec_files'
+# /home/thelazydiarist/.rvm/gems/ruby-3.0.2/gems/rspec-core-3.10.1/lib/rspec/core/configuration.rb:1613:in `each'
+# /home/thelazydiarist/.rvm/gems/ruby-3.0.2/gems/rspec-core-3.10.1/lib/rspec/core/configuration.rb:1613:in `load_spec_files'
+# /home/thelazydiarist/.rvm/gems/ruby-3.0.2/gems/rspec-core-3.10.1/lib/rspec/core/runner.rb:102:in `setup'
+# /home/thelazydiarist/.rvm/gems/ruby-3.0.2/gems/rspec-core-3.10.1/lib/rspec/core/runner.rb:86:in `run'
+# /home/thelazydiarist/.rvm/gems/ruby-3.0.2/gems/rspec-core-3.10.1/lib/rspec/core/runner.rb:71:in `run'
+# /home/thelazydiarist/.rvm/gems/ruby-3.0.2/gems/rspec-core-3.10.1/lib/rspec/core/runner.rb:45:in `invoke'
+# /home/thelazydiarist/.rvm/gems/ruby-3.0.2/gems/rspec-core-3.10.1/exe/rspec:4:in `<top (required)>'
+# /home/thelazydiarist/.rvm/gems/ruby-3.0.2/bin/rspec:23:in `load'
+# /home/thelazydiarist/.rvm/gems/ruby-3.0.2/bin/rspec:23:in `<main>'
+# /home/thelazydiarist/.rvm/gems/ruby-3.0.2/bin/ruby_executable_hooks:22:in `eval'
+# /home/thelazydiarist/.rvm/gems/ruby-3.0.2/bin/ruby_executable_hooks:22:in `<main>'
+# 
+#   Showing full backtrace because every line was filtered out.
+#   See docs for RSpec::Configuration#backtrace_exclusion_patterns and
+#   RSpec::Configuration#backtrace_inclusion_patterns for more information.
+Run options: include {:locations=>{"./spec/airport_spec.rb"=>[27]}}
+
+All examples were filtered out
+
+
+Finished in 0.00005 seconds (files took 0.29113 seconds to load)
+0 examples, 0 failures, 1 error occurred outside of examples
+
+
+An error occurred while loading ./spec/airport_spec.rb.
+Failure/Error: __send__(method, file)
+
+LoadError:
+  cannot load such file -- /mnt/c/Users/Ben Fielding/Documents/DevOps/week3/airport_challenge/lib/spec/airport_spec.rb
+# /home/thelazydiarist/.rvm/gems/ruby-3.0.2/gems/rspec-core-3.10.1/lib/rspec/core/configuration.rb:2112:in `load'
+# /home/thelazydiarist/.rvm/gems/ruby-3.0.2/gems/rspec-core-3.10.1/lib/rspec/core/configuration.rb:2112:in `load_file_handling_errors'
+# /home/thelazydiarist/.rvm/gems/ruby-3.0.2/gems/rspec-core-3.10.1/lib/rspec/core/configuration.rb:1615:in `block in load_spec_files'
+# /home/thelazydiarist/.rvm/gems/ruby-3.0.2/gems/rspec-core-3.10.1/lib/rspec/core/configuration.rb:1613:in `each'
+# /home/thelazydiarist/.rvm/gems/ruby-3.0.2/gems/rspec-core-3.10.1/lib/rspec/core/configuration.rb:1613:in `load_spec_files'
+# /home/thelazydiarist/.rvm/gems/ruby-3.0.2/gems/rspec-core-3.10.1/lib/rspec/core/runner.rb:102:in `setup'
+# /home/thelazydiarist/.rvm/gems/ruby-3.0.2/gems/rspec-core-3.10.1/lib/rspec/core/runner.rb:86:in `run'
+# /home/thelazydiarist/.rvm/gems/ruby-3.0.2/gems/rspec-core-3.10.1/lib/rspec/core/runner.rb:71:in `run'
+# /home/thelazydiarist/.rvm/gems/ruby-3.0.2/gems/rspec-core-3.10.1/lib/rspec/core/runner.rb:45:in `invoke'
+# /home/thelazydiarist/.rvm/gems/ruby-3.0.2/gems/rspec-core-3.10.1/exe/rspec:4:in `<top (required)>'
+# /home/thelazydiarist/.rvm/gems/ruby-3.0.2/bin/rspec:23:in `load'
+# /home/thelazydiarist/.rvm/gems/ruby-3.0.2/bin/rspec:23:in `<main>'
+# /home/thelazydiarist/.rvm/gems/ruby-3.0.2/bin/ruby_executable_hooks:22:in `eval'
+# /home/thelazydiarist/.rvm/gems/ruby-3.0.2/bin/ruby_executable_hooks:22:in `<main>'
+# 
+#   Showing full backtrace because every line was filtered out.
+#   See docs for RSpec::Configuration#backtrace_exclusion_patterns and
+#   RSpec::Configuration#backtrace_inclusion_patterns for more information.
+Run options: include {:locations=>{"./spec/airport_spec.rb"=>[27]}}
+
+All examples were filtered out
+
+
+Finished in 0.00004 seconds (files took 0.20165 seconds to load)
+0 examples, 0 failures, 1 error occurred outside of examples
+
