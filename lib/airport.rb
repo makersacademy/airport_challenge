@@ -1,5 +1,7 @@
 class Airport
-  def initialize(name, capacity = 10)
+  DEFAULT_CAPACITY = 10
+
+  def initialize(name, capacity = DEFAULT_CAPACITY)
     @name = name
     @capacity = capacity
     @planes = []
@@ -10,13 +12,14 @@ class Airport
     raise "Airport is full" if full?
     raise "Cannot land during stormy weather" if stormy?
 
+    plane.change_location(@name)
     @planes << plane
   end
 
   def take_off(serial_number)
     raise "Cannot take off during stormy weather" if stormy?
-    
-    departing_plane = @planes.find { |plane| plane.serial_number == serial_number }
+
+    departing_plane = fetch_plane(serial_number)
     raise "Plane not found at this airport" if departing_plane.nil?
 
     departing_plane.change_location("Sky")
@@ -30,9 +33,13 @@ class Airport
   def report_capacity
     return @capacity
   end
+  
+  def fetch_plane(serial_number)
+    @planes.find { |plane| plane.serial_number == serial_number }
+  end
 
   def full?
-    return @planes.size >= @capacity
+    return @planes.count >= @capacity
   end
 
   def stormy?
