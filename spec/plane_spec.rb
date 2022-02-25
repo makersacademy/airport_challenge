@@ -4,7 +4,8 @@ describe Plane do
   let(:plane) { Plane.new("Boeing", 25_817) }
 
   it 'reports whether it is airborne' do
-    expect { plane.airborne? }.to_not raise_error
+    plane.change_location("Sky")
+    expect(plane.airborne?).to eq true
   end
 
   it 'reports make and serial number when requested' do
@@ -12,10 +13,6 @@ describe Plane do
       :make => "Boeing",
       :serial => 25_817
     )
-  end
-
-  it 'can change location' do
-    expect { plane.change_location("Sky") }.to_not raise_error
   end
 end
 
