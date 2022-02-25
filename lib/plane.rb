@@ -8,7 +8,7 @@ class Plane
   end
 
   def airborne?
-    return @location == "Sky"
+    @location == "Sky"
   end
 
   def change_location(new_location)
@@ -16,6 +16,6 @@ class Plane
   end  
 
   def registration
-    return { make: @make, serial: @serial_number }
+    { make: @make, serial: @serial_number }
   end
 end
