@@ -49,15 +49,19 @@ describe Airport do
   describe '#take_off' do
     it 'can have planes take off' do
       airport = Airport.new("Heathrow")
-      plane = Plane.new
-      expect { airport.take_off(plane) }.to_not raise_error
+      plane_serial = "25_817"
+      expect { airport.take_off(plane_serial) }.to_not raise_error
     end
 
     it 'removes the plane once it takes off' do
       airport = Airport.new("Heathrow")
-      plane = Plane.new
-      airport.land(plane)
-      airport.take_off(plane)
+      plane_1_serial = 25_817
+      plane_1 = Plane.new("Boeing", plane_1_serial)
+      plane_2_serial = "35A-265"
+      plane_2 = Plane.new("Learjet", plane_2_serial)
+      airport.land(plane_1)
+      airport.land(plane_2)
+      airport.take_off(plane_1_serial)
       expect(airport.list_planes).to_not include(plane)
     end
   end
