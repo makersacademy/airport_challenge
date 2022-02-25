@@ -9,7 +9,7 @@ describe Plane do
 
   it 'reports make and serial number when requested' do
     plane = Plane.new("Boeing", 25_817)
-    p plane.registration
+    # p plane.registration
     expect(plane.registration).to include(
       :make => "Boeing",
       :serial => 25_817
