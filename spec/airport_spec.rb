@@ -6,12 +6,54 @@ describe Airport do
     airport = Airport.new
     expect(airport.report_capacity).to eq 10
   end
+  
+  it 'can check if it is full' do
+    airport = Airport.new
+    expect { airport.full? }.to_not raise_error
+  end
 
+  it 'can have planes land at it' do
+    airport = Airport.new
+    plane = Plane.new
+    expect { airport.land(plane) }.to_not raise_error
+  end
+  
   it 'prevents planes landing when the airport is full' do
     airport = Airport.new
     plane = Plane.new
-    10.times { Plane.new.land(airport) }
-    expect { plane.land(airport) }.to raise_error
+    10.times { airport.land(Plane.new) }
+    expect { airport.land(plane) }.to raise_error 'Airport is full'
+  end
+
+  it 'can receive a weather update' do
+    airport = Airport.new
+    expect { airport.weather_update("Sunny") }.to_not raise_error
+  end
+
+  it 'prevents planes from landing when weather is stormy' do
+    airport = Airport.new
+    plane = Plane.new
+    airport.weather_update("Stormy")
+    expect { airport.land(plane) }.to raise_error 'Cannot land during stormy weather'
+  end
+
+  it 'can have planes take off' do
+    airport = Airport.new
+    plane = Plane.new
+    expect { airport.take_off(plane) }.to_not raise_error
+  end
+  
+  it 'removes the plane once it takes off' do
+    airport = Airport.new
+    plane = Plane.new
+    airport.land(plane)
+    airport.take_off(plane)
+    expect(airport.list_planes).to_not include(plane)
+  end
+
+  it 'can check for stormy weather' do
+    airport = Airport.new
+    expect(airport.stormy?).to be(true).or be(false)
   end
 end
 
