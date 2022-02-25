@@ -1,7 +1,15 @@
 class Plane
-  def land(airport)
+  def initialize(make = "Unknown", serial_number = "Unknown")
+    @location = "Unknown"
+    @make = make
+    @serial_number = serial_number
   end
 
-  def take_off
+  def airborne?
+    return @location == "Sky"
+  end
+
+  def registration
+    return { make: @make, serial: @serial_number }
   end
 end
