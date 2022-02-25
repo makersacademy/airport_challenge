@@ -1,4 +1,6 @@
 class Plane
+  attr_reader :make, :serial_number
+
   def initialize(make = "Unknown", serial_number = "Unknown")
     @location = "Unknown"
     @make = make
