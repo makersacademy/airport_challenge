@@ -1,15 +1,13 @@
 require 'plane'
-# require 'airport'
 
 describe Plane do
+  let(:plane) { Plane.new("Boeing", 25_817) }
+
   it 'reports whether it is airborne' do
-    plane = Plane.new
     expect { plane.airborne? }.to_not raise_error
   end
 
   it 'reports make and serial number when requested' do
-    plane = Plane.new("Boeing", 25_817)
-    # p plane.registration
     expect(plane.registration).to include(
       :make => "Boeing",
       :serial => 25_817
@@ -17,7 +15,6 @@ describe Plane do
   end
 
   it 'can change location' do
-    plane = Plane.new("Boeing", 25_817)
     expect { plane.change_location("Sky") }.to_not raise_error
   end
 end

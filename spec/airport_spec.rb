@@ -2,38 +2,36 @@ require 'airport'
 require 'plane'
 
 describe Airport do
+  let(:serial_number) { 25_817 }
+  let(:airport) { Airport.new("Heathrow") }
+  let(:plane) { instance_double(Plane, :serial_number => serial_number) }
+  
+  before do
+    allow(plane).to receive(:change_location).with(any_args)
+  end
+
   it 'has a default capacity' do
-    airport = Airport.new("Heathrow")
-    expect(airport.report_capacity).to eq 10
+    expect(airport.report_capacity).to eq Airport::DEFAULT_CAPACITY
   end
   
   it 'can check if it is full' do
-    airport = Airport.new("Heathrow")
     expect { airport.full? }.to_not raise_error
   end
 
   it 'can check for stormy weather' do
-    airport = Airport.new("Heathrow")
     expect(airport.stormy?).to be(true).or be(false)
   end
 
   describe '#land' do
     it 'can have planes land at it' do
-      airport = Airport.new("Heathrow")
-      plane = Plane.new
       expect { airport.land(plane) }.to_not raise_error
     end
 
     it 'prevents planes landing when the airport is full' do
-      airport = Airport.new("Heathrow")
-      plane = Plane.new
-      10.times { airport.land(Plane.new) }
-      expect { airport.land(plane) }.to raise_error 'Airport is full'
+      expect { (Airport::DEFAULT_CAPACITY + 1).times { airport.land(plane) } }.to raise_error 'Airport is full'
     end
 
     it 'prevents planes from landing when weather is stormy' do
-      airport = Airport.new("Heathrow")
-      plane = Plane.new
       airport.weather_update("Stormy")
       expect { airport.land(plane) }.to raise_error 'Cannot land during stormy weather'
     end
@@ -41,36 +39,25 @@ describe Airport do
 
   describe '#weather_update' do
     it 'can receive a weather update' do
-      airport = Airport.new("Heathrow")
       expect { airport.weather_update("Sunny") }.to_not raise_error
     end
   end
 
   describe '#take_off' do
     it 'can have planes take off' do
-      airport = Airport.new("Heathrow")
-      plane_serial = "25_817"
-      plane1 = Plane.new("Boeing", plane_serial)
-      airport.land(plane1)
-      expect { airport.take_off(plane_serial) }.to_not raise_error
+      airport.land(plane)
+      expect { airport.take_off(serial_number) }.to_not raise_error
     end
 
     it 'removes the plane once it takes off' do
-      airport = Airport.new("Heathrow")
-      plane1_serial = 25_817
-      plane1 = Plane.new("Boeing", plane1_serial)
-      plane2_serial = "35A-265"
-      plane2 = Plane.new("Learjet", plane2_serial)
-      airport.land(plane1)
-      airport.land(plane2)
-      airport.take_off(plane1_serial)
-      expect(airport.list_planes).to_not include(plane1)
+      # allow(plane).to receive(:change_location).with(any_args)
+      airport.land(plane)
+      airport.take_off(serial_number)
+      expect(airport.list_planes).to_not include(plane)
     end
 
-    it 'raises an error if attempting to takeoff a plane that is not at the airport' do
-      airport = Airport.new("Heathrow")
-      plane_serial = 25_817
-      expect { airport.take_off(plane_serial) }.to raise_error 'Plane not found at this airport'
+    it 'raises an error if attempting to take off a plane that is not at the airport' do
+      expect { airport.take_off(serial_number) }.to raise_error 'Plane not found at this airport'
     end
   end
 end
