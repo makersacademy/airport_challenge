@@ -1,6 +1,8 @@
 class Airport
   DEFAULT_CAPACITY = 10
 
+  attr_reader :capacity
+
   def initialize(name, capacity = DEFAULT_CAPACITY)
     @name = name
     @capacity = capacity
@@ -30,23 +32,22 @@ class Airport
     @current_weather = weather
   end
 
-  def report_capacity
-    return @capacity
+  def print_planes
+    @planes.each { |plane| puts plane.registration }
   end
-  
+
+  private
+
   def fetch_plane(serial_number)
     @planes.find { |plane| plane.serial_number == serial_number }
   end
 
   def full?
-    return @planes.count >= @capacity
+    @planes.count >= @capacity
   end
 
   def stormy?
-    return @current_weather == "Stormy"
+    @current_weather == "Stormy"
   end
 
-  def list_planes
-    return @planes
-  end
 end
