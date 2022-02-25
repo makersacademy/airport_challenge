@@ -2,25 +2,19 @@ require 'plane'
 require 'airport'
 
 describe Plane do
-  it 'can land at an airport' do
-    airport = Airport.new
+  it 'reports whether it is airborne' do
     plane = Plane.new
-    expect { plane.land(airport) }.to_not raise_error
-  end
-  
-  it 'can take off from an airport' do
-    plane = Plane.new
-    expect { plane.take_off }.to_not raise_error
-  end
-  
-  it 'leaves an airport once it takes off' do
-    airport = Airport.new
-    plane = Plane.new
-    plane.land(airport)
-    plane.take_off
-    expect(airport.list_planes).to_not include(plane)
+    expect { plane.airborne? }.to_not raise_error
   end
 
+  it 'reports make and serial number when requested' do
+    plane = Plane.new("Boeing", 25_817)
+    p plane.registration
+    expect(plane.registration).to include(
+      :make => "Boeing",
+      :serial => 25_817
+    )
+  end
 end
 
 # As an air traffic controller 
