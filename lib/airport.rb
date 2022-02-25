@@ -1,5 +1,6 @@
 class Airport
-  def initialize(capacity = 10)
+  def initialize(name, capacity = 10)
+    @name = name
     @capacity = capacity
     @planes = []
     @current_weather = "Unknown"

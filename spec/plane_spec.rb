@@ -1,5 +1,5 @@
 require 'plane'
-require 'airport'
+# require 'airport'
 
 describe Plane do
   it 'reports whether it is airborne' do

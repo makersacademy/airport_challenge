@@ -3,36 +3,36 @@ require 'plane'
 
 describe Airport do
   it 'has a default capacity' do
-    airport = Airport.new
+    airport = Airport.new("Heathrow")
     expect(airport.report_capacity).to eq 10
   end
   
   it 'can check if it is full' do
-    airport = Airport.new
+    airport = Airport.new("Heathrow")
     expect { airport.full? }.to_not raise_error
   end
 
   it 'can check for stormy weather' do
-    airport = Airport.new
+    airport = Airport.new("Heathrow")
     expect(airport.stormy?).to be(true).or be(false)
   end
 
   describe '#land' do
     it 'can have planes land at it' do
-      airport = Airport.new
+      airport = Airport.new("Heathrow")
       plane = Plane.new
       expect { airport.land(plane) }.to_not raise_error
     end
 
     it 'prevents planes landing when the airport is full' do
-      airport = Airport.new
+      airport = Airport.new("Heathrow")
       plane = Plane.new
       10.times { airport.land(Plane.new) }
       expect { airport.land(plane) }.to raise_error 'Airport is full'
     end
 
     it 'prevents planes from landing when weather is stormy' do
-      airport = Airport.new
+      airport = Airport.new("Heathrow")
       plane = Plane.new
       airport.weather_update("Stormy")
       expect { airport.land(plane) }.to raise_error 'Cannot land during stormy weather'
@@ -41,20 +41,20 @@ describe Airport do
 
   describe '#weather_update' do
     it 'can receive a weather update' do
-      airport = Airport.new
+      airport = Airport.new("Heathrow")
       expect { airport.weather_update("Sunny") }.to_not raise_error
     end
   end
 
   describe '#take_off' do
     it 'can have planes take off' do
-      airport = Airport.new
+      airport = Airport.new("Heathrow")
       plane = Plane.new
       expect { airport.take_off(plane) }.to_not raise_error
     end
 
     it 'removes the plane once it takes off' do
-      airport = Airport.new
+      airport = Airport.new("Heathrow")
       plane = Plane.new
       airport.land(plane)
       airport.take_off(plane)
