@@ -1,7 +1,7 @@
 require 'plane'
 require 'airport'
 
-decribe Plane do
+describe Plane do
   it 'can land at an airport' do
     airport = Airport.new
     plane = Plane.new
