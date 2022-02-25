@@ -50,6 +50,8 @@ describe Airport do
     it 'can have planes take off' do
       airport = Airport.new("Heathrow")
       plane_serial = "25_817"
+      plane_1 = Plane.new("Boeing", plane_serial)
+      airport.land(plane_1)
       expect { airport.take_off(plane_serial) }.to_not raise_error
     end
 
@@ -62,7 +64,13 @@ describe Airport do
       airport.land(plane_1)
       airport.land(plane_2)
       airport.take_off(plane_1_serial)
-      expect(airport.list_planes).to_not include(plane)
+      expect(airport.list_planes).to_not include(plane_1)
+    end
+
+    it 'raises an error if attempting to takeoff a plane that is not at the airport' do
+      airport = Airport.new("Heathrow")
+      plane_serial = 25_817
+      expect { airport.take_off(plane_serial) }.to raise_error 'Plane not found at this airport'
     end
   end
 end

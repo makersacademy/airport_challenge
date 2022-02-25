@@ -17,6 +17,8 @@ class Airport
     raise "Cannot take off during stormy weather" if stormy?
     
     departing_plane = @planes.find { |plane| plane.serial_number == serial_number }
+    raise "Plane not found at this airport" if departing_plane.nil?
+
     departing_plane.change_location("Sky")
     @planes.delete(departing_plane)
   end
