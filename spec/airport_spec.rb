@@ -54,5 +54,13 @@ let(:plane) { double :plane}
     allow(subject).to receive(:stormy?){true}
     expect{subject.take_off}.to raise_error "grounded due to storm"
   end
+  
+  # As an air traffic controller 
+  # To ensure safety 
+  # I want to prevent landing when weather is stormy 
+  it 'avoids planes from landing when stormy' do
+    allow(subject).to receive(:stormy?){true}
+    expect{ subject.land(plane)}.to raise_error "Cannot land due to storm"
+  end
 
 end
