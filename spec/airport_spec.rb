@@ -1,14 +1,12 @@
 require 'airport'
 require 'plane'
+require 'weather'
 
 describe Airport do
-  it 'creates a new airport object' do
-    airport = Airport.new
-  end   
 
   it { is_expected.to respond_to(:land).with(1).argument }
-
   it { is_expected.to respond_to :take_off }
+  it { is_expected.to respond_to :take_off_check }
 
   describe '#initialization' do
     subject { Airport.new }
@@ -32,10 +30,18 @@ describe Airport do
     end
   end
 
+  describe '#take_off_check' do
+    it 'prevents take off when weather is stormy' do
+      allow(subject).to receive(:stormy_weather?).and_return(true)
+      expect { subject.take_off_check }.to raise_error 'Warning: stormy weather! Takeoff not allowed.'
+    end
+  end
+
   describe '#take_off' do
     it 'allows plane to take off' do
       plane = Plane.new
       subject.land(plane)
+      allow(subject).to receive(:stormy_weather?).and_return(false)
       expect(subject.take_off).to eq plane
     end
   end
