@@ -27,15 +27,26 @@ I want to instruct a plane to land at an airport
 
 * created airport_spec.rb and airport.rb
 
-* wrote first unit test - describe Airport do end - Failure/Error:
+* wrote start of first unit test - describe Airport do end - Failure/Error:
   describe Airport do
+
   
   end
 
 NameError:
   uninitialized constant Airport
 
-* 
+* Committed and pushed 'Created airport lib and spec files'
+
+* created Airport class and required lib file in spec - rspec now passes as expected with 0 examples, 0 failures
+
+* was now able to create a new Airport object in IRB, but airport.land throws up "undefined method `land'" for that object
+
+* fleshed out first unit test, which fails as expected, so defined land method in Airport class - unit test now passes, but airport.land in IRB returns nil
+
+* tried airport.land(plane) in IRB - "undefined local variable or method `plane'" - so update unit test with 1 argument, which throws error until I add (plane) argument to land method
+
+* commit 'First unit test'
 
 ```
 As an air traffic controller 
