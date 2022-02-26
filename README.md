@@ -13,6 +13,16 @@ Airport Challenge
 
 ```
 
+
+Steps
+------
+
+1. Fork this repo, and clone to your local machine
+2. Run the command 'gem install bundler' (if you don't have bundler already)
+3. When the installation completes, run 'bundle'
+4. run 'rspec' to test the testcases
+5. 'ruby lib/airport.rb' runs just the code 
+
 Approach
 ---------
 
