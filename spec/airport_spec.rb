@@ -4,12 +4,12 @@ describe Airport do
   describe ".land" do
     # it "expects a plane to land at the airport" do
     #   destination = Airport.new
-    #   expect(destination.land("BA101")).to eq "landed"
+    #   expect(destination.land("BA101")).to eq "BA101 has landed"
     # end
 
     it "expects a plane to land at the airport" do
       destination = Airport.new
-      expect(destination.land("BA101")).to eq ["BA101"]
+    #   expect(destination.land("BA101")).to eq ["BA101"]
     end
 
   end
@@ -17,7 +17,7 @@ describe Airport do
   describe ".take_off" do
     # it "expects the plane to take off from the airport" do
     #   departure = Airport.new
-    #   expect(departure.take_off("BA101")).to eq "took off"
+    #   expect(departure.message("BA101")).to eq "BA101 has taken off"
     # end
 
     # it "expects the plane to take off from the airport" do
@@ -29,6 +29,14 @@ describe Airport do
     it "expects the plane to take off from the airport" do
       departure = Airport.new
       expect(departure.take_off("BA101")).to eq []
+    end
+
+  end
+
+  describe ".full?" do
+    it "prevents landing is airport is full" do
+      destination = Airport.new
+      expect { destination.land("BA101") }.to raise_error "Airport is full"
     end
 
   end
