@@ -40,7 +40,7 @@ class Airport
   end
 
   def stormy?
-    rand(100) > 95
+    rand(100) >= 0
   end
 
 end

@@ -1,11 +1,13 @@
 require_relative '../lib/plane'
 require_relative '../lib/airport'
 
-describe Airport do
+#why does subject work when the title in describe is not a class
+describe 'landing some planes at an airport' do
   it 'creates an airport and lands a plane' do
     xwing = Plane.new
-    subject.land(xwing)
-    expect(subject.hangar).to eq [xwing]
+    malpensa = Airport.new
+    malpensa.land(xwing)
+    expect(malpensa.hangar).to eq [xwing]
   end
   
   it 'stops a plane from flying due to a storm, then lets it fly off on the second attempt as skies have cleared' do
