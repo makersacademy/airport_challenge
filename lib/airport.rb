@@ -13,12 +13,19 @@ class Airport
   end
 
   def take_off(departing_plane)
+    weather
     puts "#{departing_plane} has taken off"
     @planes_at_airport - [departing_plane]
   end
 
   def full?
     fail "Airport is full" if @planes_at_airport.count == @DEFAULT_CAPACITY
+  end
+
+  def weather(condition = "Stormy")
+    weather_condition = ["Sunny", "Rainy", "Windy", "Stormy", "Cloudy"]
+    fail "Stormy weather, cannot take off" if condition
+    fail "Stormy weather, cannot take off" if rand(weather_condition) == "Stormy"
   end
 
 end
