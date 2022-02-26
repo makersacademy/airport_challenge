@@ -22,4 +22,10 @@ describe Airport do
     end
   end
 
+  describe '#take_off' do
+    it 'responds to take_off method' do
+      expect(airport).to respond_to(:take_off)
+    end
+  end
+
 end
