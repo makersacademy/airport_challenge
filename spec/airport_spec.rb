@@ -64,13 +64,10 @@ describe Airport do
 
   describe ".full?" do
     it "prevents landing is airport is full" do
-      bangalore_airport = Airport.new(5)
+      bangalore_airport = Airport.new(2)
       allow(bangalore_airport).to receive(:rand).and_return(3)
       bangalore_airport.land("BA101")
       bangalore_airport.land("BA102")
-      bangalore_airport.land("BA103")
-      bangalore_airport.land("BA104")
-      bangalore_airport.land("BA105")
       expect { bangalore_airport.land("BA106") }.to raise_error "Airport is full"
     end
 
