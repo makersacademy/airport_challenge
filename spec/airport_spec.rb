@@ -16,7 +16,7 @@ describe Airport do
       expect(airport).to respond_to(:land)
     end
 
-    it 'takes a plane as a argument and returns it' do
+    it 'takes a plane as an argument and returns it' do
       plane = Plane.new('Boeing234')
       expect(airport.land(plane)).to eq(plane)
     end
@@ -25,6 +25,11 @@ describe Airport do
   describe '#take_off' do
     it 'responds to take_off method' do
       expect(airport).to respond_to(:take_off)
+    end
+
+    it 'takes off and it confirms that there are 0 planes left in the airport' do
+      plane = Plane.new('RYANAIR 77')
+      expect(airport.take_off(plane)).to be < 1
     end
   end
 
