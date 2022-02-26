@@ -4,7 +4,7 @@ describe Plane do
   let(:plane) { Plane.new("Boeing", 25_817) }
 
   it 'reports whether it is airborne' do
-    plane.change_location("Sky")
+    plane.location=("Sky")
     expect(plane.airborne?).to eq true
   end
 

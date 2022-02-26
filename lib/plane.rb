@@ -1,5 +1,6 @@
 class Plane
   attr_reader :serial_number
+  attr_writer :location
 
   def initialize(make = "Unknown", serial_number = "Unknown")
     @location = "Unknown"
@@ -11,9 +12,9 @@ class Plane
     @location == "Sky"
   end
 
-  def change_location(new_location)
-    @location = new_location
-  end  
+  # def change_location(new_location)
+  #   @location = new_location
+  # end  
 
   def registration
     { make: @make, serial: @serial_number }
