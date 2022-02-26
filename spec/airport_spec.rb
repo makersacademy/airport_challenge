@@ -1,8 +1,9 @@
 require 'airport'
+require 'plane'
 
 describe Airport do
 
-  let(:airport) { Airport.new }  
+  let(:airport) { Airport.new } 
 
   describe '#new' do
     it 'returns a new airport object' do
@@ -10,9 +11,14 @@ describe Airport do
     end
   end
 
-  describe '#landing' do
-    it 'responds to the landing method' do
-      expect(airport).to respond_to(:landing)
+  describe '#land' do
+    it 'responds to the land method' do
+      expect(airport).to respond_to(:land)
+    end
+
+    it 'takes a plane as a argument and returns it' do
+      plane = Plane.new('Boeing234')
+      expect(airport.land(plane)).to eq(plane)
     end
   end
 
