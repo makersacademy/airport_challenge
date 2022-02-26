@@ -9,7 +9,7 @@ describe Airport do
 
     it "expects a plane to land at the airport" do
       destination = Airport.new
-    #   expect(destination.land("BA101")).to eq ["BA101"]
+      expect(destination.land("BA101")).to eq ["BA101"]
     end
 
   end
@@ -35,8 +35,26 @@ describe Airport do
 
   describe ".full?" do
     it "prevents landing is airport is full" do
-      destination = Airport.new
+      destination = Airport.new(5)
+      destination = Airport.new(5)
+      destination.land("BA101")
+      destination.land("BA102")
+      destination.land("BA103")
+      destination.land("BA104")
+      destination.land("BA105")
       expect { destination.land("BA101") }.to raise_error "Airport is full"
+    end
+
+  end
+  
+  describe "changing capacity" do
+    it "changes the capacity according to users need" do
+      destination = Airport.new(5)
+      destination.land("BA101")
+      destination.land("BA102")
+      destination.land("BA103")
+      destination.land("BA104")
+      expect(destination.land("BA105")).to eq  ["BA101", "BA102", "BA103", "BA104", "BA105"]
     end
 
   end
