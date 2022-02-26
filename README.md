@@ -35,7 +35,7 @@ gem install bundler
 ```shell
 bundle
 ```
-5. Install RuboCop:
+5. Install RuboCop for code review:
 ```shell
 gem install rubocop
 ```
