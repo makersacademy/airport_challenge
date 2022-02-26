@@ -15,17 +15,22 @@ class Airport
     @weather = weather
   end
 
-  def land(plane)
+  def land_check_list
     raise 'Airport capacity reached. No more landing allowed.' if full?
+    raise 'Warning: stormy weather! Landing not allowed.' if stormy_weather?
+  end
+
+  def land(plane)
+    land_check_list
     @planes << plane
   end
 
-  def take_off_check
+  def take_off_check_list
     raise 'Warning: stormy weather! Takeoff not allowed.' if stormy_weather?
   end
 
   def take_off
-    take_off_check
+    take_off_check_list
     @planes.pop
   end
 
