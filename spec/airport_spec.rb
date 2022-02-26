@@ -29,7 +29,7 @@ describe Airport do
 
     it 'takes off and it confirms that there are 0 planes left in the airport' do
       plane = Plane.new('RYANAIR 77')
-      expect(airport.take_off(plane)).to be < 1
+      expect(airport.take_off(plane)).to eq nil
     end
   end
 
