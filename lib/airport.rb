@@ -15,13 +15,18 @@ class Airport
     end
 
     return @planes_at_airport
-    
+
   end
 
-  def take_off(departing_plane)
-    take_off_exceptions(departing_plane)
-    puts "#{departing_plane} has taken off"
-    @planes_at_airport - [departing_plane]
+  def take_off(*departing_plane)
+    departing_plane.each do |p|
+      take_off_exceptions(p)
+      puts "#{p} has taken off"
+      @planes_at_airport -= [p]
+    end
+
+      return @planes_at_airport
+
   end
 
   private

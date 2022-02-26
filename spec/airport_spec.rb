@@ -19,9 +19,7 @@ describe Airport do
     it "raises an error when user tries to land an already landed plane" do
       bangalore_airport = Airport.new
       allow(bangalore_airport).to receive(:rand).and_return(3)
-      bangalore_airport.land("BA101")
-      bangalore_airport.land("BA102")
-      expect { bangalore_airport.land("BA101") }.to raise_error "Cannot land a already landed plane"
+      expect { bangalore_airport.land("BA101", "BA102", "BA101") }.to raise_error "Cannot land a already landed plane"
     end
 
     it "lands multiple planes at a time" do
@@ -59,11 +57,18 @@ describe Airport do
       it "does not allow to take_off if the plane is not at the airport" do
         heathrow_airport = Airport.new
         allow(heathrow_airport).to receive(:rand).and_return(3)
-        heathrow_airport.land("BA101")
-        heathrow_airport.land("BA103")
+        heathrow_airport.land("BA101", "BA103")
         allow(heathrow_airport).to receive(:rand).and_return(3)
-        expect(heathrow_airport.take_off("BA101")).to eq ["BA103"]
-        expect { heathrow_airport.take_off("BA102") }.to raise_error "Plane not at the airport"
+        expect { heathrow_airport.take_off("BA101", "BA102") }.to raise_error "Plane not at the airport"
+  
+      end
+
+      it "allows multiple take offs" do
+        heathrow_airport = Airport.new
+        allow(heathrow_airport).to receive(:rand).and_return(3)
+        heathrow_airport.land("BA101", "BA103", "BA102")
+        allow(heathrow_airport).to receive(:rand).and_return(3)
+        expect(heathrow_airport.take_off("BA101", "BA102")).to eq ["BA103"]
   
       end
 
