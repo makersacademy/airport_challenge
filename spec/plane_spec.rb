@@ -1,8 +1,13 @@
 require 'plane'
 
 describe Plane do
-  it 'creates a new plane object' do
-    plane = Plane.new
+
+  describe '#landed?' do
+    it { is_expected.to respond_to :landed? }
+
+    it 'confirms the plane has landed' do
+      expect(subject.landed?).to eq true
+    end
   end
 
   describe '#taken_off?' do

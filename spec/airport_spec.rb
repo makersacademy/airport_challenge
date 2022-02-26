@@ -9,6 +9,7 @@ describe Airport do
   it { is_expected.to respond_to :take_off_check_list }
   it { is_expected.to respond_to :land_check_list }
 
+
   describe '#land' do
     it 'accepts a plane to land' do
       plane = Plane.new
@@ -38,7 +39,7 @@ describe Airport do
       expect(subject.take_off).to eq plane
     end
 
-    it 'prevents takeoff when weather is stormy' do
+    it 'prevents take off when weather is stormy' do
       allow(subject).to receive(:stormy_weather?).and_return(true)
       expect { subject.take_off }.to raise_error 'Warning: stormy weather! Takeoff not allowed.'
     end
