@@ -15,15 +15,20 @@ describe Airport do
   end
 
   describe ".take_off" do
-    it "expects the plane to take off from the airport" do
-      departure = Airport.new
-      expect(departure.take_off("BA101")).to eq "took off"
-    end
+    # it "expects the plane to take off from the airport" do
+    #   departure = Airport.new
+    #   expect(departure.take_off("BA101")).to eq "took off"
+    # end
+
+    # it "expects the plane to take off from the airport" do
+    #     departure = Airport.new
+    #     departure.take_off("BA101")
+    #     expect(departure.check).to eq nil
+    # end
 
     it "expects the plane to take off from the airport" do
-        departure = Airport.new
-        departure.take_off("BA101")
-        expect(departure.check).to eq nil
+      departure = Airport.new
+      expect(departure.take_off("BA101")).to eq []
     end
 
   end

@@ -10,7 +10,7 @@ class Airport
   end
 
   def take_off(departing_plane)
-    "took off"
+    @planes_at_airport - [departing_plane]
   end
 
   def check
