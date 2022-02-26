@@ -38,7 +38,7 @@ describe Airport do
       expect(subject.take_off).to eq plane
     end
 
-    it 'prevents take off when weather is stormy' do
+    it 'prevents takeoff when weather is stormy' do
       allow(subject).to receive(:stormy_weather?).and_return(true)
       expect { subject.take_off }.to raise_error 'Warning: stormy weather! Takeoff not allowed.'
     end

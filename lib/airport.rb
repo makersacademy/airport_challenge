@@ -5,12 +5,11 @@ class Airport
 
   DEFAULT_CAPACITY = 100
 
-  attr_reader :plane
-  attr_reader :weather
+  attr_reader :hangar, :weather
   attr_accessor :capacity
 
   def initialize(capacity = DEFAULT_CAPACITY, weather = Weather.new)
-    @planes = []
+    @hangar = []
     @capacity = capacity
     @weather = weather
   end
@@ -22,7 +21,7 @@ class Airport
 
   def land(plane)
     land_check_list
-    @planes << plane
+    @hangar << plane
   end
 
   def take_off_check_list
@@ -31,13 +30,13 @@ class Airport
 
   def take_off
     take_off_check_list
-    @planes.pop
+    @hangar.pop
   end
 
   private
 
   def full?
-    @planes.length >= @capacity
+    @hangar.length >= @capacity
   end
 
   def stormy_weather?
