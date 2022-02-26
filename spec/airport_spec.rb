@@ -21,6 +21,10 @@ let(:plane) { double :plane}
     expect(subject.take_off).to_not eq nil
     expect(subject.hangar.empty?).to eq true 
   end
+  
+  it 'raises an error if we try to take off a plane but the hangar is empty' do
+    expect{subject.take_off}.to raise_error "hangar is empty"
+  end
 
 # As an air traffic controller 
 # To ensure safety 
@@ -40,6 +44,15 @@ let(:plane) { double :plane}
       15.times{subject.land(plane)}
       expect{ subject.land(plane) }.to raise_error "hangar is full"
     end
+  end
+
+# As an air traffic controller 
+# To ensure safety 
+# I want to prevent takeoff when weather is stormy 
+  it 'keeps planes grounded during a storm' do
+    subject.land(plane)
+    allow(subject).to receive(:stormy?){true}
+    expect{subject.take_off}.to raise_error "grounded due to storm"
   end
 
 end
