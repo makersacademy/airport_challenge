@@ -7,6 +7,8 @@ describe Airport do
   
   it { is_expected.to respond_to(:planes) }
 
+  it { is_expected.to respond_to(:weather) }
+
   describe "#land" do 
     it 'lands a plane at the airport' do
       plane = Plane.new
@@ -42,5 +44,11 @@ describe Airport do
     #   end
     #   expect { subject.land(plane) }.to raise_error 'Airport full'
     # end
+  end
+
+  it 'stops plane taking off in stormy weather' do 
+    plane = Plane.new
+    subject.land(plane)
+    allow(subject).to receive(:weather) { 'stormy' }
   end
 end

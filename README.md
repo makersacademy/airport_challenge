@@ -90,6 +90,10 @@ To ensure safety
 I want to prevent takeoff when weather is stormy 
 ```
 
+IRB airport.weather naturally throws an error - do respond_to unit test then define empty method - wrote unit test allowing airport to receive stormy weather - passes RSpec but airport.weather in feature test returns nil
+
+* made random number generator 1..100 with 1 as stormy, rest as sunny, refactored it from if else into ternary then added guard clause to take_off
+
 ```
 As an air traffic controller 
 To ensure safety 

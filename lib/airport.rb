@@ -18,7 +18,12 @@ class Airport
   end
 
   def take_off(plane)
+    fail 'Plane unable to take off due to stormy weather' if weather == 'stormy'
     @planes.delete(plane)
     DEFAULT_TAKE_OFF_MESSAGE
+  end
+
+  def weather
+    rand(100) == 1 ? 'stormy' : 'sunny'
   end
 end
