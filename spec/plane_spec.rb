@@ -1,6 +1,6 @@
 require 'plane'
 
-describe plane do
+describe Plane do
   it 'creates a new plane object' do
     plane = Plane.new
   end
