@@ -28,14 +28,13 @@ describe Airport do
 
     it "expects the plane to take off from the airport" do
       departure = Airport.new
-    #   expect(departure.take_off("BA101")).to eq []
+      expect(departure.take_off("BA101")).to eq []
     end
 
   end
 
   describe ".full?" do
     it "prevents landing is airport is full" do
-      destination = Airport.new(5)
       destination = Airport.new(5)
       destination.land("BA101")
       destination.land("BA102")
@@ -50,6 +49,7 @@ describe Airport do
   describe "changing capacity" do
     it "changes the capacity according to users need" do
       destination = Airport.new(5)
+      allow(destination).to receive(:rand).and_return(3)
       destination.land("BA101")
       destination.land("BA102")
       destination.land("BA103")
@@ -61,11 +61,10 @@ describe Airport do
 
   describe "weather" do
     it "checks for the weather while taking off" do
-      destination = Airport.new
-      destination.land("BA101")
-      destination.land("BA102")
       departure = Airport.new
-      expect{ departure.take_off("BA101") }.to raise_error "Stormy weather, cannot take off"
+      allow(departure).to receive(:rand).and_return(4)
+      expect { departure.take_off("BA101") }.to raise_error "Stormy weather, cannot take off"
+
     end
     
   end
