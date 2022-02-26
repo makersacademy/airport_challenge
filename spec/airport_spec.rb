@@ -18,7 +18,13 @@ describe Airport do
 
     it 'takes a plane as an argument and returns it' do
       plane = Plane.new('Boeing234')
-      expect(airport.land(plane)).to eq(plane)
+      expect(airport.land(plane)).to eq([plane])
+    end
+
+    it 'raises an exception if the airport is full' do
+      plane = Plane.new('BRITISH AIRWAYS')
+      10.times { airport.land(plane) }
+      expect { airport.land(plane) }.to raise_error
     end
   end
 
