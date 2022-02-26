@@ -2,7 +2,7 @@ class Airport
 #   attr_reader :planes_at_airport
 
   def initialize(capacity = 10)
-    @DEFAULT_CAPACITY = capacity
+    @default_capacity = capacity
     @planes_at_airport = []
     
   end
@@ -25,23 +25,23 @@ class Airport
       @planes_at_airport -= [p]
     end
 
-      return @planes_at_airport
+    return @planes_at_airport
 
   end
 
   private
 
   def full?
-    @planes_at_airport.count == @DEFAULT_CAPACITY
+    @planes_at_airport.count == @default_capacity
   end
 
   def empty?
-    @planes_at_airport.count == 0
+    @planes_at_airport.count.zero?
   end
 
   def weather
     @weather_condition = ["Sunny", "Rainy", "Windy", "Stormy", "Cloudy"]
-    condition = @weather_condition[rand(5) - 1]
+    condition = @weather_condition[rand(0..4)]
   end
 
   def at_aiport?(plane)
