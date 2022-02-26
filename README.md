@@ -48,6 +48,12 @@ NameError:
 
 * commit 'First unit test'
 
+* decided to change approach as it reads more intuitively to have plane.land than airport.land, so cleared method from Airport class and created a plane class - not ideal!
+
+* ensured failing feature and unit tests for similar reasons as outlined before, then went ahead and defined land method in Plane class - this now passed RSpec
+
+* tested receive method with 1 argument for Airport class, failed as expected, so defined method in class - now passes - commit and push
+
 ```
 As an air traffic controller 
 So I can get passengers on the way to their destination 
