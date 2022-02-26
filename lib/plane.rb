@@ -1,7 +1,5 @@
 require_relative 'airport'
 
-class Plane
-  def land
+class Plane 
 
-  end
 end
