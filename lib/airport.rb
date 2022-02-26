@@ -8,4 +8,8 @@ class Airport
     "took off"
   end
 
+  def check
+
+  end
+
 end

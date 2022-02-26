@@ -15,6 +15,12 @@ describe Airport do
       expect(departure.take_off("BA101")).to eq "took off"
     end
 
+    it "expects the plane to take off from the airport" do
+        departure = Airport.new
+        departure.take_off("BA101")
+        expect(departure.check).to eq nil
+    end
+
   end
 
 end
