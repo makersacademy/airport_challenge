@@ -18,7 +18,8 @@ let(:plane) { double :plane}
   it 'instructs a plane to take off' do
     subject.land(plane)
     expect(subject).to respond_to ('take_off')
-    expect(subject.take_off).to_not eq nil 
+    expect(subject.take_off).to_not eq nil
+    expect(subject.hangar.empty?).to eq true 
   end
 
 end
