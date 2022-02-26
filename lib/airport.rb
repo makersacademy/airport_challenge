@@ -20,10 +20,9 @@ class Airport
 
   def take_off(serial_number)
     raise "Cannot take off during stormy weather" if stormy?
-
+    raise "Plane not found at this airport" unless has_plane?(serial_number)
+    
     departing_plane = fetch_plane(serial_number)
-    raise "Plane not found at this airport" if departing_plane.nil?
-
     departing_plane.change_location("Sky")
     @planes.delete(departing_plane)
   end
@@ -34,6 +33,10 @@ class Airport
 
   def print_planes
     @planes.each { |plane| puts plane.registration }
+  end
+  
+  def has_plane?(serial_number)
+    fetch_plane(serial_number) != nil
   end
 
   private
