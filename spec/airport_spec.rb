@@ -22,4 +22,11 @@ let(:plane) { double :plane}
     expect(subject.hangar.empty?).to eq true 
   end
 
+# As an air traffic controller 
+# To ensure safety 
+# I want to prevent landing when the airport is full 
+  it 'avoids planes from landing if the hangar is full' do
+    subject.land(plane)
+    expect{ subject.land(plane) }.to raise_error "hangar is full"
+  end
 end
