@@ -5,6 +5,7 @@ describe Airport do
 
     it "expects a plane to land at the airport" do
       bangalore_airport = Airport.new
+      allow(bangalore_airport).to receive(:rand).and_return(3)
       expect(bangalore_airport.land("BA101")).to eq ["BA101"]
     end
 
@@ -21,6 +22,12 @@ describe Airport do
       bangalore_airport.land("BA101")
       bangalore_airport.land("BA102")
       expect { bangalore_airport.land("BA101") }.to raise_error "Cannot land a already landed plane"
+    end
+
+    it "lands multiple planes at a time" do
+      bangalore_airport = Airport.new
+      allow(bangalore_airport).to receive(:rand).and_return(3)
+      expect(bangalore_airport.land("BA101", "BA102")).to eq ["BA101", "BA102"]
     end
 
   end

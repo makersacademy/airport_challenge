@@ -7,10 +7,15 @@ class Airport
     
   end
 
-  def land(landing_plane)
-    landing_exceptions(landing_plane)
-    puts "#{landing_plane} has landed"
-    @planes_at_airport << landing_plane
+  def land(*landing_plane)
+    landing_plane.each do |p|
+      landing_exceptions(p)
+      puts "#{p} has landed"
+      @planes_at_airport << p
+    end
+
+    return @planes_at_airport
+    
   end
 
   def take_off(departing_plane)
