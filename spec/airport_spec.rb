@@ -5,13 +5,13 @@ describe Airport do
   
   it { is_expected.to respond_to(:take_off).with(1).argument }
   
-  it { is_expected.to respond_to(:plane) }
+  it { is_expected.to respond_to(:planes) }
 
   describe "#land" do 
-    # it 'lands a plane at the airport' do
-    #   plane = Plane.new
-    #   expect(subject.land(plane)).to eq plane
-    # end
+    it 'lands a plane at the airport' do
+      plane = Plane.new
+      expect(subject.land(plane)).to eq plane
+    end
    
     it 'raises error when airport is full' do
       Airport::DEFAULT_CAPACITY.times { subject.land(Plane.new) }
@@ -20,10 +20,12 @@ describe Airport do
   end
 
   describe "#take_off" do
-    # it 'shows when a plane has left the airport' do
-    #   plane = Plane.new
-    #   expect(subject.take_off(plane)).to eq Airport::DEFAULT_TAKE_OFF_MESSAGE
-    # end
+    it 'shows when a plane has left the airport' do
+      plane = Plane.new
+      airport = Airport.new
+      airport.land(plane)
+      expect(airport.take_off(plane)).to eq Airport::DEFAULT_TAKE_OFF_MESSAGE
+    end
   end
 
   describe 'initialization' do

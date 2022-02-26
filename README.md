@@ -80,6 +80,10 @@ I would like a default airport capacity that can be overridden as appropriate
 
 * unit test describing initialization expecting it to raise_error when 31 planes are landed and capacity is 30 - this doesn't work - I make capacity attr_accessor and update unit test with Airport::DEFAULT_CAPACITY instead of 30 and it passes
 
+* I now realise I've got so into it I've forgotten to commit - so I commit!
+
+* Took out empty plane method and made attr_reader :planes, updated relevant test  - old take-off test I'd commented out I managed to get passing again by creating a new Airport instance in it rather than just using subject
+
 ```
 As an air traffic controller 
 To ensure safety 
