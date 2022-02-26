@@ -12,6 +12,13 @@ describe Airport do
       expect(destination.land("BA101")).to eq ["BA101"]
     end
 
+    it "does not allow to land if weather is stormy" do
+        destination = Airport.new
+        allow(destination).to receive(:rand).and_return(4)
+        expect { destination.land("BA101") }.to raise_error "Stormy weather, cannot land"
+  
+      end
+
   end
 
   describe ".take_off" do
@@ -28,14 +35,23 @@ describe Airport do
 
     it "expects the plane to take off from the airport" do
       departure = Airport.new
+      allow(departure).to receive(:rand).and_return(3)
       expect(departure.take_off("BA101")).to eq []
     end
+
+    it "does not allow to take_off if weather is stormy" do
+        departure = Airport.new
+        allow(departure).to receive(:rand).and_return(4)
+        expect { departure.take_off("BA101") }.to raise_error "Stormy weather, cannot take off"
+  
+      end
 
   end
 
   describe ".full?" do
     it "prevents landing is airport is full" do
       destination = Airport.new(5)
+      allow(destination).to receive(:rand).and_return(3)
       destination.land("BA101")
       destination.land("BA102")
       destination.land("BA103")
@@ -48,26 +64,12 @@ describe Airport do
   
   describe "changing capacity" do
     it "changes the capacity according to users need" do
-      destination = Airport.new(5)
+      destination = Airport.new(2)
       allow(destination).to receive(:rand).and_return(3)
       destination.land("BA101")
-      destination.land("BA102")
-      destination.land("BA103")
-      destination.land("BA104")
-      expect(destination.land("BA105")).to eq  ["BA101", "BA102", "BA103", "BA104", "BA105"]
+      expect(destination.land("BA105")).to eq  ["BA101", "BA105"]
     end
 
   end
-
-  describe "weather" do
-    it "checks for the weather while taking off" do
-      departure = Airport.new
-      allow(departure).to receive(:rand).and_return(4)
-      expect { departure.take_off("BA101") }.to raise_error "Stormy weather, cannot take off"
-
-    end
-    
-  end
-
 
 end

@@ -9,7 +9,7 @@ class Airport
 
   def land(landing_plane)
     full?
-    # fail "Stormy weather, cannot land" if weather == "Stormy"
+    fail "Stormy weather, cannot land" if weather == "Stormy"
     puts "#{landing_plane} has landed"
     @planes_at_airport << landing_plane
   end
