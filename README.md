@@ -13,21 +13,32 @@ Airport Challenge
 
 ```
 
-Instructions
+Description
 ---------
 
-* Feel free to use google, your notes, books, etc. but work on your own
-* If you refer to the solution of another coach or student, please put a link to that in your README
-* If you have a partial solution, **still check in a partial solution**
-* You must submit a pull request to this repo with your code by 10am Monday morning
+The aim of this challenge is to build a software that controls the flow of planes at an airport. 
+Planes can take off and land when the weather is not stormy and when the aiport capacity allows it.
 
-Steps
+Instructions to run the program
 -------
 
-1. Fork this repo, and clone to your local machine
-2. Run the command `gem install bundler` (if you don't have bundler already)
-3. When the installation completes, run `bundle`
-4. Complete the following task:
+1. Fork this repo, and clone to your local machine.
+2. Install Ruby version 3.0.2:
+```shell
+rvm install "ruby-3.0.2"
+```
+3. If you don't have bundler already, run the following commands:
+```shell
+gem install bundler
+```
+4. When the installation completes, run:
+```shell
+bundle
+```
+5. Install RuboCop:
+```shell
+gem install rubocop
+```
 
 Task
 -----
