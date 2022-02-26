@@ -50,9 +50,11 @@ NameError:
 
 * decided to change approach as it reads more intuitively to have plane.land than airport.land, so cleared method from Airport class and created a plane class - not ideal!
 
-* ensured failing feature and unit tests for similar reasons as outlined before, then went ahead and defined land method in Plane class - this now passed RSpec
+* ensured failing feature and unit tests for similar reasons as outlined before, then went ahead and defined land method in Plane class (require_relative for each lib) - this now passed RSpec
 
-* tested receive method with 1 argument for Airport class, failed as expected, so defined method in class - now passes - commit and push
+* tested receive method with 1 argument for Airport class, failed as expected, so defined method in class - now passes - commit and push 'Moved land method to new Plane class, defined receive method in Airport' 
+
+* both my methods return nil in IRB so time to refactor - added simply 'Plane.new' into Airport receive method - this made my 2nd Airport unit test fail as it was returning the plane instance from the method, so I updated the method to simply 'plane' and it passed
 
 ```
 As an air traffic controller 
