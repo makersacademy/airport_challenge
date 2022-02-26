@@ -8,16 +8,13 @@ class Airport
   end
 
   def land(landing_plane)
-    fail "Airport is full" if full? ==  true
-    fail "Stormy weather, cannot land" if weather == "Stormy"
+    landing_exceptions(landing_plane)
     puts "#{landing_plane} has landed"
     @planes_at_airport << landing_plane
   end
 
   def take_off(departing_plane)
-    fail "No planes in the airport" if empty? == true
-    fail "Stormy weather, cannot take off" if weather == "Stormy"
-    fail "Plane not at the airport" if at_aiport?(departing_plane) == false
+    take_off_exceptions(departing_plane)
     puts "#{departing_plane} has taken off"
     @planes_at_airport - [departing_plane]
   end
@@ -39,6 +36,18 @@ class Airport
 
   def at_aiport?(plane)
     @planes_at_airport.include?(plane)
+  end
+
+  def take_off_exceptions(departing_plane)
+    fail "No planes in the airport" if empty? == true
+    fail "Stormy weather, cannot take off" if weather == "Stormy"
+    fail "Plane not at the airport" if at_aiport?(departing_plane) == false
+  end
+
+  def landing_exceptions(landing_plane)
+    fail "Airport is full" if full? ==  true
+    fail "Stormy weather, cannot land" if weather == "Stormy"
+    fail "Cannot land a already landed plane" if at_aiport?(landing_plane) == true
   end
 
 end

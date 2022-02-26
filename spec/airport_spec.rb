@@ -9,11 +9,19 @@ describe Airport do
     end
 
     it "does not allow to land if weather is stormy" do
-        bangalore_airport = Airport.new
-        allow(bangalore_airport).to receive(:rand).and_return(4)
-        expect { bangalore_airport.land("BA101") }.to raise_error "Stormy weather, cannot land"
+      bangalore_airport = Airport.new
+      allow(bangalore_airport).to receive(:rand).and_return(4)
+      expect { bangalore_airport.land("BA101") }.to raise_error "Stormy weather, cannot land"
   
-      end
+    end
+
+    it "raises an error when user tries to land an already landed plane" do
+      bangalore_airport = Airport.new
+      allow(bangalore_airport).to receive(:rand).and_return(3)
+      bangalore_airport.land("BA101")
+      bangalore_airport.land("BA102")
+      expect { bangalore_airport.land("BA101") }.to raise_error "Cannot land a already landed plane"
+    end
 
   end
 
@@ -63,7 +71,7 @@ describe Airport do
       bangalore_airport.land("BA103")
       bangalore_airport.land("BA104")
       bangalore_airport.land("BA105")
-      expect { bangalore_airport.land("BA101") }.to raise_error "Airport is full"
+      expect { bangalore_airport.land("BA106") }.to raise_error "Airport is full"
     end
 
   end
