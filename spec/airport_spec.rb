@@ -3,12 +3,20 @@ require 'airport'
 describe Airport do
   describe ".land" do
     it "expects a plane to land at the airport" do
-      p1 = Airport.new
-      expect(p1.land("BA101")).to eq true
+      destination = Airport.new
+      expect(destination.land("BA101")).to eq "landed"
     end
 
   end
-  
+
+  describe ".take_off" do
+    it "expects the plane to take off from the airport" do
+      departure = Airport.new
+      expect(departure.take_off("BA101")).to eq "took off"
+    end
+
+  end
+
 end
   
 #   describe "land" do  
