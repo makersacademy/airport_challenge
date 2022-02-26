@@ -26,7 +26,20 @@ let(:plane) { double :plane}
 # To ensure safety 
 # I want to prevent landing when the airport is full 
   it 'avoids planes from landing if the hangar is full' do
-    subject.land(plane)
+    Airport::DEFAULT_CAPACITY.times{subject.land(plane)}
     expect{ subject.land(plane) }.to raise_error "hangar is full"
   end
+  
+  # As the system designer
+  # So that the software can be used for many different airports
+  # I would like a default airport capacity that can be overridden as appropriate
+  describe 'Airports with different capacities'do
+    subject{Airport.new(capacity)}
+    let(:capacity) {15}
+    it 'tests a new airport with a capacity of 15' do
+      15.times{subject.land(plane)}
+      expect{ subject.land(plane) }.to raise_error "hangar is full"
+    end
+  end
+
 end

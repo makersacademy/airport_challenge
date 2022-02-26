@@ -1,13 +1,15 @@
 class Airport
-  
+  DEFAULT_CAPACITY = 10
+
   attr_reader :hangar
 
-  def initialize
+  def initialize(capacity = DEFAULT_CAPACITY)
     @hangar = []
+    @capacity = capacity
   end
 
   def land(plane)
-    if @hangar.length == 1
+    if full?
       raise "hangar is full"
     else
     @hangar << plane
@@ -16,5 +18,11 @@ class Airport
 
   def take_off
     @hangar.pop
+  end
+
+  private
+
+  def full?
+    @hangar.length == @capacity
   end
 end
