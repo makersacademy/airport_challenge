@@ -10,15 +10,7 @@ describe Airport do
   end
 
   it 'has a default capacity' do
-    expect(airport.report_capacity).to eq Airport::DEFAULT_CAPACITY
-  end
-  
-  it 'can check if it is full' do
-    expect { airport.full? }.to_not raise_error
-  end
-
-  it 'can check for stormy weather' do
-    expect(airport.stormy?).to be(true).or be(false)
+    expect(airport.capacity).to eq Airport::DEFAULT_CAPACITY
   end
 
   describe '#land' do
@@ -55,13 +47,21 @@ describe Airport do
     it 'removes the plane once it takes off' do
       airport.land(plane)
       airport.take_off(serial_number)
-      expect(airport.list_planes).to_not include(plane)
+      expect(airport.has_plane?(serial_number)).to_not include(plane)
     end
 
     it 'prevents a plane that is not at the airport from taking off' do
       expect do
         airport.take_off(serial_number)
       end.to raise_error 'Plane not found at this airport'
+    end
+
+    it 'prevents planes from taking off when weather is stormy' do
+      airport.land(plane)
+      airport.weather_update("Stormy")
+      expect do
+        airport.take_off(serial_number)
+      end.to raise_error 'Cannot take off during stormy weather'
     end
   end
 end
