@@ -1,6 +1,7 @@
+require 'weather'
+
 class Airport
   DEFAULT_CAPACITY = 10
-
   attr_reader :capacity
 
   def initialize(name, capacity = DEFAULT_CAPACITY)
@@ -8,6 +9,7 @@ class Airport
     @capacity = capacity
     @planes = []
     @current_weather = "Unknown"
+    p @current_weather
   end
 
   def land(plane)
@@ -19,15 +21,15 @@ class Airport
   end
 
   def take_off(serial_number)
+    raise "Plane not found at this airport" unless contains_plane?(serial_number)
     raise "Cannot take off during stormy weather" if stormy?
-    raise "Plane not found at this airport" unless has_plane?(serial_number)
     
     departing_plane = fetch_plane(serial_number)
     departing_plane.change_location("Sky")
     @planes.delete(departing_plane)
   end
 
-  def weather_update(weather)
+  def update_weather(weather)
     @current_weather = weather
   end
 
@@ -35,7 +37,7 @@ class Airport
     @planes.each { |plane| puts plane.registration }
   end
   
-  def has_plane?(serial_number)
+  def contains_plane?(serial_number)
     fetch_plane(serial_number) != nil
   end
 
@@ -50,7 +52,6 @@ class Airport
   end
 
   def stormy?
-    @current_weather == "Stormy"
+    Weather.weather_report == "Stormy"
   end
-
 end
