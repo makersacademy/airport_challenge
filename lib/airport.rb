@@ -9,12 +9,10 @@ class Airport
 
   def receive(plane)
     @hangar.push(plane)
-    return true
   end
 
   def release(plane)
     @hangar.delete(plane)
-    return true
   end
 
   def full?
