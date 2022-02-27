@@ -45,21 +45,14 @@ describe Plane do
 
   end
 
-  describe "capacity changer" do
-    it "allows you to change the capacity of an airport" do
-      airport_1 = Airport.new
-      expect(airport_1.capacity).to eq 5
-      airport_1.capacity = 2
-      expect(airport_1.capacity).to eq 2
-    end
-  end
+
 
   describe '.take_off' do
     it 'instructs a plane to take off from an airport and confirms it is no longer at the airport' do
       airport_1 = Airport.new
       plane_1 = Plane.new
-      plane_1.land(airport_1)
       allow(airport_1).to receive(:stormy?) { false }
+      plane_1.land(airport_1)
       expect(plane_1.take_off(airport_1)).to eq "Airborne"
       expect(airport_1.landed_planes).not_to include(plane_1)
     end
@@ -67,6 +60,7 @@ describe Plane do
     it 'does not allow a plane to take off when stormy' do
       plane_1 = Plane.new
       airport_1 = Airport.new
+      allow(airport_1).to receive(:stormy?) { false }
       plane_1.land(airport_1)
       allow(airport_1).to receive(:stormy?) { true }
       expect(plane_1.take_off(airport_1)).not_to eq "Airborne"
@@ -75,8 +69,8 @@ describe Plane do
     it 'allows a plane to take off when not stormy' do
       plane_1 = Plane.new
       airport_1 = Airport.new
-      plane_1.land(airport_1)
       allow(airport_1).to receive(:stormy?) { false }
+      plane_1.land(airport_1)
       expect(plane_1.take_off(airport_1)).to eq "Airborne" 
     end
 
