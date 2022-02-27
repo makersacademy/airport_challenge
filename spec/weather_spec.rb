@@ -1,6 +1,7 @@
 require './lib/weather'
 
 describe Weather do
+  
   it { is_expected.to respond_to(:conditions) }
 
   describe "#conditions" do
@@ -13,7 +14,5 @@ describe Weather do
       allow(subject).to receive(:rand).and_return(1)
       expect(subject.conditions).to eq("Stormy")
     end
-
   end
-
 end

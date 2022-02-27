@@ -1,6 +1,7 @@
 require './lib/airport'
 
 describe Airport do
+  
   let(:plane) { double("plane") }
 
   it { is_expected.to respond_to(:receive).with(1).argument }
@@ -27,16 +28,15 @@ describe Airport do
 
   describe "#full?" do
     it "returns true when the airport is full" do
-      #Default capacity is 30
+      # Default capacity is 30
       30.times { subject.receive(plane) }
       expect(subject.full?).to eq true
     end
 
     it "returns false when the airport is not full" do
-      #Default capacity is 30
+      # Default capacity is 30
       29.times { subject.receive(plane) }
       expect(subject.full?).to eq false
     end
   end
-  
 end

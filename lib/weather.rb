@@ -3,7 +3,7 @@ class Weather
   WEATHER_CONDITIONS = [
     "Sunny",
     "Stormy"
-  ]
+  ].freeze
 
   def conditions
     WEATHER_CONDITIONS[random]
@@ -14,7 +14,4 @@ class Weather
   def random
     rand(0...WEATHER_CONDITIONS.length)
   end
-
 end
-
-
