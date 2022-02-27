@@ -30,7 +30,9 @@ Navigate to `http://localhost:4567/`
 
 `test_command` (e.g. `rspec`)
 
-## Approach
+## My Approach
+
+The first user story was as follows:
 
 ```
 As an air traffic controller 
@@ -38,27 +40,35 @@ So I can get passengers to a destination
 I want to instruct a plane to land at an airport
 ```
 
-* Feature test: IRB 'airport = Airport.new'
+First I organised the objects and messages into a table:
 
-* uninitialized constant Aiport (NameError)
+| Objects | Messages |
+| --- | --- |
+| Controller | |
+| Plane | Instruct |
+| Airport | Land |
 
-* created airport_spec.rb and airport.rb
+Then my approach was to:
 
-* wrote start of first unit test - describe Airport do end - 
-NameError:
-  uninitialized constant Airport
+* run a feature test in IRB, simply trying to create a new Airport object (airport = Airport.new) - this returned the NameError "uninitialized constant Aiport"
 
-* Committed and pushed 'Created airport lib and spec files'
+* create airport_spec.rb and airport.rb files in my local repo
 
-* created Airport class and required lib file in spec - rspec now passes as expected with 0 examples, 0 failures
+* write the start of my first unit test in the airport_spec.rb file, simply an empty 'describe Airport' block - this threw the NameError "uninitialized constant Airport"
 
-* was now able to create a new Airport object in IRB, but airport.land(plane) throws up "undefined local variable or method `plane'" for that object
+* commit and push with the accompanying messge 'Created airport lib and spec files'
 
-* fleshed out unit test, expect Airport to respond to land with 1 argument - rspec error
+* create an Airport class in airport.rb - rspec now passes as expected with 0 examples, 0 failures
 
-* defined land method with (plane) parameter to Airport class - this now passes (1 example, 0 failures)
+* create a new Airport object in IRB, which was now possible, but airport.land(plane) throws up "undefined local variable or method `plane'" for that object
 
-* back to IRB, plane throwing uninitialized constant error so create plane class - now IRB up to airport.land(plane) returns nil but passes
+* flesh out the unit test, expecting Airport to respond to land with 1 argument, which threw an RSpec error as I had no land method yet
+
+* define my land method in the Airport class with (plane) as a parameter, which now passed RSpec
+
+* run another feature test in IRB, whereupon I tried to create a new plane object and this threw an "uninitialized constant" error so I created a plane.rb file containing an empty Plane class
+
+On to the second user story:
  
 ```
 As an air traffic controller 
@@ -66,19 +76,21 @@ So I can get passengers on the way to their destination
 I want to instruct a plane to take off from an airport and confirm that it is no longer in the airport
 ```
 
-* start with airport.take_off(plane) in IRB - undefined method error - unit test - also error so define method as before - passes (2,0)
+Here my approach was to:
 
-* need to see plane no longer at airport - IRB up to airport.take_off(plane) returns nil - then airport.plane - undefined method 'plane'
+* start with a feature test in IRB, where "airport.take_off(plane)" raised an "undefined method error" as expected
 
-* unit test expected to respond to plane (dealing with just the one for now) - fail
+* write a simple unit test expecting Airport objects to respond to a take_off method with (plane) as a parameter - this also gave an error so I defined a method in the Airport class
 
-* define plane method in Airport, now pass (3,0) in Rspec but returns nil in IRB, as does airport.land(plane) and take_off too
+* write another basic unit test expecting Airport objects to respond to a 'plane' method in order to see a plane and ensure it was no longer at an airport - this failed
 
-* unit test describe '#land' method, making a new plane instance in it and expecting landing it to equal plane - this fails Rspec it returns nil instead of new plane created, so just add 'plane' to land method - this now passes but in IRB airport.plane still returns nil
+* create an empty plane method in my Airport class in order to pass RSpec tests
 
-* focus back on take_off as per US - got distracted! - unit test describing take_off method expecting it to eq 'The plane has left the airport' string - fails, gets nil, so add that string to the method - passes (5,0) RSpec and works in IRB too
+* describe my land method in a unit test, creating a new plane object inside it and expecting landing it to equal 'plane' - this failed in Rspec, returning nil instead of the new plane object, so I added 'plane' inside my land method to get it to pass (although it still returns nil in IRB)
 
-* occurred I might want to change the take off message so make it a constant in class and test - this passes
+* return focus to my take_off method as per the user story - I got a bit sidetracked! - and write a unit test describing the take_off method, expecting it to eq a string saying 'The plane has left the airport' - this fails, getting nil, so I insert that string in the method which makes it pass RSpec and work in IRB
+
+* change the take_off message to a constant in case I wanted to change it later
 
 ```
 As an air traffic controller 

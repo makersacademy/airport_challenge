@@ -1,13 +1,13 @@
 require 'airport'
 
 describe Airport do
-  it { is_expected.to respond_to(:land).with(1).argument }
+  # it { is_expected.to respond_to(:land).with(1).argument }
   
-  it { is_expected.to respond_to(:take_off).with(1).argument }
+  # it { is_expected.to respond_to(:take_off).with(1).argument }
   
-  it { is_expected.to respond_to(:planes) }
+  # it { is_expected.to respond_to(:planes) }
 
-  it { is_expected.to respond_to(:weather) }
+  # it { is_expected.to respond_to(:weather) }
 
   describe "#land" do 
     it 'lands a plane at the airport' do
