@@ -1,16 +1,23 @@
 class Airport
 
+  DEFAULT_CAPACITY = 30
+
+  def initialize(capacity = DEFAULT_CAPACITY)
+    @hangar = []
+    @capacity = capacity
+  end
+
   def receive(plane)
-    @plane = plane
+    @hangar.push(plane)
     return true
   end
 
   def release(plane)
-    @plane = nil
+    @hangar.delete(plane)
     return true
   end
 
   def full?
-    @plane != nil
+    @hangar.length >= @capacity
   end
 end
