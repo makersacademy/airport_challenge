@@ -1,11 +1,8 @@
 class Weather
   
   def stormy?
-    WEATHER_TYPES[Kernel.rand(WEATHER_TYPES.length)]
+    weather_types = [:rainy, :sunny, :stormy]
+    weather_types[Kernel.rand(weather_types.length)]
   end
-
-  private
-
-  WEATHER_TYPES = [:rainy, :sunny, :stormy]
 
 end
