@@ -4,8 +4,8 @@ describe Airport do
   let(:airport) { Airport.new }
   let(:plane) { Plane.new }
 
-  it "receives and stores a landing plane" do
-    airport.receive_plane(plane)
+  it "stores a landing plane" do
+    plane.land(plane, airport)
     expect(airport.aerodrome).to include(plane)
   end
 end
