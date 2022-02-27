@@ -28,6 +28,13 @@ describe Plane do
       allow(airport).to receive(:full?).and_return(false)
       expect { subject.land(airport) }.to raise_error("Unable to land due to the weather")
     end
+
+    it "does not land the plane when the plane is not flying" do
+      allow(subject).to receive(:check_weather) { "Sunny" }
+      allow(airport).to receive(:full?).and_return(false)
+      subject.land(airport)
+      expect { subject.land(airport) }.to raise_error("This plane is already at an airport")
+    end
   end
 
   describe "#take_off" do
@@ -45,6 +52,10 @@ describe Plane do
       subject.land(airport)
       allow(subject).to receive(:check_weather) { "Stormy" }
       expect { subject.take_off }.to raise_error("Unable to take off due to the weather")
+    end
+
+    it "does not take off when the plane is flying" do
+      expect { subject.take_off }.to raise_error("This plane is not in an airport")
     end
   end
 

@@ -9,17 +9,20 @@ class Plane
   end
 
   def land(airport)
+    fail "This plane is already at an airport" unless flying?
     fail "Unable to land due to the weather" if stormy?
     fail "Airport is full." if airport.full?
-    @flying = false if airport.receive(self)
+    airport.receive(self)
     @airport = airport
-
+    @flying = false
   end
 
   def take_off
+    fail "This plane is not in an airport" if flying?
     fail "Unable to take off due to the weather" if stormy?
-    @flying = true if @airport.release(self)
+    @airport.release(self)
     @airport = nil
+    @flying = true
   end
 
   def flying?
