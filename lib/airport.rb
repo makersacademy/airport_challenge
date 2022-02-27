@@ -45,14 +45,15 @@ class Airport
   end
   
   def land_check_list(plane)
-    raise 'This plane is already at the airport.' if at_airport(plane)
+    raise 'This plane is already at this airport.' if at_airport(plane)
+    raise 'This plane is already at an airport.' if plane.grounded == true
     raise 'Airport capacity reached. No more landing allowed.' if full?
     raise 'Warning: stormy weather! Landing not allowed.' if stormy_weather?
   end
 
   def take_off_check_list(plane)
     raise 'This plane has already taken off.' if left_airport?(plane)
-    raise 'This plane is not at the airport.' unless at_airport(plane)
+    raise 'This plane is not at this airport.' unless at_airport(plane)
     raise 'Warning: stormy weather! Takeoff not allowed.' if stormy_weather?
   end
 end
