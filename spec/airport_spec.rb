@@ -1,6 +1,7 @@
 require 'airport.rb'
 
 describe Airport do
+  let(:plane) { double :plane }
   
   it 'should respond to land' do
     expect(subject).to respond_to(:land)
@@ -12,6 +13,13 @@ describe Airport do
 
   it 'should allow specific planes to take off' do
     expect(subject).to respond_to(:take_off).with(1).argument
+  end
+
+  it 'should ensure a plane is no longer at the airport when taking off' do
+    subject.land(plane)
+    subject.take_off(plane)
+    # the plane should've landed and taken off, so trying to take off another plane should not work.
+    expect { subject.take_off(plane) }.to raise_error 'Airport is empty'
   end
 
 end
