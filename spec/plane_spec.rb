@@ -1,8 +1,8 @@
-require 'airport'
+require 'plane'
 
 describe Plane do
   let(:plane) { Plane.new }
-  let(:airport) {Airport.new}
+  let(:airport) { double Airport, receive: true, release: true }
 
   it "lands at the airport" do
     expect { plane.land(plane, airport) }.to_not raise_error

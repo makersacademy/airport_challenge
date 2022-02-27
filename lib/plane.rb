@@ -1,10 +1,8 @@
+require 'airport'
+
 class Plane
   attr_accessor :plane
-
-  def initialize
-    @plane
-  end
-
+  
   def land(plane, airport)
     airport.receive(plane)
   end
