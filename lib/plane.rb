@@ -1,4 +1,5 @@
 require './lib/airport'
+require './lib/weather'
 
 class Plane
 
@@ -7,6 +8,7 @@ class Plane
   end
 
   def land(airport)
+    fail "Unable to land due to the weather" if check_weather == "Stormy"
     fail "Airport is full." if airport.full?
     @flying = false if airport.receive(self)
   end
@@ -17,6 +19,13 @@ class Plane
 
   def flying?
     @flying
+  end
+
+  private
+
+  def check_weather
+    current_weather = Weather.new
+    current_weather.conditions
   end
   
 end
