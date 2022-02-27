@@ -13,7 +13,7 @@
 * Weather is random, with storm occuring 10% of the time.
 
 #### Focus Points of the Challenge
-###### Test-Driven Development Practices
+_Test-Driven Development Practices_
 
 * Mocking
 * Double and Studs
