@@ -47,4 +47,10 @@ describe Plane do
       expect { subject.take_off }.to raise_error("Unable to take off due to the weather")
     end
   end
+
+  describe "#check_weather" do
+    it "returns either Sunny or Stormy" do
+      expect(subject.check_weather).to eq("Sunny").or eq("Stormy")
+    end
+  end
 end

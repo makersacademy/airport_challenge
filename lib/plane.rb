@@ -26,12 +26,12 @@ class Plane
     @flying
   end
 
-  private
-
   def check_weather
     current_weather = Weather.new
     current_weather.conditions
   end
+
+  private
 
   def stormy?
     check_weather == "Stormy"
