@@ -8,6 +8,7 @@ class Plane
   end
 
   def take_off(airport)
+    raise 'take-off denied, there is a storm!' if airport.storm == true
     airport.hanger.select! { |plane| plane != self } 
   end
 end
