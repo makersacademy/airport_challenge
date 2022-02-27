@@ -1,25 +1,23 @@
 class Airport
   def initialize(default_capacity = 10)
     @airport_deposit = []
-    @CAPACITY = default_capacity
+    @default_capacity = default_capacity
   end
 
   def land(plane)
-    if full?
-      raise Exception.new
-    else
-      @airport_deposit << plane
-    end
+    raise Exception.new if full?
+    @airport_deposit << plane
   end
 
   def take_off(plane)
-    return @airport_deposit.delete(plane) if @airport_deposit.include?(plane)
+    @airport_deposit.delete(plane) if @airport_deposit.include?(plane)
   end
 
   private
 
   def full? 
-    @airport_deposit.length >= @CAPACITY ? true : false
+    # @airport_deposit.length >= @default_capacity ? true : false
+    @airport_deposit.length >= @default_capacity # Returns true or false
   end
 
 end
