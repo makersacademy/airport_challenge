@@ -4,10 +4,10 @@ describe Airport do
   let(:serial_number) { 25_817 }
   let(:airport) { Airport.new("Heathrow") }
   let(:plane) { instance_double("Plane", :serial_number => serial_number) }
-  let(:weather) { class_double(Weather, :weather_report => "Sunny") }
-  
+  let(:weather) { instance_double(Weather, :weather_report => "Sunny") }
+
   before do
-    allow(plane).to receive(:change_location).with(any_args)
+    allow(plane).to receive(:location=).with(any_args)
   end
 
   it 'has a default capacity' do
@@ -36,7 +36,8 @@ describe Airport do
     end
 
     it 'prevents planes from landing when weather is stormy' do
-      airport.update_weather("Stormy")
+      allow(weather).to receive(:weather_report).and_return("Stormy")
+      airport.update_weather(weather)
       expect do
         airport.land(plane)
       end.to raise_error 'Cannot land during stormy weather'
@@ -44,8 +45,9 @@ describe Airport do
   end
 
   describe '#update_weather' do
-    it 'can receive a weather update' do
-      expect { airport.update_weather("Sunny") }.to_not raise_error
+    it 'can fetch a weather update' do
+      allow(weather).to receive(:weather_report).and_return("Specific Weather")
+      expect(airport.update_weather(weather)).to eq "Specific Weather"
     end
   end
 
@@ -69,7 +71,8 @@ describe Airport do
 
     it 'prevents planes from taking off when weather is stormy' do
       airport.land(plane)
-      airport.update_weather("Stormy")
+      allow(weather).to receive(:weather_report).and_return("Stormy")
+      airport.update_weather(weather)
       expect do
         airport.take_off(serial_number)
       end.to raise_error 'Cannot take off during stormy weather'
