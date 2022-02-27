@@ -8,15 +8,14 @@ class Airport
     @name = name
     @capacity = capacity
     @planes = []
-    @current_weather = "Unknown"
-    p @current_weather
+    @weather = "Unknown"
   end
 
   def land(plane)
     raise "Airport is full" if full?
     raise "Cannot land during stormy weather" if stormy?
 
-    plane.change_location(@name)
+    plane.location = (@name)
     @planes << plane
   end
 
@@ -25,12 +24,12 @@ class Airport
     raise "Cannot take off during stormy weather" if stormy?
     
     departing_plane = fetch_plane(serial_number)
-    departing_plane.change_location("Sky")
+    departing_plane.location = ("Sky")
     @planes.delete(departing_plane)
   end
 
   def update_weather(weather)
-    @current_weather = weather
+    @weather = weather.weather_report
   end
 
   def print_planes
@@ -52,6 +51,6 @@ class Airport
   end
 
   def stormy?
-    Weather.weather_report == "Stormy"
+    @weather == "Stormy"
   end
 end
