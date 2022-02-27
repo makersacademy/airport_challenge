@@ -7,5 +7,6 @@ My goal for this project is to create a software that will manage planes landing
 
 ### The steps I am taking:
 
-1. Create a functional representation of the first User-Story
-2. Perform a feature test, analyse the errors and begin creating your first unit test.  
+[x] Create a functional representation of the first User-Story
+[x] Perform a feature test, analyse the errors and begin creating your first unit test.  
+[ ] Now that I understand how I want my program to run, and have created my Airport object. Now lets create our Plane object and also test drive creating the land method for the Airport.
