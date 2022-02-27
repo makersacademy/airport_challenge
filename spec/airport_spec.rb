@@ -12,6 +12,11 @@ describe Airport do
     it "should raise an error when 11 planes attempt to land" do
       expect { 11.times { subject.land_plane } }.to raise_error("The airport is full")
     end
+    it "should allow 10 planes to land without raising an error" do
+      expect do 
+        10.times { subject.land_plane }
+      end.to_not raise_error
+    end
   end
 
   describe ":take_off method behaviour" do

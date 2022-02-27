@@ -49,8 +49,8 @@ Goal: Set a maximum Plane capacity of 10 Planes
 
 -[x] Describe a test which attempts to land 11 planes at an Airport instance and should expect and error to be raised.
 -[x] pass this test and rafactor your solution if needed
--[ ] Your test should still run without errors when attempting to land up to 10 planes. Create a test for this.
--[ ] Pass this test and refactor
--[ ] perform a feature test
+-[x] Your test should still run without errors when attempting to land up to 10 planes. Create a test for this.
+-[x] Pass this test and refactor
+-[x] perform a feature test
 
 

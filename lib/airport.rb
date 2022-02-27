@@ -8,8 +8,8 @@ class Airport
 
   def land_plane
     raise "The airport is full" unless @hangar.length < @capacity
-    @hangar.push(Plane.new)
-    @hangar[-1]
+    @hangar.push(plane = Plane.new)
+    plane
   end
 
   def take_off
