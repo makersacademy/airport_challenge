@@ -42,7 +42,7 @@ describe Airport do
     it 'allows plane to take off when good weather conditions' do
       plane = Plane.new
       allow(subject).to receive(:stormy_weather?).and_return(false)
-      allow(subject).to receive(:left_airport).and_return(false)
+      allow(subject).to receive(:left_airport?).and_return(false)
       subject.land(plane)
       expect(subject.take_off(plane)).to eq plane
     end
@@ -50,14 +50,24 @@ describe Airport do
     it 'prevents takeoff when weather is stormy' do
       plane = Plane.new
       allow(subject).to receive(:stormy_weather?).and_return(true)
+      allow(subject).to receive(:left_airport?).and_return(false)
+      allow(subject).to receive(:at_airport).and_return(true)
       expect { subject.take_off(plane) }.to raise_error 'Warning: stormy weather! Takeoff not allowed.'
     end
 
     it 'prevents takeoff if plane already took off' do
       plane = Plane.new
       allow(subject).to receive(:stormy_weather?).and_return(false)
-      allow(subject).to receive(:left_airport).and_return(true)
+      allow(subject).to receive(:left_airport?).and_return(true)
       expect { subject.take_off(plane) }.to raise_error 'This plane has already taken off.' 
+    end
+
+    it 'prevents takeoff if plane not at airport' do
+      plane = Plane.new
+      allow(subject).to receive(:stormy_weather?).and_return(false)
+      allow(subject).to receive(:left_airport?).and_return(false)
+      allow(subject).to receive(:at_airport).and_return(false)
+      expect { subject.take_off(plane) }.to raise_error 'This plane is not at the airport.'
     end
   end
 end
