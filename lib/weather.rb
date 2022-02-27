@@ -1,15 +1,5 @@
 class Weather
-  def self.weather_report
-    WEATHER_CONDITIONS.sample
+  def weather_report
+    rand(1..20) == 1 ? "Stormy" : "Sunny"
   end
-
-  private
-
-  WEATHER_CONDITIONS = [
-    "Sunny",
-    "Cloudy",
-    "Windy",
-    "Rainy",
-    # "Stormy",
-  ].freeze
 end
