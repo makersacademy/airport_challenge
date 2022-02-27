@@ -23,7 +23,15 @@ Review: Planes can now land at an Airport
 
 #### Lets look at the second User Story:
 
-- [ ] Create a functional representation of the second user story
-- [ ] Perform a feature test and analyse any errors that occur
+- [x] Create a functional representation of the second user story
+- [x] Perform a feature test and analyse any errors that occur
+
+To satisfy this user story, we need to allow a plane to take off from our Airport, it should output a Plane. 
+
+Goal: Create a :take_off method for the Airport class
+-[x] Create a test to check if Airport responds to :take_off
+-[x] Pass this test and refactor
+-[ ] Create a test to check if :take_off outputs a Plane
+-[ ] Pass this test and refactor
 
 
