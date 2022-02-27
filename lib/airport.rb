@@ -8,7 +8,7 @@ class Airport
   end
 
   def receive(plane)
-    @hangar.push(plane)
+    @hangar << plane
   end
 
   def release(plane)
