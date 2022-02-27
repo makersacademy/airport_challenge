@@ -17,5 +17,12 @@ describe Airport do
       expect(subject.release(plane)).to eq true
     end
   end
+
+  describe "#full?" do
+    it "returns true when the airport is full" do
+      subject.receive(plane)
+      expect(subject.full?).to eq true
+    end
+  end
   
 end

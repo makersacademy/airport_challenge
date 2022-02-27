@@ -9,4 +9,8 @@ class Airport
     @plane = nil
     return true
   end
+
+  def full?
+    @plane != nil
+  end
 end
