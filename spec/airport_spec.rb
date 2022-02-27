@@ -53,7 +53,7 @@ describe Airport do
 		expect(airport.storm).to eq(true)
 	end
 
-	it 'Plane shold not be able to take-off if the airport is stormy' do 
+	it 'a plane shold not be able to take-off if the weather at the airport is stormy' do 
 		airport = Airport.new
 		plane = Plane.new
 		plane.land(airport)
@@ -61,5 +61,10 @@ describe Airport do
 		expect { plane.take_off(airport) }.to raise_error('take-off denied, there is a storm!')
 	end
 
+	it 'a plane should not be able to land if the weather at the airport is stormy' do
+		airport = Airport.new
+		plane = Plane.new
+		airport.storm = true
+		expect { plane.land(airport) }.to raise_error('landing denied, there is a storm!')
+	end
 end
-
