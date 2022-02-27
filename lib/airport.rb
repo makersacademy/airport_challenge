@@ -10,7 +10,9 @@ class Airport
   
   def land(plane)
     check_for_capacity
+    fail "Plane cannot land as it is already on the ground" if plane.whereabouts != :flying
     @planes_at_airport << plane
+    plane.log_airport(object_id) # pass the airport object id to the plane
   end
 
   def takeoff(plane)

@@ -4,12 +4,6 @@ describe Airport do
   it 'responds to land with 1 argument passed' do
     expect(subject).to respond_to(:land).with(1).argument
   end
-  
-  it 'lands a plane' do
-    plane = Plane.new
-    # We want to return the plane we land
-    expect(subject.land(plane)).to eq [plane]
-  end
 
   it 'takes off a plane and confirms it has taken off' do # I'm not sure if this test and corresponding method is doing too much
     plane = Plane.new
@@ -32,6 +26,23 @@ describe Airport do
     airport.takeoff(plane)
     expect { airport.takeoff(plane) }.to raise_error "Plane is not at this airport"
   end
+
+  it 'raises an error if a plane tries to land when it is already at another airport' do
+    plane = Plane.new
+    heathrow = Airport.new
+    gatwick = Airport.new
+    heathrow.land(plane)
+    error_message = "Plane cannot land as it is already on the ground"
+    expect { gatwick.land(plane) }.to raise_error error_message
+  end
+
+  # it 'raises an error if a plane tries to land when it is already at that airport' do
+  #   plane = Plane.new
+  #   airport = Airport.new
+  #   airport.land(plane)
+  #   airport.takeoff(plane)
+  #   expect { airport.takeoff(plane) }.to raise_error "Plane is not at this airport"
+  # end
 
   it "won't accept more than 20 planes" do
     20.times { subject.land(Plane.new) }
