@@ -12,10 +12,12 @@ class Airport
 
   def receive(plane)
     raise "airport is full" if full?
+    raise "plane cannot land, the weather is stormy" if weather == "stormy"
     @aerodrome << plane
   end
 
   def release(plane)
+    raise "plane cannot take off, the weather is stormy" if weather == "stormy"
     @aerodrome.delete(plane)
   end
 
@@ -23,5 +25,10 @@ class Airport
   
   def full?
     aerodrome.size >= @capacity
+  end
+
+  def weather
+    num = rand(1...10)
+    num == 1 ? "stormy" : "sunny"
   end
 end

@@ -19,4 +19,12 @@ describe Airport do
     Airport::DEFAULT_CAPACITY.times { plane.land(plane, airport) }
     expect { plane.land(plane, airport) }.to raise_error("airport is full")
   end
+
+  it "does not receive a plane if the weather is stormy" do
+    expect { plane.land(plane, airport) }.to raise_error("plane cannot land, the weather is stormy")
+  end
+
+  it "does not release a plane if the weather is stormy" do
+    expect { plane.take_off(plane, airport) }.to raise_error("plane cannot take off, the weather is stormy")
+  end
 end
