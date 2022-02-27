@@ -8,6 +8,7 @@ describe Plane do
   it { is_expected.to respond_to(:land).with(1).argument }
   it { is_expected.to respond_to(:take_off) }
   it { is_expected.to respond_to(:flying?) }
+  it { is_expected.to respond_to(:check_weather) }
 
   describe "#land" do
     it "lands the plane when sunny" do
