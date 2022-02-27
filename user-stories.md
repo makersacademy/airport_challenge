@@ -11,6 +11,6 @@ I want to instruct a plane to land at an airport
 
 | Objects | Messages | Additional Notes |
 | --- | --- |
-| plane | land | Plane object is the most appropriate one to handle landing and taking off |
-| airport |  | Airport object should know what Plane objects are in it |
+| plane |  | Plane object will represent the plane |
+| airport | land | Airport object should know what Plane objects are in it, and can handle landing and take offs for plane objects |
 
