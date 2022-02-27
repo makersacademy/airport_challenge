@@ -10,7 +10,7 @@ describe Plane do
   
     describe "#land" do
       it "lands the plane when sunny" do
-        allow(subject).to receive(:check_weather) { nil }
+        allow(subject).to receive(:check_weather) { "Sunny" }
         allow(airport).to receive(:receive).and_return(true)
         allow(airport).to receive(:full?).and_return(false)
         subject.land(airport)
@@ -18,7 +18,7 @@ describe Plane do
       end
 
       it "does not land the plane when the airport is full" do
-        allow(subject).to receive(:check_weather) { nil }
+        allow(subject).to receive(:check_weather) { "Sunny" }
         allow(airport).to receive(:full?).and_return(true)
         expect{ subject.land(airport) }.to raise_error("Airport is full.")
       end
@@ -33,8 +33,8 @@ describe Plane do
     end
 
     describe "#take_off" do
-      it "takes off" do
-        allow(subject).to receive(:check_weather) { nil }
+      it "takes off when the weather is sunny" do
+        allow(subject).to receive(:check_weather) { "Sunny" }
         allow(airport).to receive(:full?).and_return(false)
         allow(airport).to receive(:receive).and_return(true)
         allow(airport).to receive(:release).and_return(true)
@@ -42,6 +42,17 @@ describe Plane do
         subject.take_off(airport)
         expect(subject.flying?).to eq true
       end
+
+      it "does not take off when the weather is stormy" do
+        allow(subject).to receive(:check_weather) { "Sunny" }
+        allow(airport).to receive(:full?).and_return(false)
+        allow(airport).to receive(:receive).and_return(true)
+        allow(airport).to receive(:release).and_return(true)
+        subject.land(airport)
+        allow(subject).to receive(:check_weather) { "Stormy" }
+        expect { subject.take_off(airport) }.to raise_error("Unable to take off due to the weather")
+      end
+
 
     end
 end
