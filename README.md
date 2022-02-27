@@ -90,14 +90,24 @@ To ensure safety
 I want to prevent takeoff when weather is stormy 
 ```
 
-IRB airport.weather naturally throws an error - do respond_to unit test then define empty method - wrote unit test allowing airport to receive stormy weather - passes RSpec but airport.weather in feature test returns nil
+IRB airport.weather naturally throws an error - do respond_to unit test then define empty method - wrote unit test allowing airport to receive stormy weather with stub (allow line) - RSpec expected exception but nothing was raised, and airport.weather in feature test returns nil
 
-* made random number generator 1..100 with 1 as stormy, rest as sunny, refactored it from if else into ternary then added guard clause to take_off
+* made random number generator 1..100 with 1 as stormy, rest as sunny, refactored it from if else into ternary then added guard clause to take_off - now everything passes
+
+* just for good measure I added a unit test expecting taking off a plane in sunny weather to eq default take off message, this passed
 
 ```
 As an air traffic controller 
 To ensure safety 
 I want to prevent landing when weather is stormy 
 ```
+
+repeat process above - rspec for unit test says Failure/Error - expected Exception 'Plane unable to land due to stormy weather' but nothing was raised, so I add it, this time trying out raise instead of fail to ascertain that they are in fact synonymous - this all passes
+
+* looking at refactoring, notice my land and take off methods both violate the Single Responsibility Principle, so I create private methods to take care of adding and removing planes from the airport - I try this but it raises errors, so I put it back to how it was and resolve to learn more about that 
+
+* grouped weather-related tests into context blocks, threw a failure in an earlier test so added a stub to it making it sunny and it passed
+
+link to my github
 
 [![Ruby Style Guide](https://img.shields.io/badge/code_style-rubocop-brightgreen.svg)](https://github.com/rubocop/rubocop)

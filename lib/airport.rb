@@ -13,6 +13,7 @@ class Airport
 
   def land(plane)
     fail 'Airport full' if @planes.count >= DEFAULT_CAPACITY
+    raise 'Plane unable to land due to stormy weather' if weather == 'stormy'
     @planes << plane
     plane
   end
@@ -24,6 +25,6 @@ class Airport
   end
 
   def weather
-    rand(100) == 1 ? 'stormy' : 'sunny'
+    rand(1..100) == 1 ? 'stormy' : 'sunny'
   end
 end
