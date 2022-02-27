@@ -14,4 +14,9 @@ describe Airport do
     plane.take_off(plane, airport)
     expect(airport.aerodrome).to_not include(plane)
   end
+
+  it "does not receive a plane if it is full" do
+    Airport::DEFAULT_CAPACITY.times { plane.land(plane, airport) }
+    expect { plane.land(plane, airport) }.to raise_error("airport is full")
+  end
 end
