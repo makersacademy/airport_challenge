@@ -6,7 +6,6 @@ class Plane
 
   def land(airport)
     @flying = false if airport.receive(self)
-    !@flying
   end
 
   def flying?

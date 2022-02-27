@@ -9,7 +9,8 @@ describe Plane do
     describe "#land" do
       it "lands the plane" do
         allow(airport).to receive(:receive).and_return(true)
-        expect(subject.land(airport)).to eq true
+        subject.land(airport)
+        expect(subject.flying?).to eq false
       end
     end
 end
