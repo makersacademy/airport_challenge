@@ -10,6 +10,10 @@ class Plane
     @flying = false if airport.receive(self)
   end
 
+  def take_off(airport)
+    @flying = true if airport.release(self)
+  end
+
   def flying?
     @flying
   end

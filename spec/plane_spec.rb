@@ -4,6 +4,7 @@ describe Plane do
   let(:airport) { double("airport") }
 
     it { is_expected.to respond_to(:land).with(1).argument }
+    it { is_expected.to respond_to(:take_off).with(1).argument }
     it { is_expected.to respond_to(:flying?)}
   
     describe "#land" do
@@ -12,5 +13,16 @@ describe Plane do
         subject.land(airport)
         expect(subject.flying?).to eq false
       end
+    end
+
+    describe "#take_off" do
+      it "takes off" do
+        allow(airport).to receive(:receive).and_return(true)
+        allow(airport).to receive(:release).and_return(true)
+        subject.land(airport)
+        subject.take_off(airport)
+        expect(subject.flying?).to eq true
+      end
+
     end
 end
