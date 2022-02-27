@@ -7,6 +7,7 @@ class Plane
   end
 
   def land(airport)
+    fail "Airport is full." if airport.full?
     @flying = false if airport.receive(self)
   end
 
