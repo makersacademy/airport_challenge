@@ -37,7 +37,7 @@ class Airport
   end
 
   def at_airport(plane)
-    plane.grounded == true
+    @hangar.include?(plane)
   end
 
   def left_airport?(plane)
@@ -52,8 +52,7 @@ class Airport
 
   def take_off_check_list(plane)
     raise 'This plane has already taken off.' if left_airport?(plane)
-    raise 'This plane is not at the airport.' if at_airport(plane) == false
+    raise 'This plane is not at the airport.' unless at_airport(plane)
     raise 'Warning: stormy weather! Takeoff not allowed.' if stormy_weather?
   end
-
 end
