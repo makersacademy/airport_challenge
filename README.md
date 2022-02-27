@@ -10,6 +10,8 @@ To land plane_1 at airport_1, call plane_1.land(airport_1).
 
 For that plane to take off again, call plane_1.take_off(airport_1)
 
+The code is a mess, so I apologise to anyone reading it, but it works, and at this stage that's all I'm interested in!!!!
+
 
 ```
         ______
