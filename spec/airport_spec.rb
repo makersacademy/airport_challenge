@@ -36,9 +36,20 @@ describe Airport do
     expect { gatwick.land(plane) }.to raise_error error_message
   end
 
-  it "won't accept more than 20 planes" do
-    20.times { subject.land(Plane.new) }
-    expect { subject.land(Plane.new) }.to raise_error "Airport is at capacity"
+  it "won't accept more planes than the airport capacity" do
+    airport = Airport.new
+    airport.capacity.times { airport.land(Plane.new) }
+    expect { airport.land(Plane.new) }.to raise_error "Airport is at capacity"
+  end
+
+  it 'has a default capacity' do
+    expect(subject.capacity).to eq Airport::DEFAULT_CAPACITY
+  end
+
+  it 'uses capacity where specified' do
+    capacity = 20
+    airport = Airport.new(20)
+    expect(airport.capacity).to eq capacity
   end
 
 end

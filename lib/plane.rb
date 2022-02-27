@@ -1,5 +1,5 @@
 class Plane
-  attr_accessor :whereabouts
+  attr_reader :whereabouts
   
   def initialize
     @whereabouts = :flying
