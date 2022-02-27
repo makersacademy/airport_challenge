@@ -1,5 +1,4 @@
 require 'airport'
-require 'plane'
 
 describe Airport do
   describe "landing method" do
@@ -15,6 +14,9 @@ describe Airport do
   describe "taking off method" do
     it "should respond to the :take_off method" do
       expect(subject).to respond_to(:take_off)
+    end
+    it "should output a plane when called" do
+      expect(subject.take_off).to be_instance_of(Plane)
     end
   end
 end

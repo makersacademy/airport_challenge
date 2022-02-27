@@ -31,7 +31,10 @@ To satisfy this user story, we need to allow a plane to take off from our Airpor
 Goal: Create a :take_off method for the Airport class
 -[x] Create a test to check if Airport responds to :take_off
 -[x] Pass this test and refactor
--[ ] Create a test to check if :take_off outputs a Plane
--[ ] Pass this test and refactor
+-[x] Create a test to check if :take_off outputs a Plane
+-[x] Pass this test and refactor
+-[ ] Create a test to check if the plane has left the airport
+-[ ] pass this test and refactor
+-[ ] Perform a feature test to ensure your code is behaving correctly
 
 
