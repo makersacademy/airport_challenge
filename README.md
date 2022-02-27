@@ -6,7 +6,7 @@ Approach
 
 * Working from the user stories provided, a list of likely objects and messages was created.
 * It was decided that Airport would be the main class that others would interact with.
-* RSpec was installed to provuide a testing framework
+* RSpec was installed to provide a testing framework
 * Using Test-Driven Development, the solution was developed step-by-step in line with the user stories.
 * Feature tests were used towards the end of the process once unit tests were passing satisfactorily.
 * A Refactoring process was carried out to remove unnecessary comment code and redundant features.
