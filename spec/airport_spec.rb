@@ -11,6 +11,10 @@ describe Airport do
     end
   end
 
-  
+  describe "#release" do
+    it "returns true when plane has been released" do
+      expect(subject.release(plane)).to eq true
+    end
+  end
   
 end
