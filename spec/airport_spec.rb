@@ -25,6 +25,14 @@ describe Airport do
     expect(airport.planes_at_airport).not_to include plane
   end
 
+  it 'raises an error if plane tries to take off from an airport it is not at' do
+    plane = Plane.new
+    airport = Airport.new
+    airport.land(plane)
+    airport.takeoff(plane)
+    expect { airport.takeoff(plane) }.to raise_error "Plane is not at this airport"
+  end
+
   it "won't accept more than 20 planes" do
     20.times { subject.land(Plane.new) }
     expect { subject.land(Plane.new) }.to raise_error "Airport is at capacity"

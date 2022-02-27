@@ -14,6 +14,7 @@ class Airport
   end
 
   def takeoff(plane)
+    fail "Plane is not at this airport" if planes_at_airport.include?(plane) == false
     planes_at_airport.delete(plane)
     return "#{plane} has taken off"
   end
