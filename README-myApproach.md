@@ -53,4 +53,12 @@ Goal: Set a maximum Plane capacity of 10 Planes
 -[x] Pass this test and refactor
 -[x] perform a feature test
 
+#### Now the Fourth User Story:
 
+To satisfy this user story we need to allow for the maximum capacity of the airport to be changed when needed. But if no maximum capacity is given by the user it should have a default value of 10.
+
+Goal: Allow maximum capacity of the Hangar to changed when required and set a default of 10
+
+-[x] Create a test which sets a maximum capacity to 20 planes and test if landing 20 planes does not create an error
+-[x] pass this test
+-[x] perform a feature test

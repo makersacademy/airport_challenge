@@ -37,3 +37,15 @@ I want to prevent landing when the airport is full
 | Objects | Messages | Additional Notes |
 | --- | --- | --- |
 | airport | land_plane | should raise an error when Hangar is full (lets set a maximum capacity of 10 Planes) |
+
+
+##### User Story 4
+```
+As the system designer
+So that the software can be used for many different airports
+I would like a default airport capacity that can be overridden as appropriate
+```
+
+| Objects | Messages | Additional Notes |
+| --- | --- | --- |
+| airport | initialize | Add an argument that can be provided to set the max capacity, also have a default value incase no argument is given |

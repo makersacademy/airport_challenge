@@ -32,4 +32,10 @@ describe Airport do
       expect { subject.take_off }.to raise_error("There are no available planes")
     end
   end
+  describe "maximum capacity of the airport Hangar" do
+    it "should allow maximum capacity to be set to 20 planes and not raise an error for landing 20 planes" do
+      airport = Airport.new(20)
+      expect { 20.times { airport.land_plane } }.to_not raise_error
+    end
+  end
 end

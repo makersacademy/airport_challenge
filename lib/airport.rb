@@ -1,9 +1,9 @@
 require_relative 'plane'
 
 class Airport
-  def initialize
+  def initialize(capacity = 10)
     @hangar = []
-    @capacity = 10
+    @capacity = capacity
   end
 
   def land_plane
