@@ -21,16 +21,19 @@ class Airport
 
   def land(plane)
     land_check_list
+    plane.landed
     @hangar << plane
   end
 
-  def take_off_check_list
+  def take_off_check_list(plane)
     raise 'Warning: stormy weather! Takeoff not allowed.' if stormy_weather?
+    raise 'This plane has already taken off.' if left_airport?(plane)
   end
 
-  def take_off
-    take_off_check_list
-    @hangar.pop
+  def take_off(plane)
+    take_off_check_list(plane)
+    plane.taken_off
+    @hangar.delete(plane)
   end
 
   private
@@ -41,5 +44,9 @@ class Airport
 
   def stormy_weather?
     @weather.stormy? == :stormy
+  end
+
+  def left_airport?(plane)
+    plane.grounded == false
   end
 end

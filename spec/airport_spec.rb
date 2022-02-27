@@ -5,10 +5,9 @@ require 'weather'
 describe Airport do
 
   it { is_expected.to respond_to(:land).with(1).argument }
-  it { is_expected.to respond_to :take_off }
-  it { is_expected.to respond_to :take_off_check_list }
+  it { is_expected.to respond_to(:take_off).with(1).argument }
+  it { is_expected.to respond_to(:take_off_check_list).with(1).argument }
   it { is_expected.to respond_to :land_check_list }
-
 
   describe '#land' do
     it 'accepts a plane to land' do
@@ -35,13 +34,23 @@ describe Airport do
     it 'allows plane to take off' do
       plane = Plane.new
       allow(subject).to receive(:stormy_weather?).and_return(false)
+      allow(subject).to receive(:left_airport?).and_return(false)
       subject.land(plane)
-      expect(subject.take_off).to eq plane
+      expect(subject.take_off(plane)).to eq plane
     end
 
-    it 'prevents take off when weather is stormy' do
+    it 'prevents takeoff when weather is stormy' do
+      plane = Plane.new
       allow(subject).to receive(:stormy_weather?).and_return(true)
-      expect { subject.take_off }.to raise_error 'Warning: stormy weather! Takeoff not allowed.'
+      expect { subject.take_off(plane) }.to raise_error 'Warning: stormy weather! Takeoff not allowed.'
     end
+
+    it 'prevents takeoff if plane already took off' do
+      plane = Plane.new
+      allow(subject).to receive(:stormy_weather?).and_return(false)
+      allow(subject).to receive(:left_airport?).and_return(true)
+      expect { subject.take_off(plane) }.to raise_error 'This plane has already taken off.' 
+    end
+
   end
 end
