@@ -27,7 +27,7 @@ describe Airport do
     expect { airport.takeoff(plane) }.to raise_error "Plane is not at this airport"
   end
 
-  it 'raises an error if a plane tries to land when it is already at another airport' do
+  it 'raises an error if a plane tries to land when it is already on the ground' do
     plane = Plane.new
     heathrow = Airport.new
     gatwick = Airport.new
@@ -35,14 +35,6 @@ describe Airport do
     error_message = "Plane cannot land as it is already on the ground"
     expect { gatwick.land(plane) }.to raise_error error_message
   end
-
-  # it 'raises an error if a plane tries to land when it is already at that airport' do
-  #   plane = Plane.new
-  #   airport = Airport.new
-  #   airport.land(plane)
-  #   airport.takeoff(plane)
-  #   expect { airport.takeoff(plane) }.to raise_error "Plane is not at this airport"
-  # end
 
   it "won't accept more than 20 planes" do
     20.times { subject.land(Plane.new) }
