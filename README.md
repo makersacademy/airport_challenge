@@ -156,6 +156,8 @@ Here I chose to:
 
 * group weather-related tests into context blocks, which threw a failure in an earlier test so I added a stub to it making it sunny and this made it pass
 
+* make a private method **stormy?** for telling if weather is stormy, in order to better adhere to the Single Responsibility Principle
+
 [Jonny Abrams](https://github.com/jonnyabrams)
 
 [![Ruby Style Guide](https://img.shields.io/badge/code_style-rubocop-brightgreen.svg)](https://github.com/rubocop/rubocop)
