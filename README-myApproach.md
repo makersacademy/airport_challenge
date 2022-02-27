@@ -15,7 +15,7 @@ Now that I understand how I want my program to run, and have created my Airport 
 
 Goal: Create the :land_plane method for the Airport class
 - [x] Create a failing test to check if the airport object of class Airport responds to the method :land_plane
-- [ ] Make the above test pass - then check if you can refactor your solution
-- [ ] Next create a test to describe what kind of output :land_plane should produce - it should create a Plane instance
+- [x] Make the above test pass - then check if you can refactor your solution
+- [x] Next create a test to describe what kind of output :land_plane should produce - it should create a Plane instance
 - [ ] Make this test pass and refactor
 
