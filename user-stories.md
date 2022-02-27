@@ -25,3 +25,15 @@ I want to instruct a plane to take off from an airport and confirm that it is no
 | Objects | Messages | Additional Notes |
 | --- | --- | --- |
 | airport | take_off | should output a plane, and also need to confirm if plane has left the airport |
+
+
+##### User Story 3
+```
+As an air traffic controller 
+To ensure safety 
+I want to prevent landing when the airport is full
+```
+
+| Objects | Messages | Additional Notes |
+| --- | --- | --- |
+| airport | land_plane | should raise an error when Hangar is full (lets set a maximum capacity of 10 Planes) |

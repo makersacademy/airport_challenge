@@ -9,6 +9,9 @@ describe Airport do
     it "should return a Plane instance when :land_plane is called on an Airport" do
       expect(subject.land_plane).to be_instance_of(Plane)
     end
+    it "should raise an error when 11 planes attempt to land" do
+      expect { 11.times { subject.land_plane } }.to raise_error("The airport is full")
+    end
   end
 
   describe ":take_off method behaviour" do

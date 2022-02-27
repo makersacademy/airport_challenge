@@ -39,4 +39,18 @@ Goal: Create a :take_off method for the Airport class
 
 Review: Planes can now land, and take off. The Airport instance knows what planes are in it using an instance variable. We created a test to confirm that the plane is no longer in the airport.
 
+#### Now the Third User Story:
+
+After Creating the functional representation of the user story, perform a feature test to get an idea of any errors you want to expect and how you want to use your software as well.
+
+To satisfy this user story we need to set a maximum capacity of 10 Planes for this Airport and we should expect an error when 11 planes try to land. 
+
+Goal: Set a maximum Plane capacity of 10 Planes
+
+-[x] Describe a test which attempts to land 11 planes at an Airport instance and should expect and error to be raised.
+-[x] pass this test and rafactor your solution if needed
+-[ ] Your test should still run without errors when attempting to land up to 10 planes. Create a test for this.
+-[ ] Pass this test and refactor
+-[ ] perform a feature test
+
 
