@@ -8,7 +8,7 @@ describe Airport do
 
   it "has a customisable capacity upon initialising instance" do
     airport = Airport.new(50)
-    50.times { airport.hangar << plane}
+    50.times { airport.hangar << plane }
     expect(airport.full?).to eq true
   end
 
