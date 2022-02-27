@@ -32,6 +32,8 @@ Navigate to `http://localhost:4567/`
 
 ## My Approach
 
+**NB:** I ended this challenge more familiar with basic markdown than when I started it! Were I to do it all again, I'd quote blocks of my code to illustrate my progress rather than describe each step with just text as I have done here.
+
 The first user story was as follows:
 
 ```
@@ -86,20 +88,27 @@ Here my approach was to:
 
 * create an empty plane method in my Airport class in order to pass RSpec tests
 
-* describe my land method in a unit test, creating a new plane object inside it and expecting landing it to equal 'plane' - this failed in Rspec, returning nil instead of the new plane object, so I added 'plane' inside my land method to get it to pass (although it still returns nil in IRB)
+* describe my land method in a unit test, creating a new plane object inside it and expecting landing it to equal 'plane' - this failed in RSpec, returning nil instead of the new plane object, so I added 'plane' inside my land method to get it to pass (although it still returns nil in IRB)
 
 * return focus to my take_off method as per the user story - I got a bit sidetracked! - and write a unit test describing the take_off method, expecting it to eq a string saying 'The plane has left the airport' - this fails, getting nil, so I insert that string in the method which makes it pass RSpec and work in IRB
 
 * change the take_off message to a constant in case I wanted to change it later
+
+Third user story:
 
 ```
 As an air traffic controller 
 To ensure safety 
 I want to prevent landing when the airport is full 
 ```
-* right now in IRB I can do airport.land(Plane.new) an unlimited number of times so I make a unit test for land method landing one plane then expecting to raise error when another is landed
 
-* this RSpec fails so add fail guard to land method - still failing so I need to initialize with array and (capacity) and update my methods to act in accordance with array - still failing so I update my unit test for the land error raise to reflect new capacity, and I comment out old tests which are now throwing errors (presumably due to method changes) - it now passes RSpec and I get the Airport full RuntimeError in IRB as desired
+Here I decided to:
+
+* write a unit test for my land method, landing one plane to start with and then expecting it to raise an error when another was landed - but at this stage, as confirmed by a feature test, I could land unlimited planes - as expected, the unit test failed when running RSpec
+
+* define an initialize method containing an empty array to hold planes and a (capacity) parameter, after which I updated my methods to act in accordance with this new array - this still failed, so I updated my unit test for the land method to reflect the capacity I'd just introduced, and I commented out old tests which were now throwing errors as a result (I later figured out how to refactor them into working and commented them back in!) - it now passed RSpec and I got the desired "Airport full" RuntimeError in IRB
+
+Fourth user story:
 
 ```
 As the system designer
@@ -107,11 +116,15 @@ So that the software can be used for many different airports
 I would like a default airport capacity that can be overridden as appropriate
 ```
 
-* unit test describing initialization expecting it to raise_error when 31 planes are landed and capacity is 30 - this doesn't work - I make capacity attr_accessor and update unit test with Airport::DEFAULT_CAPACITY instead of 30 and it passes
+Here I decided to:
 
-* I now realise I've got so into it I've forgotten to commit - so I commit!
+* write a unit test describing initialization, expecting it to raise an error when 31 planes are landed with a capacity of 30 - this didn't work, so I changed an attr_accessor method for capacity and updated the unit test with Airport::DEFAULT_CAPACITY instead of a hard-coded 30 - that made it pass
 
-* Took out empty plane method and made attr_reader :planes, updated relevant test  - old take-off test I'd commented out I managed to get passing again by creating a new Airport instance in it rather than just using subject
+* commit and push, since I'd suddenly realised I'd gotten so into it I'd forgotten to do so! This is something I resolve to be more methodical about in future
+
+* take out the empty plane method and replacing it with an attr_reader, updating the relevant test in the process - I also managed to get an old take-off test I'd commented out working by creating a new Airport instance inside it rather than just using the **subject** keyword
+
+Fifth user story:
 
 ```
 As an air traffic controller 
@@ -119,11 +132,17 @@ To ensure safety
 I want to prevent takeoff when weather is stormy 
 ```
 
-IRB airport.weather naturally throws an error - do respond_to unit test then define empty method - wrote unit test allowing airport to receive stormy weather with stub (allow line) - RSpec expected exception but nothing was raised, and airport.weather in feature test returns nil
+My approach here was to:
 
-* made random number generator 1..100 with 1 as stormy, rest as sunny, refactored it from if else into ternary then added guard clause to take_off - now everything passes
+* make a respond_to unit test after airport.weather threw an error in IRB, then I defined an empty weather method when this also failed as expected
 
-* just for good measure I added a unit test expecting taking off a plane in sunny weather to eq default take off message, this passed
+* write another unit test allowing an airport to receive stormy weather (for this I used a stub with an **allow** line) - RSpec failed as it expected an exception where none was raised, and airport.weather returned nil in IRB
+
+* create a random number generator from 1 to 100 with 1 assigned to 'stormy', the rest 'sunny', and I refactored this from an if/else structure into ternary operator then added a guard clause to my take_off method - now everything passed
+
+* add, just for good measure, a unit test expecting taking off a plane in sunny weather to result in my default take-off message, which passed
+
+Sixth user story:
 
 ```
 As an air traffic controller 
@@ -131,11 +150,12 @@ To ensure safety
 I want to prevent landing when weather is stormy 
 ```
 
-repeat process above - rspec for unit test says Failure/Error - expected Exception 'Plane unable to land due to stormy weather' but nothing was raised, so I add it, this time trying out raise instead of fail to ascertain that they are in fact synonymous - this all passes
+Here I chose to:
 
-* looking at refactoring, notice my land and take off methods both violate the Single Responsibility Principle, so I create private methods to take care of adding and removing planes from the airport - I try this but it raises errors, so I put it back to how it was and resolve to learn more about that 
 
-* grouped weather-related tests into context blocks, threw a failure in an earlier test so added a stub to it making it sunny and it passed
+* more or less repeat the above process, using **raise** instead of **fail** as a guard clause just to ascertain that the two are in fact synonymous, which my results suggest they are
+
+* group weather-related tests into context blocks, which threw a failure in an earlier test so I added a stub to it making it sunny and this made it pass
 
 [Jonny Abrams](https://github.com/jonnyabrams)
 
