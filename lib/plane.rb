@@ -12,10 +12,6 @@ class Plane
     @location == "Sky"
   end
 
-  # def change_location(new_location)
-  #   @location = new_location
-  # end  
-
   def registration
     { make: @make, serial: @serial_number }
   end

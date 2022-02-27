@@ -1,5 +1,3 @@
-require 'weather'
-
 class Airport
   DEFAULT_CAPACITY = 10
   attr_reader :capacity
