@@ -2,11 +2,11 @@ require './lib/plane'
 
 describe Plane do
   
-  let(:airport) { double("airport", :receive => true, :release => true) }
+  let(:airport) { double("airport", :hangar => []) }
   let(:weather) { double("weather") }
 
   it { is_expected.to respond_to(:land).with(1).argument }
-  it { is_expected.to respond_to(:take_off) }
+  it { is_expected.to respond_to(:take_off).with(1).argument }
   it { is_expected.to respond_to(:flying?) }
   it { is_expected.to respond_to(:check_weather) }
 
@@ -21,7 +21,7 @@ describe Plane do
     it "does not land the plane when the airport is full" do
       allow(subject).to receive(:check_weather) { "Sunny" }
       allow(airport).to receive(:full?).and_return(true)
-      expect { subject.land(airport) }.to raise_error("Airport is full.")
+      expect { subject.land(airport) }.to raise_error("Airport is full")
     end
 
     it "does not land the plane when the weather is stormy" do
@@ -43,7 +43,7 @@ describe Plane do
       allow(subject).to receive(:check_weather) { "Sunny" }
       allow(airport).to receive(:full?).and_return(false)
       subject.land(airport)
-      subject.take_off
+      subject.take_off(airport)
       expect(subject.flying?).to eq true
     end
 
@@ -52,11 +52,11 @@ describe Plane do
       allow(airport).to receive(:full?).and_return(false)
       subject.land(airport)
       allow(subject).to receive(:check_weather) { "Stormy" }
-      expect { subject.take_off }.to raise_error("Unable to take off due to the weather")
+      expect { subject.take_off(airport) }.to raise_error("Unable to take off due to the weather")
     end
 
     it "does not take off when the plane is flying" do
-      expect { subject.take_off }.to raise_error("This plane is not in an airport")
+      expect { subject.take_off(airport) }.to raise_error("This plane is not in an airport")
     end
   end
 

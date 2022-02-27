@@ -2,6 +2,9 @@ class Weather
 
   WEATHER_CONDITIONS = [
     "Sunny",
+    "Sunny",
+    "Sunny",
+    "Sunny",
     "Stormy"
   ].freeze
 

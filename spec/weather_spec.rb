@@ -11,7 +11,7 @@ describe Weather do
     end
 
     it "generates a stormy weather condition" do
-      allow(subject).to receive(:rand).and_return(1)
+      allow(subject).to receive(:rand).and_return(4)
       expect(subject.conditions).to eq("Stormy")
     end
   end
