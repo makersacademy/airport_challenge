@@ -4,9 +4,6 @@ require 'weather'
 
 describe Airport do
 
-  it { is_expected.to respond_to(:land).with(1).argument }
-  it { is_expected.to respond_to(:take_off).with(1).argument }
-
   describe '#land' do
     it 'accepts a plane to land when good weather conditions' do
       plane = Plane.new
@@ -33,7 +30,6 @@ describe Airport do
       plane = Plane.new
       allow(subject).to receive(:stormy_weather?).and_return(false)
       allow(plane).to receive(:grounded).and_return(true)
-     # allow(plane).to receive(:taken_off).and_return(false)
       expect { subject.land(plane) }.to raise_error 'This plane is already at an airport.' 
     end
 
