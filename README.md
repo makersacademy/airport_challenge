@@ -13,7 +13,24 @@
 
 ```
 
-##User Stories
+Our first weekend challenge as the February 2022 cohort of Makers Academy, a 12-week development boot camp in London, was to write a basic program controlling the flow of planes at an airport. To do this, we were provided with six user stories, which I detail one at a time in [My Approach](#my-approach).
+
+## Getting started
+
+`git clone path-to-your-repo`
+`command_to_install_dependencies` (e.g. `bundle`)
+
+## Usage
+
+`command_to_start` (e.g. `rackup` or `rails s`)
+Navigate to `http://localhost:4567/`
+
+
+## Running tests
+
+`test_command` (e.g. `rspec`)
+
+## Approach
 
 ```
 As an air traffic controller 
@@ -108,6 +125,6 @@ repeat process above - rspec for unit test says Failure/Error - expected Excepti
 
 * grouped weather-related tests into context blocks, threw a failure in an earlier test so added a stub to it making it sunny and it passed
 
-link to my github
+[Jonny Abrams](https://github.com/jonnyabrams)
 
 [![Ruby Style Guide](https://img.shields.io/badge/code_style-rubocop-brightgreen.svg)](https://github.com/rubocop/rubocop)
