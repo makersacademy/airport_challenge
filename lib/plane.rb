@@ -16,7 +16,7 @@ class Plane
   end
 
   def take_off(airport)
-    fail "This plane is not in an airport" if flying?
+    fail "This plane is not at an airport" if flying?
     fail "Unable to take off due to the weather" if stormy?
     fail "This plane is not at this airport" unless plane_at?(airport)
     @flying = true
