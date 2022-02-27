@@ -22,16 +22,15 @@ describe Airport do
     expect { subject.take_off(plane) }.to raise_error 'Airport is empty'
   end
 
-  it 'should raise an error when trying to land a plane at a full airport' do
-    #assuming a capacity of 1
-    another_plane = double(:plane)
-    subject.land(plane)
-    expect { subject.land(another_plane) }.to raise_error 'Airport is full'
-  end
-
   it 'should have a default capacity' do
     # assuming a default capacity of 20
     expect(subject.capacity).to eq 20
+  end
+
+  it 'should have a default capacity that can be overwridden' do
+    airport = Airport.new(50)
+    airport.capacity.times { airport.land(plane) }
+    expect { airport.land(plane) }.to raise_error 'Airport is full'
   end
 
 end
