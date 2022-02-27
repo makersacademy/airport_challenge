@@ -1,4 +1,4 @@
-Airport Challenge
+# Airport Challenge
 =================
 
 ```
@@ -13,23 +13,19 @@ Airport Challenge
 
 ```
 
-Instructions
+This project was designed following a set of user stories relating to a functioning Airport. In this Ruby application, you are able to create a new instance of the Airport class and land instances of planes, created in the Plane class. The ability of the plane to land or take off is reliant on weather, which is usually good weather but occassionally will be stormy, which isn't safe for planes to land or take off. Weather is controlled through the Weather class which randomises the weather with an 80% chance of fair weather.
+
+## Instructions
 ---------
-
-* Feel free to use google, your notes, books, etc. but work on your own
-* If you refer to the solution of another coach or student, please put a link to that in your README
-* If you have a partial solution, **still check in a partial solution**
-* You must submit a pull request to this repo with your code by 10am Monday morning
-
-Steps
--------
 
 1. Fork this repo, and clone to your local machine
 2. Run the command `gem install bundler` (if you don't have bundler already)
 3. When the installation completes, run `bundle`
-4. Complete the following task:
+4. This application is to be run in irb
+5. To use in irb, run the command `irb -r airport.rb` from inside the `./airport-challenge/lib` directory
+6. To test the code type `rspec` from the main directory `airport-challenge`
 
-Task
+## The task that was set
 -----
 
 We have a request from a client to write the software to control the flow of planes at an airport. The planes can land and take off provided that the weather is sunny. Occasionally it may be stormy, in which case no planes can land or take off.  Here are the user stories that we worked out in collaboration with the client:
@@ -78,12 +74,4 @@ Reviewers will potentially be using this [code review rubric](docs/review.md).  
 
 **BONUS**
 
-* Write an RSpec **feature** test that lands and takes off a number of planes
-
 Note that is a practice 'tech test' of the kinds that employers use to screen developer applicants.  More detailed submission requirements/guidelines are in [CONTRIBUTING.md](CONTRIBUTING.md)
-
-Finally, don’t overcomplicate things. This task isn’t as hard as it may seem at first.
-
-* **Submit a pull request early.**
-
-* Finally, please submit a pull request before Monday at 10am with your solution or partial solution.  However much or little amount of code you wrote please please please submit a pull request before Monday at 10am.
