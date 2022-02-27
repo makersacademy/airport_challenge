@@ -27,7 +27,7 @@ describe Airport do
     expect(subject.capacity).to eq 20
   end
 
-  it 'should have a default capacity that can be overwridden' do
+  it 'should have a default capacity that can be overwritten' do
     airport = Airport.new(50)
     airport.capacity.times { airport.land(plane) }
     expect { airport.land(plane) }.to raise_error 'Airport is full'
