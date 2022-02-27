@@ -22,4 +22,11 @@ describe Airport do
     expect { subject.take_off(plane) }.to raise_error 'Airport is empty'
   end
 
+  it 'should raise an error when trying to land a plane at a full airport' do
+    #assuming a capacity of 1
+    another_plane = double(:plane)
+    subject.land(plane)
+    expect { subject.land(another_plane) }.to raise_error 'Airport is full'
+  end
+
 end
