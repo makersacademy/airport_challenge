@@ -1,13 +1,17 @@
 require 'plane'
 
 class Airport
-  attr_reader :aerodrome
+  attr_accessor :aerodrome
 
   def initialize
     @aerodrome = []
   end
-  
-  def receive_plane(plane)
+
+  def receive(plane)
     @aerodrome << plane
+  end
+
+  def release(plane)
+    @aerodrome.delete(plane)
   end
 end

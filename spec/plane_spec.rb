@@ -9,6 +9,6 @@ describe Plane do
   end
 
   it "takes off from the airport" do
-    expect { plane.take_off }.to_not raise_error
+    expect { plane.take_off(plane, airport) }.to_not raise_error
   end
 end

@@ -1,8 +1,15 @@
 class Plane
-  def land(plane, airport)
-    airport.receive_plane(plane)
+  attr_accessor :plane
+
+  def initialize
+    @plane
   end
 
-  def take_off
+  def land(plane, airport)
+    airport.receive(plane)
+  end
+
+  def take_off(plane, airport)
+    airport.release(plane)
   end
 end
