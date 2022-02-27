@@ -1,10 +1,17 @@
 require_relative 'plane'
 
 class Airport
-  def land_plane
-    Plane.new
+  def initialize
+    @hangar = []
   end
+
+  def land_plane
+    @hangar.push(Plane.new)
+    @hangar[-1]
+  end
+
   def take_off
-    Plane.new
+    raise "There are no available planes" if @hangar.empty?
+    @hangar.pop
   end
 end

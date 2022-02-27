@@ -1,7 +1,7 @@
 require 'airport'
 
 describe Airport do
-  describe "landing method" do
+  describe ":land_plane method behaviour" do
     it "should respond to the :land_plane method" do
       airport = Airport.new
       expect(airport).to respond_to(:land_plane)
@@ -11,12 +11,17 @@ describe Airport do
     end
   end
 
-  describe "taking off method" do
+  describe ":take_off method behaviour" do
     it "should respond to the :take_off method" do
       expect(subject).to respond_to(:take_off)
     end
-    it "should output a plane when called" do
-      expect(subject.take_off).to be_instance_of(Plane)
+    it "should release a plane instance after a plane has landed when it's called" do
+      airport = Airport.new
+      airport.land_plane
+      expect(airport.take_off).to be_instance_of(Plane)
+    end
+    it "should raise an error if there are no planes within the Airport" do
+      expect { subject.take_off }.to raise_error("There are no available planes")
     end
   end
 end

@@ -33,8 +33,10 @@ Goal: Create a :take_off method for the Airport class
 -[x] Pass this test and refactor
 -[x] Create a test to check if :take_off outputs a Plane
 -[x] Pass this test and refactor
--[ ] Create a test to check if the plane has left the airport
--[ ] pass this test and refactor
--[ ] Perform a feature test to ensure your code is behaving correctly
+-[x] Create a test to check if the plane has left the airport
+-[x] pass this test and refactor
+-[x] Perform a feature test to ensure your code is behaving correctly
+
+Review: Planes can now land, and take off. The Airport instance knows what planes are in it using an instance variable. We created a test to confirm that the plane is no longer in the airport.
 
 
