@@ -14,20 +14,10 @@ class Airport
     @weather = weather
   end
 
-  def land_check_list
-    raise 'Airport capacity reached. No more landing allowed.' if full?
-    raise 'Warning: stormy weather! Landing not allowed.' if stormy_weather?
-  end
-
   def land(plane)
-    land_check_list
+    land_check_list(plane)
     plane.landed
     @hangar << plane
-  end
-
-  def take_off_check_list(plane)
-    raise 'Warning: stormy weather! Takeoff not allowed.' if stormy_weather?
-    raise 'This plane has already taken off.' if left_airport?(plane)
   end
 
   def take_off(plane)
@@ -46,7 +36,23 @@ class Airport
     @weather.stormy? == :stormy
   end
 
+  def at_airport(plane)
+    plane.grounded == true
+  end
+
   def left_airport?(plane)
     plane.grounded == false
   end
+  
+  def land_check_list(plane)
+    raise 'This plane is already at the airport.' if at_airport(plane)
+    raise 'Airport capacity reached. No more landing allowed.' if full?
+    raise 'Warning: stormy weather! Landing not allowed.' if stormy_weather?
+  end
+
+  def take_off_check_list(plane)
+    raise 'This plane has already taken off.' if left_airport?(plane)
+    raise 'Warning: stormy weather! Takeoff not allowed.' if stormy_weather?
+  end
+
 end
