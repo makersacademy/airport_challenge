@@ -1,3 +1,5 @@
+require './lib/airport'
+
 class Plane
 
   def initialize
