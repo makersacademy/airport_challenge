@@ -3,7 +3,8 @@ require './lib/airport'
 describe Airport do
   let(:plane) { double("plane") }
 
-  it { is_expected.to respond_to(:receive) }
+  it { is_expected.to respond_to(:receive).with(1).argument }
+  it { is_expected.to respond_to(:release).with(1).argument }
 
   describe "#receive" do
     it "returns true when plane has been received" do
