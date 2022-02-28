@@ -1,6 +1,6 @@
 class Plane
 
-  def initialized
+  def initialize
   end
 
 end

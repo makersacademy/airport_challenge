@@ -1,5 +1,4 @@
 require_relative 'plane'
-require_relative 'weather'
 
 class Airport
 
@@ -18,7 +17,7 @@ class Airport
     elsif @planes.include?(plane)
       raise Exception.new "A plane can't land at an airport it already has landed at"
     elsif weather == "Stormy"
-      raise Exception.new "A plane can't land if the weather is stormy"
+      raise "A plane can't land if the weather is stormy"
     else
       @planes << plane
     end
@@ -28,7 +27,7 @@ class Airport
     if !@planes.include?(plane)
       raise Exception.new "This plane isn't at this airport"
     elsif weather == "Stormy"
-      raise Exception.new "A plane can't take off if the weather is stormy"
+      raise "A plane can't take off if the weather is stormy"
     else
       return @planes.pop
     end
@@ -38,14 +37,13 @@ class Airport
     return @planes
   end
 
+  def weather
+    rand() > 0.9 ? "Stormy" : "Clear"
+  end
+
   private
 
   def is_full?
     @planes.size == @default_capacity ? true : false
-  end
-
-  def weather
-    weather = Weather.new
-    weather.set_weather
   end
 end
