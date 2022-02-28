@@ -15,7 +15,12 @@ class Airport
 
   def take_off(plane)
     raise 'Airport is empty' if @planes.empty?
+    raise 'Too stormy to take off' if stormy?
     @planes.pop
+  end
+
+  def stormy?
+  
   end
 
 end
