@@ -18,15 +18,27 @@ describe Airport do
 
   it "raise error when no plane in airport" do
     plane = Plane.new
-    expect{subject.take_off}.to raise_error
+    expect{subject.takeoff}.to raise_error
   end
 
   it "check not allowed to land when airport is full" do
-    plane = Plane.new
     Airport.new
     expect do
     DEFAULT_CAPACITY.times {subject.land Plane.new}
     end.to raise_error
+  end
+
+  it "not allowed to takeoff when stormy" do
+  plane = Plane.new
+  airport = Airport.new(30, "stormy")
+  expect{Airport.takeoff}.to raise_error
+  
+  end
+
+  it "not allowed to takeoff when stormy" do
+    plane = Plane.new
+    airport = Airport.new(30, "stormy")
+    expect{Airport.land}.to raise_error
   end
 
 end
