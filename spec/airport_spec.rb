@@ -2,6 +2,8 @@ require 'airport.rb'
 
 describe Airport do
   let(:plane) { double :plane }
+  let(:good_weather) { double(:good_weather, :stormy? => false) }
+  let(:bad_weather) { double(:bad_weather, :stormy? => true) }
   
   it 'should respond to land' do
     expect(subject).to respond_to(:land)
@@ -28,9 +30,24 @@ describe Airport do
   end
 
   it 'should have a default capacity that can be overwritten' do
-    airport = Airport.new(50)
+    airport = Airport.new(50, good_weather)
     airport.capacity.times { airport.land(plane) }
     expect { airport.land(plane) }.to raise_error 'Airport is full'
+  end
+
+  context 'Weather dependant tests' do
+
+    it 'should not land in bad weather' do 
+      airport = Airport.new(10, bad_weather)
+      expect { airport.land(plane) }.to raise_error 'Weather too stormy to land'
+    end
+
+    it 'should not take off in bad weather' do
+      airport = Airport.new(10, bad_weather)
+      airport.planes << plane # manually adding a plane to the airport, as bad weather prevents landing a plane
+      expect { airport.take_off(plane) }.to raise_error 'Weather too stormy to take off'
+    end
+
   end
 
 end
