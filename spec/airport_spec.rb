@@ -61,13 +61,11 @@ describe Airport do
       end
 
       it 'prevents takeoff if plane already took off' do
-        allow(airport).to receive(:stormy_weather?).and_return(false)
         allow(airport).to receive(:left_airport?).and_return(true)
         expect { airport.take_off(plane) }.to raise_error 'This plane has already taken off.' 
       end
 
       it 'prevents takeoff if plane not at airport' do
-        allow(airport).to receive(:stormy_weather?).and_return(false)
         allow(airport).to receive(:left_airport?).and_return(false)
         allow(airport).to receive(:at_airport).and_return(false)
         expect { airport.take_off(plane) }.to raise_error 'This plane is not at this airport.'
@@ -80,7 +78,6 @@ describe Airport do
       end
 
       it 'prevents takeoff when weather is stormy' do
-        allow(airport).to receive(:stormy_weather?).and_return(true)
         allow(airport).to receive(:left_airport?).and_return(false)
         allow(airport).to receive(:at_airport).and_return(true)
         expect { airport.take_off(plane) }.to raise_error 'Warning: stormy weather! Takeoff not allowed.'
