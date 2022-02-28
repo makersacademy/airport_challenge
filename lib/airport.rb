@@ -1,4 +1,5 @@
 require_relative 'plane'
+require_relative 'weather'
 
 class Airport
   DEFAULT_CAPACITY = 30
@@ -19,7 +20,9 @@ class Airport
   end
 
   def takeoff(plane)
+    weather = Weather.new
     fail "Plane is not at this airport" if planes_at_airport.include?(plane) == false
+    fail "Plane cannot take off due to stormy weather" if weather.stormy?
     planes_at_airport.delete(plane)
     plane.change_status_to_flying
     return "#{plane} has taken off"

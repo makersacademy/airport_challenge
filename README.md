@@ -13,6 +13,11 @@ Airport Challenge
 
 ```
 
+Joe's Readme
+---------
+
+My readme is located here - https://joethornton.notion.site/Airport-challenge-Makers-27b6ec38ab104b308415ede1db283192
+
 Instructions
 ---------
 

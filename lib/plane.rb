@@ -10,6 +10,6 @@ class Plane
   end
 
   def change_status_to_flying
-    @whereabout = :flying
+    @whereabouts = :flying
   end
 end
