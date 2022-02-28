@@ -140,11 +140,11 @@ Software building process
 * Created weather_spec and started testing Weather class
 * Tested that take_off method raises error when weather is stormy
 * Tested that land method raises error when weather is stormy
-* Hedge case #1: added method to check if plane landed
-* Hedge case #2: added error message for takeoff when plane already taken off
-* Hedge case #3: added error message for landing when plane already landed at airport
-* Hedge case #4: added error message for takeoff when plane not at the airport
-* Hedge case#5: added error message for landing when plane already landed at other airport
+* Edge case #1: added method to check if plane landed
+* Edge case #2: added error message for takeoff when plane already taken off
+* Edge case #3: added error message for landing when plane already landed at airport
+* Edge case #4: added error message for takeoff when plane not at the airport
+* Edge case #5: added error message for landing when plane already landed at other airport
 * Created feature test to simulate flow of two planes to and from two different airports
 
 Technologies used
