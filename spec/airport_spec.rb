@@ -2,19 +2,27 @@ require 'airport'
 require 'plane'
 
 describe Airport do
+  let(:plane) { Plane.new('FGRH 345') }
+
   describe '#new' do
     it 'returns a new airport object' do
       expect(subject).to be_an_instance_of(Airport)
     end
 
+    OVERWRITE_CAPACITY = 50
+    subject { described_class.new(OVERWRITE_CAPACITY) }
     it 'is expected to overwrite airport defafault capacity to 20' do
-      expect(subject.capacity = 20).to eq 20
+      expect(subject.capacity).to eq OVERWRITE_CAPACITY
     end
   end
 
   describe '#stormy' do
     context 'respond to stormy?' do
       it { is_expected.to respond_to(:stormy?) }
+    end
+
+    it 'returns true or false based on the weather' do
+      expect(subject.stormy?).to be(true).or be(false)
     end
   end
 
@@ -29,7 +37,6 @@ describe Airport do
 
     context 'when the weather is stormy?' do
       it 'prevents landing' do
-        plane = Plane.new('LGT 567')
         allow(subject).to receive(:stormy?).and_return true
         expect { subject.land(plane) }.to raise_error 
       end
@@ -37,7 +44,6 @@ describe Airport do
 
     context 'if the airport is full' do
       it 'raise an exception' do
-        plane = Plane.new('BRITISH AIRWAYS')
         10.times do
           subject.land(plane)
         end
@@ -56,13 +62,11 @@ describe Airport do
     end
 
     it 'takes off and it confirms that there are 0 planes left in the airport' do
-      plane = Plane.new('RYANAIR 77')
       expect(subject.take_off(plane)).to eq nil
     end
 
     context 'when the weather is stormy?' do
       it 'prevents to takeoff' do
-        plane = Plane.new('FGH 654')
         allow(subject).to receive(:stormy?).and_return true
         expect { subject.take_off(plane) }.to raise_error
       end
