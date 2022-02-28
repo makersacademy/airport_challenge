@@ -5,4 +5,4 @@ describe Plane do
     plane = Plane.new
     expect(plane).to eq plane
   end
-end 
+end

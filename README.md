@@ -15,16 +15,14 @@ Airport Challenge
 
 My Approach to Solving this Challenge
 ---------
-Throughout this challenge, I followed the TDD approach. For each user story, I wrote a feature test to generate the error message. Then I followed up with a unit test to matched the error message from the feature test. From here, I would write the code to pass each of the unit test. Once I am satisfied that all unit tests have been passed, I proceeded to run the feature test to ensure the individual user story has been met.
+Throughout this challenge, I followed the TDD approach by testing in IRB, then writing up the unit tests. Once I am satisfied that all unit tests have been passed, I proceeded to run the feature test to ensure the individual user story has been met.
 
-Whilst I completed user stories 1 and 2 and am confident that I completed it correctly. I made attempts on the other user stories (I completed user story 3 but am unsure if I did it correctly), but was not able to complete them. 
-
-I found that I have a vague idea of how to write the code however, when it came to writing the test, it was a little more difficult. I have made attempts on writing the tests for the remaining user stories which have been commented out.
+Whilst I completed user stories 1, 2, 3 and 4, I made attempts on the remaining user stories, but was not able to complete them. 
 
 To complete the challenge, I understand that I need to do the following:
 * randomly generate the weather conditions to indicate whether the plane can land or takeoff (due to stormy conditions).
 * incorporate a method stub.
-* counter/array to push or remove the plans during landing or takeoff.
+
 
 Instructions
 ---------
