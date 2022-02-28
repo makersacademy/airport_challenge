@@ -8,9 +8,11 @@ Let's say plane_1 = Plane.New and airport_1 = Airport.new
 
 To land plane_1 at airport_1, call plane_1.land(airport_1).
 
-For that plane to take off again, call plane_1.take_off(airport_1)
+For that plane to take off again, call plane_1.take_off(airport_1).
 
-The code is a mess, so I apologise to anyone reading it, but it works, and at this stage that's all I'm interested in!!!!
+To change the capacity of airport_1, call airport_1.capacity = desired_capacity
+
+The code is a mess, so I apologise to anyone reading it. I use fails when I probably shouldn't have, and put most of the methods in Plane rather than Airport, but it works, and at this stage that's all I'm interested in!!!!
 
 
 ```
