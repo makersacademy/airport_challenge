@@ -29,10 +29,20 @@ describe Airport do
   end
 
   it "not allowed to takeoff when stormy" do
-  plane = Plane.new
-  airport = Airport.new(30, "stormy")
-  expect{Airport.takeoff}.to raise_error
-  
+    plane = Plane.new
+    airport = Airport.new(30, "stormy")
+    expect{airport.takeoff}.to raise_error
+  end
+
+  it "@plane -1 when take off" do
+    plane1 = Plane.new
+    plane2 = Plane.new
+    plane3 = Plane.new
+    airport = Airport.new
+    airport.land(plane1)
+    airport.land(plane2)
+    airport.land(plane3)
+    expect(airport.takeoff).to eq plane3
   end
 
   it "not allowed to takeoff when stormy" do
