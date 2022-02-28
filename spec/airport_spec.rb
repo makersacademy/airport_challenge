@@ -12,6 +12,12 @@ describe Airport do
     end
   end
 
+  describe '#stormy' do
+    context 'respond to stormy?' do
+      it { is_expected.to respond_to(:stormy?) }
+    end
+  end
+
   describe '#land' do
     context 'responds to the land method' do
       it { is_expected.to respond_to(:land) }
@@ -21,11 +27,21 @@ describe Airport do
       it { is_expected.to respond_to(:land).with(1).argument }
     end
 
+    context 'when the weather is stormy?' do
+      it 'prevents landing' do
+        plane = Plane.new('LGT 567')
+        allow(subject).to receive(:stormy?).and_return true
+        expect { subject.land(plane) }.to raise_error 
+      end
+    end
+
     context 'if the airport is full' do
       it 'raise an exception' do
         plane = Plane.new('BRITISH AIRWAYS')
-        10.times { subject.land(plane) }
-        expect { subject.land(plane) }.to raise_error 'Airport full!'
+        10.times do
+          subject.land(plane)
+        end
+        expect { subject.land(plane) }.to raise_error
       end
     end
   end
@@ -42,6 +58,14 @@ describe Airport do
     it 'takes off and it confirms that there are 0 planes left in the airport' do
       plane = Plane.new('RYANAIR 77')
       expect(subject.take_off(plane)).to eq nil
+    end
+
+    context 'when the weather is stormy?' do
+      it 'prevents to takeoff' do
+        plane = Plane.new('FGH 654')
+        allow(subject).to receive(:stormy?).and_return true
+        expect { subject.take_off(plane) }.to raise_error
+      end
     end
   end
 end

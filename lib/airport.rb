@@ -1,3 +1,4 @@
+require_relative 'weather'
 
 class Airport
   attr_accessor :capacity
@@ -11,16 +12,20 @@ class Airport
   end
 
   def land(plane)
-    raise Exception.new if full?
+    raise "Weather is stormy. No landing is is allowed!" if stormy?
+    raise "Capacity is at it's fullest" if full?
     return @airport_deposit << plane
   end
 
   def take_off(plane)
+    raise "Weather is stormy. No takeoff is allowed!" if stormy?
     @airport_deposit.delete(plane) if @airport_deposit.include?(plane)
   end
 
-
-  private
+  def stormy? 
+    # Return true or false
+    return @weather.stormy?
+  end
 
   def full?
     @airport_deposit.length >= @capacity
