@@ -11,5 +11,3 @@ class Weather
     POSSIBLE_WEATHER.sample
   end
 end
-
-puts Weather.new.stormy?

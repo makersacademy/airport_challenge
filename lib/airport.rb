@@ -1,3 +1,6 @@
+require './lib/plane.rb'
+require './lib/weather.rb'
+
 class Airport
   attr_reader :planes
   attr_reader :capacity
@@ -20,6 +23,10 @@ class Airport
     raise 'Airport is empty' if @planes.empty?
     raise "Weather too stormy to take off" if weather.stormy?
     @planes.pop
+  end
+
+  def planes
+    @planes
   end
 
 end
