@@ -5,3 +5,7 @@ I mainly referred to my code from the Boris Bikes challenge, which made the proc
 The biggest challenge here by far was trying to get the testing doubles and stubbing to successfully manipulate the random number generator. Even after some continued effort experimenting with different tactics, unfortunately the only way I could get the tests to pass was to have the weather exception be the first one considered in my code (so I didn't have to land a plane in my test while the weather is stormy, just to test if it could take off or not in the same weather).
 
 Aside from that, I imagine my biggest weakness is going to be the lack of refactorisation in my code. It's not always immediately apparent when I'm writing code what could be shortened/left out, so some guidance on that would be much appreciated. Thank you.
+
+To install: clone the repo and bundle install the required gems
+To run: in irb from airport_challenge directory -> 'lib/airport.rb'
+To test: cd to the airport_challenge directory and run 'rspec'
