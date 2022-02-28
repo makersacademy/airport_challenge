@@ -12,22 +12,22 @@ class Airport
   end
 
   def land_plane(plane)
-    if is_full?
+    if weather == "Stormy"
+      raise "A plane can't land if the weather is stormy"
+    elsif is_full?
       raise Exception.new "A plane can't land if the airport is full"
     elsif @planes.include?(plane)
       raise Exception.new "A plane can't land at an airport it already has landed at"
-    elsif weather == "Stormy"
-      raise "A plane can't land if the weather is stormy"
     else
       @planes << plane
     end
   end
 
   def take_off_plane(plane)
-    if !@planes.include?(plane)
-      raise Exception.new "This plane isn't at this airport"
-    elsif weather == "Stormy"
+    if weather == "Stormy"
       raise "A plane can't take off if the weather is stormy"
+    elsif !@planes.include?(plane)
+      raise Exception.new "This plane isn't at this airport"
     else
       return @planes.pop
     end
