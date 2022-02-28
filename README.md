@@ -13,21 +13,96 @@ Airport Challenge
 
 ```
 
-Instructions
+Walkthrough
 ---------
 
-* Feel free to use google, your notes, books, etc. but work on your own
-* If you refer to the solution of another coach or student, please put a link to that in your README
-* If you have a partial solution, **still check in a partial solution**
-* You must submit a pull request to this repo with your code by 10am Monday morning
+I have provided a walkthrough of the steps taken to complete this challenge, my thought processes, the challenges faced and my overall takeaways. Please [take a look](https://github.com/adamwoodcock98/MakersPortfolio/blob/main/Evidence/Airport%20Challenge.md) at this md file if you are interested.
 
-Steps
+Getting started
 -------
 
 1. Fork this repo, and clone to your local machine
 2. Run the command `gem install bundler` (if you don't have bundler already)
 3. When the installation completes, run `bundle`
-4. Complete the following task:
+
+Instructions
+---------
+
+### Creating a new airport
+
+To instantiate a new airport object, navigate to the project directory and start a new IRB requiring the `airport.rb` file:
+```bash
+adamwoodcock@Adams-MacBook-Pro airport_challenge % irb -r ./lib/airport.rb
+3.0.2 :001 > airport = Airport.new
+ => #<Airport:0x00007fb16e847e08 @capacity=20, @planes=[], @weather=#<Weather:0x00007fb16e847d40>> 
+```
+This creates a new airport object, initialising with a default capacity of 20 planes and a weather object. You can pass a custom weather object into this argument, though this is not necessary, nor will it provide additional functionality. See testing for mocked extreme weather examples.
+
+### Landing a plane
+
+To land a plane at an airport, you will need to create a plane object.
+```bash
+adamwoodcock@Adams-MacBook-Pro airport_challenge % irb -r ./lib/airport.rb
+3.0.2 :001 > plane = Plane.new
+ => #<Plane:0x00007ff2a617e5a8> 
+3.0.2 :002 > airport = Airport.new
+ => #<Airport:0x00007ff2a61bdff0 @capacity=20, @planes=[], @weather=#<Weather:0x00007ff2a61bdf28>> 
+3.0.2 :003 > airport.land(plane)
+ => [#<Plane:0x00007ff2a617e5a8>] 
+```
+
+#### Viewing stored planes
+You can use the `planes` getter methods to view the planes currently stored at the airport.
+```bash
+adamwoodcock@Adams-MacBook-Pro airport_challenge % irb -r ./lib/airport.rb
+3.0.2 :001 > airport = Airport.new
+ => #<Airport:0x00007fdfe90cd430 @capacity=20, @planes=[], @weather=#<Weather:0x00007fdfe90cd318>> 
+3.0.2 :002 > 3.times { airport.land(Plane.new) }
+ => 3 
+3.0.2 :003 > airport.planes
+ => [#<Plane:0x00007fdfe9845230>, #<Plane:0x00007fdfe9844718>, #<Plane:0x00007fdfe9844628>] 
+```
+
+### Instructing planes to take off
+
+You can use the `take_off` method to instruct planes to leave the airport
+```bash
+adamwoodcock@Adams-MacBook-Pro airport_challenge % irb -r ./lib/airport.rb
+3.0.2 :001 > plane = Plane.new
+ => #<Plane:0x00007f8338876528> 
+3.0.2 :002 > airport = Airport.new
+ => #<Airport:0x00007f833517f948 @capacity=20, @planes=[], @weather=#<Weather:0x00007f833517f880>> 
+3.0.2 :003 > airport.land(plane)
+ => [#<Plane:0x00007f8338876528>] 
+3.0.2 :004 > airport.take_off(plane)
+ => #<Plane:0x00007f8338876528> 
+3.0.2 :005 > airport.planes
+ => [] 
+```
+
+Testing
+-------
+
+The program contains a series of tests using Rspec (this library should be installed if the steps above were followed)
+
+To run all tests across all class files, do the following:
+
+```bash
+cd Navigate/to/project/directory
+
+rspec
+```
+
+To run tests for a specific class file, do the following:
+
+```bash
+cd Navigate/to/project/directory
+
+rspec spec/airport_spec.rb
+# or
+rspec spec/weather_spec.rb
+```
+> Weather dependant tests mocks the behaviour of storms to ensure the planes do not land or take off in these conditions.
 
 Task
 -----
@@ -61,29 +136,3 @@ I want to prevent landing when weather is stormy
 ```
 
 Your task is to test drive the creation of a set of classes/modules to satisfy all the above user stories. You will need to use a random number generator to set the weather (it is normally sunny but on rare occasions it may be stormy). In your tests, you'll need to use a stub to override random weather to ensure consistent test behaviour.
-
-Your code should defend against [edge cases](http://programmers.stackexchange.com/questions/125587/what-are-the-difference-between-an-edge-case-a-corner-case-a-base-case-and-a-b) such as inconsistent states of the system ensuring that planes can only take off from airports they are in; planes that are already flying cannot take off and/or be in an airport; planes that are landed cannot land again and must be in an airport, etc.
-
-For overriding random weather behaviour, please read the documentation to learn how to use test doubles: https://www.relishapp.com/rspec/rspec-mocks/docs . There’s an example of using a test double to test a die that’s relevant to testing random weather in the test.
-
-Please create separate files for every class, module and test suite.
-
-In code review we'll be hoping to see:
-
-* All tests passing
-* High [Test coverage](https://github.com/makersacademy/course/blob/main/pills/test_coverage.md) (>95% is good)
-* The code is elegant: every class has a clear responsibility, methods are short etc. 
-
-Reviewers will potentially be using this [code review rubric](docs/review.md).  Referring to this rubric in advance will make the challenge somewhat easier.  You should be the judge of how much challenge you want this at this moment.
-
-**BONUS**
-
-* Write an RSpec **feature** test that lands and takes off a number of planes
-
-Note that is a practice 'tech test' of the kinds that employers use to screen developer applicants.  More detailed submission requirements/guidelines are in [CONTRIBUTING.md](CONTRIBUTING.md)
-
-Finally, don’t overcomplicate things. This task isn’t as hard as it may seem at first.
-
-* **Submit a pull request early.**
-
-* Finally, please submit a pull request before Monday at 10am with your solution or partial solution.  However much or little amount of code you wrote please please please submit a pull request before Monday at 10am.
