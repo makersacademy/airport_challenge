@@ -1,7 +1,7 @@
 require 'plane'
 
 describe Plane do
-  let(:plane) { Plane.new("Boeing", 25_817) }
+  subject(:plane) { Plane.new("Boeing", 25_817) }
 
   it 'reports whether it is airborne' do
     plane.location = ("Sky")

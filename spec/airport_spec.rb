@@ -1,8 +1,8 @@
 require 'airport'
 
 describe Airport do
+  subject(:airport) { described_class.new("Heathrow") }
   let(:serial_number) { 25_817 }
-  let(:airport) { Airport.new("Heathrow") }
   let(:plane) { instance_double("Plane", :serial_number => serial_number) }
   let(:weather) { instance_double(Weather, :weather_report => "Sunny") }
 
@@ -30,17 +30,19 @@ describe Airport do
     end
 
     it 'prevents planes landing when the airport is full' do
+      one_too_many = Airport::DEFAULT_CAPACITY + 1
       expect do
-        (Airport::DEFAULT_CAPACITY + 1).times { airport.land(plane) }
+        one_too_many.times { airport.land(plane) }
       end.to raise_error 'Airport is full'
     end
 
-    it 'prevents planes from landing when weather is stormy' do
-      allow(weather).to receive(:weather_report).and_return("Stormy")
-      airport.update_weather(weather)
-      expect do
-        airport.land(plane)
-      end.to raise_error 'Cannot land during stormy weather'
+    context 'when weather is stormy' do
+      it 'prevents planes from landing' do
+        allow(weather).to receive(:weather_report).and_return("Stormy")
+        airport.update_weather(weather)
+        error = 'Cannot land during stormy weather'
+        expect { airport.land(plane) }.to raise_error error
+      end
     end
   end
 
@@ -69,13 +71,15 @@ describe Airport do
       end.to raise_error 'Plane not found at this airport'
     end
 
-    it 'prevents planes from taking off when weather is stormy' do
-      airport.land(plane)
-      allow(weather).to receive(:weather_report).and_return("Stormy")
-      airport.update_weather(weather)
-      expect do
-        airport.take_off(serial_number)
-      end.to raise_error 'Cannot take off during stormy weather'
+    context 'when weather is stormy' do
+      it 'prevents planes from taking off' do
+        airport.land(plane)
+        allow(weather).to receive(:weather_report).and_return("Stormy")
+        airport.update_weather(weather)
+        expect do
+          airport.take_off(serial_number)
+        end.to raise_error 'Cannot take off during stormy weather'
+      end
     end
   end
 end
