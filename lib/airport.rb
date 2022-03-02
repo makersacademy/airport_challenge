@@ -13,7 +13,7 @@ class Airport
   end
 
   def stormy?
-    if rand(10) > 7
+    if Weather.new
       puts "It's stormy. You can not land or take off."
       return true
     else 

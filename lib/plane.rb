@@ -1,7 +1,8 @@
 require_relative 'airport'
+require 'weather'
 
 class Plane
-  
+
   def initialize
     @status = "Airborne"
   end

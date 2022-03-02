@@ -24,7 +24,8 @@ describe Plane do
     it 'does not allow a plane to land when stormy' do
       plane_1 = Plane.new
       airport_1 = Airport.new
-      allow(airport_1).to receive(:stormy?) { true }
+      weather = double("Weather", initialize: true)
+      # allow(airport_1).to receive(:stormy?) { true }
       expect(plane_1.land(airport_1)).to eq "Could not land" 
     end
 
