@@ -11,9 +11,12 @@ describe Airport do
 
     OVERWRITE_CAPACITY = 50
     subject { described_class.new(OVERWRITE_CAPACITY) }
-    it 'is expected to overwrite airport defafault capacity to 20' do
+    it 'is expected to overwrite airport defafault capacity' do
       expect(subject.capacity).to eq OVERWRITE_CAPACITY
     end
+    # it 'can overwrite airport defafault capacity'  do # if use attr_accessor :capacity
+    #   expect(subject.capacity = Airport::DEFAULT_CAPACITY + 1).to be > Airport::DEFAULT_CAPACITY
+    # end
   end
 
   describe '#stormy' do
@@ -44,10 +47,9 @@ describe Airport do
 
     context 'if the airport is full' do
       it 'raise an exception' do
-        10.times do
-          subject.land(plane)
-        end
-        expect { subject.land(plane) }.to raise_error
+        message = 'Airport full!'
+        Airport::DEFAULT_CAPACITY.times { subject.land(plane) }
+        expect { subject.land(plane) }.to raise_error message
       end
     end
   end

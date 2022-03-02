@@ -13,7 +13,7 @@ class Airport
 
   def land(plane)
     raise "Weather is stormy. No landing is is allowed!" if stormy?
-    raise "Capacity is at it's fullest" if full?
+    raise "Airport full!" if full?
     return @airport_deposit << plane
   end
 
@@ -26,6 +26,8 @@ class Airport
     # Return true or false
     return @weather.stormy?
   end
+
+  private
 
   def full?
     @airport_deposit.length >= @capacity
