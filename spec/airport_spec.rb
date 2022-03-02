@@ -2,7 +2,7 @@ require 'airport'
 require 'plane'
 
 describe Airport do
-  let(:plane) { Plane.new('FGRH 345') }
+  let(:plane) { Plane.new }
 
   describe '#new' do
     it 'returns a new airport object' do
@@ -14,9 +14,6 @@ describe Airport do
     it 'is expected to overwrite airport defafault capacity' do
       expect(subject.capacity).to eq OVERWRITE_CAPACITY
     end
-    # it 'can overwrite airport defafault capacity'  do # if use attr_accessor :capacity
-    #   expect(subject.capacity = Airport::DEFAULT_CAPACITY + 1).to be > Airport::DEFAULT_CAPACITY
-    # end
   end
 
   describe '#stormy' do
@@ -40,8 +37,9 @@ describe Airport do
 
     context 'when the weather is stormy?' do
       it 'prevents landing' do
+        message = "Weather is stormy. No landing is allowed!"
         allow(subject).to receive(:stormy?).and_return true
-        expect { subject.land(plane) }.to raise_error 
+        expect { subject.land(plane) }.to raise_error message
       end
     end
 
