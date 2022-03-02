@@ -13,19 +13,22 @@
 
 ```
 
-Instructions
+Instructions on how to run the program
 ---------
-
-Steps
--------
 
 1. Fork this repo, and clone to your local machine
 2. Run the command `gem install bundler` (if you don't have bundler already)
 3. When the installation completes, run `bundle`
-4. Complete the following task:
 
-Task
------
+Run the program using the following commands :
+
+```shell
+irb -r './lib/airport.rb'
+irb -r './lib/plane.rb'
+irb -r './lib/weather.rb'
+```
+
+### User stories
 
 We have a request from a client to write the software to control the flow of planes at an airport. The planes can land and take off provided that the weather is sunny. Occasionally it may be stormy, in which case no planes can land or take off.  Here are the user stories that we worked out in collaboration with the client:
 
@@ -55,7 +58,8 @@ To ensure safety
 I want to prevent landing when weather is stormy 
 ```
 
+### Technologies
 
-**BONUS**
-
-* Write an RSpec **feature** test that lands and takes off a number of planes
+- Ruby
+- Rubocop (source code analysis tool - linter)
+- Simpleov (code coverage analysis tool)

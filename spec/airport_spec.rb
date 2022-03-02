@@ -1,6 +1,7 @@
 require 'airport'
 require 'plane'
 
+OVERWRITE_CAPACITY = 50
 describe Airport do
   let(:plane) { Plane.new }
 
@@ -9,7 +10,6 @@ describe Airport do
       expect(subject).to be_an_instance_of(Airport)
     end
 
-    OVERWRITE_CAPACITY = 50
     subject { described_class.new(OVERWRITE_CAPACITY) }
     it 'is expected to overwrite airport defafault capacity' do
       expect(subject.capacity).to eq OVERWRITE_CAPACITY
