@@ -1,5 +1,6 @@
 class Plane
-  
+  attr_reader :on_ground
+
   def initialize
     @on_ground = false
   end

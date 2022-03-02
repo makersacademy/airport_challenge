@@ -16,16 +16,6 @@ describe Airport do
     end
   end
 
-  describe '#stormy' do
-    context 'respond to stormy?' do
-      it { is_expected.to respond_to(:stormy?) }
-    end
-
-    it 'returns true or false based on the weather' do
-      expect(subject.stormy?).to be(true).or be(false)
-    end
-  end
-
   describe '#land' do
     context 'responds to the land method' do
       it { is_expected.to respond_to(:land) }
@@ -35,20 +25,33 @@ describe Airport do
       it { is_expected.to respond_to(:land).with(1).argument }
     end
 
-    context 'when the weather is stormy?' do
-      it 'prevents landing' do
-        message = "Weather is stormy. No landing is allowed!"
-        allow(subject).to receive(:stormy?).and_return true
-        expect { subject.land(plane) }.to raise_error message
-      end
+    it 'instructs plane to land' do
+      allow(subject).to receive(:stormy?).and_return(false)
+      subject.land(plane)
+      expect(subject.hangar_planes).to eq [plane]
     end
 
-    context 'if the airport is full' do
-      it 'raise an exception' do
-        message = 'Airport full!'
-        Airport::DEFAULT_CAPACITY.times { subject.land(plane) }
-        expect { subject.land(plane) }.to raise_error message
-      end
+    it 'has the plane after landing' do
+      allow(plane).to receive(:land)
+      subject.land(plane)
+      expect(subject.land(plane)).to include plane
+    end
+
+    it 'raise and error and prevent landing when the weather is stormy' do
+      allow(subject).to receive(:stormy?).and_return true
+      message = "Weather is stormy. No landing is allowed!"
+      expect { subject.land(plane) }.to raise_error message
+    end
+
+    it 'does not raise an error when the storm is cleared' do
+      allow(subject).to receive(:stormy?).and_return(false)
+      expect { subject.land(plane) }.to_not raise_error
+    end
+
+    it 'raise an exception when the airport is full' do
+      Airport::DEFAULT_CAPACITY.times { subject.land(plane) }
+      message = 'Airport full! No landing permitted.'
+      expect { subject.land(plane) }.to raise_error message
     end
   end
 
@@ -61,15 +64,26 @@ describe Airport do
       it { is_expected.to respond_to(:take_off).with(1).argument }
     end
 
-    it 'takes off and it confirms that there are 0 planes left in the airport' do
+    it 'takes off and it confirms the plane is not in the airport' do
+      allow(plane).to receive(:takeoff)
       expect(subject.take_off(plane)).to eq nil
     end
 
-    context 'when the weather is stormy?' do
-      it 'prevents to takeoff' do
-        allow(subject).to receive(:stormy?).and_return true
-        expect { subject.take_off(plane) }.to raise_error
-      end
+    it 'prevents to takeoff when weather is stormy?' do
+      allow(subject).to receive(:stormy?).and_return true
+      message = "Weather is stormy. No takeoff is allowed!"
+      expect { subject.take_off(plane) }.to raise_error message
     end
   end
+
+  describe '#stormy' do
+    context 'respond to stormy?' do
+      it { is_expected.to respond_to(:stormy?) }
+    end
+
+    it 'returns true or false based on the weather' do
+      expect(subject.stormy?).to be(true).or be(false)
+    end
+  end
+
 end
