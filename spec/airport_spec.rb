@@ -30,13 +30,14 @@ describe Airport do
     it 'plane to take off from an airport and confirm that it is no longer in the airport' do
       subject.land_plane(plane)
       allow(plane).to receive(:grounded?).and_return(true)
-      expect(subject.take_off(plane)).to eql('Plane left the airport')
+      expect(subject.take_off(plane)).to eq(plane)
       expect(subject.planes).to eq([])
     end 
 
     it 'plane unable to land when airport capacity is full' do
-      10.times { subject.land_plane(plane) }
-      expect { subject.land_plane(plane) }.to raise_error 'Airport at full capacity'
+      airport = Airport.new(1)
+      airport.land_plane(plane)
+      expect { airport.land_plane(plane2) }.to raise_error 'Airport at full capacity'
     end
 
     it 'Plane unable to take off if already in the air' do
@@ -89,11 +90,6 @@ describe Airport do
       expect { subject.take_off(plane) }.to raise_error 'Weather conditions are not favourable for taking off'
     end
 
-    it 'Airport to take argument of 5 and return capacity of 5' do
-      airport = Airport.new(5)
-      land_5_planes = 5.times{airport.land_plane(plane)}
-      expect{airport.land_plane(plane)}.to raise_error 'Airport at full capacity'
-    end    
   end
 
 
