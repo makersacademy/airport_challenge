@@ -1,6 +1,7 @@
 require_relative '../lib/airport'
 
 describe Airport do 
+let(:plane) {double :plane}
 
 # As an air traffic controller 
 # So I can get passengers to a destination 
@@ -13,7 +14,6 @@ describe Airport do
 # To ensure safety 
 # I want to prevent landing when the airport is full 
     it "raises error when landing plane in full airport" do
-      plane = Plane.new
       allow_any_instance_of(Weather).to receive(:stormy?).and_return(false)
       10.times do
         subject.land(plane)
@@ -25,7 +25,6 @@ describe Airport do
 # To ensure safety 
 # I want to prevent landing when weather is stormy 
     it "prevents landing when weather is stormy" do
-      plane = Plane.new
       allow_any_instance_of(Weather).to receive(:stormy?).and_return(true)
       expect { subject.land(plane) }.to raise_error "Cannot land plane due to stormy weather" 
     end 
@@ -36,7 +35,6 @@ describe Airport do
 # I want to instruct a plane to take off from an airport and confirm that it is no longer in the airport
   describe "#takeoff" do
     it "instructs plane to take off" do
-      plane = Plane.new
       allow_any_instance_of(Weather).to receive(:stormy?).and_return(false)
       expect(subject.takeoff(plane)).to eq("Plane has taken off")
     end
@@ -45,12 +43,11 @@ describe Airport do
 # To ensure safety 
 # I want to prevent takeoff when weather is stormy 
     it "prevents takeoff when weather is stormy" do
-      plane = Plane.new
       allow_any_instance_of(Weather).to receive(:stormy?).and_return(true)
       expect { subject.takeoff(plane) }.to raise_error "Cannot takeoff plane due to stormy weather" 
     end 
   end
-  
+
 # As the system designer
 # So that the software can be used for many different airports
 # I would like a default airport capacity that can be overridden as appropriate
