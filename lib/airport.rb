@@ -1,3 +1,6 @@
+require_relative 'weather'
+require_relative 'plane'
+
 class Airport
   DEFAULT_CAPACITY = 10
   attr_reader :capacity
@@ -8,7 +11,7 @@ class Airport
   end 
 
   def land(plane)
-    raise "Cannot land plane. Airport is full" if @planes.count >= capacity
+    raise "Cannot land plane. Airport is full" if @planes.count >= capacity 
     raise "Cannot land plane due to stormy weather" if Weather.new.stormy?
     @planes << plane
   end

@@ -1,11 +1,16 @@
 class Weather
+  attr_reader :stormy, :conditions
+  # CONDITION = ["stormy", "sunny", "stormy"]
+
+  # def initialize
+  #   @stormy = false
+  # end 
 
   def conditions
-    conditions = ["stormy", "rainy", "sunny", "cloudy"]
-    conditions.sample
+    ["stormy", "sunny", "sunny", "sunny"].sample
   end 
-
+  
   def stormy?
-    true if conditions == "stormy"
+    conditions == "stormy"
   end
 end
