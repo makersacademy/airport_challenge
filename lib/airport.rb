@@ -12,7 +12,7 @@ class Airport
 
   def land_plane(plane)
     raise 'Airport at full capacity' if @planes.count >= @capacity
-    raise 'The plane is in the airport already' if plane.grounded?
+    raise 'The plane is in an airport already' if plane.grounded?
     raise 'Weather conditions are not favourable for landing' if @weather.stormy?
     plane.grounded = true
     @planes << plane
