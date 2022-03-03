@@ -13,16 +13,11 @@ Airport Challenge
 
 ```
 
-My Approach to Solving this Challenge
+Installation
 ---------
-Throughout this challenge, I followed the TDD approach by testing in IRB, then writing up the unit tests. Once I am satisfied that all unit tests have been passed, I proceeded to run the feature test to ensure the individual user story has been met.
-
-Whilst I completed user stories 1, 2, 3 and 4, I made attempts on the remaining user stories, but was not able to complete them. 
-
-To complete the challenge, I understand that I need to do the following:
-* randomly generate the weather conditions to indicate whether the plane can land or takeoff (due to stormy conditions).
-* incorporate a method stub.
-
+1. Fork this repo, and clone to your local machine
+2. Run the command `gem install bundler` (if you don't have bundler already)
+3. When the installation completes, run `bundle`
 
 Instructions
 ---------
@@ -56,3 +51,7 @@ I want to prevent landing when weather is stormy
 ```
 
 Your task is to test drive the creation of a set of classes/modules to satisfy all the above user stories. You will need to use a random number generator to set the weather (it is normally sunny but on rare occasions it may be stormy). In your tests, you'll need to use a stub to override random weather to ensure consistent test behaviour.
+
+My Approach to Solving this Challenge
+---------
+Throughout this challenge, I followed the TDD approach by testing in IRB, then writing up the unit tests. Once I am satisfied that all unit tests have been passed, I proceeded to run the feature test to ensure the individual user story has been met. The use of mocking and doubles across various classes have been used within thie challenge.
