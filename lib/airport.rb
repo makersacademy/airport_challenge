@@ -1,36 +1,42 @@
-require_relative 'plane'
+require 'plane'
+require 'weather'
 
 class Airport
-  DEFAULT_TAKE_OFF_MESSAGE = 'The plane has left the airport'.freeze
   DEFAULT_CAPACITY = 20
-  attr_accessor :capacity
-  attr_reader :planes
+  TAKE_OFF_MESSAGE = 'Plane has left the airport'
+  STORMY_LAND_MESSAGE = 'Plane unable to land due to stormy weather'
+  STORMY_TAKE_OFF_MESSAGE = 'Plane unable to take off due to stormy weather'
+  LANDING_ERROR_MESSAGE = 'Plane already in airport'
+  TAKE_OFF_ERROR_MESSAGE = 'Plane already took off'
 
-  def initialize(capacity = DEFAULT_CAPACITY)
+  def initialize(capacity = DEFAULT_CAPACITY, weather: Weather.new)
+    @hangar = []
     @capacity = capacity
-    @planes = []
+    @weather = weather
+  end
+
+  def hangar
+    @hangar
   end
 
   def land(plane)
-    fail 'Airport full' if @planes.count >= DEFAULT_CAPACITY
-    raise 'Plane unable to land due to stormy weather' if stormy?
-    @planes << plane
-    plane
+    raise 'Hangar full' if @hangar.count == DEFAULT_CAPACITY
+    raise LANDING_ERROR_MESSAGE if plane.landed? == true
+    raise STORMY_LAND_MESSAGE if stormy?
+    @hangar << plane
   end
 
   def take_off(plane)
-    fail 'Plane unable to take off due to stormy weather' if stormy?
-    @planes.delete(plane)
-    DEFAULT_TAKE_OFF_MESSAGE
+    raise STORMY_TAKE_OFF_MESSAGE if stormy?
+    raise TAKE_OFF_ERROR_MESSAGE if plane.landed? == false
+    @hangar.delete(plane)
+    TAKE_OFF_MESSAGE
   end
-
-  def weather
-    rand(1..100) == 1 ? 'stormy' : 'sunny'
-  end
-
+  
   private
 
   def stormy?
-    weather == 'stormy'
+    @weather == 'stormy'
   end
+
 end

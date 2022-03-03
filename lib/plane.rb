@@ -1,5 +1,9 @@
-require_relative 'airport'
+class Plane
+  def initialize
+    @landed = false
+  end
 
-class Plane 
-
+  def landed?
+    @landed = true
+  end
 end
