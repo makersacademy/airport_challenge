@@ -69,4 +69,4 @@ I want to prevent landing when weather is stormy
 
 - Ruby
 - Rubocop (source code analysis tool - linter)
-- Simpleov (code coverage analysis tool)
+- Simplecov (code coverage analysis tool)
