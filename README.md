@@ -17,7 +17,7 @@ Description
 ---------
 
 The aim of this challenge is to build a software that controls the flow of planes at an airport. 
-Planes can take off and land when the weather is not stormy and when the aiport capacity allows it.
+Planes can take off and land when the weather is not stormy and when the airport capacity allows it.
 
 Instructions to run the program
 -------
