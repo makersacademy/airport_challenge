@@ -5,7 +5,6 @@ require 'plane'
 describe Airport do
 
   it 'should respond to land plane' do
-
     expect(subject).to respond_to(:land)
   end
 

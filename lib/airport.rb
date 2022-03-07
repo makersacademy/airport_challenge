@@ -5,7 +5,7 @@ class Airport
 
   def initialize(capacity = 10)
     plane = Plane.new
-    @hangar = [plane]
+    @hangar = []
     @capacity = capacity
   end
 
