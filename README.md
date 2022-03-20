@@ -19,7 +19,7 @@ Instructions
 * Feel free to use google, your notes, books, etc. but work on your own
 * If you refer to the solution of another coach or student, please put a link to that in your README
 * If you have a partial solution, **still check in a partial solution**
-* You must submit a pull request to this repo with your code by 9am Monday morning
+* You must submit a pull request to this repo with your code by 10am Monday morning
 
 Steps
 -------
@@ -86,4 +86,4 @@ Finally, don’t overcomplicate things. This task isn’t as hard as it may seem
 
 * **Submit a pull request early.**
 
-* Finally, please submit a pull request before Monday at 9am with your solution or partial solution.  However much or little amount of code you wrote please please please submit a pull request before Monday at 9am.
+* Finally, please submit a pull request before Monday at 10am with your solution or partial solution.  However much or little amount of code you wrote please please please submit a pull request before Monday at 10am.
