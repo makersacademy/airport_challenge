@@ -9,14 +9,14 @@ class Airport
   def initialize(capacity = DEFAULT_CAPACITY)
     @capacity = capacity
     @planes = []
-    weather = Weather.new
+    @weather = Weather.new
   end
 
   def land(plane)
     "Plane landed at airport"
   end
   def take_off(plane)
-    raise "It is too stormy to fly" if weather.stormy?
+    raise "It is too stormy to fly" if @weather.stormy?
     "Plane has taken off from airport"
   end
 end

@@ -21,7 +21,7 @@ describe Airport do
     expect(airport50.capacity).to eq 50
   end
   it "prevents take off when weather is stormy" do
-    allow(weather).to receive(:stormy).and_return true
-    expect { airport.take_off(plane)}.to raise_error("It is too stormy to fly")
+    allow(weather).to receive(:stormy?).and_return true
+    expect { airport.take_off(plane) }.to raise_error("It is too stormy to fly")
   end
 end
