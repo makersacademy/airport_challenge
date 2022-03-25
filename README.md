@@ -49,7 +49,6 @@ I want to prevent landing when weather is stormy
 
 |  Objects              |  Methods          |
 | --------------------- | ----------------- | 
-| Air Traffic Controller| instruct_plane    |
 | Plane                 | land              |
 | Plane                 | take_off          |
 | Airport               | full?             |
