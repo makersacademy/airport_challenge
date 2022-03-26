@@ -22,6 +22,7 @@ describe Airport do
   describe '#take_off' do
     it 'Should let plane take off and confirm it is no longer in the airport' do
       plane = double(:in_flight => false)
+      subject.land(plane)
       subject.take_off(plane)
       expect(subject.planes.count).to eq 0
     end
