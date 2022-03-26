@@ -40,7 +40,7 @@ describe Airport do
 
   it 'Should have a default capacity that can be overwritten as appropriate' do
     airport = Airport.new(50)
-    expect(subject.capacity).to eq 50
+    expect(airport.capacity).to eq 50
   end
   
 end
