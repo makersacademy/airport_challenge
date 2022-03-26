@@ -3,8 +3,8 @@ require_relative '../lib/airport.rb'
 describe Airport do
 
   let(:plane)  { double  :plane }
-  let(:plane2) { double :plane }
-  let(:plane3) { double :plane }
+  let(:plane2)  { double  :plane }
+  
 
   it "is an instance of airport" do
     expect(subject).to be_an_instance_of(Airport)
@@ -22,6 +22,10 @@ describe Airport do
     expect(subject).to respond_to(:full?)
   end
 
+  it "can receive the stormy? command" do
+    expect(subject).to respond_to(:stormy?)
+  end
+
   it "should be possible to declare the capacity of the airport" do
     a = Airport.new(100)
     expect(a.capacity).to eq 100
@@ -33,7 +37,20 @@ describe Airport do
     expect{ a.land(plane) }.to raise_error("The airport is already full")
   end
 
-  describe "after a single plane has been instructed to land when capacity has not yet been reached" do
+
+  it "will successfully land planes when not stormy" do
+  end
+
+  it "will successfully take off planes when not stormy" do
+  end
+
+  it "will not land planes when stormy" do
+  end
+
+  it "will not take off planes when stormy" do
+  end
+
+  describe "after an instance of Plane has been instructed to land when capacity has not yet been reached" do
     before do
       subject.land(plane)
     end
@@ -50,7 +67,7 @@ describe Airport do
       expect(subject.land(plane)).to eq "That plane is already in the airport"
     end
 
-    describe "after that plane has been instructed to take off again" do
+    describe "after that instance of Plane has been instructed to take off again" do
       before do
         subject.take_off(plane)
       end
