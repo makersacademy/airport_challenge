@@ -2,18 +2,39 @@ require_relative 'plane'
 
 class Airport
   attr_reader :planes
+  attr_reader :capacity
+  DEFAULT_CAPACITY = 50
 
-  def initialize
+  def initialize(capacity = DEFAULT_CAPACITY)
     @planes = []
+    @capacity = capacity
   end
 
   def land(plane)
-    @planes.push(plane)
+    fail "The airport is already full" if full?
+    if @planes.include? plane
+      "That plane is already in the airport" 
+    else
+      @planes.push(plane)
+      "#{plane} has successfully landed."
+    end
   end
 
   def take_off(plane)
-    @planes.delete(plane)
-    "#{plane} has successfully departed." unless @planes.include? plane
+    if @planes.include? plane
+      @planes.delete(plane) 
+      "#{plane} has successfully departed."
+    else 
+      "That plane is not in the airport"
+    end
+  end
+
+  def full?
+    if @planes.length >= @capacity
+      true
+    else
+      false
+    end
   end
 
 end

@@ -59,9 +59,20 @@ As an air traffic controller
 To ensure safety 
 I want to prevent landing when the airport is full 
 
+|  Objects        |  Messages      |
+| ----------      | -------------  | 
+| Air Traffic Controller  |                |
+| Plane           |     |
+| Airport   |  land, full    |
+
 As the system designer
 So that the software can be used for many different airports
 I would like a default airport capacity that can be overridden as appropriate
+
+|  Objects        |  Messages      |
+| ----------      | -------------  | 
+| System Designer  |                |
+| Airport   |  full    |
 
 As an air traffic controller 
 To ensure safety 
