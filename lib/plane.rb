@@ -1,14 +1,24 @@
 require_relative './airport'
 
 class Plane
+  attr_accessor :state
+
+  def initialize
+    @state = "Flying"
+  end
+
   def land(airport)
+    raise "#{self} is already landed" if @state == "Landed"
     raise "#{airport} is full" if airport.hangar.length == airport.capacity
+    self.state = "Landed"
     airport.hangar.push(self)
   end
 
   def take_off(airport)
+    raise "#{self} is already flying" if @state == "Flying"
     raise "#{self} is not currently at #{airport}" unless airport.hangar.include?(self)
     puts "#{self} has left #{airport}"
+    self.state = "Flying"
     airport.hangar.delete(self)
   end
 end
