@@ -15,14 +15,15 @@ describe Airport do
 
     it 'lets planes to take - off' do
       plane = Plane.new
+      p1 = Plane.new
       subject.land(plane)
-      expect(subject.takeoff).to be_truthy
+      expect(subject.takeoff(plane)).to eq(plane)
     end
 
     it 'checks if the planes has taken - off' do
       plane = Plane.new
       subject.land(plane)
-      subject.takeoff
+      subject.takeoff(plane)
       expect(plane.taken_off?).to be true
     end
   end    
