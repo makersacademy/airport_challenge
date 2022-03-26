@@ -20,10 +20,10 @@ describe Airport do
     end
 
     it 'checks if the planes has taken - off' do
-        plane = Plane.new
-        subject.land(plane)
-        subject.takeoff
-        expect(plane.has_taken_off?).to be true
-      end
+      plane = Plane.new
+      subject.land(plane)
+      subject.takeoff
+      expect(plane.taken_off?).to be true
+    end
   end    
 end
