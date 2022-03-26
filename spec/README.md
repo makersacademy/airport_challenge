@@ -41,3 +41,11 @@ object => plane => action: landed at airport
 # ran rubocop and tightened up code accordingly
 
 - 1st add, commit & push
+
+# added it wrapper example to land_plane to airport_spec and ran... no method error. Added land_plane definition to Airport class and ran... passed with one example, no failures & 100 % coverage
+
+# created plane.rb file and plane_spec.rb file for next stage of process
+
+# ran rubocop
+
+- 2nd add and commit
