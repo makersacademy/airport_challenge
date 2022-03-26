@@ -8,9 +8,12 @@ describe Airport do
   let(:weather) { Weather.new }
 
   it "lands a plane at an airport" do
+    allow_any_instance_of(Weather).to receive(:predictions).and_return 0
     expect(airport.land(plane)).to eq "Plane landed at airport"
   end
+
   it "instructs plane to take off from airport" do
+    allow_any_instance_of(Weather).to receive(:predictions).and_return 0
     expect(airport.take_off(plane)).to eq "Plane has taken off from airport"
   end
   it "has a default capacity of 20 planes" do
@@ -21,7 +24,16 @@ describe Airport do
     expect(airport50.capacity).to eq 50
   end
   it "prevents take off when weather is stormy" do
-    allow(weather).to receive(:stormy?).and_return true
-    expect { airport.take_off(plane) }.to raise_error("It is too stormy to fly")
+    allow_any_instance_of(Weather).to receive(:stormy?).and_return 9
+    expect{ airport.take_off(plane) }.to raise_error("It is too stormy to fly")
+  end
+  it "prevents plane from landing if weather is stormy" do 
+    allow_any_instance_of(Weather).to receive(:stormy?).and_return 9
+    expect { airport.land(plane) }.to raise_error("It is too stormy to land")
+  end
+  it "prevents plane from landing if airport is full" do
+    allow_any_instance_of(Weather).to receive(:predictions).and_return 0
+    Airport::DEFAULT_CAPACITY.times { airport.land(plane) }
+    expect { airport.land(plane) }.to raise_error("Airport is full")
   end
 end
