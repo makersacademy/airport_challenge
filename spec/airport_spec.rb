@@ -53,4 +53,10 @@ describe Airport do
     heathrow.land(plane)
     expect { sydney.take_off(plane) }.to raise_error "This plane is not in this airport"
   end
+  it "ensures that planes that are flying are not currently in an airport" do
+    allow_any_instance_of(Weather).to receive(:random_weather).and_return :sunny
+    airport.land(plane)
+    airport.take_off(plane)
+    expect(airport.planes).not_to include(plane)
+  end
 end

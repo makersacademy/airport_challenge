@@ -1,3 +1,7 @@
+require 'byebug'
+require 'airport'
+require 'weather'
+
 class Plane
   attr_reader :is_flying
 
@@ -5,11 +9,13 @@ class Plane
     @is_flying = false
   end
 
-  def landed
+  def land
+    fail "Plane cannot land as it's already landed" unless @is_flying
     @is_flying = false
   end
 
-  def in_air
+  def take_off
+    fail "This plane is currently flying" if @is_flying
     @is_flying = true
   end
 end
