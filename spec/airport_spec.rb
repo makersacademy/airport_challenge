@@ -9,6 +9,12 @@ describe Airport do
       Airport::DEFAULT_CAPACITY.times do subject.land(double) end
       expect { subject.land double }.to raise_error 'Airport full'
     end
+
+    it 'Should prevent landing when weather is stormy' do
+        weather = double(:stormy? => true)
+        plane = double
+        expect { subject.land plane}.to raise_error 'Cannot land when stormy'
+    end
   end
 
 
@@ -20,6 +26,13 @@ describe Airport do
       subject.take_off(double)
       expect(subject.capacity).to eq 0
     end
+
+    it 'Should prevent take off when weather is stormy' do
+      weather = double(:stormy? => true)
+      plane = double
+      expect { subject.land plane}.to raise_error 'Cannot take off when stormy'
+    end
+  
   end
 
   it { is_expected.to respond_to :full?}
@@ -31,13 +44,8 @@ describe Airport do
     expect(subject.capacity).to eq 50
   end
   
-  it 'Should prevent landing when weather is stormy' do
 
-  end
 
-  it 'Should prevent take off when weather is stormy' do
-
-  end
 
   
 end
