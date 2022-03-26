@@ -23,4 +23,15 @@ describe Plane do
     boeing.take_off(heathrow)
     expect(heathrow.hangar).to eq []
   end
+
+  it 'will raise an error if a plane tries to take off that is not currently in the airport' do
+    heathrow = double("airport", :hangar => [])
+    expect { boeing.take_off(heathrow) }.to raise_error "#{boeing} is not currently at #{heathrow}"
+  end
+
+  it 'will raise an error if a plane tries to land when the airport hangar is full' do
+    heathrow = double("airport", :hangar => [])
+    60.times { Plane.new.land(heathrow) }
+    expect { boeing.land(heathrow) }.to raise_error "#{heathrow} is full"
+  end
 end
