@@ -52,8 +52,8 @@ I want to prevent landing when weather is stormy
 
 |  Objects              |  Methods          |
 | --------------------- | ----------------- | 
-| Plane                 | land              |
-| Plane                 | take_off          |
+| Airport               | land(plane)       |
+| Airport               | take_off(plane)   |
 | Airport               | full?             |
 | Airport               | capacity          |
 | Weather               | stormy?           |
