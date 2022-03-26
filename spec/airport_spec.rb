@@ -34,16 +34,11 @@ describe Airport do
       plane = double
       expect { subject.take_off }.to raise_error 'Cannot take off when stormy'
     end
-  
   end
-
-  it { is_expected.to respond_to :full?}
-
 
   it 'Should have a default capacity that can be overwritten as appropriate' do
     airport = Airport.new(50)
     expect(airport.capacity).to eq 50
   end
-  
 end
   
