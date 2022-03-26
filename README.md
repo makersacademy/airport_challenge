@@ -13,7 +13,10 @@
 ## Task
 -----
 
-I am creating a program to emulate a airport. This will include the landing and taking-off of planes subject to weather conditions. I will accomplish this by using TDD to create tests that are based on the user stories and then write code that will then pass these tests to ensure that the spec been met. I will also try to consider edge cases and prepare my code for them accordingly.
+I am creating a program to emulate a airport. This will include the landing and taking-off of planes subject to weather conditions. 
+
+
+I will accomplish this by using TDD to create tests that are based on the user stories and then write code that will then pass these tests to ensure that the spec been met. I will also try to consider edge cases and prepare my code for them accordingly.
 
 ## Instructions
 
@@ -53,6 +56,6 @@ I want to prevent landing when weather is stormy
 | Plane                 | take_off          |
 | Airport               | full?             |
 | Airport               | capacity          |
-| Weather               | bad_weather?      |
+| Weather               | stormy?           |
 
 Here is a table that shows what methods each object will need in order to satisfy the user stories.
