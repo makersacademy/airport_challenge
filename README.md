@@ -20,9 +20,9 @@ Clone this repository to your desired location.\
 \
 Run RSpec in the `airport_challenge` directory whilst in the terminal in order to run the unit tests.\
 \
-Alternatively, run irb and load the file `airport.rb` located inside the lib directory. Create a new airport within irb by using `Airport.new`. Create planes with the command `Plane.new` and use the methods `land(plane)` (plane being any Planes that have been created) and `take_off` (using `take_off` will allow the plane which has been inside the airport the longest to take off). If you wish to manage these planes and airports easier, feel free to give them variable names, i.e `airport = Airport.new`, `plane1 = Plane.new`, `plane2 = Plane.new` and etc.\
+Alternatively, run irb and load the file `airport.rb` located inside the lib directory. Create a new airport within irb by using `Airport.new`. Create planes with the command `Plane.new` and use the methods `land(plane)` (plane being any Planes that have been created) and `take_off` (using `take_off` will allow the plane which has been inside the airport the longest to take off). If you wish to manage these planes and airports easier, feel free to give them variable names, i.e `airport = Airport.new`, `plane1 = Plane.new`, `plane2 = Plane.new` and etc. There is a default capacity of 100 airplanes for each Airport created, this can be changed during the creation by simply doing `Airport.new(num)` with num being the capacity you wish for the Airport to have.\
 \
-There is a default capacity of 100 airplanes for each Airport created, this can be changed during the creation by simply doing `Airport.new(num)` with num being the capacity you wish for the Airport to have. If you wish to test the Airport under stormy conditions, feel free to create new airports until that is the case (there is a 1/10 chance for it to be stormy) - do note that in stormy conditions you cannot land any planes nor have any planes take off!
+If you wish to test the Airport under stormy conditions, feel free to create new airports until that is the case (there is a 1/10 chance for it to be stormy) - do note that in stormy conditions you cannot land any planes nor have any planes take off!
 
 
 ## User Stories
