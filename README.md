@@ -63,5 +63,5 @@ I want to prevent landing when weather is stormy
 Here is a table that shows potentially what methods each object will need in order to satisfy the user stories.
 
 ## References
-```https://stackoverflow.com/questions/36580186/how-to-test-that-an-element-is-randomly-selected-from-a-list```
+```https://stackoverflow.com/questions/36580186/how-to-test-that-an-element-is-randomly-selected-from-a-list``` \
 I have used the above as a reference in order to manipulate the RNG used for the weather when doing unit tests.
