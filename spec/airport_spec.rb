@@ -15,4 +15,14 @@ describe Airport do
   it 'is able to change the capacity to a value given' do
     expect(manchester.capacity).to eq 29
   end
+
+  it 'is able to check sunny weather' do
+    srand 9
+    expect(heathrow.check_weather).to eq "Sunny"
+  end
+
+  it 'is able to check stormy weather' do
+    srand 10
+    expect(heathrow.check_weather).to eq "Stormy"
+  end
 end
