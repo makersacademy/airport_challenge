@@ -64,6 +64,5 @@ I want to prevent landing when weather is stormy
 
 Here is a table that shows potentially what methods each object will need in order to satisfy the user stories.
 
-## References
-```https://stackoverflow.com/questions/36580186/how-to-test-that-an-element-is-randomly-selected-from-a-list``` \
-I have used the above as a reference in order to ensure the weather is correct when doing each unit test.
+## Edge cases
+My code will then need to consider edge cases such as having planes only being able to take off from the airports they are in, planes already in flight cannot take off or be inside a airport, planes that have already landed can not land again and must be in a airport.
