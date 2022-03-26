@@ -1,16 +1,16 @@
 require 'byebug'
 require_relative 'weather'
+require_relative 'plane'
 
 class Airport
 
   DEFAULT_CAPACITY = 20
 
-  attr_reader :planes, :capacity, :weather, :flying
+  attr_reader :planes, :capacity, :weather, :is_flying
 
   def initialize(capacity = DEFAULT_CAPACITY)
     @capacity = capacity
     @planes = []
-    @flying = false
     @weather = Weather.new
   end
 
@@ -19,21 +19,21 @@ class Airport
     check_weather
     fail "This plane is already in this airport" if in_airport?(plane)
     @planes << plane
-    flying = false
+    plane.landed
     "Plane landed at airport"
   end
 
   def take_off(plane)
-    is_flying #Check if plane is currently flying
-    fail "This plane is not in this airport" if !in_airport?(plane)
+    flying?(plane) 
+    fail "This plane is not in this airport" unless in_airport?(plane)
     check_weather
-    @flying = true
     @planes.pop
+    plane.in_air
     "Plane has taken off from airport"
   end
     
-  def is_flying
-    fail "This plane is currently flying" if @flying == true
+  def flying?(plane)
+    fail "This plane is currently flying" if plane.is_flying
   end
 
   def in_airport?(plane)

@@ -3,7 +3,8 @@ class Weather
   attr_reader :predictions
   
   def initialize 
-    @predictions = [:sunny, :sunny, :sunny, :sunny, :sunny, :sunny, :sunny, :sunny, :stormy, :stormy]
+    @predictions = [:sunny, :sunny, :sunny, :sunny, :sunny, :sunny, :sunny, :sunny, :stormy, 
+:stormy]
   end
 
   def random_weather
