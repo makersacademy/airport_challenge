@@ -1,5 +1,6 @@
 class Airport
   DEFAULT_CAPACITY = 100
+  attr_reader :planes
 
   def initialize(capacity = DEFAULT_CAPACITY)
     @capacity = capacity
@@ -11,7 +12,8 @@ class Airport
     @planes << plane
   end
   
-  def take_off(plane)
+  def take_off
+    @planes.shift
   end
 
   def full?

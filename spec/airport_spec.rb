@@ -23,8 +23,8 @@ describe Airport do
 
     it 'Should let plane take off and confirm it is no longer in the airport' do
       subject.land(double)
-      subject.take_off(double)
-      expect(subject.capacity).to eq 0
+      subject.take_off
+      expect(subject.planes.count).to eq 0
     end
 
     it 'Should prevent take off when weather is stormy' do
