@@ -16,7 +16,9 @@ describe Airport do
     it { is_expected.to respond_to :take_off }
 
     it 'Should let plane take off and confirm it is no longer in the airport' do
-    
+      subject.land(double)
+      subject.take_off(double)
+      expect(subject.capacity).to eq 0
     end
   end
 
