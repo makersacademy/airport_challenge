@@ -66,4 +66,4 @@ Here is a table that shows potentially what methods each object will need in ord
 
 ## References
 ```https://stackoverflow.com/questions/36580186/how-to-test-that-an-element-is-randomly-selected-from-a-list``` \
-I have used the above as a reference in order to manipulate the RNG used for the weather when doing unit tests.
+I have used the above as a reference in order to ensure the weather is correct when doing each unit test.
