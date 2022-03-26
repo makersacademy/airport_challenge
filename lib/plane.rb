@@ -2,7 +2,7 @@ require_relative './airport'
 
 class Plane
   def land(airport)
-    raise "#{airport} is full" if airport.hangar.length == 60
+    raise "#{airport} is full" if airport.hangar.length == airport.capacity
     airport.hangar.push(self)
   end
 

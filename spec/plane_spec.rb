@@ -4,7 +4,7 @@ describe Plane do
   let(:boeing) { Plane.new }
 
   it 'can land in an airports hangar' do
-    heathrow = double("airport", :hangar => [])
+    heathrow = double("airport", :hangar => [], :capacity => 60)
     expect(boeing.land(heathrow)).to eq [boeing]
   end
 
@@ -30,8 +30,8 @@ describe Plane do
   end
 
   it 'will raise an error if a plane tries to land when the airport hangar is full' do
-    heathrow = double("airport", :hangar => [])
-    60.times { Plane.new.land(heathrow) }
+    heathrow = double("airport", :hangar => [], :capacity => 60)
+    heathrow.capacity.times { Plane.new.land(heathrow) }
     expect { boeing.land(heathrow) }.to raise_error "#{heathrow} is full"
   end
 end
