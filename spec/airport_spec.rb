@@ -1,9 +1,9 @@
 require_relative '../lib/airport'
 
 describe Airport do
-  let(:airport) { Airport.new }
+  let(:heathrow) { Airport.new }
 
-  it 'can store planes' do
-    expect(airport.hangar).to eq []
+  it 'has a hangar to store planes' do
+    expect(heathrow.hangar).to eq []
   end
 end
