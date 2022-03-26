@@ -37,4 +37,5 @@ class Airport
   def stormy?
     @weather.stormy
   end
+
 end
