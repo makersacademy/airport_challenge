@@ -25,3 +25,11 @@ puts "... confirmed plane no longer in the airport!"
 puts "Attempting to instructor a plane to take off when it's not at an airport. Should fail"
 plane.take_off
 puts "... failed, as desired!"
+
+puts "Setting up an airport that's full..."
+airport.capacity.times { Plane.new.land(airport) }
+put "Airport now full."
+
+puts "Attempting to land a plane in the airport that is full..."
+plane.land(airport)
+puts "... failed, as desired!"

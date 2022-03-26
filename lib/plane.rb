@@ -8,6 +8,7 @@ class Plane
   end
 
   def land(airport)
+    raise "Airport full" if airport.full?
     airport.hangar.push(self)
     @location = airport
     self

@@ -8,10 +8,15 @@ describe Plane do
     @airport = Airport.new
   end
 
-  it "lands at the designated airport when instructed" do
+  it "lands at the designated airport when instructed if airport is not full" do
     @plane.land(@airport)
     expect(@airport.hangar).to include(@plane)
     expect(@plane.land(@airport)).to eq @plane
+  end
+
+  it "will not land at airport that is full" do
+    @airport.capacity.times { Plane.new.land(@airport) }
+    expect { @plane.land(@airport) }.to raise_error("Airport full")
   end
 
   it "takes off when instructed if at an airport" do
