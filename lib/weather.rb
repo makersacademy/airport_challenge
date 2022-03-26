@@ -1,10 +1,7 @@
 class Weather
-
-  def initialize
-
-  end
-
+  attr_reader :stormy
+  
   def stormy?
-    true
+    rand(10) > 0 ? @stormy = false : @stormy = true
   end
 end
