@@ -4,12 +4,14 @@ class Plane
   attr_accessor :state
 
   def initialize
+    puts "#{self} has been made and has taken off"
     @state = "Flying"
   end
 
   def land(airport)
     raise "#{self} is already landed" if @state == "Landed"
     raise "#{airport} is full" if airport.hangar.length == airport.capacity
+    puts "#{self} has landed at #{airport}"
     self.state = "Landed"
     airport.hangar.push(self)
   end

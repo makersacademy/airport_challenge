@@ -26,12 +26,6 @@ describe Plane do
     expect(boeing.take_off(heathrow)).to eq boeing
   end
 
-  it 'can confirm it has left an airport when it takes off' do
-    heathrow = double("airport", :hangar => [], :capacity => 60)
-    boeing.land(heathrow)
-    expect { boeing.take_off(heathrow) }.to output("#{boeing} has left #{heathrow}\n").to_stdout
-  end
-
   it 'can confirm it has been removed from an airports hangar after it has taken off' do
     heathrow = double("airport", :hangar => [], :capacity => 60)
     boeing.land(heathrow)
