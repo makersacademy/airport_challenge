@@ -37,16 +37,11 @@ describe Airport do
 
   it { is_expected.to respond_to :full?}
 
-  it { is_expected.to respond_to :capacity}
 
   it 'Should have a default capacity that can be overwritten as appropriate' do
     airport = Airport.new(50)
     expect(subject.capacity).to eq 50
   end
-  
-
-
-
   
 end
   
