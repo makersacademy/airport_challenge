@@ -1,6 +1,7 @@
 require_relative './airport'
 
 class Plane
+  attr_reader :location
 
   def initialize
     @location = :in_air
@@ -15,6 +16,7 @@ class Plane
   def take_off
     raise "Already in the air" if @location == :in_air
     @location.hangar.delete(self)
+    @location = :in_air
     self
   end
 end
