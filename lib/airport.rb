@@ -17,7 +17,7 @@ class Airport
   def land(plane)
     check_capacity
     check_weather
-    fail "This plane is already in this airport" if @planes.include?(plane)
+    fail "This plane is already in this airport" if in_airport?(plane)
     @planes << plane
     flying = false
     "Plane landed at airport"
@@ -25,7 +25,7 @@ class Airport
 
   def take_off(plane)
     is_flying #Check if plane is currently flying
-    fail "This plane is not in this airport" if !@planes.include?(plane)
+    fail "This plane is not in this airport" if !in_airport?(plane)
     check_weather
     @flying = true
     @planes.pop
@@ -34,6 +34,10 @@ class Airport
     
   def is_flying
     fail "This plane is currently flying" if @flying == true
+  end
+
+  def in_airport?(plane)
+    @planes.include?(plane)
   end
 
   def check_capacity
