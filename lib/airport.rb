@@ -18,9 +18,10 @@ class Airport
     @planes << plane
   end
   
-  def take_off
+  def take_off(plane)
     fail 'Cannot take off when stormy' if stormy?
-    @planes.shift
+    fail 'Plane already in flight' if plane.in_flight
+    @planes.delete(plane)
   end
 
   private
