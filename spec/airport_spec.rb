@@ -28,7 +28,7 @@ describe Airport do
       plane = Plane.new
       subject.land(plane)
       subject.take_off(plane)
-      expect(subject.planes.count).to eq 0
+      expect(subject.planes.include?(plane)).to eq false
     end
   end
 
