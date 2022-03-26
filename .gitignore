@@ -6,6 +6,7 @@ enabled-upgraded.yml
 CoverallsRakefile
 analysis/**/*
 .gitignore-analysis
+my_notes.md
 
 # Local cache of Rubocop remote config
 .rubocop-*
