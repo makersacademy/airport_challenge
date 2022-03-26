@@ -14,6 +14,7 @@ describe Airport do
 
   it "instructs plane to take off from airport" do
     allow_any_instance_of(Weather).to receive(:predictions).and_return 0
+    airport.land(plane)
     expect(airport.take_off(plane)).to eq "Plane has taken off from airport"
   end
   it "has a default capacity of 20 planes" do
@@ -37,3 +38,19 @@ describe Airport do
     expect { airport.land(plane) }.to raise_error("Airport is full")
   end
 end
+  describe "Edge Cases" do
+    let(:weather) { Weather.new }
+
+  it "ensure that planes can only take off from airport they are in" do
+    plane = Plane.new
+    heathrow = Airport.new
+    sydney = Airport.new
+    allow_any_instance_of(Weather).to receive(:predictions).and_return 0
+    heathrow.land(plane)
+    expect { sydney.take_off(plane) }.to raise_error "This plane is not in this airport"
+  end
+end
+
+# ensuring that planes can only take off from airports they are in;
+# planes that are already flying cannot take off and/or be in an airport
+# planes that are landed cannot land again and must be in an airport

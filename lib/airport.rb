@@ -21,12 +21,17 @@ class Airport
   end
 
   def take_off(plane)
-    fail "It is too stormy to fly" if weather.stormy?
+    check_weather
+    fail "This plane is not in this airport" if !@planes.include?(plane)
     "Plane has taken off from airport"
   end
 
   def check_capacity
     fail "Airport is full" if full?
+  end
+
+  def check_weather
+    fail "It is too stormy to fly" if weather.stormy?
   end
 
   def full?
