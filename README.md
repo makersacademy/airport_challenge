@@ -11,14 +11,16 @@
 
 ```
 ## Task
------
 
-I am creating a program to emulate a airport. This will include the landing and taking-off of planes subject to weather conditions. 
-
-
-I will accomplish this by using TDD to create tests that are based on the user stories and then write code that will then pass these tests to ensure that the spec been met. I will also try to consider edge cases and prepare my code for them accordingly.
+I am creating a program to emulate a airport. This will include the landing and taking-off of planes subject to weather conditions.\
+\
+I will accomplish this by using TDD to create tests that are based on the user stories and then write code that will then pass these tests to ensure that the spec been met.
 
 ## Instructions
+
+Run RSpec in the `airport_challenge` directory in order to run the tests.\
+\
+Alternatively, run irb and load the file `airport.rb` located inside the lib directory. Create a new airport within irb by using `Airport.new`. Create planes with the command `Plane.new` and use the methods `land(plane)` (plane being any Planes that have been created) and `take_off` (using `take_off` will allow the plane which has been inside the airport the longest to take off). There is a default capacity of 100 airplanes for each Airport created, this can be changed during the creation by simply doing `Airport.new(num)` with num being the capacity you wish for the Airport to have. If you wish to test the Airport under stormy conditions, feel free to create new airports until that is the case (there is a 1/10 chance for it to be stormy) - do note that in stormy conditions you cannot land any planes nor have any planes take off!
 
 
 ## User Stories
@@ -53,13 +55,13 @@ I want to prevent landing when weather is stormy
 |  Objects              |  Methods          |
 | --------------------- | ----------------- | 
 | Airport               | land(plane)       |
-| Airport               | take_off(plane)   |
+| Airport               | take_off          |
 | Airport               | full?             |
 | Airport               | capacity          |
-| Weather               | stormy?           |
+| Weather               | stormy            |
 
-Here is a table that shows what methods each object will need in order to satisfy the user stories.
+Here is a table that shows potentially what methods each object will need in order to satisfy the user stories.
 
 ## References
 ```https://stackoverflow.com/questions/36580186/how-to-test-that-an-element-is-randomly-selected-from-a-list```
-Used this answer in order to manipulate the RNG used for the weather when doing unit tests.
+I have used the above as a reference in order to manipulate the RNG used for the weather when doing unit tests.
