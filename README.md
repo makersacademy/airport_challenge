@@ -1,38 +1,58 @@
-Airport Challenge
-=================
+# Airport Challenge
 
-```
-        ______
-        _\____\___
-=  = ==(____MA____)
-          \_____\___________________,-~~~~~~~`-.._
-          /     o o o o o o o o o o o o o o o o  |\_
-          `~-.__       __..----..__                  )
-                `---~~\___________/------------`````
-                =  ===(_________)
+This is my submission for the Weekend Challenge of the first full-course week at Makers Academy. The challenge exercises the skills I have learned as well as one or two more. I tackled it solo.
 
-```
+Read on to understand the scenario, my task and my approach to solving it.
 
-Instructions
----------
+## Scenario
 
-* Feel free to use google, your notes, books, etc. but work on your own
-* If you refer to the solution of another coach or student, please put a link to that in your README
-* If you have a partial solution, **still check in a partial solution**
-* You must submit a pull request to this repo with your code by 10am Monday morning
+We have a request from a client to write the software to control the flow of planes at an airport. The planes can land and take off provided that the weather is sunny. Occasionally it may be stormy, in which case no planes can land or take off.
 
-Steps
--------
+## My task
 
-1. Fork this repo, and clone to your local machine
-2. Run the command `gem install bundler` (if you don't have bundler already)
-3. When the installation completes, run `bundle`
-4. Complete the following task:
+My task was to test drive the creation of a set of classes/modules to satisfy all the above user stories. I needed to use a random number generator to set the weather (it is normally sunny but on rare occasions it may be stormy). In my tests, I needed need to use a stub to override random weather to ensure consistent test behaviour.
 
-Task
------
+My code needed to defend against edge cases such as inconsistent states of the system ensuring that planes can only take off from airports they are in; planes that are already flying cannot take off and/or be in an airport; planes that are landed cannot land again and must be in an airport, etc.
 
-We have a request from a client to write the software to control the flow of planes at an airport. The planes can land and take off provided that the weather is sunny. Occasionally it may be stormy, in which case no planes can land or take off.  Here are the user stories that we worked out in collaboration with the client:
+## Getting started
+
+`git clone https://github.com/almorcrette/airport_challenge.git`
+
+## Usage
+
+`irb -r ./lib/plane.rb'`
+
+
+## Running tests
+
+`rspec`
+
+## File manifest
+
+* `README.md`: My README file
+* `INSTRUCTIONS.md`: Makers challenge instructions
+* `feature_spec.rb`: An attempt at a feature spec. WIP 
+In `./lib`
+* `plane.rb`: `Plane` class
+* `airport.rb`: `Weather` class
+* `weather.rb`: `Airport` class
+In `./spec`
+* `plane_spec.rb`: Rspec file `Plane` class
+* `airport_spec.rb`: RSpec file for `Airport` class
+* `weather_spec.rb`: RSpec file for `Weather` class
+
+## Note on aspects not complete
+
+I did not have time for the following:
+* Isolating tests
+* Fully implement a feature test on RSpec, there is an attempt at one in the project folder.
+* I have not tested edge cases exhaustively
+
+
+
+## My approach to solving the problem
+
+Here are the user stories that worked out in collaboration with the imaginary client.
 
 ```
 As an air traffic controller 
@@ -60,30 +80,52 @@ To ensure safety
 I want to prevent landing when weather is stormy 
 ```
 
-Your task is to test drive the creation of a set of classes/modules to satisfy all the above user stories. You will need to use a random number generator to set the weather (it is normally sunny but on rare occasions it may be stormy). In your tests, you'll need to use a stub to override random weather to ensure consistent test behaviour.
+### Step 1: Functional representation of user stories
 
-Your code should defend against [edge cases](http://programmers.stackexchange.com/questions/125587/what-are-the-difference-between-an-edge-case-a-corner-case-a-base-case-and-a-b) such as inconsistent states of the system ensuring that planes can only take off from airports they are in; planes that are already flying cannot take off and/or be in an airport; planes that are landed cannot land again and must be in an airport, etc.
+To get me started, I identified all the nouns and verbs in the user stories.
 
-For overriding random weather behaviour, please read the documentation to learn how to use test doubles: https://www.relishapp.com/rspec/rspec-mocks/docs . There’s an example of using a test double to test a die that’s relevant to testing random weather in the test.
+I then considered for each user story which of those nouns and verbs relate to the end users of the software and what they need to be able to do with it, and which were about how the software itself needs to function, i.e. pertaining to the **functional representation** of the user stories in terms of **objects** in the program.
 
-Please create separate files for every class, module and test suite.
+I mapped out functional representation of each story in terms of _objects_, _messages_, _parameters_, _behaviour_, and where more relevant, _objects_, _constants_, and _instance variables_.
 
-In code review we'll be hoping to see:
+Here's a consolidated mapping for an overall picture of the structure of of the program as a whole, as follows:
 
-* All tests passing
-* High [Test coverage](https://github.com/makersacademy/course/blob/main/pills/test_coverage.md) (>95% is good)
-* The code is elegant: every class has a clear responsibility, methods are short etc. 
+**Objects and messages**
 
-Reviewers will potentially be using this [code review rubric](docs/review.md).  Referring to this rubric in advance will make the challenge somewhat easier.  You should be the judge of how much challenge you want this at this moment.
+| Objects     | Messages        | Parameters   | Behaviour                    |
+| ------------| ----------------| -------------| -----------------------------|
+| Weather     | Stormy?         |              | Reports whether stormy       |
+| Airport     | Full?           |              | Reports whether full         |
+| Airport     | Change capacity |              | Changes capacity             |
+| Plane       | Land            | Airport      | Lands at airport             |
+|             |                 |              | Prevents landing if stormy   |
+|             | Take off        | Airport      | Take off from airport        |
+|             |                 |              | Prevents take-off if stormy  |
+|             | Report          |              | Report location              |
 
-**BONUS**
+**Objects and states**
 
-* Write an RSpec **feature** test that lands and takes off a number of planes
+| Objects     | Constants          | Instance variables   | 
+| ------------| -------------------| ---------------------| 
+| Weather     | Weather types      | Stormy               |
+| Airport     | Default capacity   | Capacity             |
+|             |                    | Hangar               |
+| Plane       |                    | Location             |
 
-Note that is a practice 'tech test' of the kinds that employers use to screen developer applicants.  More detailed submission requirements/guidelines are in [CONTRIBUTING.md](CONTRIBUTING.md)
+### Step 2: Feature testing Functional representation of user stories
 
-Finally, don’t overcomplicate things. This task isn’t as hard as it may seem at first.
+### Step 3: Unit testing Functional representation of user stories
 
-* **Submit a pull request early.**
+### Step 4: Production code to pass test
 
-* Finally, please submit a pull request before Monday at 10am with your solution or partial solution.  However much or little amount of code you wrote please please please submit a pull request before Monday at 10am.
+### Step 5: Refactor
+
+### Step ...: Repeat till all exceptions satisfied
+
+### Step ...: Test features to confirm behaviour for user
+
+### Step ...: Ensure 95% + test coverage
+
+### Step ...: Run Rubocop and clean up code
+
+### Step ...: Tidy up README
