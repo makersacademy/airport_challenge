@@ -47,9 +47,9 @@ Run code using irb
 
 ## User Stories, Domain Models and Mermaid Diagrams
 
-```As an air traffic controller 
+`As an air traffic controller 
 So I can get passengers to a destination 
-I want to instruct a plane to land at an airport```
+I want to instruct a plane to land at an airport`
 
 |  Objects        |  Messages      |
 | ----------      | -------------  | 
@@ -58,17 +58,17 @@ I want to instruct a plane to land at an airport```
 | Airport         | store_plane()  |
 
 ```mermaid
-graph TD;
-    Air Traffic Controller-->Plane;
-    Plane -->land;
-    land -->Airport;
-    Airport -->store_plane();
+graph TD
+    A[Air Traffic Controller] -->B[Plane]
+    B[Plane] -->C[land]
+    C[land] --> D[Airport]
+    D[Airport] -->E[store_plane(arg)]
 ```
 
 
-```As an air traffic controller 
+`As an air traffic controller 
 So I can get passengers on the way to their destination 
-I want to instruct a plane to take off from an airport and confirm that it is no longer in the airport```
+I want to instruct a plane to take off from an airport and confirm that it is no longer in the airport`
 
 |  Objects        |  Messages      |
 | ----------      | -------------  | 
@@ -77,10 +77,10 @@ I want to instruct a plane to take off from an airport and confirm that it is no
 | Plane           | take_off       |
 
 ```mermaid
-graph TD;
-    Air Traffic Controller-->Airport;
-    Airport -->Plane;
-    Plane -->take_off;
+graph TD
+    A[Air Traffic Controller] -->B[Airport]
+    B[Airport] -->C[Plane]
+    C[Plane] -->D[take_off]
 ```
 
 
@@ -95,9 +95,9 @@ I want to prevent landing when the airport is full`
 | Plane           |                |
 
 ```mermaid
-graph TD;
-    Air Traffic Controller-->Airport;
-    Airport -->full?;
+graph TD
+    A[Air Traffic Controller] -->B[Airport]
+    B[Airport] -->C[full?]
 ```
 
 
@@ -112,10 +112,10 @@ I would like a default airport capacity that can be overridden as appropriate`
 | Plane           |                |
 
 ```mermaid
-graph TD;
-    Air Traffic Controller-->Airport;
-    Airport -->Airport.new(10);
-    Airport.new(5) --> capacity = 10;
+graph TD
+    A[Air Traffic Controller] -->B[Airport]
+    B[Airport] --> C[Airport.new(10)]
+    C[Airport.new(5)] --> D[capacity = 10]
 ```
 
 
