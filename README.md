@@ -1,15 +1,5 @@
 # Airport Challenge
 
-      ______
-        _\____\___
-=  = ==(____MA____)
-          \_____\___________________,-~~~~~~~`-.._
-          /     o o o o o o o o o o o o o o o o  |\_
-          `~-.__       __..----..__                  )
-                `---~~\___________/------------`````
-                =  ===(_________)
-
-
 This Airport challenge allows users to instruct a plane to land and take off from an airport, but only if the weather is sunny! :)
 
 The program also defends against edge cases, so feel free to try and land a plane that is already landed, or instruct a plane at Heathrow try to depart from Dubai airport.
