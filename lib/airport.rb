@@ -16,7 +16,7 @@ class Airport
 
   def take_off(plane)
     take_off_checks(plane)
-    @hangar.pop
+    @hangar.delete(plane)
   end
 
   private

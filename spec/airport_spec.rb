@@ -2,7 +2,7 @@ require_relative '../lib/airport.rb'
 
 describe Airport do
   let(:plane) { double :plane }
-  let(:plane2) { double :plane2 } # Not sure of better way
+  let(:plane2) { double :plane2 }
   let(:airport) { Airport.new(5) }
 
   describe '#capacity' do
@@ -40,6 +40,13 @@ describe Airport do
     it 'should remove plane from airport' do
       subject.land(plane)
       expect(subject.take_off(plane)).to eq plane
+    end
+
+    it 'should remove the plane requested from airport' do
+      airport.land(plane)
+      airport.land(plane2)
+      airport.take_off(plane)
+      expect(airport.hangar).not_to include(plane)
     end
 
     it 'raises an error when there are no planes in the hangar' do
