@@ -1,6 +1,6 @@
 # Airport Challenge
 
-This is a program which simulates airports, planes and weather which affects the planes ability to land and take off. Two separate files were made for the Airport class and the Plane class, as well as two corresponding spec files and a feature_spec file at the end for testing.
+This is a program which simulates airports, planes and weather which affects the planes ability to land and take off. Two separate files were made for the [Airport class](./lib/airport.rb) and the [Plane class](./lib/plane.rb), as well as two corresponding spec files([airport](./spec/airport_spec.rb) and [plane](./spec/plane_spec.rb)) and a [feature spec](./spec/feature_spec.rb) file at the end for testing.
 
 ## Getting Started
 
@@ -21,7 +21,7 @@ Then use the methods present in the [airport](./lib/airport.rb) and [plane](./li
 
 ## Running Tests
 
-Navigate to the [main](./) folder and run `rspec`.
+In the current folder run `rspec`.
 
 ### Approach
 
