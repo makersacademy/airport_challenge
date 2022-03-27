@@ -13,7 +13,7 @@ describe Plane do
   end
 
   it '#land - Returns the plane object that has landed' do
-    expect(subject.land(double(:store_plane => subject))).to eq(subject)
+    expect(subject.land(double(:store_plane => subject))).to eq("Plane lands at the airport")
   end
 
   it '#take_off' do

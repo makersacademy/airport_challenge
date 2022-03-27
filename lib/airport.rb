@@ -14,20 +14,21 @@ class Airport
   end
 
   def store_plane(plane)
+    return raise "The plane has already landed" if @hangar.include?(plane)
     return raise "You cannot land during stormy weather" unless weather == "sunny"
 
     @hangar.push(plane) if full? == false
   end
 
   def remove_plane_from_hangar(plane)
+    return raise "The plane is not stored at this airport" unless @hangar.include?(plane)
     return raise "You cannot take off during stormy weather" unless weather == "sunny"
 
     @hangar.each_index do |index|
+      hangar_capacity = @hangar.length
       if @hangar[index] == plane
         @hangar.delete_at(index)
         break
-      else
-        return raise "The plane is not stored at this airport"
       end
     end
     @hangar
