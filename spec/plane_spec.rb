@@ -19,7 +19,8 @@ describe Plane do
     expect { @plane.land(@airport) }.to raise_error("Airport full")
   end
 
-  it "takes off when instructed if at an airport" do
+  it "takes off when instructed if at an airport when weather is not stormy" do
+    allow(@plane).to receive(:stormy?).and_return(false)
     @plane.land(@airport)
     expect(@plane.take_off).to eq @plane
     expect(@airport.hangar).not_to include(@plane)
@@ -28,6 +29,12 @@ describe Plane do
 
   it "lets air traffic controller know it can't take off if instructed to do so but not at airport" do
     expect { @plane.take_off }.to raise_error("Already in the air")
+  end
+
+  it "prevents take-off when weather is stormy" do
+    @plane.land(@airport)
+    allow(@plane).to receive(:stormy?).and_return(true)
+    expect { @plane.take_off }.to raise_error("Stormy weather")
   end
 
 end

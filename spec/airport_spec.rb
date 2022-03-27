@@ -38,4 +38,6 @@ describe Airport do
     expect(airport.capacity).to eq custom_capacity
   end
 
+  it { is_expected.to respond_to(:stormy?) }
+
 end

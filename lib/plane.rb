@@ -1,4 +1,5 @@
 require_relative './airport'
+require_relative './weather'
 
 class Plane
   attr_reader :location
@@ -16,6 +17,7 @@ class Plane
 
   def take_off
     raise "Already in the air" if @location == :in_air
+    raise "Stormy weather" if stormy? == true
     @location.hangar.delete(self)
     @location = :in_air
     self
