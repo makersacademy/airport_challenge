@@ -10,7 +10,7 @@ describe Airport do
       expect(subject.land(plane)).not_to be_empty
     end
 
-    it 'should raise error if plane tries to land whilst already in hangar' do
+    it 'should raise error if grounded plane tries landing again.' do
       subject.land(plane)
       expect { subject.land(plane) }.to raise_error 'Plane already grounded.'
     end
@@ -23,5 +23,11 @@ describe Airport do
   it 'should remove plane from airport' do
     subject.land(plane)
     expect(subject.take_off(plane)).to eq plane
+  end
+
+  it 'should raise error if flying plane tries take_off again.' do
+    subject.land(plane)
+    subject.take_off(plane)
+    expect { subject.take_off(plane) }.to raise_error 'Plane already flying.'
   end
 end

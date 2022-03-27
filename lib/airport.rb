@@ -13,6 +13,7 @@ class Airport
   end
 
   def take_off(plane)
+    fail 'Plane already flying.' if !@hangar.include? plane
     @hangar.pop
   end
 end
