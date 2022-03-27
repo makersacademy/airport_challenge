@@ -10,14 +10,24 @@ class Airport
   end
 
   def land(plane)
-    raise 'Hangar full.' if @hangar.count >= @capacity
-    fail 'Plane already grounded.' if @hangar.include? plane
+    land_checks(plane)
     @hangar << plane
   end
 
   def take_off(plane)
+    take_off_checks(plane)
+    @hangar.pop
+  end
+
+  private
+
+  def land_checks(plane)
+    fail 'Hangar full.' if @hangar.count >= @capacity
+    fail 'Plane already grounded.' if @hangar.include? plane
+  end
+
+  def take_off_checks(plane)
     fail 'No planes in hangar.' if @hangar.count == 0
     fail 'Plane already flying.' if !@hangar.include? plane
-    @hangar.pop
   end
 end
