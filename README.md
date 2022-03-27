@@ -6,9 +6,9 @@ The program also defends against edge cases, so feel free to try and land a plan
 
 ## Getting started
 
-First step - Fork this repo and clone it to your local machine
-Second step - Run the command gem install bundler (if you don't have bundler already)
-Third step - When the installation completes, run bundle
+- First step - Fork this repo and clone it to your local machine
+- Second step - Run the command gem install bundler (if you don't have bundler already)
+- Third step - When the installation completes, run bundle
 
 Ta-da! You're now qualified to start flying some planes!
 
@@ -22,7 +22,7 @@ Now, I know you're excited to get your pilot's hat on, but please read these ins
 - You can create plane instances (plane = Plane.new) and airport instances (airport = Airport.new). I'd recommend getting creative - maybe try and fly your own private jet to Paris for the night (a girl can dream!).
 - To instruct a plane to take off from an airport you can use the 'take_off' method.
 - To instruct a plane to land you can use the 'land' method.
-# Some things to note
+## Some things to note
 - The airport's default capacity is set to 20 planes, so if you would like to change the airports default capacity, you can pass your desired capacity as an integer to the airport instance eg (airport = Airport.new(200))
 - You will only be able to land and take-off planes if the weather is sunny. Luckily, the weather is sunny 80% of the time, and stormy the other 20%. 
 
