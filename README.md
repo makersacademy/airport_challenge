@@ -2,7 +2,7 @@
 
 This Airport challenge allows users to instruct a plane to land and take off from an airport, but only if the weather is sunny! :)
 
-The program also defends against edge cases, so feel free to try and land a plane that is already landed, or instruct a plane at Heathrow try to depart from Dubai airport.
+The program also defends against edge cases, so feel free to try and land a plane that is already landed, or instruct a plane at Heathrow to try and depart from Dubai airport.
 
 ## Getting started
 
