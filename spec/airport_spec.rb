@@ -32,6 +32,12 @@ describe Airport do
       subject.land(plane)
       expect { subject.land(plane) }.to raise_error 'Plane already grounded.'
     end
+
+    # Couldn't work this out, maybe landing/flying errors in plane class instead
+    # it 'should raise error if grounded plane tries to land in different airport.' do
+    #   subject.land(plane)
+    #   expect { airport.land(plane) }.to raise_error 'Plane in another airport.'
+    # end
   end
 
   describe '#take_off' do
@@ -55,7 +61,7 @@ describe Airport do
 
     it 'should raise error if flying plane tries take_off again.' do
       subject.land(plane)
-      expect { subject.take_off(plane2) }.to raise_error 'Plane already flying.'
+      expect { subject.take_off(plane2) }.to raise_error 'Plane not in hangar.'
     end
   end
 end

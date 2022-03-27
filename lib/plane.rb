@@ -5,7 +5,14 @@ class Plane
     @flying = true
   end
 
-  def flying?
-    @flying == true ? true : false
+  def ground
+    @flying = false
+  end
+
+  def air
+    @flying = true
   end
 end
+
+# Maybe use these to prevent plane from landing 
+# in two seperate airports at once.

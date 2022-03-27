@@ -28,6 +28,6 @@ class Airport
 
   def take_off_checks(plane)
     fail 'No planes in hangar.' if @hangar.count == 0
-    fail 'Plane already flying.' if !@hangar.include? plane
+    fail 'Plane not in hangar.' if !@hangar.include? plane
   end
 end
