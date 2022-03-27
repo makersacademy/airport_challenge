@@ -1,10 +1,20 @@
 require_relative '../lib/airport.rb'
 
 describe Airport do
-  # Need to look into doubles and see if there's a better way than this!
   let(:plane) { double :plane }
-  let(:plane2) { double :plane2 }
-  let(:plane3) { double :plane3 }
+  let(:plane2) { double :plane2 } # Not sure of better way
+  let(:airport) { Airport.new(5) }
+
+  describe '#capacity' do
+    it 'should confirm default capacity is set to 10.' do
+      expect(subject.capacity).to eq Airport::DEFAULT_CAPACITY
+    end
+
+    it 'should allow user to set the docking station capacity' do
+      5.times { airport.land(be_an_instance_of plane) }
+      expect{ airport.land(plane) }.to raise_error 'Hangar full.'
+    end
+  end
 
   describe '#land' do
     it { is_expected.to respond_to(:land).with(1).argument }
@@ -14,9 +24,8 @@ describe Airport do
     end
 
     it 'raises an error when hangar is full.' do
-      subject.land(plane)
-      subject.land(plane2)
-      expect{ subject.land(plane3) }.to raise_error 'Hangar full.'
+      Airport::DEFAULT_CAPACITY.times { subject.land(be_an_instance_of plane) }
+      expect { subject.land(plane) }.to raise_error 'Hangar full.'
     end
 
     it 'should raise error if grounded plane tries landing again.' do
@@ -39,8 +48,6 @@ describe Airport do
 
     it 'should raise error if flying plane tries take_off again.' do
       subject.land(plane)
-      subject.land(plane2)
-      subject.take_off(plane2)
       expect { subject.take_off(plane2) }.to raise_error 'Plane already flying.'
     end
   end

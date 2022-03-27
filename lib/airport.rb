@@ -2,14 +2,15 @@ require_relative '../lib/plane.rb'
 
 class Airport
   attr_reader :hangar, :capacity
+  DEFAULT_CAPACITY = 10
 
-  def initialize
+  def initialize(capacity = DEFAULT_CAPACITY)
     @hangar = []
-    @capacity = 2
+    @capacity = capacity
   end
 
   def land(plane)
-    fail 'Hangar full.' if @hangar.count >= @capacity
+    raise 'Hangar full.' if @hangar.count >= @capacity
     fail 'Plane already grounded.' if @hangar.include? plane
     @hangar << plane
   end
