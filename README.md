@@ -2,7 +2,28 @@
 
 This is a program which simulates airports, planes and weather which affects the planes ability to land and take off. Two separate files were made for the Airport class and the Plane class, as well as two corresponding spec files and a feature_spec file at the end for testing.
 
-## Approach
+## Getting Started
+
+Type the following commands in the folder you want to save this program in:
+```
+git clone https://github.com/jmcnally17/airport_challenge.git
+bundle
+```
+
+## How To Use
+
+Navigate to the [lib](./lib/) folder in your local repository. To use in irb:
+```
+irb
+require './plane'
+```
+Then use the methods present in the [airport](./lib/airport.rb) and [plane](./lib/plane.rb) files to play around.
+
+## Running Tests
+
+Navigate to the [main](./) folder and run `rspec`.
+
+### Approach
 
 Both airport and plane classes were both initially made with the hangar array instance variable test in the airport being made first in order to have a place to store the planes when they land. The landing function was then tested by simply adding a plane into the hangar array of an airport and checking it was present in the array.
 
