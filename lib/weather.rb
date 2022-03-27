@@ -1,7 +1,7 @@
 class Weather
 
   POTENTIAL_CONDITIONS = [:sunny, :sunny, :sunny, :sunny, :sunny, :sunny, :sunny, :sunny, :stormy, 
-    :stormy]
+    :stormy].freeze
 
   def current_conditions
     POTENTIAL_CONDITIONS[rand(0..9)]

@@ -1,8 +1,3 @@
-require 'byebug'
-require 'airport'
-require 'weather'
-# do not need these required files
-
 class Plane
   attr_reader :is_flying
 
