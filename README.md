@@ -62,7 +62,7 @@ graph TD
     A[Air Traffic Controller] -->B[Plane]
     B[Plane] -->C[land]
     C[land] --> D[Airport]
-    D[Airport] -->E[store_plane(arg)]
+    D[Airport] -->E["store_plane(arg)"]
 ```
 
 
@@ -114,8 +114,8 @@ I would like a default airport capacity that can be overridden as appropriate`
 ```mermaid
 graph TD
     A[Air Traffic Controller] -->B[Airport]
-    B[Airport] --> C[Airport.new(10)]
-    C[Airport.new(5)] --> D[capacity = 10]
+    B[Airport] --> C["Airport.new(10)"]
+    C["Airport.new(5)"] --> D[capacity = 10]
 ```
 
 
