@@ -58,11 +58,11 @@ describe Airport do
     end
 
     it 'Should prevent landing when weather is stormy' do
-      expect { subject.land double(:in_flight => true) }.to raise_error 'Cannot land when stormy'
+      expect { subject.land(Plane.new) }.to raise_error 'Cannot land when stormy'
     end
 
     it 'Should prevent take off when weather is stormy' do
-      expect { subject.take_off double(:in_flight => true) }.to raise_error 'Cannot take off when stormy'
+      expect { subject.take_off(Plane.new) }.to raise_error 'Cannot take off when stormy'
     end
   end
 end
