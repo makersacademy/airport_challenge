@@ -20,8 +20,8 @@ Now, I know you're excited to get your pilot's hat on, but please read these ins
 - Run irb and require './lib/airport.rb'
 - This is where the fun begins!
 - You can create plane instances (plane = Plane.new) and airport instances (airport = Airport.new). I'd recommend getting creative - maybe try and fly your own private jet to Paris for the night (a girl can dream!).
-- To instruct a plane to take off from an airport you can use the 'take_off' method.
-- To instruct a plane to land you can use the 'land' method.
+- To instruct a plane to take off from an airport you can use the 'take_off' method (airport.take_off(plane))
+- To instruct a plane to land you can use the 'land' method (airport.land(plane))
 ## Some things to note
 - The airport's default capacity is set to 20 planes, so if you would like to change the airports default capacity, you can pass your desired capacity as an integer to the airport instance eg (airport = Airport.new(200))
 - You will only be able to land and take-off planes if the weather is sunny. Luckily, the weather is sunny 80% of the time, and stormy the other 20%. 
