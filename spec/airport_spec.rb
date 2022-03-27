@@ -22,6 +22,12 @@ describe Airport do
       allow(airport).to receive(:stormy?).and_return true
       expect { airport.land plane }.to raise_error "Due to stormy weather no landing allowed" 
     end
+
+    it 'raise an error when plane is not in the air before landing'do
+      allow(airport).to receive(:stormy?).and_return false
+      plane = Plane.new(true)
+      expect { airport.land plane }.to raise_error "Plane is not in the air"
+    end
   end
   
   describe '#take-offs' do
@@ -30,6 +36,12 @@ describe Airport do
     it 'is prevented due to stormy weather' do
       allow(airport).to receive(:stormy?).and_return true
       expect { airport.takeoff plane }.to raise_error "Due to stormy weather no landing allowed" 
+    end
+    
+    it 'raise an error when plane is not in the airport before taking off'do
+    allow(airport).to receive(:stormy?).and_return false
+    plane = Plane.new(false)
+    expect { airport.takeoff plane }.to raise_error "Plane is not at the airport"
     end
   end    
 end
