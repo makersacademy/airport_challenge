@@ -33,3 +33,11 @@ put "Airport now full."
 puts "Attempting to land a plane in the airport that is full..."
 plane.land(airport)
 puts "... failed, as desired!"
+
+puts "Attempting to override default capacity of the airport"
+airport.set_capacity(5)
+puts "Airport capacity successfully updated!"
+
+puts "Attempting to create a new airport with a custom capacity"
+a_smaller_airport = Airport.new(3)
+puts "New airport with a custom capacity successfully created"
