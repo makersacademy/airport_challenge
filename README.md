@@ -41,6 +41,14 @@ In `./spec`
 * `airport_spec.rb`: RSpec file for `Airport` class
 * `weather_spec.rb`: RSpec file for `Weather` class
 
+## Note on aspects not complete
+
+I did not have time for the following:
+* Isolating tests
+* Fully implement a feature test on RSpec, there is an attempt at one in the project folder.
+* I have not tested edge cases exhaustively
+
+
 
 ## My approach to solving the problem
 
@@ -121,8 +129,3 @@ Here's a consolidated mapping for an overall picture of the structure of of the 
 ### Step ...: Run Rubocop and clean up code
 
 ### Step ...: Tidy up README
-
-*steps not had time for*
-* Isolating tests
-* Fully implement a feature test on RSpec
-
