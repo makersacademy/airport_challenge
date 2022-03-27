@@ -1,7 +1,11 @@
 require_relative '../lib/airport.rb'
+# require_relative '../lib/weather.rb'
+
+
 # Haven't looked into feature tests yet so just recording irb tests.
 # Use the drop-downs and remove hashes from code you wish to try out.
 # Please do this one at a time!
+# Rogue weather spells may hit during tests...
 
 airport1 = Airport.new
 airport2 = Airport.new
@@ -10,6 +14,8 @@ airport3 = Airport.new(2)
 plane1 = Plane.new
 plane2 = Plane.new
 plane3 = Plane.new
+
+weather1 = Weather.new
 
 # [X] Plane can land (store plane) & take off (return plane)
   # p airport1.land(plane1)
@@ -46,7 +52,14 @@ plane3 = Plane.new
   # p airport2.land(plane2)
   # p airport2.take_off(plane1)
 
-# [ ] Landing error if weather is stormy
-# [ ] takeoff error if weather is stormy
+# [X] landing/takeoff error if weather is stormy
+  # p airport1.land(plane1)
+  # p airport1.take_off(plane1)
 
-
+# [X] Check if weather / storm method works
+  # p weather1.storm?
+  # p weather1.storm?
+  # p weather1.storm?
+  # p weather1.storm?
+  # p weather1.storm?
+  # p weather1.storm?

@@ -14,5 +14,6 @@ class Plane
   end
 end
 
-# Maybe use these to prevent plane from landing 
-# in two seperate airports at once.
+# Now that I've completed the 'stormy' stories and understand rspec a bit better,
+# I might be able to use the above to detect whether a plane has landed or not.
+# Unfortunately it's quite late and best saved for another time!
