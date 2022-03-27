@@ -1,21 +1,17 @@
 class Weather
 
-  attr_reader :predictions
-  
-  def initialize 
-    @predictions = [:sunny, :sunny, :sunny, :sunny, :sunny, :sunny, :sunny, :sunny, :stormy, 
-:stormy]
-  end
+  POTENTIAL_CONDITIONS = [:sunny, :sunny, :sunny, :sunny, :sunny, :sunny, :sunny, :sunny, :stormy, 
+    :stormy]
 
-  def random_weather
-    predictions[rand(0..9)]
+  def current_conditions
+    POTENTIAL_CONDITIONS[rand(0..9)]
   end
 
   def stormy?
-    random_weather == :stormy
+    current_conditions == :stormy
   end
 
   def sunny?
-    random_weather == :sunny
+    current_conditions == :sunny
   end
 end
