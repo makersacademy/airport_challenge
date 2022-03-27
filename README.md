@@ -15,7 +15,7 @@ I am creating a program to emulate airports. This will include the landing and t
 \
 I will accomplish this by using TDD to create tests that are based on the user stories and then write code that will then pass these tests to ensure that the spec been met.\
 \
-I will then need to consider edge cases such as having planes only being able to take off from the airports they are in, planes already in flight cannot take off or be inside a airport, planes that have already landed can not land again and must irbbe in a airport.
+I will then need to consider edge cases such as having planes only being able to take off from the airports they are in, planes already in flight cannot take off or be inside a airport, planes that have already landed can not land again and must be in a airport.
 
 ## Instructions
 Clone this repository to your desired location, run the command `gem install bundler` then run `bundle`.\
