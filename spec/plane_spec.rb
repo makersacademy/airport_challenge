@@ -6,6 +6,7 @@ describe Plane do
   before(:each) do
     @plane = Plane.new
     @airport = Airport.new
+    @weather = Weather.new
   end
 
   it "lands at the designated airport when instructed if airport is not full" do
@@ -20,7 +21,7 @@ describe Plane do
   end
 
   it "takes off when instructed if at an airport when weather is not stormy" do
-    allow(@plane).to receive(:stormy?).and_return(false)
+    allow(@weather).to receive(:stormy?).and_return(false)
     @plane.land(@airport)
     expect(@plane.take_off).to eq @plane
     expect(@airport.hangar).not_to include(@plane)
@@ -33,7 +34,7 @@ describe Plane do
 
   it "prevents take-off when weather is stormy" do
     @plane.land(@airport)
-    allow(@plane).to receive(:stormy?).and_return(true)
+    allow(@weather).to receive(:stormy?).and_return(true)
     expect { @plane.take_off }.to raise_error("Stormy weather")
   end
 

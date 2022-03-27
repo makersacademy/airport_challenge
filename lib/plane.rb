@@ -17,7 +17,8 @@ class Plane
 
   def take_off
     raise "Already in the air" if @location == :in_air
-    raise "Stormy weather" if stormy? == true
+    weather = Weather.new
+    raise "Stormy weather" if weather.stormy? == true
     @location.hangar.delete(self)
     @location = :in_air
     self
