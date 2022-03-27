@@ -2,6 +2,7 @@ require_relative '../lib/airport.rb'
 
 describe Airport do
   let(:plane) { double :plane }
+  let(:plane2) { double :plane2 }
 
   describe '#land' do
     it { is_expected.to respond_to(:land).with(1).argument }
@@ -18,16 +19,21 @@ describe Airport do
 
   describe '#take_off' do
     it { is_expected.to respond_to(:take_off).with(1).argument }
-  end
 
-  it 'should remove plane from airport' do
-    subject.land(plane)
-    expect(subject.take_off(plane)).to eq plane
-  end
+    it 'should remove plane from airport' do
+      subject.land(plane)
+      expect(subject.take_off(plane)).to eq plane
+    end
 
-  it 'should raise error if flying plane tries take_off again.' do
-    subject.land(plane)
-    subject.take_off(plane)
-    expect { subject.take_off(plane) }.to raise_error 'Plane already flying.'
+    it 'raises an error when there are no planes in the hangar' do
+      expect { subject.take_off(plane) }.to raise_error 'No planes in hangar.'
+    end
+
+    it 'should raise error if flying plane tries take_off again.' do
+      subject.land(plane)
+      subject.land(plane2)
+      subject.take_off(plane2)
+      expect { subject.take_off(plane2) }.to raise_error 'Plane already flying.'
+    end
   end
 end
