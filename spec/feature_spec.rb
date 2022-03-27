@@ -1,29 +1,27 @@
 require 'airport'
 
-describe Airport do
-  describe 'Edge cases' do
-    before do
-      allow(subject).to receive(:stormy?).and_return(false)
-    end
-    
-    it 'Planes already in flight should not be able to take off' do
-      expect { subject.take_off(Plane.new) }.to raise_error 'Plane already in flight'
-    end
-
-    it 'Planes should only be able to take off from the airport they are in' do
-      plane = Plane.new
-      airport1 = Airport.new
-      airport2 = Airport.new
-      allow(airport1).to receive(:stormy?).and_return(false)
-      allow(airport2).to receive(:stormy?).and_return(false)
-      airport1.land(plane)
-      expect { airport2.take_off(plane) }.to raise_error 'This plane is not in this station'
-    end
-
-    it 'Planes that are landed can not land again and should be inside a airport' do
-      plane = Plane.new
-      subject.land(plane)
-      expect { subject.land(plane) }.to raise_error 'This plane is already landed'
-    end
+describe 'Planes flying around different stations' do
+  it 'Three planes flying around three stations' do
+    airport1 = Airport.new
+    airport2 = Airport.new
+    airport3 = Airport.new
+    allow(airport1).to receive(:stormy?).and_return(false)
+    allow(airport2).to receive(:stormy?).and_return(false)
+    allow(airport3).to receive(:stormy?).and_return(false)
+    plane1 = Plane.new
+    plane2 = Plane.new
+    plane3 = Plane.new
+    airport1.land(plane1)
+    airport2.land(plane2)
+    airport3.land(plane3)
+    airport2.take_off(plane2)
+    airport1.land(plane2)
+    airport1.take_off(plane1)
+    airport3.take_off(plane3)
+    airport2.land(plane3)
+    airport3.land(plane1)
+    expect(airport1.planes.include?(plane2)).to eq true
+    expect(airport2.planes.include?(plane3)).to eq true
+    expect(airport3.planes.include?(plane1)).to eq true
   end
 end
