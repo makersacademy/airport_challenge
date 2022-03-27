@@ -1,5 +1,5 @@
 David Campbell - March '22 cohort
-Makers Course WEEK 2 - Airport Challenge
+Makers Course WEEK 2 - AIRPORT CHALLENGE
 
 - Create a small program to control flow of planes at an airport.
 - Every plane has a status to say wether it is in the air or landed at the airport
@@ -17,35 +17,17 @@ user story 1
     # So I can get passengers to a destination 
     # I want to instruct a plane to land at an airport
 
--1st objective, turn user story into objects & actions
+-Objectives, turn user stories into objects & actions
 
-object => airport(therefore destination) => plane(object)in air, action: tell plane to land
+object => airport(therefore destination) => plane(object)in air, action: tell plane to land, take off, cannot land when airport full...
 
 object => plane => action: landed at airport
 
-- rspec spec/airport_spec.rb to run tests from airport_challenge folder 
+- rspec spec/airport_spec.rb to run tests from airport_challenge folder
+calling Class defined in airport.rb file
 
-# 1st ran feature tests in irb
+README revised on third commit to make process taken clearer and concentrated on working with airport spec and airport object/class (deleted created plane class & spec file at this stage as over-complicating process)
 
-# created airport and plane objects and...
-# ran a land_plane method on the airport calling the plane object
-- all gave uninitialized constant errors
+# With each step I ran a feature test first in irb then an rspec unit test, making sure they failed first and read result of each failed test. I created wrapper examples in my airport_spec then created each definition in my Airport class accordingly, making sure each step was failing then passing and ensuring 100 % coverage
 
-# created an airport_spec.rb file in spec folder with a an empty spec with a class description - uninitialized constant fail but has 100 % coverage
-
-# created an airport.rb file and added an Airport class
-# added a require to airport.rb file in the spec file -ran rspec with no fails & 100 % coverage
-
-# ran a feature test from irb, require'd airport.rb file and could initialize an airport object but not a plane object - return to next unit test
-
-# ran rubocop and tightened up code accordingly
-
-- 1st add, commit & push
-
-# added it wrapper example to land_plane to airport_spec and ran... no method error. Added land_plane definition to Airport class and ran... passed with one example, no failures & 100 % coverage
-
-# created plane.rb file and plane_spec.rb file for next stage of process
-
-# ran rubocop
-
-- 2nd add and commit
+# then ran rubocop and tightened up code accordingly - no offences detected and added and commited after each method definition added passed unit tests
