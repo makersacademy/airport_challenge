@@ -9,6 +9,11 @@ describe Airport do
     it 'should store a plane in hangar when landed' do
       expect(subject.land(plane)).not_to be_empty
     end
+
+    it 'should raise error if plane tries to land whilst already in hangar' do
+      subject.land(plane)
+      expect { subject.land(plane) }.to raise_error 'Plane already grounded.'
+    end
   end
 
   describe '#take_off' do
