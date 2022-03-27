@@ -16,13 +16,13 @@ describe Airport do
     expect(manchester.capacity).to eq 29
   end
 
-  it 'is able to check sunny weather' do
+  it 'is able to generate sunny weather' do
     srand 9
-    expect(heathrow.check_weather).to eq "Sunny"
+    expect(heathrow.weather).to eq "Sunny"
   end
 
-  it 'is able to check stormy weather' do
+  it 'is able to generate stormy weather' do
     srand 10
-    expect(heathrow.check_weather).to eq "Stormy"
+    expect(heathrow.weather).to eq "Stormy"
   end
 end
