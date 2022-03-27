@@ -15,17 +15,35 @@ I am creating a program to emulate airports. This will include the landing and t
 \
 I will accomplish this by using TDD to create tests that are based on the user stories and then write code that will then pass these tests to ensure that the spec been met.\
 \
-I will then need to consider edge cases such as having planes only being able to take off from the airports they are in, planes already in flight cannot take off or be inside a airport, planes that have already landed can not land again and must be in a airport.
+I will then need to consider edge cases such as having planes only being able to take off from the airports they are in, planes already in flight cannot take off or be inside a airport, planes that have already landed can not land again and must irbbe in a airport.
 
 ## Instructions
-Clone this repository to your desired location.\
+Clone this repository to your desired location, run the command `gem install bundler` then run `bundle`.\
 \
 Run RSpec in the `airport_challenge` directory whilst in the terminal in order to run the unit tests.\
 \
-Alternatively, run irb and load the file `airport.rb` located inside the lib directory. Create a new airport within irb by using `Airport.new`. Create planes with the command `Plane.new` and use the methods `land(plane)` and `take_off(plane)` (plane being any Planes that have been created). If you wish to manage these planes and airports easier, feel free to give them variable names, i.e `airport1 = Airport.new`, `plane1 = Plane.new`, `plane2 = Plane.new` and etc. There is a default capacity of 100 airplanes for each Airport created, this can be changed during the creation by simply doing `Airport.new(num)` with num being the capacity you wish for the Airport to have.\
+Alternatively, run irb and load the file `airport.rb` located inside the lib directory. Create a new airport within irb by using `Airport.new`. Create planes with the command `Plane.new` and use the methods `land(plane)` and `take_off(plane)` (`plane` being any Planes that have been created). If you wish to manage these planes and airports easier, feel free to give them variable names, i.e `airport1 = Airport.new`, `plane1 = Plane.new`, `plane2 = Plane.new` and etc. There is a default capacity of 100 airplanes for each Airport created, this can be changed during the creation by simply doing `Airport.new(num)` with num being the capacity you wish for the Airport to have.\
 \
-If you wish to test the Airport under stormy conditions, feel free to create new airports until that is the case (there is a 1/10 chance for it to be stormy at a airport) - do note that in stormy conditions you cannot land any planes nor have any planes take off!
-
+If you wish to test the Airport under stormy conditions, feel free to create new airports until that is the case (there is a 1/10 chance for it to be stormy at a airport) - do note that in stormy conditions you cannot land any planes nor have any planes take off!\
+\
+Below is a example of using my code in irb:
+```
+irb(main):001:0> require './lib/airport'
+=> true
+irb(main):002:0> airport1 = Airport.new
+=> #<Airport:0x00007fbc42061cc8 @capacity=100, @planes=[], @weather=#<Weather:0x00007fbc4204b590 @stormy=false>>
+irb(main):003:0> plane1 = Plane.new
+=> #<Plane:0x00007fbc7219f790 @in_flight=true>
+irb(main):004:0> plane2 = Plane.new
+=> #<Plane:0x00007fbc528f66f8 @in_flight=true>
+irb(main):005:0> airport1.land(plane1)
+=> [#<Plane:0x00007fbc7219f790 @in_flight=false>]
+irb(main):006:0> airport1.land(plane2)
+=> [#<Plane:0x00007fbc7219f790 @in_flight=false>, #<Plane:0x00007fbc528f66f8 @in_flight=false>]
+irb(main):007:0> airport1.take_off(plane2)
+=> #<Plane:0x00007fbc528f66f8 @in_flight=true>
+irb(main):008:0> 
+```
 
 ## User Stories
 
@@ -59,7 +77,7 @@ I want to prevent landing when weather is stormy
 |  Objects              |  Methods          |
 | --------------------- | ----------------- | 
 | Airport               | land(plane)       |
-| Airport               | take_off          |
+| Airport               | take_off(plane)   |
 | Airport               | full?             |
 | Airport               | capacity          |
 | Weather               | stormy            |
