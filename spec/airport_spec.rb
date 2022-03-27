@@ -25,7 +25,7 @@ describe Airport do
     it 'Planes that are landed can not land again and should be inside a airport' do
       plane = Plane.new
       subject.land(plane)
-      expect { subject.land(plane) }.to raise_error 'This plane is already landed'
+      expect { subject.land(plane) }.to raise_error 'This plane has already landed'
     end
   end
 
