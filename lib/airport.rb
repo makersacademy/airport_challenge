@@ -15,8 +15,5 @@ class Airport
   def change_capacity(custom_capacity)
     @capacity = custom_capacity
   end
-
-  def stormy?
-  end
     
 end

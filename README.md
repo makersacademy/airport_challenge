@@ -16,20 +16,31 @@ My code needed to defend against edge cases such as inconsistent states of the s
 
 ## Getting started
 
-`git clone path-to-your-repo`
-`command_to_install_dependencies` (e.g. `bundle`)
+`git clone https://github.com/almorcrette/airport_challenge.git`
 
 ## Usage
 
-`command_to_start` (e.g. `rackup` or `rails s`)
-Navigate to `http://localhost:4567/`
+`irb -r ./lib/plane.rb'`
 
 
 ## Running tests
 
-`test_command` (e.g. `rspec`)
+`rspec`
 
 ## File manifest
+
+* `README.md`: My README file
+* `INSTRUCTIONS.md`: Makers challenge instructions
+* `feature_spec.rb`: An attempt at a feature spec. WIP 
+In `./lib`
+* `plane.rb`: `Plane` class
+* `airport.rb`: `Weather` class
+* `weather.rb`: `Airport` class
+In `./spec`
+* `plane_spec.rb`: Rspec file `Plane` class
+* `airport_spec.rb`: RSpec file for `Airport` class
+* `weather_spec.rb`: RSpec file for `Weather` class
+
 
 ## My approach to solving the problem
 
@@ -61,7 +72,7 @@ To ensure safety
 I want to prevent landing when weather is stormy 
 ```
 
-### Step 1: Functional representation of user stories:
+### Step 1: Functional representation of user stories
 
 To get me started, I identified all the nouns and verbs in the user stories.
 
@@ -69,37 +80,49 @@ I then considered for each user story which of those nouns and verbs relate to t
 
 I mapped out functional representation of each story in terms of _objects_, _messages_, _parameters_, _behaviour_, and where more relevant, _objects_, _constants_, and _instance variables_.
 
-I then consolidated those mappings together to give me an overall picture of the structure of of the program as a whole, as follows:
+Here's a consolidated mapping for an overall picture of the structure of of the program as a whole, as follows:
 
 **Objects and messages**
 
-| Objects     | Messages      | Parameters   | Behaviour                    |
-| ------------| --------------| -------------| -----------------------------|
-| Weather     | Stormy?       |              | Reports whether stormy       |
-| Airport     | Full?         |              | Reports whether full         |
-| Plane       | Land          | Airport      | Lands at airport             |
-|             |               |              | Prevents landing if stormy   |
-|             | Take off      | Airport      | Take off from airport        |
-|             |               |              | Prevents take-off if stormy  |
-|             | Report        |              | Report location              |
+| Objects     | Messages        | Parameters   | Behaviour                    |
+| ------------| ----------------| -------------| -----------------------------|
+| Weather     | Stormy?         |              | Reports whether stormy       |
+| Airport     | Full?           |              | Reports whether full         |
+| Airport     | Change capacity |              | Changes capacity             |
+| Plane       | Land            | Airport      | Lands at airport             |
+|             |                 |              | Prevents landing if stormy   |
+|             | Take off        | Airport      | Take off from airport        |
+|             |                 |              | Prevents take-off if stormy  |
+|             | Report          |              | Report location              |
 
 **Objects and states**
 
 | Objects     | Constants          | Instance variables   | 
 | ------------| -------------------| ---------------------| 
-| Weather     |                    | Stormy               |
+| Weather     | Weather types      | Stormy               |
 | Airport     | Default capacity   | Capacity             |
+|             |                    | Hangar               |
+| Plane       |                    | Location             |
 
-----------------------------------------------
+### Step 2: Feature testing Functional representation of user stories
 
-At the barest minimum, it should contain a description of what the code does, how to install it, how to use it and how to run its tests. In addition, READMEs often include other information such as:
+### Step 3: Unit testing Functional representation of user stories
 
-- Configuration instructions
-- A file manifest (list of files included)
-- Copyright and licensing information
-- Contact information for the distributor or programmer
-- Known bugs
-- Troubleshooting
-- Credits and acknowledgments
-- A changelog (usually for programmers)
-- A news section (usually for users)
+### Step 4: Production code to pass test
+
+### Step 5: Refactor
+
+### Step ...: Repeat till all exceptions satisfied
+
+### Step ...: Test features to confirm behaviour for user
+
+### Step ...: Ensure 95% + test coverage
+
+### Step ...: Run Rubocop and clean up code
+
+### Step ...: Tidy up README
+
+*steps not had time for*
+* Isolating tests
+* Fully implement a feature test on RSpec
+
