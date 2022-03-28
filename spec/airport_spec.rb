@@ -14,7 +14,7 @@ describe Airport do
 
     it '--to be prevented when airport is full' do 
       allow(airport).to receive(:stormy?).and_return false  
-      Airport::DEFAULT_CAPACITY.times { airport.land Plane.new }
+      Airport::DEFAULT_CAPACITY.times { airport.land Plane.new } 
       expect { airport.land Plane.new }.to raise_error 'Airport is full no landing allowed'
     end
 
@@ -28,6 +28,11 @@ describe Airport do
       plane = Plane.new(true)
       expect { airport.land plane }.to raise_error "Plane is not in the air"
     end
+    it 'lands multiple planes' do # bonus points
+      allow(airport).to receive(:stormy?).and_return false  
+      5.times { airport.land Plane.new } 
+      expect { airport.land Plane.new }.not_to raise_error 
+    end
   end
   
   describe '#take-offs' do
@@ -40,7 +45,7 @@ describe Airport do
     end
     it 'gets weather status' do
       allow(airport).to receive(:stormy?).and_return false
-      expect(weather.stormy).to be_in([true, false])
+      expect(weather.stormy).to be(true).or be(false)
     end  
     it 'is prevented due to stormy weather' do
       allow(airport).to receive(:stormy?).and_return true
@@ -51,6 +56,11 @@ describe Airport do
       allow(airport).to receive(:stormy?).and_return false
       plane.in_flight = true
       expect { airport.takeoff plane }.to raise_error "Plane is not at the airport"
+    end
+    it 'multiple planes' do # bonus points
+      allow(airport).to receive(:stormy?).and_return false  
+      5.times { airport.land Plane.new } 
+      expect { airport.takeoff plane }.not_to raise_error 
     end
   end    
 end
