@@ -1,89 +1,42 @@
-Airport Challenge
-=================
+# Airport Challenge
 
+This is a program which simulates airports, planes and weather which affects the planes ability to land and take off. Two separate files were made for the [Airport class](./lib/airport.rb) and the [Plane class](./lib/plane.rb), as well as two corresponding spec files([airport](./spec/airport_spec.rb) and [plane](./spec/plane_spec.rb)) and a [feature spec](./spec/feature_spec.rb) file at the end for testing.
+
+## Getting Started
+
+Type the following commands in the folder you want to save this program in:
 ```
-        ______
-        _\____\___
-=  = ==(____MA____)
-          \_____\___________________,-~~~~~~~`-.._
-          /     o o o o o o o o o o o o o o o o  |\_
-          `~-.__       __..----..__                  )
-                `---~~\___________/------------`````
-                =  ===(_________)
-
+git clone https://github.com/jmcnally17/airport_challenge.git
+bundle
 ```
 
-Instructions
----------
+## How To Use
 
-* Feel free to use google, your notes, books, etc. but work on your own
-* If you refer to the solution of another coach or student, please put a link to that in your README
-* If you have a partial solution, **still check in a partial solution**
-* You must submit a pull request to this repo with your code by 10am Monday morning
-
-Steps
--------
-
-1. Fork this repo, and clone to your local machine
-2. Run the command `gem install bundler` (if you don't have bundler already)
-3. When the installation completes, run `bundle`
-4. Complete the following task:
-
-Task
------
-
-We have a request from a client to write the software to control the flow of planes at an airport. The planes can land and take off provided that the weather is sunny. Occasionally it may be stormy, in which case no planes can land or take off.  Here are the user stories that we worked out in collaboration with the client:
-
+Navigate to the [lib](./lib/) folder in your local repository. To use in irb:
 ```
-As an air traffic controller 
-So I can get passengers to a destination 
-I want to instruct a plane to land at an airport
-
-As an air traffic controller 
-So I can get passengers on the way to their destination 
-I want to instruct a plane to take off from an airport and confirm that it is no longer in the airport
-
-As an air traffic controller 
-To ensure safety 
-I want to prevent landing when the airport is full 
-
-As the system designer
-So that the software can be used for many different airports
-I would like a default airport capacity that can be overridden as appropriate
-
-As an air traffic controller 
-To ensure safety 
-I want to prevent takeoff when weather is stormy 
-
-As an air traffic controller 
-To ensure safety 
-I want to prevent landing when weather is stormy 
+irb
+require './plane'
 ```
+Then use the methods present in the [airport](./lib/airport.rb) and [plane](./lib/plane.rb) files to play around.
 
-Your task is to test drive the creation of a set of classes/modules to satisfy all the above user stories. You will need to use a random number generator to set the weather (it is normally sunny but on rare occasions it may be stormy). In your tests, you'll need to use a stub to override random weather to ensure consistent test behaviour.
+## Running Tests
 
-Your code should defend against [edge cases](http://programmers.stackexchange.com/questions/125587/what-are-the-difference-between-an-edge-case-a-corner-case-a-base-case-and-a-b) such as inconsistent states of the system ensuring that planes can only take off from airports they are in; planes that are already flying cannot take off and/or be in an airport; planes that are landed cannot land again and must be in an airport, etc.
+In the current folder run `rspec`.
 
-For overriding random weather behaviour, please read the documentation to learn how to use test doubles: https://www.relishapp.com/rspec/rspec-mocks/docs . There’s an example of using a test double to test a die that’s relevant to testing random weather in the test.
+### Approach
 
-Please create separate files for every class, module and test suite.
+Both airport and plane classes were both initially made with the hangar array instance variable test in the airport being made first in order to have a place to store the planes when they land. The landing function was then tested by simply adding a plane into the hangar array of an airport and checking it was present in the array.
 
-In code review we'll be hoping to see:
+The take off method was then tested by checking that the plane was no longer present in the hangar array after the take off method was called on the plane. Three tests were added to check the plane was being returned at the end of the method, the hangar array no longer contained the plane and the method printing a message to tell the user that the plane had left the airport. Although, the latter test was later removed as it felt unnecessary.
 
-* All tests passing
-* High [Test coverage](https://github.com/makersacademy/course/blob/main/pills/test_coverage.md) (>95% is good)
-* The code is elegant: every class has a clear responsibility, methods are short etc. 
+The land method was then tested and updated to account for a plane trying to land when the airport is full by raising an error message when the plane calls the land method on the airport. An arbitrary number of 60 was chosen for this test. Another test for a plane trying to take off from an airport that it is not in was also made by raising its own error.
 
-Reviewers will potentially be using this [code review rubric](docs/review.md).  Referring to this rubric in advance will make the challenge somewhat easier.  You should be the judge of how much challenge you want this at this moment.
+The test for a default capacity was then added to the airport class with the ability to change this to any value the user gives by using an instance variable in the initialize method with a default parameter. All existing tests and methods that were required to use this instance variable from the airport class were then updated accordingly.
 
-**BONUS**
+A couple of edge cases were then tested for when a plane tries to land when it is already in an airport and when a plane tries to take off when it is already flying. This was helped by creating an instance variable called state which stores whether the plane is in a state of "Flying" or "Landed".
 
-* Write an RSpec **feature** test that lands and takes off a number of planes
+Weather at an airport was then tested by using random number generation to create weather that would affect whether or not planes could take off or land. Initially, an instance variable for weather was created but this made the process of testing too complicated and so a simple weather method was created in the airport class instead. Sunny weather allows the planes to land and take off whereas stormy weather prevents the planes from doing either. Tests for this weather method were also added to the airport spec file.
 
-Note that is a practice 'tech test' of the kinds that employers use to screen developer applicants.  More detailed submission requirements/guidelines are in [CONTRIBUTING.md](CONTRIBUTING.md)
+Finally a feature test was created to first check multiple planes landing and then taking off.
 
-Finally, don’t overcomplicate things. This task isn’t as hard as it may seem at first.
-
-* **Submit a pull request early.**
-
-* Finally, please submit a pull request before Monday at 10am with your solution or partial solution.  However much or little amount of code you wrote please please please submit a pull request before Monday at 10am.
+Doubles were used in the spec files in order to isolate unit tests. 
