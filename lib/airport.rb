@@ -1,5 +1,5 @@
-require 'weather'
-require 'plane'
+require_relative '../lib/weather.rb'
+require_relative '../lib/plane.rb'
 
 class Airport
   attr_reader :planes, :capacity
@@ -22,6 +22,7 @@ class Airport
   def takeoff(plane)
     fail 'Due to stormy weather no landing allowed' if stormy?
     fail 'Plane is not at the airport' if plane.in_flight?
+    plane.in_flight = true
     @planes.delete(plane)
     'plane has taken off'
   end

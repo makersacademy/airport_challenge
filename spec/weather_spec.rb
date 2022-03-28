@@ -1,4 +1,4 @@
-require 'weather'
+require_relative '../lib/weather.rb'
 
 describe Weather do
   let(:weather) { Weather.new }
