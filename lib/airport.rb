@@ -21,8 +21,7 @@ class Airport
   
   def takeoff(plane)
     fail 'Due to stormy weather no landing allowed' if stormy?
-    fail 'Plane is not at the airport' unless plane.in_flight?
-    plane.in_flight = true
+    fail 'Plane is not at the airport' if plane.in_flight?
     @planes.delete(plane)
     'plane has taken off'
   end

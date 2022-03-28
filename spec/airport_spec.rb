@@ -3,8 +3,8 @@ require 'airport'
 describe Airport do
   let(:plane) { Plane.new }
   let(:airport) { Airport.new }
-  
-  it { is_expected.to respond_to(:land).with(1).argument }    
+  let(:weather) { Weather.new }
+   
   
   describe '# landing' do
       
@@ -23,7 +23,7 @@ describe Airport do
       expect { airport.land plane }.to raise_error "Due to stormy weather no landing allowed" 
     end
 
-    it 'raise an error when plane is not in the air before landing'do
+    it 'raise an error when plane is not in the air before landing' do
       allow(airport).to receive(:stormy?).and_return false
       plane = Plane.new(true)
       expect { airport.land plane }.to raise_error "Plane is not in the air"
@@ -33,15 +33,24 @@ describe Airport do
   describe '#take-offs' do
     it { is_expected.to respond_to(:takeoff).with(1).argument }
     
+    it 'informs that the plane has taken off' do
+      allow(airport).to receive(:stormy?).and_return false
+      airport.planes << plane
+      expect(airport.takeoff plane).to eq 'plane has taken off'  
+    end
+    it 'gets weather status' do
+      allow(airport).to receive(:stormy?).and_return false
+      expect(weather.stormy).to be_in([true, false])
+    end  
     it 'is prevented due to stormy weather' do
       allow(airport).to receive(:stormy?).and_return true
       expect { airport.takeoff plane }.to raise_error "Due to stormy weather no landing allowed" 
     end
     
-    it 'raise an error when plane is not in the airport before taking off'do
-    allow(airport).to receive(:stormy?).and_return false
-    plane = Plane.new(false)
-    expect { airport.takeoff plane }.to raise_error "Plane is not at the airport"
+    it 'raise an error when plane is not in the airport before taking off' do
+      allow(airport).to receive(:stormy?).and_return false
+      plane.in_flight = true
+      expect { airport.takeoff plane }.to raise_error "Plane is not at the airport"
     end
   end    
 end
