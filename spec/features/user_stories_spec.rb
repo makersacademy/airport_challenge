@@ -1,45 +1,64 @@
 describe 'User stories => ' do
-  
-###### User story 1
+  let(:airport) { Airport.new(40, weather_reporter) }
+  let(:plane) { Plane.new }
+  let(:weather_reporter) { WeatherReporter.new }
+
+  context 'when not stormy' do
+    before do
+      allow(weather_reporter).to receive(:stormy?).and_return false
+    end
+###### User story 
 
   # As an air traffic controller 
   # So I can get passengers to a destination 
   # I want to instruct a plane to land at an airport.
 
     it 'instructs a plan to land 🛬 at an airport.' do
-      airport = Airport.new(40)
-      plane = Plane.new
       expect { airport.land(plane) }.not_to raise_error
     end
 
-  ###### User story 2
+  ###### User story 
 
   # As an air traffic controller 
   # So I can get passengers on the way to their destination 
   # I want to instruct a plane to take off from an airport and confirm that it is no longer in the airport
 
-    it 'instructs a plane to take off 🛫 and confirms that it is no longer in the airport' do
-      airport = Airport.new(40)
-      plane = Plane.new
+    it 'instructs a plane to take off 🛫 and send confirmation' do
+      airport.land(plane)
       expect { airport.take_off(plane) }.not_to raise_error
     end
+  
+  ###### User story 
 
-  ###### User story 3
+  # As an air traffic controller 
+  # To ensure safety 
+  # I want to ensure that planes can only take off from airports they are in
+
+  it 'allows only planes to fly from the airports they are in' do
+    airport_2 = Airport.new(40, WeatherReporter.new)
+    airport_2.land(plane)
+    expect { airport.take_off(plane).to raise_error 'Cannot take off: plane is not at this airport'}
+
+  end
+
+  ###### User story 
 
   # As an air traffic controller 
   # To ensure safety 
   # I want to prevent landing when the airport is full
 
-  it 'instructs a plane NOT to land ⛔️ when the airport is full' do
-    airport = Airport.new(40)
-    plane = Plane.new
-    40.times do
-      airport.land(plane)
+  context 'when the airpot is full' do
+    it 'instructs a plane NOT to land ⛔️' do
+      40.times do
+        airport.land(plane)
+      end
+      expect { airport.land(plane) }.to raise_error 'Unable to land plane: no empty spaces.'
     end
-    expect { airport.land(plane) }.to raise_error 'Unable to land plane: no empty spaces.'
   end
+end
 
-  ###### User story 4
+
+  ###### User story 
 
   # As the system designer
   # So that the software can be used for many different airports
@@ -47,44 +66,43 @@ describe 'User stories => ' do
 
 
 
-  ###### User story 5
+
+
+
+
+
+  context 'when wheather is stormy' do
+    before do
+      allow(weather_reporter).to receive(:stormy?).and_return true
+    end
+
+  ###### User story 
 
   # As an air traffic controller 
   # To ensure safety 
   # I want to prevent takeoff when weather is stormy
 
-  # it 'will not allow lanidng when stormy' do
-  #   airport = Airport.new(30)
-  #   plane = Plane.new
-  #   allow(airport).to receive(:stormy?).and_return true
-  #   expect { airport.land(plane) }.to raise_error 'Unable to land plane: stormy weather.'
-  # end
-
-  ###### User story 6
+    it 'will not allow planes to take off 🛫 ' do
+      expect { airport.take_off(plane) }.to raise_error 'Unable to allow planes to take off: stormy weather.'
+    end
+  
+  ###### User story 
 
   # As an air traffic controller 
   # To ensure safety 
-  # I want to prevent landing when weather is stormy   
+  # I want to prevent landing when weather is stormy
+    
+    it 'will not allow lanidng 🛬 ' do
+        expect { airport.land(plane) }.to raise_error 'Unable to land plane: stormy weather.'
+    end
+  end
+
+
 
 
 end
 
 
-# As the system designer
-# So that the software can be used for many different airports
-#  I would like a default airport capacity that can be overridden as appropriate.
 
 
-# As an air traffic controller
-# So the system is consistent and correctly reports plane status and location
-#  I want to ensure a flying plane cannot take off and cannot be in an airport.
 
-
-# As an air traffic controller
-# So the system is consistent and correctly reports plane status and location
-# I want to ensure a plane that is not flying cannot land and must be in an airport.
-
-
-# As an air traffic controller
-# So the system is consistent and correctly reports plane status and location
-# I want to ensure a plane that has taken off from an airport is no longer in that airport.
