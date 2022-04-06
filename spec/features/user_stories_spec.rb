@@ -18,11 +18,11 @@ describe 'User stories => ' do
   # So I can get passengers on the way to their destination 
   # I want to instruct a plane to take off from an airport and confirm that it is no longer in the airport
 
-    # it 'instructs a plane to take off 🛫 and confirm that it is no longer in the airport' do
-    #   airport = Airport.new(30)
-    #   plane = Plane.new
-    #   expect { airport.take_off(plane) }.not_to raise_error
-    # end
+    it 'instructs a plane to take off 🛫 and confirms that it is no longer in the airport' do
+      airport = Airport.new
+      plane = Plane.new
+      expect { airport.take_off(plane) }.not_to raise_error
+    end
 
   # User story 3
 

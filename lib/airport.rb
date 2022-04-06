@@ -4,6 +4,8 @@ class Airport
    
   end
 
-
+  def take_off(plane)
+    puts 'MA DEC21 LEFT!'
+  end
 
 end
