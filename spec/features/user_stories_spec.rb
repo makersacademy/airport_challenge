@@ -64,8 +64,11 @@ end
   # So that the software can be used for many different airports
   # I would like a default airport capacity that can be overridden as appropriate
 
-
-
+  it 'shows that the airport has a default capacity' do
+    default_airport = Airport.new(WeatherReporter.new)
+    Airport::DEFAULT_CAPACITY.times { default_airport.land(plane) }
+    expect { default_airport.land(plane) }.to raise_error 'Cannot land a plane'
+  end  
 
 
 
