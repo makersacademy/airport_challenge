@@ -1,4 +1,5 @@
 require 'airport.rb'
+require 'plane.rb'
 
 describe Airport do
   it "can make a new instance of Airport class" do
@@ -13,5 +14,11 @@ describe Airport do
   it "land function takes one argument" do
     airport = Airport.new
     expect(airport).to respond_to(:land).with(1).argument
+  end
+
+  it "returns true if plane has landed" do
+    airport = Airport.new
+    plane = Plane.new
+    expect(airport.land(plane)).to eq(true)
   end
 end
