@@ -1,4 +1,5 @@
 require './lib/airport'
+require './lib/weather'
 
 describe Airport do
   # Lands a plane
@@ -52,23 +53,14 @@ describe Airport do
     expect(subject.take_off(plane)).to be_left_airport
   end
 
-  # describe '#take_off' do
-  #   it 'raises an error when the weather is stormy' do
-  #     subject.weather = :sunny
-  #     plane = Plane.new
-  #     subject.land(plane)
-  #     subject.weather = :stormy
-  #     expect(subject.take_off(plane)).to raise_error 'Take-off not allowed due to adverse weather'
-  #   end
-  # end
-
-  # # Weather
-  # it 'responds to the weather method' do
-  #   expect(subject).to respond_to :weather
-  # end
-
-  # it 'shows current weather' do
-  #   expect(Airport::WEATHER).to include(subject.weather)
-  # end
+  describe '#take_off' do
+    it 'raises an error when the weather is stormy' do
+      plane = Plane.new
+      subject.land(plane)
+      weather = double(:weather)
+      allow(weather).to receive(:stormy?).and_return(true)
+      expect{ subject.take_off(plane) }.to raise_error 'Take-off not allowed due to adverse weather'
+    end
+  end 
 
 end
