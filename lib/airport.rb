@@ -15,6 +15,7 @@ class Airport
     @planes_in_airport.last
   end
 
+  # make sure that planes can't take off when planes_at_airport == 0
   def take_off(plane)
     @planes_in_airport.delete(plane)
     plane
@@ -23,4 +24,10 @@ class Airport
   def set_capacity(num)
     @capacity = num
   end
+
+  def check_weather
+    current_weather = Weather.new
+    current_weather.weather
+  end
+
 end 

@@ -41,4 +41,10 @@
     end
   end
 
+  describe '#check_weather' do
+    it 'reports what if the weather is sunny or stormy' do
+      expect(subject.check_weather).to eq('sunny').or eq('stormy')
+    end
+  end
+
  end
