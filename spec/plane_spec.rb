@@ -1,5 +1,5 @@
 describe Plane do
-  subject(:plane) { described_class.new}
+  subject(:plane) { described_class.new }
 
   context 'when the plane is created' do
     it 'should default to not landed' do
