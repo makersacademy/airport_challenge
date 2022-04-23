@@ -26,3 +26,8 @@ This program allows the user to simulate a working airport, planes and necessary
 > As an air traffic controller
 > So I can get passengers to a destination
 > I want to instruct a **_plane_** to **_land_** at an **_airport_**
+```
+airport = Airport.new
+plane = Plane.new
+airport.land(plane)
+```
