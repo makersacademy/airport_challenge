@@ -7,7 +7,7 @@ class Airport
   def initialize
     @planes_in_airport = []
     @capacity = 10
-    @current_weather = (Weather.new).weather
+    @current_weather = check_weather
   end
 
   #better to pass argument?
@@ -19,6 +19,7 @@ class Airport
 
   # make sure that planes can't take off when planes_at_airport == 0
   def take_off(plane)
+    fail unless @current_weather != 'stormy'
     @planes_in_airport.delete(plane)
     plane
   end
@@ -27,4 +28,7 @@ class Airport
     @capacity = num
   end
 
+  def check_weather
+    (Weather.new).weather
+  end
 end 

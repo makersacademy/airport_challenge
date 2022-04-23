@@ -18,6 +18,8 @@
 
   describe '#take_off' do
     it 'allows plane to leave airport' do
+      #try to refactor this Arrange section
+      subject.current_weather = 'sunny'
       plane = Plane.new
       subject.planes_in_airport << plane
 
@@ -25,6 +27,8 @@
     end
 
     it 'removes plane from airport' do
+      #try to refactor this Arrange section
+      subject.current_weather = 'sunny'
       plane = Plane.new
       subject.planes_in_airport = [plane]
       subject.take_off(plane)
@@ -32,7 +36,14 @@
       expect(subject.planes_in_airport).to eq([])
     end
 
+    it 'does not let planes take off when stormy' do
+      #try to refactor this Arrange section
+      plane = Plane.new
+      subject.planes_in_airport = [plane]
+      subject.current_weather = 'stormy'
 
+      expect{subject.take_off(plane)}.to raise_error
+    end
   end
 
   describe '#set_capacity' do
@@ -45,7 +56,7 @@
 
   describe '#check_weather' do
     it 'reports what if the weather is sunny or stormy' do
-      expect(subject.current_weather).to eq('sunny').or eq('stormy')
+      expect(subject.check_weather).to eq('sunny').or eq('stormy')
     end
   end
 
