@@ -21,4 +21,9 @@ describe Airport do
     plane = Plane.new
     expect(airport.land(plane)).to eq(true)
   end
+
+  it "responds to take_off method in Airport class" do
+    airport = Airport.new
+    expect(airport).to respond_to(:take_off)
+  end
 end
