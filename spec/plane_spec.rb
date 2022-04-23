@@ -3,9 +3,10 @@ require 'plane'
 
 describe Plane do
 
+  let(:plane) { Plane.new }
+
   it "Instances of Plane should be true" do
 
-    plane = Plane.new
     expect(plane).to eq plane
 
   end
