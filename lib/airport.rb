@@ -7,4 +7,8 @@ class Airport
     @planes_in_airport = Plane.new
   end
 
+  def take_off(plane)
+    @planes_in_airport = nil
+    plane
+  end
 end 
