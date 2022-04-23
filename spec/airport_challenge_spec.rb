@@ -20,7 +20,7 @@ describe Airport do
 
     it "prevents landing when the airport is full" do
       airport = Airport.new
-      airport.planes = Array.new(10, "plane")
+      airport.planes = Array.new(Airport::DEFAULT_CAPACITY, "plane")
       plane = "plane"
 
       expect{airport.land(plane)}.to raise_error "Airport is full"
@@ -52,16 +52,23 @@ describe Airport do
       expect(airport).to respond_to(:full?).with(0).arguments
     end
 
-    it "returns true when there are 10 planes" do
+    it "returns true when there are default capacity planes" do
       airport = Airport.new
-      airport.planes = Array.new(10, "plane")
+      airport.planes = Array.new(Airport::DEFAULT_CAPACITY, "plane")
 
       expect(airport.full?).to eq true
     end
 
-    it "returns false when there are 5 planes" do
+    it "returns false when there are less planes than default capacity" do
       airport = Airport.new
-      airport.planes = Array.new(5, "plane")
+      airport.planes = Array.new(Airport::DEFAULT_CAPACITY - 1, "plane")
+
+      expect(airport.full?).to eq false
+    end
+
+    it "returns false when overridden @capacity" do
+      airport = Airport.new(100)
+      airport.planes = Array.new(99, "plane")
 
       expect(airport.full?).to eq false
     end
