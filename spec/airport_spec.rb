@@ -38,7 +38,7 @@ describe Airport do
     context 'when it is full' do
       it 'is expected to not land the plane' do
         Airport::DEFAULT_CAPACITY.times { airport.land(plane) }
-        expect { airport.land(plane) }.to raise_error('airport full')
+        expect { airport.land(plane) }.to raise_error('Airport full')
       end
     end
   end
@@ -52,6 +52,12 @@ describe Airport do
       it 'is expected to take off' do
         airport.land(plane)
         expect(airport.take_off(plane)).to eq(plane)
+      end
+    end
+
+    context "when it doesn't contain the plane" do
+      it 'is expect to not take off' do
+        expect { airport.take_off(plane) }.to raise_error('Plane not at airport')
       end
     end
   end

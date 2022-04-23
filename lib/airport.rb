@@ -9,15 +9,20 @@ class Airport
   end
 
   def land(plane)
-    fail 'airport full' if full?
+    fail 'Airport full' if full?
     planes << plane
   end
 
   def take_off(plane)
+    fail 'Plane not at airport' unless contains?(plane)
     planes.delete(plane)
   end
 
   private
+
+  def contains?(plane)
+    planes.include?(plane)
+  end
 
   def full?
     planes.length == capacity
