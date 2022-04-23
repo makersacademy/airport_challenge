@@ -17,6 +17,14 @@ describe Airport do
 
       expect(airport.planes).to eq [plane] #assert
     end
+
+    it "prevents landing when the airport is full" do
+      airport = Airport.new
+      airport.planes = Array.new(10, "plane")
+      plane = "plane"
+
+      expect{airport.land(plane)}.to raise_error "Airport is full"
+    end
   end
 
   describe '#take_off' do
@@ -37,4 +45,25 @@ describe Airport do
     end
   end
 
+  describe '#full?' do
+    it "accepts 0 arguments" do
+      airport = Airport.new
+
+      expect(airport).to respond_to(:full?).with(0).arguments
+    end
+
+    it "returns true when there are 10 planes" do
+      airport = Airport.new
+      airport.planes = Array.new(10, "plane")
+
+      expect(airport.full?).to eq true
+    end
+
+    it "returns false when there are 5 planes" do
+      airport = Airport.new
+      airport.planes = Array.new(5, "plane")
+
+      expect(airport.full?).to eq false
+    end
+  end
 end
