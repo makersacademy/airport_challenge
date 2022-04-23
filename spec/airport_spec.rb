@@ -26,4 +26,9 @@ describe Airport do
     airport = Airport.new
     expect(airport).to respond_to(:take_off)
   end
+
+  it "take_off function takes one argument" do
+    airport = Airport.new
+    expect(airport).to respond_to(:take_off).with(1).argument
+  end
 end
