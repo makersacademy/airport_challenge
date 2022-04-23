@@ -12,7 +12,7 @@ describe Airport do
 
   it '#land lands a plane' do
     plane = Plane.new
-    expect(subject.land(plane)).to eq plane
+    expect(subject.land(plane)).to eq subject.planes
   end
 
   it 'rasies an error when airport is full' do
