@@ -1,24 +1,33 @@
- require 'airport'
+require 'airport'
 
- describe Airport do
-   
+describe Airport do
+  
   it { is_expected.to be_kind_of Airport }
 
   describe '#land_plane' do
     it 'allows plane to land in airport' do   
+      subject.current_weather = 'sunny'
+      
       expect(subject.land_plane).to be_kind_of Plane
     end
 
     it 'does not allow planes to land when airport is full' do
+      subject.current_weather = 'sunny'
       subject.capacity.times { subject.land_plane }
 
-      expect{subject.land_plane}.to raise_error
+      expect { subject.land_plane }.to raise_error
+    end
+
+    it 'does not allow plane to land in airport when stormy' do
+      subject.current_weather = 'stormy'
+
+      expect { subject.land_plane }.to raise_error
     end
   end
 
   describe '#take_off' do
     it 'allows plane to leave airport' do
-      #try to refactor this Arrange section
+      # try to refactor this Arrange section
       subject.current_weather = 'sunny'
       plane = Plane.new
       subject.planes_in_airport << plane
@@ -27,7 +36,7 @@
     end
 
     it 'removes plane from airport' do
-      #try to refactor this Arrange section
+      # try to refactor this Arrange section
       subject.current_weather = 'sunny'
       plane = Plane.new
       subject.planes_in_airport = [plane]
@@ -37,18 +46,18 @@
     end
 
     it 'does not let planes take off when stormy' do
-      #try to refactor this Arrange section
+      # try to refactor this Arrange section
       plane = Plane.new
       subject.planes_in_airport = [plane]
       subject.current_weather = 'stormy'
 
-      expect{subject.take_off(plane)}.to raise_error
+      expect { subject.take_off(plane) }.to raise_error
     end
   end
 
-  describe '#set_capacity' do
+  describe '#def_capacity' do
     it 'allows you to change the capacity of the airport' do
-      subject.set_capacity(20)
+      subject.def_capacity(20)
       
       expect(subject.capacity).to eq(20)
     end
@@ -59,5 +68,4 @@
       expect(subject.check_weather).to eq('sunny').or eq('stormy')
     end
   end
-
- end
+end
