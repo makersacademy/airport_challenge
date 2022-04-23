@@ -35,13 +35,15 @@ describe Airport do
 
   it '#take_off takes-off the plane' do
     plane = Plane.new
+    subject.land(plane)
     expect(subject.take_off(plane)).to eq plane
   end
 
   it 'confirms the plane has left the airport' do
-    plane = subject.take_off(Plane.new)
+    plane = Plane.new
+    subject.land(plane)
     #expect(plane.left_airport?).to eq true
-    expect(plane).to be_left_airport
+    expect(subject.take_off(plane)).to be_left_airport
   end
 
 end

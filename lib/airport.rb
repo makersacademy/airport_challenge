@@ -18,7 +18,6 @@ class Airport
 
   def take_off(plane)
     @planes.delete(plane)
-    plane
   end
 
   private
