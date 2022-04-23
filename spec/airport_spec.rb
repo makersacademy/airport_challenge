@@ -48,6 +48,8 @@ describe Airport do
   end
 
   it "should have 1 argument when instantiated" do
-    expect{Airport.new(10)}.not_to raise_error
+    expect { Airport.new(10) }.not_to raise_error
   end
+
+
 end
