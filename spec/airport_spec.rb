@@ -1,69 +1,56 @@
 describe Airport do
   subject(:airport) { Airport.new }
-  let(:plane) { instance_double('Plane') }
+  let(:plane) { instance_double('Plane', land: true, take_off: false) }
 
-  describe '#initialize' do
+  describe 'capacity' do
     subject { Airport }
-    it { should respond_to(:new) }
-
-    it { should respond_to(:new).with(1) }
+    it { should respond_to(:new).with(0..1) }
   end
 
-  describe '#capacity' do
-    it { should respond_to(:capacity) }
-
-    it 'it is expected to have a default value' do
-      expect(airport.capacity).to eq Airport::DEFAULT_CAPACITY
-    end
-
-    context 'when capacity is manually set' do
-      it 'default value is expected to be changed' do
-        different_airport = Airport.new(3)
-        expect(different_airport.capacity).to_not eq Airport::DEFAULT_CAPACITY
-      end
-    end
+  def land_plane
+    airport.land(plane)
   end
 
   describe '#land' do
-    it { should respond_to(:land) }
-
-    it { should respond_to(:land).with(1) }
-
     context 'when it is not full' do
-      it 'is expected to land the plane' do
-        expect(airport.land(plane)).to include(plane)
+      it 'should instruct the plane to land' do
+        expect(plane).to receive(:land)
+        land_plane
+      end
+
+      it 'should contain the plane after it has been landed' do
+        land_plane
+        expect(airport).to include(plane)
       end
     end
 
     context 'when it is full' do
-      it 'is expected to not land the plane' do
-        Airport::DEFAULT_CAPACITY.times { airport.land(plane) }
-        expect { airport.land(plane) }.to raise_error('airport full')
+      it 'should not instruct the plane to land' do
+        Airport::DEFAULT_CAPACITY.times { land_plane }
+        another_plane = double('Plane')
+        expect { airport.land(another_plane) }.to raise_error('Airport full')
       end
     end
   end
 
   describe '#take_off' do
-    it { should respond_to(:take_off) }
+    context 'when it contains the plane' do
+      before(:each) { land_plane }
 
-    it { should respond_to(:take_off).with(1) }
+      it 'should instruct the plane to take off' do
+        expect(plane).to receive(:take_off)
+        airport.take_off(plane)
+      end
 
-    context 'when there is a plane' do
-      it 'is expected to take off' do
-        airport.land(plane)
-        expect(airport.take_off(plane)).to eq(plane)
+      it 'should no longer contain the plane after it has taken off' do
+        airport.take_off(plane)
+        expect(airport).to_not include(plane)
       end
     end
-  end
 
-  describe '#planes' do
-    it { should respond_to(:planes) }
-    
-    context 'when a plane has taken off' do
-      it 'is expected to not contain the plane' do
-        airport.land(plane)
-        airport.take_off(plane)
-        expect(airport.planes).not_to include(plane)
+    context "when it doesn't contain the plane" do
+      it 'should not instruct the plane to take off' do
+        expect { airport.take_off(plane) }.to raise_error('Plane not at airport')
       end
     end
   end

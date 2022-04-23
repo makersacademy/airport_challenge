@@ -76,3 +76,37 @@ plane = Plane.new
 airport.capacity.times { airport.land(plane) }
 airport.land(plane)
 ```
+
+## Edge Cases
+
+> I want to **_prevent_** a **_plane_** from **_taking off_**, if it is not in the specific **_airport_**
+
+```
+airport = Airport.new
+plane = Plane.new
+airport.take_off(plane)
+#=> should raise error
+```
+
+> I want to prevent a **_landed plane_** from **_landing_** again
+
+```
+airport = Airport.new
+plane = Plane.new
+airport.land(plane)
+airport.land(plane)
+#=> should raise error
+
+```
+
+> I want to prevent a **_flying plane_** from **_taking off_** again
+
+```
+airport = Airport.new
+plane = Plane.new
+airport.land(plane)
+airport.take_off(plane)
+airport.take_off(plane)
+#=> should raise error
+
+```
