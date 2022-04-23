@@ -9,4 +9,4 @@ Story 3, together with the edge cases felt a little different. I made a cup of t
 
 From this I wrote some new user stories for each of the scenarios it brought up for me - I will test these, and I think consequently I will have fixed the others at the end.
 
-As I go, ifru I felt that new test made a previous one redundent, then I removed it. 
+As I go, if I felt that new test made a previous one redundent, then I removed it. 
