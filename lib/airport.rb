@@ -6,6 +6,7 @@ class Airport
   end
 
   def land(plane)
+    raise 'airport full' unless planes.empty?
     planes << plane
   end
 
