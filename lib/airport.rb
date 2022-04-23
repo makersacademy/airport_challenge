@@ -1,3 +1,5 @@
+require_relative "plane"
+
 class Airport
 
   PLANE_CAPACITY = 5
