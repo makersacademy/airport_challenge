@@ -20,6 +20,7 @@ describe Airport do
     expect {subject.land(Plane.new)}.to raise_error 'Airport full'
   end
 
+  # Capacity
   it 'has a default capacity' do
     expect(subject.capacity).to eq Airport::DEFAULT_CAPACITY
   end
@@ -50,5 +51,24 @@ describe Airport do
     #expect(plane.left_airport?).to eq true
     expect(subject.take_off(plane)).to be_left_airport
   end
+
+  # describe '#take_off' do
+  #   it 'raises an error when the weather is stormy' do
+  #     subject.weather = :sunny
+  #     plane = Plane.new
+  #     subject.land(plane)
+  #     subject.weather = :stormy
+  #     expect(subject.take_off(plane)).to raise_error 'Take-off not allowed due to adverse weather'
+  #   end
+  # end
+
+  # # Weather
+  # it 'responds to the weather method' do
+  #   expect(subject).to respond_to :weather
+  # end
+
+  # it 'shows current weather' do
+  #   expect(Airport::WEATHER).to include(subject.weather)
+  # end
 
 end
