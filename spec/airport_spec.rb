@@ -12,8 +12,17 @@ describe Airport do
 
     it { should respond_to(:land).with(1) }
 
-    it 'is expected to land the plane' do
-      expect(airport.land(plane)).to include(plane)
+    context 'when it is not full' do
+      it 'is expected to land the plane' do
+        expect(airport.land(plane)).to include(plane)
+      end
+    end
+
+    context 'when it is full' do
+      it 'is expected to not land the plane' do
+        airport.land(plane)
+        expect { airport.land(plane) }.to raise_error('airport full')
+      end
     end
   end
 
