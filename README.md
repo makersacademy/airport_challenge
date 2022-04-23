@@ -73,6 +73,6 @@ airport.land(plane)
 ```
 airport = Airport.new(3)
 plane = Plane.new
-3.times { airport.land(plane) }
+airport.capacity.times { airport.land(plane) }
 airport.land(plane)
 ```
