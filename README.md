@@ -13,28 +13,18 @@ Airport Challenge
 
 ```
 
-Instructions
+**Note**
 ---------
 
-* Feel free to use google, your notes, books, etc. but work on your own
-* If you refer to the solution of another coach or student, please put a link to that in your README
-* If you have a partial solution, **still check in a partial solution**
-* You must submit a pull request to this repo with your code by 10am Monday morning
+I wasn't able to feature test the programme in IRB myself, because of an error that I can't get round: "`require': cannot load such file -- airport (LoadError)", which prevents me from testing in IRB. 
 
-Steps
--------
+That said, I have pretty thoroughly gone over the unit tests - so hopefully the functional tests work as expected!
 
-1. Fork this repo, and clone to your local machine
-2. Run the command `gem install bundler` (if you don't have bundler already)
-3. When the installation completes, run `bundle`
-4. Complete the following task:
+Summary
+---------
 
-Task
------
+This programme exists to help safely manage traffic at an airport. The user requirements this programme was built around are:
 
-We have a request from a client to write the software to control the flow of planes at an airport. The planes can land and take off provided that the weather is sunny. Occasionally it may be stormy, in which case no planes can land or take off.  Here are the user stories that we worked out in collaboration with the client:
-
-```
 As an air traffic controller 
 So I can get passengers to a destination 
 I want to instruct a plane to land at an airport
@@ -58,32 +48,19 @@ I want to prevent takeoff when weather is stormy
 As an air traffic controller 
 To ensure safety 
 I want to prevent landing when weather is stormy 
-```
 
-Your task is to test drive the creation of a set of classes/modules to satisfy all the above user stories. You will need to use a random number generator to set the weather (it is normally sunny but on rare occasions it may be stormy). In your tests, you'll need to use a stub to override random weather to ensure consistent test behaviour.
 
-Your code should defend against [edge cases](http://programmers.stackexchange.com/questions/125587/what-are-the-difference-between-an-edge-case-a-corner-case-a-base-case-and-a-b) such as inconsistent states of the system ensuring that planes can only take off from airports they are in; planes that are already flying cannot take off and/or be in an airport; planes that are landed cannot land again and must be in an airport, etc.
+Usage
+---------
+1. Clone the repo from GitHub
+2. Run IRB, and require 'airport.rb' and 'plane.rb'
+3. Create an instance of plane (plane = Plane.new)
+4. Test the functionality of the programme, as below:
 
-For overriding random weather behaviour, please read the documentation to learn how to use test doubles: https://www.relishapp.com/rspec/rspec-mocks/docs . There’s an example of using a test double to test a die that’s relevant to testing random weather in the test.
+        - Check if a plane can take off
+        - Take off
+        - Check if the plane can land
+        - Land the plane
 
-Please create separate files for every class, module and test suite.
-
-In code review we'll be hoping to see:
-
-* All tests passing
-* High [Test coverage](https://github.com/makersacademy/course/blob/main/pills/test_coverage.md) (>95% is good)
-* The code is elegant: every class has a clear responsibility, methods are short etc. 
-
-Reviewers will potentially be using this [code review rubric](docs/review.md).  Referring to this rubric in advance will make the challenge somewhat easier.  You should be the judge of how much challenge you want this at this moment.
-
-**BONUS**
-
-* Write an RSpec **feature** test that lands and takes off a number of planes
-
-Note that is a practice 'tech test' of the kinds that employers use to screen developer applicants.  More detailed submission requirements/guidelines are in [CONTRIBUTING.md](CONTRIBUTING.md)
-
-Finally, don’t overcomplicate things. This task isn’t as hard as it may seem at first.
-
-* **Submit a pull request early.**
-
-* Finally, please submit a pull request before Monday at 10am with your solution or partial solution.  However much or little amount of code you wrote please please please submit a pull request before Monday at 10am.
+5. Landing multiple planes may cause the airport to be at capacity, in which case an error will be thrown if trying to land further planes.
+6. Poor weather conditions are randomly generated, and will occasionally cause errors to be thrown when attempting to land/take off. 
