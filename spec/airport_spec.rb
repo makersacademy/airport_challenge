@@ -51,5 +51,8 @@ describe Airport do
     expect { Airport.new(10) }.not_to raise_error
   end
 
-
+  it "should allow 10 planes to be stored if capacity is initially set to 10" do
+    airport = Airport.new(10)
+    expect { 10.times { airport.land(Plane.new) } }.not_to raise_error
+  end
 end
