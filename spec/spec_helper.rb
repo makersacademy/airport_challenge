@@ -2,6 +2,7 @@ require 'simplecov'
 require 'simplecov-console'
 
 require 'airport'
+require 'plane'
 
 SimpleCov.formatter = SimpleCov::Formatter::MultiFormatter.new([
   SimpleCov::Formatter::Console,
