@@ -24,6 +24,11 @@ describe Airport do
     expect(subject.capacity).to eq Airport::DEFAULT_CAPACITY
   end
 
+  it 'allows to set capacity' do
+    airport = Airport.new(10)
+    expect(airport.capacity).to eq 10
+  end
+
   # Takes off a plane
   it 'responds to the take_off method' do
     expect(subject).to respond_to :take_off

@@ -70,7 +70,42 @@ Messages:
 - full?
 
 # Diagrams
-
 Airport <--landing--> Plane
 
 Airport <--full?--> true/false
+
+
+##################################
+# User story 4
+As the system designer
+So that the software can be used for many different airports
+I would like a default airport capacity that can be overridden as appropriate
+
+# Functional representation
+Objects:
+- Airport
+
+Messages:
+- set_capacity
+
+Airport <--set_capacity--> num
+
+
+##################################
+# User story 5
+As an air traffic controller 
+To ensure safety 
+I want to prevent takeoff when weather is stormy 
+
+# Functional representation
+Objects:
+- Airport
+- Weather
+- Plane
+
+Messages:
+- prevent_take_off
+
+# Diagrams
+Airport <--take_off--> Plane
+Weather <--stormy?--> error
