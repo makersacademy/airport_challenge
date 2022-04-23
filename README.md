@@ -44,3 +44,19 @@ airport = Airport.new
 plane = Plane.new
 airport.land(plane)
 ```
+
+---
+
+> As an air traffic controller
+> So I can get passengers on the way to their destination
+> I want to instruct a **_plane_** to **_take off_** from an **_airport_** and **_confirm_** that it is no longer in the **_airport_**
+
+```
+airport = Airport.new
+plane = Plane.new
+airport.land(plane)
+airport.take_off(plane)
+airport.planes
+```
+
+---
