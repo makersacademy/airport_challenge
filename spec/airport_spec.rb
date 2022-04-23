@@ -1,5 +1,5 @@
-require 'airport.rb'
-require 'plane.rb'
+require 'airport'
+require 'plane'
 
 describe Airport do
   it "can make a new instance of Airport class" do
