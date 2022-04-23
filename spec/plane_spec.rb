@@ -30,4 +30,18 @@ describe Plane do
     expect { subject.take_off(airport2) }.to raise_error "plane not in this airport"
   end
 
+  it 'will prevent takeoff when the weather is stormy' do
+    subject.land(airport)
+    weather = double("weather")
+    allow(weather).to receive(:state) { "stormy" }
+    subject.weather = weather.state
+    expect { subject.take_off(airport) }.to raise_error "take off is prevented in stormy weather"
+  end
+
+  it 'will prevent landing when the weather is stormy' do
+    weather = double("weather")
+    allow(weather).to receive(:state) { "stormy" }
+    subject.weather = weather.state
+    expect { subject.land(airport) }.to raise_error "landing is prevented in stormy weather"
+  end
 end

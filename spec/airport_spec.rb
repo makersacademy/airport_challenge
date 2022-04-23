@@ -23,9 +23,5 @@ describe Airport do
     extra_plane = Plane.new
     expect { extra_plane.land(subject) }.to raise_error "airport full"
   end
-  it 'will prevent takeoff when the weather is stormy' do
-    weather = double("weather")
-    allow(weather).to receive(:state) { "stormy" }
-    
-  end
+  
 end
