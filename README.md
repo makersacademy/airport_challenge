@@ -35,8 +35,6 @@ This program allows the user to simulate a working airport, planes and necessary
 
 ## User Stories
 
-> As an air traffic controller
-> So I can get passengers to a destination
 > I want to instruct a **_plane_** to **_land_** at an **_airport_**
 
 ```
@@ -47,8 +45,6 @@ airport.land(plane)
 
 ---
 
-> As an air traffic controller
-> So I can get passengers on the way to their destination
 > I want to instruct a **_plane_** to **_take off_** from an **_airport_** and **_confirm_** that it is no longer in the **_airport_**
 
 ```
@@ -61,13 +57,22 @@ airport.planes
 
 ---
 
-> As an air traffic controller
-> To ensure safety
-> I want to prevent landing when the **_airport_** is **_full_**
+> I want to **_prevent_** landing when the **_airport_** is **_full_**
 
 ```
 airport = Airport.new
 plane = Plane.new
 airport.land(plane)
+airport.land(plane)
+```
+
+---
+
+> I would like a **_default airport capacity_** that can **_be overridden_** as appropriate
+
+```
+airport = Airport.new(3)
+plane = Plane.new
+airport.capacity.times { airport.land(plane) }
 airport.land(plane)
 ```

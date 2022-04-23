@@ -5,6 +5,23 @@ describe Airport do
   describe '#initialize' do
     subject { Airport }
     it { should respond_to(:new) }
+
+    it { should respond_to(:new).with(1) }
+  end
+
+  describe '#capacity' do
+    it { should respond_to(:capacity) }
+
+    it 'it is expected to have a default value' do
+      expect(airport.capacity).to eq Airport::DEFAULT_CAPACITY
+    end
+
+    context 'when capacity is manually set' do
+      it 'default value is expected to be changed' do
+        different_airport = Airport.new(3)
+        expect(different_airport.capacity).to_not eq Airport::DEFAULT_CAPACITY
+      end
+    end
   end
 
   describe '#land' do
@@ -20,7 +37,7 @@ describe Airport do
 
     context 'when it is full' do
       it 'is expected to not land the plane' do
-        airport.land(plane)
+        Airport::DEFAULT_CAPACITY.times { airport.land(plane) }
         expect { airport.land(plane) }.to raise_error('airport full')
       end
     end
