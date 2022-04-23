@@ -23,8 +23,24 @@ describe Airport do
       airport.planes = Array.new(Airport::DEFAULT_CAPACITY, "plane")
       plane = "plane"
 
-      expect{airport.land(plane)}.to raise_error "Airport is full"
+      expect{airport.land(plane)}.to raise_error "Airport is full."
     end
+
+    # it "prevents landing when the weather is stormy" do
+    #   airport = Airport.new
+    #   airport.planes = Array.new(Airport::DEFAULT_CAPACITY, "plane")
+    #   plane = "plane"
+
+    #   expect{airport.land(plane)}.to raise_error "Weather is stormy. You can't land the plane."
+    # end
+
+    # it "plane lands when the weather is sunny" do
+    #   airport = Airport.new
+    #   airport.planes = Array.new(Airport::DEFAULT_CAPACITY, "plane")
+    #   plane = "plane"
+
+    #   expect{airport.land(plane)}.not_to raise_error
+    # end
   end
 
   describe '#take_off' do
@@ -43,6 +59,22 @@ describe Airport do
 
       expect(airport.planes).to eq ["plane1", "plane2"]
     end
+
+    # it "prevents take off when the weather is stormy" do
+    #   airport = Airport.new
+    #   airport.planes = Array.new(Airport::DEFAULT_CAPACITY, "plane")
+    #   plane = "plane"
+
+    #   expect{airport.land(plane)}.to raise_error "Weather is stormy. You can't take off the plane."
+    # end
+
+     # it "plane takes off when the weather is sunny" do
+    #   airport = Airport.new
+    #   airport.planes = Array.new(Airport::DEFAULT_CAPACITY, "plane")
+    #   plane = "plane"
+
+    #   expect{airport.land(plane)}.not_to raise_error
+    # end
   end
 
   describe '#full?' do
@@ -71,6 +103,26 @@ describe Airport do
       airport.planes = Array.new(99, "plane")
 
       expect(airport.full?).to eq false
+    end
+  end
+
+  describe '#stormy?' do
+    it "accepts 0 argument" do
+      airport = Airport.new
+
+      expect(airport).to respond_to(:stormy?).with(0).argument
+    end
+
+    it "returns true when the weather is stormy" do
+      airport = Airport.new
+      allow(airport).to receive(:rand).and_return(0)
+      expect(airport.stormy?).to eq true
+    end
+
+    it "returns false when the weather is sunny" do
+      airport = Airport.new
+      allow(airport).to receive(:rand).and_return(3)
+      expect(airport.stormy?).to eq false
     end
   end
 end
