@@ -8,7 +8,9 @@ class Airport
   attr_reader :landed_planes
 
   def land(plane)
-    fail "Error: Max capacity for planes in Airport has been reached." if landed_planes.count >= capacity
+    fail "Error: Max capacity for planes in Airport has been reached." if
+    landed_planes.count >= capacity
+
     landed_planes << plane
   end
 
