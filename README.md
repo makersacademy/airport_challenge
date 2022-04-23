@@ -60,3 +60,14 @@ airport.planes
 ```
 
 ---
+
+> As an air traffic controller
+> To ensure safety
+> I want to prevent landing when the **_airport_** is **_full_**
+
+```
+airport = Airport.new
+plane = Plane.new
+airport.land(plane)
+airport.land(plane)
+```
