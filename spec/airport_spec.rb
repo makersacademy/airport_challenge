@@ -21,9 +21,14 @@ describe Airport do
     expect(subject.take_off(plane)).to eq ("#{plane} no longer in #{subject} airport")
   end
 
-  it 'raise an error if airport is full and try to alnd a plane' do
+  it 'raise an error if airport is full and try to landd a plane' do
     subject.land(Plane.new)
-    expect{subject.land(Plane.new)}.to raise_error
+    expect { subject.land(Plane.new) }.to raise_error
+  end
+
+  it 'capacity of airport can be overriden' do
+    subject.capacity = 20
+    expect(subject.capacity).to eq(20)
   end
 
 end

@@ -1,9 +1,15 @@
 class Airport
 
+  def initialize (capacity = 1)
+    @planes = []
+    @capacity = capacity
+  end
+
+  attr_accessor :capacity
 
   def land(plane)
-    fail 'Airtport full' unless @plane == nil
-    @plane = plane
+    fail 'Airtport full' if @planes.count >= @capacity
+    @planes << plane
   end
 
   def take_off(plane)
