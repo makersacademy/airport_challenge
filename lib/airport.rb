@@ -1,4 +1,6 @@
 class Airport
+  attr_reader :planes
+
   def initialize
     @planes = []
   end
@@ -10,9 +12,4 @@ class Airport
   def take_off(plane)
     planes.delete(plane)
   end
-
-  private
-
-  attr_accessor :planes
-
 end
