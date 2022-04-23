@@ -1,13 +1,13 @@
 class Airport
   def initialize
-    @plane_storage = []
+    @landed_planes = []
   end
 
   def land(plane)
-    @plane_storage << plane
+    @landed_planes << plane
   end
 
   def take_off(plane)
-    @plane_storage.delete(plane)
+    @landed_planes.delete(plane)
   end
 end
