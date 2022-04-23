@@ -15,6 +15,11 @@ describe Airport do
     expect(subject.land(plane)).to eq plane
   end
 
+  it 'rasies an error when airport is full' do
+    subject.land(Plane.new)
+    expect {subject.land(Plane.new)}.to raise_error 'Airport full'
+  end
+
   # Takes off a plane
   it 'responds to the take_off method' do
     expect(subject).to respond_to :take_off
