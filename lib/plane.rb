@@ -1,8 +1,8 @@
 class Plane
   attr_reader :landed
 
-  def initialize
-    @landed = false
+  def initialize(state = false)
+    @landed = state
   end
 
   def land

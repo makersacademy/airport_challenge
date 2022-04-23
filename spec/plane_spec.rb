@@ -1,10 +1,9 @@
 describe Plane do
   subject(:plane) { described_class.new }
 
-  context 'when the plane is created' do
-    it 'should default to not landed' do
-      expect(plane.landed).to be false
-    end
+  describe 'it should take a default value' do
+    subject { Plane }
+    it { should respond_to(:new).with(1) }
   end
 
   describe '#land' do
