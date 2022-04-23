@@ -16,10 +16,10 @@ describe Airport do
     expect(airport).to respond_to(:land).with(1).argument
   end
 
-  it "returns true if plane has landed" do
+  it "adds plane to array if plane has landed" do
     airport = Airport.new
     plane = Plane.new
-    expect(airport.land(plane)).to eq(true)
+    expect(airport.land(plane)).to eq([plane])
   end
 
   it "responds to take_off method in Airport class" do
@@ -31,4 +31,5 @@ describe Airport do
     airport = Airport.new
     expect(airport).to respond_to(:take_off).with(1).argument
   end
+
 end
