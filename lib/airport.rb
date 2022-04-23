@@ -2,10 +2,12 @@ class Airport
 
   attr_accessor :planes_in_airport
   attr_accessor :capacity
+  attr_accessor :current_weather
 
   def initialize
     @planes_in_airport = []
     @capacity = 10
+    @current_weather = (Weather.new).weather
   end
 
   #better to pass argument?
@@ -23,11 +25,6 @@ class Airport
 
   def set_capacity(num)
     @capacity = num
-  end
-
-  def check_weather
-    current_weather = Weather.new
-    current_weather.weather
   end
 
 end 

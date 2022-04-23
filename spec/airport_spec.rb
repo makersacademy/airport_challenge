@@ -31,6 +31,8 @@
 
       expect(subject.planes_in_airport).to eq([])
     end
+
+
   end
 
   describe '#set_capacity' do
@@ -43,7 +45,7 @@
 
   describe '#check_weather' do
     it 'reports what if the weather is sunny or stormy' do
-      expect(subject.check_weather).to eq('sunny').or eq('stormy')
+      expect(subject.current_weather).to eq('sunny').or eq('stormy')
     end
   end
 
