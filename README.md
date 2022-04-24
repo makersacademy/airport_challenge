@@ -47,7 +47,7 @@ $ rspec
 <details>
   <summary>Click to see test results</summary>
 
-![Test results](./test_results.png))
+![Test results](./test_results.png)
 
 </details>
 
