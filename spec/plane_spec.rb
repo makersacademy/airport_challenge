@@ -37,4 +37,13 @@ describe Plane do
     expect(airport.planes).to eq([])
   end
 
+  # it 'confirms plane has taken off' do
+  #   plane = Plane.new
+  #   airport = Airport.new
+  #   plane.land(airport)
+  #   expect(plane.takeoff(airport)).to eq '#{self} has taken off'
+  # end 
+
+  
+
 end 

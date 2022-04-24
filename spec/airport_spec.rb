@@ -10,4 +10,11 @@ describe Airport do
     plane = Plane.new
     expect(airport.planes).to eq([])
   end 
+
+  it 'has a default capacity of planes' do
+    airport = Airport.new
+    expect(airport.capacity).to eq(Airport::DEFAULT_CAPACITY)
+  end
+
+
 end
