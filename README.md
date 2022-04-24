@@ -2,7 +2,7 @@
 
 [![Ruby Style Guide](https://img.shields.io/badge/code_style-rubocop-brightgreen.svg)](https://github.com/rubocop/rubocop)
 
-This program allows the user to simulate a working airport. Planes are able to land at an airport so long as the weather isn't stormy.
+This program allows the user to simulate a working airport. Planes are able to land and take off from an airport so long as the weather isn't stormy.
 
 <br>
 
