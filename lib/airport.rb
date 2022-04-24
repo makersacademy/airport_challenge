@@ -6,10 +6,12 @@ class Airport
   def initialize(capacity = PLANE_CAPACITY)
     @landed_planes = []
     @capacity = capacity
+    @weather = ""
   end
 
   attr_reader :landed_planes
   attr_reader :capacity
+  attr_accessor :weather
 
   def land(plane)
     fail "Max capacity for planes in Airport has been reached." if full?
@@ -18,6 +20,7 @@ class Airport
   end
 
   def take_off(plane)
+    fail "Cannot take off - Weather is stormy." if weather == "stormy"
     landed_planes.delete(plane)
   end
 
