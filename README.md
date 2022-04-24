@@ -10,32 +10,31 @@ Specification
 ---------
 This software has been written from the point of view of the plane and runs in the Command Line. It is based around the following user stories:
 
-- As an air traffic controller 
-  - So I can get passengers to a destination 
-    - **I want to instruct a plane to land at an airport**
+As an air traffic controller.
+So I can get passengers to a destination 
+**I want to instruct a plane to land at an airport**
 
-- As an air traffic controller 
-  - So I can get passengers on the way to their destination 
-    - **I want to instruct a plane to take off from an airport and confirm that it is no longer in the airport**
+ an air traffic controller 
+S I can get passengers on the way to their destination 
+**I want to instruct a plane to take off from an airport and cfirm that it is no longer in the airport**
 
-- As an air traffic controller 
-  - To ensure safety 
-    - **I want to prevent landing when the airport is full**
+s an air traffic controller 
+To ensure safety 
+**I want to prevent landing when the airport is full**
 
-- As the system designer
-  - So that the software can be used for many different airports
-    - **I would like a default airport capacity that can be overridden as appropriate**
+ the system designer
+S that the software can be used for many different airports
+**I would like a default airport capacity that can be oerridden a appropriate**
+As an air traffic controller 
+  To ensure safety 
+  **I want to prevent takeoff when weather is stormy**
 
-- As an air traffic controller 
-    - To ensure safety 
-      - **I want to prevent takeoff when weather is stormy**
+ an air traffic controller 
+T ensure safety 
+**I want to prevent landing when weather is stormy**
 
-- As an air traffic controller 
-  - To ensure safety 
-    - **I want to prevent landing when weather is stormy**
-
-Instuctions
-----
+stuctions
+---
 To run the software ensure you are in the same directory as the file plane.rb and access it using irb. 
 
 You will need to require two files to run this software
