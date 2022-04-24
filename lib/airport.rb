@@ -12,12 +12,12 @@ class Airport
   end
 
   def land(plane)
-    # fail 'Airport full' if full?
+    fail 'Airport full' if full?
     fail "Flight cannot land due to stormy weather" if bad_weather?
     airport << plane
   end
 
-  def take_off(plane)
+  def take_off(*)
     fail "Flight cancelled due to bad weather" if bad_weather?
     @airport.pop
   end

@@ -47,14 +47,14 @@ describe Airport do
       allow(stormy_weather).to receive(:stormy?) { true }
       allow(airport).to receive(:weather) { stormy_weather }
       
-      expect{ airport.land(plane) }.to raise_error "Flight cannot land due to stormy weather"
+      expect { airport.land(plane) }.to raise_error "Flight cannot land due to stormy weather"
     end
 
   end
 
   describe '#take_off' do
-
-     it 'instructs a plane to take off and report it is not in the airport' do
+  
+    it 'instructs a plane to take off and report it is not in the airport' do
       
       # User Story 2
       # As an air traffic controller 
@@ -66,7 +66,7 @@ describe Airport do
       plane = Plane.new
 
       # Act / Assert
-     expect(subject.take_off).to eq 'Plane no longer in airport'
+      expect(subject.take_off).to eq 'Plane no longer in airport'
     end
 
     it 'prevents take off when weather is stormy' do
