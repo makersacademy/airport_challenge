@@ -1,5 +1,7 @@
 # Airport Challenge
 
+[![Ruby Style Guide](https://img.shields.io/badge/code_style-rubocop-brightgreen.svg)](https://github.com/rubocop/rubocop)
+
 This program allows the user to simulate a working airport, planes and necessary support
 
 ## Getting Started
@@ -31,7 +33,7 @@ This program allows the user to simulate a working airport, planes and necessary
 7. Check test passses
 8. Refactor and check the tests still pass
 9. Run feature test again and check it works as intended
-10. Repeat from step 4.
+10. Repeat from step 3.
 
 ## User Stories
 
@@ -57,7 +59,7 @@ airport.planes
 
 ---
 
-> I want to **_prevent_** landing when the **_airport_** is **_full_**
+> I want to **_prevent landing_** when the **_airport_** is **_full_**
 
 ```
 airport = Airport.new
@@ -77,9 +79,34 @@ airport.capacity.times { airport.land(plane) }
 airport.land(plane)
 ```
 
+---
+
+> I want to **_prevent takeoff_** when **_weather_** is stormy
+
+```
+airport = Airport.new
+plane = Plane.new
+weather = Weather.new
+airport.land(plane)
+airport.take_off(plane)
+#=> should raise error if weather is stormy
+```
+
+---
+
+> I want to **_prevent landing_** when **_weather_** is stormy
+
+```
+airport = Airport.new
+plane = Plane.new
+weather = Weather.new
+airport.land(plane)
+#=> should raise error if weather is stormy
+```
+
 ## Edge Cases
 
-> I want to **_prevent_** a **_plane_** from **_taking off_**, if it is not in the specific **_airport_**
+> I want to **_prevent_** a **_plane_** from **_taking off_**, if it is not in the correct **_airport_**
 
 ```
 airport = Airport.new
@@ -88,7 +115,7 @@ airport.take_off(plane)
 #=> should raise error
 ```
 
-> I want to prevent a **_landed plane_** from **_landing_** again
+> I want to **_prevent_** a **_landed plane_** from **_landing_** again
 
 ```
 airport = Airport.new
@@ -96,10 +123,9 @@ plane = Plane.new
 airport.land(plane)
 airport.land(plane)
 #=> should raise error
-
 ```
 
-> I want to prevent a **_flying plane_** from **_taking off_** again
+> I want to **_prevent_** a **_flying plane_** from **_taking off_** again
 
 ```
 airport = Airport.new
@@ -108,5 +134,4 @@ airport.land(plane)
 airport.take_off(plane)
 airport.take_off(plane)
 #=> should raise error
-
 ```
