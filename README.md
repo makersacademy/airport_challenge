@@ -1,6 +1,5 @@
 # Airport Challenge
 
-[![Ruby](https://badgen.net/badge/icon/ruby?icon=ruby&label)](https://www.ruby-lang.org/)
 [![Ruby Style Guide](https://img.shields.io/badge/code_style-rubocop-brightgreen.svg)](https://github.com/rubocop/rubocop)
 [![Coverage](./badge.svg)](https://github.com/lukestorey95/airport_challenge)
 
