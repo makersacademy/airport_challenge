@@ -8,6 +8,7 @@ class Airport
   end
 
   def land(plane)
+    fail 'Weather is stormy' if stormy?
     fail 'Airport full' if full?
     land_plane(plane)
   end
