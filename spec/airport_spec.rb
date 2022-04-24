@@ -1,6 +1,7 @@
 describe Airport do
-  subject(:airport) { Airport.new }
+  let(:airport) { Airport.new }
   let(:plane) { instance_double('Plane', land: true, take_off: false) }
+  before(:each) { allow(airport).to receive(:stormy?).and_return(false) } # stub weather as good unless otherwise specified by context
 
   describe 'capacity' do
     subject { Airport }
@@ -13,14 +14,22 @@ describe Airport do
 
   describe '#land' do
     context 'when it is not full' do
-      it 'should instruct the plane to land' do
-        expect(plane).to receive(:land)
-        land_plane
+      context 'when weather is good' do
+        it 'should instruct the plane to land' do
+          expect(plane).to receive(:land)
+          land_plane
+        end
+
+        it 'should contain the plane after it has been landed' do
+          land_plane
+          expect(airport).to include(plane)
+        end
       end
 
-      it 'should contain the plane after it has been landed' do
-        land_plane
-        expect(airport).to include(plane)
+      context 'when weather is stormy' do
+        before { allow(airport).to receive(:stormy?).and_return(true) }
+
+        it 'should not instruct the plane to land' 
       end
     end
 
@@ -37,14 +46,24 @@ describe Airport do
     context 'when it contains the plane' do
       before(:each) { land_plane }
 
-      it 'should instruct the plane to take off' do
-        expect(plane).to receive(:take_off)
-        airport.take_off(plane)
+      context 'when weather is good' do
+        it 'should instruct the plane to take off' do
+          expect(plane).to receive(:take_off)
+          airport.take_off(plane)
+        end
+
+        it 'should no longer contain the plane after it has taken off' do
+          airport.take_off(plane)
+          expect(airport).to_not include(plane)
+        end
       end
 
-      it 'should no longer contain the plane after it has taken off' do
-        airport.take_off(plane)
-        expect(airport).to_not include(plane)
+      context 'when weather is stormy' do
+        before { allow(airport).to receive(:stormy?).and_return(true) }
+
+        it 'should not instruct the plane to take off' do
+          expect { airport.take_off(plane) }.to raise_error('Weather is stormy')
+        end
       end
     end
 
