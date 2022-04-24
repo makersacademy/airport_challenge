@@ -32,13 +32,13 @@ describe Airport do
     expect(airport).to respond_to(:take_off).with(1).argument
   end
 
-  it "take_off method takes last plane from plane_storage array" do
+  xit "take_off method takes last plane from plane_storage array" do
     airport = Airport.new
     plane = Plane.new
     plane2 = Plane.new
     airport.land(plane)
     airport.land(plane2)
-    expect(airport.take_off(plane)).to eq(plane)
+    expect { airport.take_off(plane) }.to eq(plane)
   end
 
   it "raises error if airport has reached capacity of landed planes" do
@@ -63,4 +63,10 @@ describe Airport do
     expect { airport.land(plane) }.to raise_error("Plane already landed in Airport.")
   end
 
+  it "raise error when trying to take off whilst weather is stormy" do
+    airport = Airport.new
+    plane = Plane.new
+    airport.land(plane)
+    expect { airport.take_off(plane) }.to raise_error("Cannot take off - Weather is stormy.")
+  end
 end
