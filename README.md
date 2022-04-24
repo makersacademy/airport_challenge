@@ -2,7 +2,7 @@
 
 [![Ruby Style Guide](https://img.shields.io/badge/code_style-rubocop-brightgreen.svg)](https://github.com/rubocop/rubocop)
 
-[![Coverage](https://lukestorey95.github.io/airport_challenge/badge.svg)](https://github.com/lukestorey95/airport_challenge)
+[![Coverage](https://lukestorey95.github.io/airport_challenge/blob/main/badge.svg)](https://github.com/lukestorey95/airport_challenge)
 
 [![Ruby](https://badgen.net/badge/icon/ruby?icon=ruby&label)](https://www.ruby-lang.org/)
 
