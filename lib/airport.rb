@@ -12,8 +12,8 @@ class Airport
   attr_reader :capacity
 
   def land(plane)
-    fail "Error: Max capacity for planes in Airport has been reached." if full?
-    fail "Plane already landed in Airport." if landed_planes.include?(plane)
+    fail "Max capacity for planes in Airport has been reached." if full?
+    fail "Plane already landed in Airport." if already_landed?(plane)
     landed_planes << plane
   end
 
@@ -22,6 +22,10 @@ class Airport
   end
 
   private
+  
+  def already_landed?(plane)
+    landed_planes.include?(plane)
+  end
 
   def full?
     landed_planes.count >= capacity

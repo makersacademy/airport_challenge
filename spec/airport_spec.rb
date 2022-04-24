@@ -44,7 +44,7 @@ describe Airport do
   it "raises error if airport has reached capacity of landed planes" do
     airport = Airport.new
     Airport::PLANE_CAPACITY.times { airport.land(Plane.new) }
-    expect { airport.land(Plane.new) }.to raise_error("Error: Max capacity for planes in Airport has been reached.")
+    expect { airport.land(Plane.new) }.to raise_error("Max capacity for planes in Airport has been reached.")
   end
 
   it "should have 1 argument when instantiated" do
