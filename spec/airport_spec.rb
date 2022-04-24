@@ -27,13 +27,13 @@ describe Airport do
         subject.capacity.times {subject.land(Plane.new)}
         expect {subject.land Plane.new}.to raise_error 'Landing prevented; hanger is full'
       end
-      it 'refuses a plane landing if weather is stormy' do
-        airport = Airport.new
-        plane = Plane.new
-        weather = airport.check_weather
-        if weather == 'STORMY' then expect {airport.land(plane)}.to raise_error 'Landing denied; storms overhead'
-        end
-        end
+      # it 'refuses a plane landing if weather is stormy' do
+      #   airport = Airport.new
+      #   plane = Plane.new
+      #   weather = airport.check_weather
+      #   if weather == 'STORMY' then expect {airport.land(plane)}.to raise_error 'Landing denied; storms overhead'
+      #   end
+      #   end
     end
 
     it { is_expected.to respond_to(:land).with(1).argument }
@@ -57,13 +57,13 @@ describe Airport do
 
       it { is_expected.to respond_to(:take_off).with(1).argument }
 
-      it 'refuses a plane take off if weather is stormy' do
-        airport = Airport.new
-        plane = Plane.new
-        weather = airport.check_weather
-        if weather == 'STORMY' then expect {airport.take_off(plane)}.to raise_error 'Take off denied; storms incoming' 
-        end
-        end
+      # it 'refuses a plane take off if weather is stormy' do
+      #   airport = Airport.new
+      #   plane = Plane.new
+      #   weather = airport.check_weather
+      #   if weather == 'STORMY' then expect {airport.take_off(plane)}.to raise_error 'Take off denied; storms incoming' 
+      #   end
+      #   end
       end
 
   describe '#check_hanger' do

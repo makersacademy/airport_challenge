@@ -19,13 +19,13 @@ class Airport
 
   
   def land(plane)
-    fail 'Landing prevented; hanger is full' if @hanger.count >= @capacity
+    fail 'Landing prevented; hanger is full' if full?
     fail 'Landing denied; storms overhead' unless @weather == 'GOOD'
     @hanger << plane
   end
   
   def take_off(plane)
-    fail 'No planes ready to take off' if @hanger.empty?
+    fail 'No planes ready to take off' if empty?
     fail 'Take off denied; storms incoming' if @weather == 'STORMY'
     @hanger.delete(plane)
   end
@@ -45,7 +45,9 @@ class Airport
     @hanger.count >= @capacity ? true : false
   end
 
-  
+  def empty?
+    @hanger.empty?
+  end
 
 end
 
