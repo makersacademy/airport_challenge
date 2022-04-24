@@ -4,8 +4,9 @@ class Plane
   def land(airport)
     if airport.planes.include?(self)
       raise 'Plane has already landed'
-    else  
-      airport.planes << self
+    elsif airport.planes.count == airport.capacity
+      raise 'Cannot land, airport is at capacity'
+    else airport.planes << self
     end 
   end
 

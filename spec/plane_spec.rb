@@ -44,6 +44,11 @@ describe Plane do
   #   expect(plane.takeoff(airport)).to eq '#{self} has taken off'
   # end 
 
-  
+  it 'raises an error when planes attempt to land in full airport' do
+    airport = Airport.new
+    airport.capacity.times{Plane.new.land(airport)}
+    expect{Plane.new.land(airport)}.to raise_error 'Cannot land, airport is at capacity'
+  end 
+
 
 end 
