@@ -16,6 +16,7 @@ class Airport
   def land(plane)
     fail "Max capacity for planes in Airport has been reached." if full?
     fail "Plane already landed in Airport." if already_landed?(plane)
+    fail "Cannot land plane - Weather is stormy" if weather == "stormy"
     landed_planes << plane
   end
 
