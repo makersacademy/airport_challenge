@@ -38,7 +38,7 @@ Installation
 * Unit, Manual and Feature testing are to be implemented here
 
 ## Steps to be taken
---------------------
+----------------
 1. Fork the original repo and clone to my local machine
 2. Initialize the README file to include all of the information of the challenge
 3. Break down the user stories (below - one at a time) into objects and behaviour (manually using pen and paper)
