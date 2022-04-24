@@ -5,14 +5,20 @@ class Airport
   end
 
   def land(plane)
-    max_capacity = 10
-    raise 'Airport is full, cannot land plane' if @planes.size >= max_capacity
-    @planes.push(plane)
+    raise 'Airport is full, cannot land plane' if capacity_full?
+    @planes << (plane)
   end
 
-  def takeoff(plane)
   
+  def takeoff(plane)
+    
   end
+
+  def capacity_full?
+    max_capacity = 10
+    @planes.size >= max_capacity
+  end
+
 end
 
 class Plane
