@@ -12,10 +12,6 @@ class Weather
   attr_reader :stormy
 
   def random_weather
-    random.zero?
-  end
-
-  def random
-    Random.rand(5)
+    rand(2).zero?
   end
 end
