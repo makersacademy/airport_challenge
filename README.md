@@ -72,7 +72,7 @@ In our `airport.rb` file, we can write:
 
 ## Installation
 Fork or download this repo.
-Use `bundle install` to install the correct gems to use and test this code.
+Use `gem install bundler` to install the correct gems to use and test this code.
 
 ## How To Use
 Create a new airport using `airport = Airport.new`.\
