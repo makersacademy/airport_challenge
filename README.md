@@ -1,39 +1,68 @@
 # Airport Challenge
 
 [![Ruby Style Guide](https://img.shields.io/badge/code_style-rubocop-brightgreen.svg)](https://github.com/rubocop/rubocop)
+[![Coverage](./badge.svg)](https://github.com/lukestorey95/airport_challenge)
 
-This program allows the user to simulate a working airport, planes and necessary support
+This program allows the user to simulate a working airport. Planes are able to land and take off from an airport so long as the weather isn't stormy.
 
-## Getting Started
+<br>
 
-```
-
-```
-
-## Usage
+## Installation
 
 ```
+$ git clone https://github.com/lukestorey95/airport_challenge.git
+
+$ cd airport_challenge
+
+$ bundle
+```
+
+<br>
+
+## Quickstart
 
 ```
+irb
+
+> Dir['./lib/*.rb'].each {|file| require file }
+
+> airport = Airport.new
+> plane = Plane.new
+
+> airport.land(plane)
+
+> airport.take_off(plane)
+```
+
+> For more usage please see user stories below
+
+<br>
 
 ## Running Tests
 
 ```
-
+$ rspec
 ```
+
+<details>
+  <summary>Click to see test results</summary>
+
+![Test results](./test_results.png)
+
+</details>
+
+<br>
 
 ## My Process
 
-1. Fork the repo and clone it to local machine
-2. Initialize README file
-3. Break down user story into objects and behaviour
-4. Feature test
-5. Write failing test
-6. Write the minimum code to make test pass
-7. Check test passses
-8. Refactor and check the tests still pass
-9. Run feature test again and check it works as intended
-10. Repeat from step 3.
+1. Break down user story into objects and behaviour
+2. Feature test and note down errors/expected errors
+3. Write failing test that replicates errors
+4. Write the minimum code to make test pass
+5. Refactor and ensure tests still pass
+6. Repeat step 2 and ensure behaviour works as intended
+
+<br>
 
 ## User Stories
 
@@ -104,6 +133,8 @@ airport.land(plane)
 #=> should raise error if weather is stormy
 ```
 
+<br>
+
 ## Edge Cases
 
 > I want to **_prevent_** a **_plane_** from **_taking off_**, if it is not in the correct **_airport_**
@@ -134,4 +165,23 @@ airport.land(plane)
 airport.take_off(plane)
 airport.take_off(plane)
 #=> should raise error
+```
+
+<br>
+
+## Feature Test
+
+> I want to **_land_** and then **_take off_** several **_planes_** at once
+
+```
+airport = Airport.new(3)
+planes = Array.new(3) { Plane.new }
+
+planes.each { |plane| airport.land(plane) }
+
+# airport should contain the planes and the planes should be landed
+
+planes.each { |plane| airport.take_off(plane) }
+
+# airport should not contain the planes and the planes should be flying
 ```
