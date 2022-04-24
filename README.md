@@ -20,14 +20,14 @@ Installation
 3. When the installation completes, run `bundle`
 
 ## How to test the code
-------------------------
+-----------
 1. Follow installation process
 2. Navigate to the saved directory
 3. Run Rspec
 4. Run rubocop
 
 ## Project Information
------------------------
+-----------
 * Forked and cloned from the makers academy repository 'airport_challenge' to be completed on a solo basis end of week 1 (23/04/2022 - 24/04/2022)
 * Tasked to test drive the creation of a set of classes/methods to satisfy all user stories mentioned in the repository
 * Can refer to coaches/other developers work but have to state it below
@@ -37,8 +37,8 @@ Installation
 * Trying to put all learning from week 1 into this challenge, gauge progress and effectively use TDD to guide the creation of the program
 * Unit, Manual and Feature testing are to be implemented here
 
-## Steps to be taken
-----------------
+Steps to be taken
+-----------
 1. Fork the original repo and clone to my local machine
 2. Initialize the README file to include all of the information of the challenge
 3. Break down the user stories (below - one at a time) into objects and behaviour (manually using pen and paper)
