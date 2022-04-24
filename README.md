@@ -44,6 +44,13 @@ irb
 $ rspec
 ```
 
+<details>
+  <summary>Click to see test results</summary>
+
+![Test results](./test_results.png))
+
+</details>
+
 <br>
 
 ## My Process
@@ -158,4 +165,23 @@ airport.land(plane)
 airport.take_off(plane)
 airport.take_off(plane)
 #=> should raise error
+```
+
+<br>
+
+## Feature Test
+
+> I want to **_land_** and then **_take off_** several **_planes_** at once
+
+```
+airport = Airport.new(3)
+planes = Array.new(3) { Plane.new }
+
+planes.each { |plane| airport.land(plane) }
+
+# airport should contain the planes and the planes should be landed
+
+planes.each { |plane| airport.take_off(plane) }
+
+# airport should not contain the planes and the planes should be flying
 ```
