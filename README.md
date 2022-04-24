@@ -4,35 +4,56 @@ Airport Challenge
 ```
         ______
         _\____\___
-=  = ==(____MA____)
-          \_____\___________________,-~~~~~~~`-.._
-          /     o o o o o o o o o o o o o o o o  |\_
-          `~-.__       __..----..__                  )
+= = ==3(___F_I____)
+          \_____\___________________,-~~~~~~~~-..__
+          /     o o o( ) o o o o o o o o o( ) o o \_\__
+          `~-.__     ( )__..----..__      ( )          )
                 `---~~\___________/------------`````
                 =  ===(_________)
 
 ```
 
-Instructions
----------
-
-* Feel free to use google, your notes, books, etc. but work on your own
-* If you refer to the solution of another coach or student, please put a link to that in your README
-* If you have a partial solution, **still check in a partial solution**
-* You must submit a pull request to this repo with your code by 10am Monday morning
-
-Steps
--------
-
-1. Fork this repo, and clone to your local machine
-2. Run the command `gem install bundler` (if you don't have bundler already)
+Installation
+-----------
+1. Fork this repo, and clone to local machine
+2. Run the command `gem install bundler` (if bundler not installed already)
 3. When the installation completes, run `bundle`
-4. Complete the following task:
 
-Task
------
+## How to test the code
+-----------
+1. Follow installation process
+2. Navigate to the saved directory
+3. Run Rspec
+4. Run rubocop
 
-We have a request from a client to write the software to control the flow of planes at an airport. The planes can land and take off provided that the weather is sunny. Occasionally it may be stormy, in which case no planes can land or take off.  Here are the user stories that we worked out in collaboration with the client:
+## Project Information
+-----------
+* Forked and cloned from the makers academy repository 'airport_challenge' to be completed on a solo basis end of week 1 (23/04/2022 - 24/04/2022)
+* Tasked to test drive the creation of a set of classes/methods to satisfy all user stories mentioned in the repository
+* Can refer to coaches/other developers work but have to state it below
+
+## Motivation
+-----------
+* Trying to put all learning from week 1 into this challenge, gauge progress and effectively use TDD to guide the creation of the program
+* Unit, Manual and Feature testing are to be implemented here
+
+Steps to be taken
+-----------
+1. Fork the original repo and clone to my local machine
+2. Initialize the README file to include all of the information of the challenge
+3. Break down the user stories (below - one at a time) into objects and behaviour (manually using pen and paper)
+4. Create a domain model diagram to show how objects will use messages to communicate with one another (manualy using pen and paper)
+5. Write a failing test on IRB (interactive Ruby, type IRB into terminal to run)
+6. Write the bare minimum code to make test pass
+7. Check that the test passes
+8. Run feature test and check it still works
+9. Repeat steps 3 - 8 for each user story
+
+## User Stories
+-----------
+Request from a client to write the software to control the flow of planes at an airport. 
+The planes can land and take off provided that the weather is sunny. Occasionally it may be stormy, in which case no planes can land or take off.  
+Below are the user stories that were worked out in collaboration with the client:
 
 ```
 As an air traffic controller 
@@ -60,30 +81,25 @@ To ensure safety
 I want to prevent landing when weather is stormy 
 ```
 
-Your task is to test drive the creation of a set of classes/modules to satisfy all the above user stories. You will need to use a random number generator to set the weather (it is normally sunny but on rare occasions it may be stormy). In your tests, you'll need to use a stub to override random weather to ensure consistent test behaviour.
-
-Your code should defend against [edge cases](http://programmers.stackexchange.com/questions/125587/what-are-the-difference-between-an-edge-case-a-corner-case-a-base-case-and-a-b) such as inconsistent states of the system ensuring that planes can only take off from airports they are in; planes that are already flying cannot take off and/or be in an airport; planes that are landed cannot land again and must be in an airport, etc.
-
-For overriding random weather behaviour, please read the documentation to learn how to use test doubles: https://www.relishapp.com/rspec/rspec-mocks/docs . There’s an example of using a test double to test a die that’s relevant to testing random weather in the test.
-
-Please create separate files for every class, module and test suite.
-
-In code review we'll be hoping to see:
-
-* All tests passing
-* High [Test coverage](https://github.com/makersacademy/course/blob/main/pills/test_coverage.md) (>95% is good)
-* The code is elegant: every class has a clear responsibility, methods are short etc. 
-
-Reviewers will potentially be using this [code review rubric](docs/review.md).  Referring to this rubric in advance will make the challenge somewhat easier.  You should be the judge of how much challenge you want this at this moment.
-
 **BONUS**
 
 * Write an RSpec **feature** test that lands and takes off a number of planes
 
 Note that is a practice 'tech test' of the kinds that employers use to screen developer applicants.  More detailed submission requirements/guidelines are in [CONTRIBUTING.md](CONTRIBUTING.md)
 
-Finally, don’t overcomplicate things. This task isn’t as hard as it may seem at first.
+* Finally, submit a pull request before Monday 25/04/2022 at 10am with solution or partial solution.  However much or little amount of code wrote.
 
-* **Submit a pull request early.**
+## Summary of the challenge
+-----------
+* Ended up writing a spec that fulfilled the first four user stories
+* This was discarded after referring to the below work of another cohort developer (Feb '22)
+* My weather method did not go to plan and I did not have a way to meet the last two user stories
+* I ended up making a separate weather file and spec, which met the user stories in question
+* Test coverage of 98.44% using rspec on the terminal (10 examples, 0 failures)
+* Test coverage lowed due to 83.33% coverage in `weather.rb` file
+* Rubocop: verified files have no offenses present
 
-* Finally, please submit a pull request before Monday at 10am with your solution or partial solution.  However much or little amount of code you wrote please please please submit a pull request before Monday at 10am.
+## References
+-----------
+* https://github.com/makersacademy/airport_challenge
+* https://github.com/heykathl/airport_challenge
