@@ -18,16 +18,15 @@ describe Airport do
         land_plane
       end
 
-      it 'should contain the landed plane after it has been landed' do
+      it 'should contain the plane after it has been landed' do
         land_plane
         expect(airport).to include(plane)
       end
     end
 
     context 'when it is full' do
-      before { Airport::DEFAULT_CAPACITY.times { land_plane } }
-
       it 'should not instruct the plane to land' do
+        Airport::DEFAULT_CAPACITY.times { land_plane }
         another_plane = double('Plane')
         expect { airport.land(another_plane) }.to raise_error('Airport full')
       end
