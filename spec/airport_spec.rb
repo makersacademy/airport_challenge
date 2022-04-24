@@ -53,7 +53,14 @@ describe Airport do
       expect{ subject.land(plane) }.to raise_error 'Landing not allowed due to adverse weather'
     end
 
+    it 'changes the status of left_airport? to false' do
+      weather = class_double('Weather').as_stubbed_const
+      allow(weather).to receive(:stormy?).and_return(false)
 
+      plane = double (:plane)
+      allow(plane).to receive(:left_airport?).and_return(false)
+      expect(subject.land(plane)).not_to be_left_airport
+    end
 
   end
 
@@ -97,6 +104,14 @@ describe Airport do
       subject.land(plane)
       #expect(plane.left_airport?).to eq true
       expect(subject.take_off(plane)).to be_left_airport
+    end
+
+    it 'raises an error when the plane is not in the airport' do
+      weather = class_double('Weather').as_stubbed_const
+      allow(weather).to receive(:stormy?).and_return(false)
+
+      plane = double (:plane)
+      expect{subject.take_off(plane)}.to raise_error 'Plane not in the airport'
     end
 
   end 

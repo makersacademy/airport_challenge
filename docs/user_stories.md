@@ -134,8 +134,11 @@ Weather <--stormy?--> true/false
 ##################################
 
 # Edge cases
-- planes can only take off from airports they are in; 
+- planes can only take off from airports they are in;
+# done
 - planes that are already flying cannot take off and/or be in an airport; 
+  (when plane lands left_airport? should be false)
+# 
 - planes that are landed cannot land again and must be in an airport
 
 
