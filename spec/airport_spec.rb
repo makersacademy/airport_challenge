@@ -1,11 +1,18 @@
 describe Airport do
   let(:airport) { Airport.new }
   let(:plane) { instance_double('Plane', land: true, take_off: false) }
-  before(:each) { allow(airport).to receive(:stormy?).and_return(false) } # stub weather as good unless otherwise specified by context
+  before(:each) { allow(airport).to receive(:stormy?).and_return(false) }
 
-  describe 'capacity' do
+  describe '#new' do
     subject { Airport }
-    it { should respond_to(:new).with(0..1) }
+
+    context 'should have a default capacity' do
+      it { should respond_to(:new).with(0) }
+    end
+
+    context 'should allow capacity to be set' do
+      it { should respond_to(:new).with(1) }
+    end
   end
 
   def land_plane
