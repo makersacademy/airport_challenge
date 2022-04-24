@@ -29,15 +29,31 @@ describe Airport do
     end
 
     it 'lands a plane' do
+      weather = class_double('Weather').as_stubbed_const
+      allow(weather).to receive(:stormy?).and_return(false)
+
       plane = double (:plane)
       expect(subject.land(plane)).to eq subject.planes
     end
 
     it 'rasies an error when airport is full' do
+      weather = class_double('Weather').as_stubbed_const
+      allow(weather).to receive(:stormy?).and_return(false)
+
       plane = double (:plane)
       subject.capacity.times {subject.land(plane)}
       expect {subject.land(plane)}.to raise_error 'Airport full'
     end
+
+    it 'raises an error when the weather is stormy' do
+      weather = class_double('Weather').as_stubbed_const
+      allow(weather).to receive(:stormy?).and_return(true)
+
+      plane = double (:plane)
+      expect{ subject.land(plane) }.to raise_error 'Landing not allowed due to adverse weather'
+    end
+
+
 
   end
 
@@ -53,27 +69,32 @@ describe Airport do
     end
 
     it 'raises an error when the weather is stormy' do
+      weather = class_double('Weather').as_stubbed_const
+      allow(weather).to receive(:stormy?).and_return(false)
+
       plane = double (:plane)
       subject.land(plane)
-      weather = class_double('Weather').as_stubbed_const
+
       allow(weather).to receive(:stormy?).and_return(true)
       expect{ subject.take_off(plane) }.to raise_error 'Take-off not allowed due to adverse weather'
     end
 
     it 'takes-off the plane when the weather is NOT stormy' do
-      plane = double (:plane)
-      subject.land(plane)
       weather = class_double('Weather').as_stubbed_const
       allow(weather).to receive(:stormy?).and_return(false)
+
+      plane = double (:plane)
+      subject.land(plane)
       expect(subject.take_off(plane)).to eq plane
     end
 
     it 'confirms the plane has left the airport' do
+      weather = class_double('Weather').as_stubbed_const
+      allow(weather).to receive(:stormy?).and_return(false)
+
       plane = double (:plane)
       allow(plane).to receive(:left_airport?).and_return(true)
       subject.land(plane)
-      weather = class_double('Weather').as_stubbed_const
-      allow(weather).to receive(:stormy?).and_return(false)
       #expect(plane.left_airport?).to eq true
       expect(subject.take_off(plane)).to be_left_airport
     end

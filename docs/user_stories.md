@@ -108,4 +108,35 @@ Messages:
 
 # Diagrams
 Airport <--take_off--> Plane
-Weather <--stormy?--> error
+Weather <--stormy?--> ture/false
+
+
+##################################
+# User story 6
+As an air traffic controller 
+To ensure safety 
+I want to prevent landing when weather is stormy 
+
+# Functional representation
+Objects:
+- Airport
+- Weather
+- Plane
+
+Messages:
+- prevent_landing
+
+# Diagrams
+Airport <--land--> Plane
+Weather <--stormy?--> true/false
+
+
+##################################
+
+# Edge cases
+- planes can only take off from airports they are in; 
+- planes that are already flying cannot take off and/or be in an airport; 
+- planes that are landed cannot land again and must be in an airport
+
+
+##################################

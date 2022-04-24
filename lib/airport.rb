@@ -14,11 +14,12 @@ class Airport
 
   def land(plane)
     fail 'Airport full' if full?
+    fail 'Landing not allowed due to adverse weather' if stormy?
     @planes << plane
   end
 
   def take_off(plane)
-    fail 'Take-off not allowed due to adverse weather' if Weather.stormy?
+    fail 'Take-off not allowed due to adverse weather' if stormy?
     @planes.delete(plane)
   end
 
@@ -26,6 +27,10 @@ class Airport
 
   def full?
     @planes.length >= @capacity
+  end
+
+  def stormy?
+    Weather.stormy?
   end
           
 end
