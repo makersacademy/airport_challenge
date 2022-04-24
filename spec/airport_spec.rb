@@ -4,4 +4,10 @@ describe Airport do
     airport = Airport.new
     expect(airport).to be_kind_of(Airport)
   end
-end 
+
+  it 'can store instances of planes' do
+    airport = Airport.new
+    plane = Plane.new
+    expect(airport.planes).to eq([])
+  end 
+end

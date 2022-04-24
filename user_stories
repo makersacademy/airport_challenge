@@ -1,7 +1,11 @@
 As an air traffic controller 
 So I can get passengers to a destination 
 I want to instruct a plane to land at an airport
-# I need an Airport class and a Plane class and I need to be able to land the Plane in the Airport
+# I need:
+#   - An Airport class ✅
+#   - A Plane class ✅
+#   - A land method for the Plane class with argument ✅
+#   - A way for Airport to store instances of Plane when .land is called (insert plane instance into array inside airport instance) 
 
 As an air traffic controller 
 So I can get passengers on the way to their destination 
