@@ -19,4 +19,16 @@ describe Airport do
     subject.depart(plane)
     expect(subject.stored_planes).to eq []
   end
+
+  it 'can have an airport capacity that can be overwritten as appropriate' do
+    subject.adjust_capacity(1)
+    subject.land(Plane.new)
+    expect { subject.land(Plane.new) }.to raise_error 'Airport full!'
+  end
+
+  it 'has a default capacity' do
+    Airport::CAPACITY.times { subject.land(Plane.new) }
+    expect { subject.land(Plane.new) }.to raise_error 'Airport full!'
+  end
+
 end
