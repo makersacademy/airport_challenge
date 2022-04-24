@@ -17,8 +17,8 @@ Please list which user stories you've implemented (delete the ones that don't ap
 
 Does your README contains instructions for
 
-- [ ] how to install,
-- [ ] how to run,
-- [ ] and how to test your code?
+- [x] how to install,
+- [x] how to run,
+- [x] and how to test your code?
 
 [Here is a pill](https://github.com/makersacademy/course/blob/main/pills/readmes.md) that can help you write a great README!
