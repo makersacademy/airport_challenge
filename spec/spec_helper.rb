@@ -12,6 +12,7 @@ end
 
 require 'airport'
 require 'plane'
+require 'weather'
 
 # RSpec.configure do |config|
 #   config.after(:suite) do
