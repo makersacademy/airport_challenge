@@ -30,7 +30,7 @@ describe Airport do
         before { allow(airport).to receive(:stormy?).and_return(true) }
 
         it 'should not instruct the plane to land' do
-          expect { airport.land(plane) }.to raise_error('Weather is stormy')
+          expect { land_plane }.to raise_error('Weather is stormy')
         end
       end
     end
@@ -45,17 +45,21 @@ describe Airport do
   end
 
   describe '#take_off' do
+    def take_off_plane
+      airport.take_off(plane)
+    end
+
     context 'when it contains the plane' do
       before(:each) { land_plane }
 
       context 'when weather is good' do
         it 'should instruct the plane to take off' do
           expect(plane).to receive(:take_off)
-          airport.take_off(plane)
+          take_off_plane
         end
 
         it 'should no longer contain the plane after it has taken off' do
-          airport.take_off(plane)
+          take_off_plane
           expect(airport).to_not include(plane)
         end
       end
@@ -64,14 +68,14 @@ describe Airport do
         before { allow(airport).to receive(:stormy?).and_return(true) }
 
         it 'should not instruct the plane to take off' do
-          expect { airport.take_off(plane) }.to raise_error('Weather is stormy')
+          expect { take_off_plane }.to raise_error('Weather is stormy')
         end
       end
     end
 
     context "when it doesn't contain the plane" do
       it 'should not instruct the plane to take off' do
-        expect { airport.take_off(plane) }.to raise_error('Plane not at airport')
+        expect { take_off_plane }.to raise_error('Plane not at airport')
       end
     end
   end
