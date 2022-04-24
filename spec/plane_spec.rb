@@ -3,7 +3,7 @@ require 'plane'
 describe Plane do
 
   let(:airport) { Airport.new }
-  let(:weather) { double("weather")}
+  let(:weather) { double("weather") }
 
   it 'can only land if it is not already landed' do
     subject.land(airport)

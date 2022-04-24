@@ -20,4 +20,5 @@ class Plane
     @landed = false
     airport.plane_take_off
   end
+
 end

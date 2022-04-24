@@ -85,6 +85,8 @@ As I went, if I felt that new test made a previous one redundent, then I removed
 
 At the end I spent some time refactoring the code, and then tiyding up this document. 
 
+Lastly I wrote a feature_spec.rb file. 
+
 Reflections
 ----
 I'm not clear whether my original design strategy (to control landing and take off of planes from the point of view of an airport) or my new one (to control it all from the point of the plane) is better. What I do know however, is that allowing a design emerge in this way feels sub-optimal, and I think that time spent diagramming and psuedo coding could lead to more clarity about the overal picture, what the implications of earlier decisions are / could be and allow me to start writing code with more clarity. 
