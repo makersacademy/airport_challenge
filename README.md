@@ -1,89 +1,86 @@
-Airport Challenge
-=================
+# Airport Traffic Control System
 
+This program is designed to manage Planes flying in and out of an airport. The airport has been created through the guidance of the user stories provided:
+
+> As an air traffic controller,\
+So I can get passengers to a destination,\
+I want to instruct a plane to land at an airport.
+
+> As an air traffic controller,\
+So I can get passengers on the way to their destination,\
+I want to instruct a plane to take off from an airport and confirm that it is no longer in the airport.
+
+> As an air traffic controller,\
+To ensure safety,\
+I want to prevent landing when the airport is full.
+
+> As the system designer,\
+So that the software can be used for many different airports,\
+I would like a default airport capacity that can be overridden as appropriate.
+
+> As an air traffic controller,\
+To ensure safety,\
+I want to prevent takeoff when weather is stormy.
+
+> As an air traffic controller,\
+To ensure safety,\
+I want to prevent landing when weather is stormy.
+
+The idea of this program is to track flights landing and taking off from the airport. The code also takes in account for edge cases. For example, if a plane is currently landed in the airport, you cannot use the `.land` method on the same plane, since it is already landed within that same airport.
+
+This system was built using the following [TDD](https://en.wikipedia.org/wiki/Test-driven_development#:~:text=Test%2Ddriven%20development%20(TDD),software%20against%20all%20test%20cases.) steps:
+1. Get User Requirements and understand them.\
+I also break down the user requirements to see what it is we are asking the program to do. For example, the first user requirement:
+    > As an air traffic controller,\
+So I can get passengers to a destination,\
+I want to instruct a plane to land at an airport.
+
+    can have the required information extracted from it. Like so:
+    
+    | User Story  | Code To Implement |
+    | :-------------: |:-------------:|
+    | Instruct a plane to land at Airport | `Airport.land(plane)` |
+    
+    This table helps us identify the end goal of the test we need to make. When we start with an empty file, we'll know that we'll need an `Airport` class right from the get-go from looking at that table.
+2. Run a feature test in IRB - Write the code you wish you could write depending on the user requirements.
+Going with the example above, since we now know we need an `Airport` class, we can hop into `irb` and make a new instance of the Airport class:
+            3.0.2 :001 > airport = Airport.new
+            (irb):1:in <main>': uninitialized constant Airport (NameError)
+
+3. Watch the feature test fail - this is normal since we haven't written any code.
+4. Write a unit test in Rspec **to encapsulate that same error message received in the feature test.**
+In our `airport_spec.rb` file, we can write:
 ```
-        ______
-        _\____\___
-=  = ==(____MA____)
-          \_____\___________________,-~~~~~~~`-.._
-          /     o o o o o o o o o o o o o o o o  |\_
-          `~-.__       __..----..__                  )
-                `---~~\___________/------------`````
-                =  ===(_________)
-
-```
-
-Instructions
----------
-
-* Feel free to use google, your notes, books, etc. but work on your own
-* If you refer to the solution of another coach or student, please put a link to that in your README
-* If you have a partial solution, **still check in a partial solution**
-* You must submit a pull request to this repo with your code by 10am Monday morning
-
-Steps
--------
-
-1. Fork this repo, and clone to your local machine
-2. Run the command `gem install bundler` (if you don't have bundler already)
-3. When the installation completes, run `bundle`
-4. Complete the following task:
-
-Task
------
-
-We have a request from a client to write the software to control the flow of planes at an airport. The planes can land and take off provided that the weather is sunny. Occasionally it may be stormy, in which case no planes can land or take off.  Here are the user stories that we worked out in collaboration with the client:
-
-```
-As an air traffic controller 
-So I can get passengers to a destination 
-I want to instruct a plane to land at an airport
-
-As an air traffic controller 
-So I can get passengers on the way to their destination 
-I want to instruct a plane to take off from an airport and confirm that it is no longer in the airport
-
-As an air traffic controller 
-To ensure safety 
-I want to prevent landing when the airport is full 
-
-As the system designer
-So that the software can be used for many different airports
-I would like a default airport capacity that can be overridden as appropriate
-
-As an air traffic controller 
-To ensure safety 
-I want to prevent takeoff when weather is stormy 
-
-As an air traffic controller 
-To ensure safety 
-I want to prevent landing when weather is stormy 
+    require "./lib/aiport.rb"
+    describe Airport do
+        it "can make a new instance of Airport class" do
+            expect(Airport.new).to be_an_instance_of(Airport)
+  end
 ```
 
-Your task is to test drive the creation of a set of classes/modules to satisfy all the above user stories. You will need to use a random number generator to set the weather (it is normally sunny but on rare occasions it may be stormy). In your tests, you'll need to use a stub to override random weather to ensure consistent test behaviour.
+5. Write the smallest amount of code to make that test pass.
+In our `airport.rb` file, we can write:
+```
+    class Airport
+    end
+```
+6. Run `Rspec` to see if the code passses:
+```
+    1 examples, 0 failures
+```
+7. Repeat! You can also run `airport.rb` in `IRB` to visualise why your code works.
 
-Your code should defend against [edge cases](http://programmers.stackexchange.com/questions/125587/what-are-the-difference-between-an-edge-case-a-corner-case-a-base-case-and-a-b) such as inconsistent states of the system ensuring that planes can only take off from airports they are in; planes that are already flying cannot take off and/or be in an airport; planes that are landed cannot land again and must be in an airport, etc.
+## Installation
+Fork or download this repo.
 
-For overriding random weather behaviour, please read the documentation to learn how to use test doubles: https://www.relishapp.com/rspec/rspec-mocks/docs . There’s an example of using a test double to test a die that’s relevant to testing random weather in the test.
+## How to use
+Create a new airport using `airport = Airport.new`.\
+Create a plane using `plane = Plane.new`\
+Land a plane using `airport.land(plane)` to store it inside the Airport.\
+To have a plane take off from the Airport, use `airport.take_off(plane)`.
 
-Please create separate files for every class, module and test suite.
+There are times where the weather can be stormy. If so, the `land` and `take_off` will be suspended as it is not safe to fly out in such weather conditions.
 
-In code review we'll be hoping to see:
-
-* All tests passing
-* High [Test coverage](https://github.com/makersacademy/course/blob/main/pills/test_coverage.md) (>95% is good)
-* The code is elegant: every class has a clear responsibility, methods are short etc. 
-
-Reviewers will potentially be using this [code review rubric](docs/review.md).  Referring to this rubric in advance will make the challenge somewhat easier.  You should be the judge of how much challenge you want this at this moment.
-
-**BONUS**
-
-* Write an RSpec **feature** test that lands and takes off a number of planes
-
-Note that is a practice 'tech test' of the kinds that employers use to screen developer applicants.  More detailed submission requirements/guidelines are in [CONTRIBUTING.md](CONTRIBUTING.md)
-
-Finally, don’t overcomplicate things. This task isn’t as hard as it may seem at first.
-
-* **Submit a pull request early.**
-
-* Finally, please submit a pull request before Monday at 10am with your solution or partial solution.  However much or little amount of code you wrote please please please submit a pull request before Monday at 10am.
+## Bugs/Future Changes To The Code
+* The weather is currently hard-coded, I will update it to be random and automatic within the code.
+* Planes cannot take off without being landed first, (by calling the `.land` method). There will be a change to fix this so once the plane is made, it is added to the airport by default. For now, please use `.land(plane)` to land the plane, and then you can have it take off.
