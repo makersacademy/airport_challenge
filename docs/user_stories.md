@@ -138,8 +138,8 @@ Weather <--stormy?--> true/false
 # done
 - planes that are already flying cannot take off and/or be in an airport; 
   (when plane lands left_airport? should be false)
-# 
+# done
 - planes that are landed cannot land again and must be in an airport
-
+# done
 
 ##################################

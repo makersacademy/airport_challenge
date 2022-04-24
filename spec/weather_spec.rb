@@ -10,7 +10,7 @@ describe Weather do
     expect(Weather).to respond_to :stormy?
   end
 
-  xit 'responds with true or false to stormy?' do
+  xit 'responds with true or false to stormy?' do #could not make it work with a boolean
     expect(Weather.stormy?).to be_in([true, false])
   end
 

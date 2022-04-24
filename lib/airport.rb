@@ -18,6 +18,7 @@ class Airport
     fail 'Plane already landed' if @planes.include?(plane)
     plane.allowed_land
     @planes << plane
+    plane
   end
 
   def take_off(plane)

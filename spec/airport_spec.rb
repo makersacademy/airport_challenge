@@ -34,7 +34,7 @@ describe Airport do
 
       plane = double (:plane)
       allow(plane).to receive(:allowed_land)
-      expect(subject.land(plane)).to eq subject.planes
+      expect(subject.land(plane)).to eq plane
     end
 
     it 'rasies an error when airport is full' do
@@ -64,6 +64,14 @@ describe Airport do
       allow(plane).to receive(:allowed_land)
       subject.land(plane)
       expect{ subject.land(plane) }.to raise_error 'Plane already landed'
+    end
+
+    it 'changes left_airport? to false' do
+      weather = class_double('Weather').as_stubbed_const
+      allow(weather).to receive(:stormy?).and_return(false)
+
+      plane = Plane.new
+      expect(subject.land(plane)).not_to be_left_airport
     end
 
   end
@@ -101,13 +109,11 @@ describe Airport do
       expect(subject.take_off(plane)).to eq plane
     end
 
-    it 'confirms the plane has left the airport' do
+    it 'confirms the plane has left_airport?' do
       weather = class_double('Weather').as_stubbed_const
       allow(weather).to receive(:stormy?).and_return(false)
 
-      plane = double (:plane)
-      #allow(plane).to receive(:left_airport?).and_return(true)
-      allow(plane).to receive_messages(:allowed_land => nil, :allowed_take_off => nil, :left_airport? => true)
+      plane = Plane.new
       subject.land(plane)
       #expect(plane.left_airport?).to eq true
       expect(subject.take_off(plane)).to be_left_airport
