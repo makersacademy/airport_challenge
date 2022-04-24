@@ -55,4 +55,12 @@ describe Airport do
     airport = Airport.new(10)
     expect { 10.times { airport.land(Plane.new) } }.not_to raise_error
   end
+
+  it "raises error when trying to land a plane which is already landed in Airport" do
+    airport = Airport.new
+    plane = Plane.new
+    airport.land(plane)
+    expect { airport.land(plane) }.to raise_error("Plane already landed in Airport.")
+  end
+
 end
