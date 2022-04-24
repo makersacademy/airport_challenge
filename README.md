@@ -83,7 +83,7 @@ To test the weather cases I created a double that tells the airport that the wea
 
 As I went, if I felt that new test made a previous one redundent, then I removed it. 
 
-At the end I spent some time refactoring the code, and then tiyding up this document. 
+At the end I spent some time refactoring the code, and then tidying up this document. 
 
 Lastly I wrote a feature_spec.rb file. 
 
