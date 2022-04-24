@@ -14,7 +14,7 @@ Airport Challenge
 ```
 
 Installation
-------------
+-----------
 1. Fork this repo, and clone to local machine
 2. Run the command `gem install bundler` (if bundler not installed already)
 3. When the installation completes, run `bundle`
@@ -33,7 +33,7 @@ Installation
 * Can refer to coaches/other developers work but have to state it below
 
 ## Motivation
---------------
+-----------
 * Trying to put all learning from week 1 into this challenge, gauge progress and effectively use TDD to guide the creation of the program
 * Unit, Manual and Feature testing are to be implemented here
 
@@ -50,7 +50,7 @@ Steps to be taken
 9. Repeat steps 3 - 8 for each user story
 
 ## User Stories
----------------
+-----------
 Request from a client to write the software to control the flow of planes at an airport. 
 The planes can land and take off provided that the weather is sunny. Occasionally it may be stormy, in which case no planes can land or take off.  
 Below are the user stories that were worked out in collaboration with the client:
@@ -90,7 +90,7 @@ Note that is a practice 'tech test' of the kinds that employers use to screen de
 * Finally, submit a pull request before Monday 25/04/2022 at 10am with solution or partial solution.  However much or little amount of code wrote.
 
 ## Summary of the challenge
-----------------------------
+-----------
 * Ended up writing a spec that fulfilled the first four user stories
 * This was discarded after referring to the below work of another cohort developer (Feb '22)
 * My weather method did not go to plan and I did not have a way to meet the last two user stories
@@ -100,6 +100,6 @@ Note that is a practice 'tech test' of the kinds that employers use to screen de
 * Rubocop: verified files have no offenses present
 
 ## References
---------------
+-----------
 * https://github.com/makersacademy/airport_challenge
 * https://github.com/heykathl/airport_challenge
