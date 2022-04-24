@@ -3,45 +3,57 @@ class Airport
 
   def initialize(capacity = DEFAULT_CAPACITY)
     @capacity = capacity
-    @planes = Array.new
+    @hangar = Array.new
     @weather = Weather.new
   end
 
   def land(plane)
-    fail 'Weather is stormy' if stormy?
-    fail 'Airport full' if full?
+    check_weather_condition
+    check_airport_capacity
     land_plane(plane)
   end
 
   def take_off(plane)
-    fail 'Weather is stormy' if stormy?
-    fail 'Plane not at airport' unless include?(plane)
+    check_plane_at_airport(plane)
+    check_weather_condition
     take_off_plane(plane)
   end
 
   def include?(plane)
-    planes.include?(plane)
+    hangar.include?(plane)
+  end
+
+  private
+
+  attr_reader :hangar, :capacity, :weather
+
+  def take_off_plane(plane)
+    plane.take_off
+    hangar.delete(plane)
+  end
+
+  def check_plane_at_airport(plane)
+    fail 'Plane not at airport' unless include?(plane)
+  end
+
+  def land_plane(plane)
+    plane.land
+    hangar << plane
+  end
+
+  def check_airport_capacity
+    fail 'Airport full' if full?
+  end
+
+  def check_weather_condition
+    fail 'Weather is stormy' if stormy?
   end
 
   def stormy?
     @weather.stormy?
   end
 
-  private
-
-  attr_reader :planes, :capacity, :weather
-
-  def take_off_plane(plane)
-    plane.take_off
-    planes.delete(plane)
-  end
-
-  def land_plane(plane)
-    plane.land
-    planes << plane
-  end
-
   def full?
-    planes.length == capacity
+    hangar.length == capacity
   end
 end
