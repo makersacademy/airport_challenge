@@ -29,7 +29,9 @@ describe Airport do
       context 'when weather is stormy' do
         before { allow(airport).to receive(:stormy?).and_return(true) }
 
-        it 'should not instruct the plane to land' 
+        it 'should not instruct the plane to land' do
+          expect { airport.land(plane) }.to raise_error('Weather is stormy')
+        end
       end
     end
 
