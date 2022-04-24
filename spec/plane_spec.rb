@@ -11,9 +11,28 @@ describe Plane do
     expect(plane).to respond_to(:land).with(1).argument
   end
 
-   it 'can land a plane in an airport' do
+  it 'can land a plane in an airport' do
     plane = Plane.new
     airport = Airport.new
     expect(plane.land(airport)).to eq(airport.planes)
   end
+
+  it 'can raise an error if land method called on landed plane' do
+    plane = Plane.new
+    airport = Airport.new
+    plane.land(airport)
+    expect{plane.land(airport)}.to raise_error 'Plane has already landed'
+  end 
+
+  it 'can respond to takeoff' do
+    plane = Plane.new
+    expect(plane).to respond_to(:takeoff)
+  end
+
+  # it 'can takeoff from an airport' do
+  #   plane = Plane.new
+  #   airport = Airport.new 
+  #   expect(plane.takeoff). to eq(airport.planes.delete_at(plane))
+  # end
+
 end 
