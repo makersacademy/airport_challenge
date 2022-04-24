@@ -1,5 +1,6 @@
 class Airport
-  def planes
-    planes = []
+  attr_accessor :planes
+  def initialize
+    @planes = []
   end 
 end
