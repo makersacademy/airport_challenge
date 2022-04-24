@@ -6,16 +6,12 @@ describe Weather do
     expect(Weather::WEATHER).to eq [:sunny, :rainy, :stormy, :windy]
   end
 
-  it 'randomly picks a weather' do
-    expect(Weather::WEATHER).to include(subject.current_weather) 
-  end
-
   it 'responds to stormy? method' do
-    expect(subject).to respond_to :stormy?
+    expect(Weather).to respond_to :stormy?
   end
 
-  it 'responds with true or false to stormy?' do
-    expect(subject.stormy?).to match(true).or(false)
+  xit 'responds with true or false to stormy?' do
+    expect(Weather.stormy?).to be_in([true, false])
   end
 
 end

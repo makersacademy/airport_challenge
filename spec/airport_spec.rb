@@ -40,7 +40,7 @@ describe Airport do
     expect(subject).to respond_to(:take_off).with(1).argument
   end
 
-  it '#take_off takes-off the plane' do
+  xit '#take_off takes-off the plane' do
     plane = Plane.new
     subject.land(plane)
     expect(subject.take_off(plane)).to eq plane
@@ -49,6 +49,8 @@ describe Airport do
   it 'confirms the plane has left the airport' do
     plane = Plane.new
     subject.land(plane)
+    weather = class_double('Weather').as_stubbed_const
+    allow(weather).to receive(:stormy?).and_return(false)
     #expect(plane.left_airport?).to eq true
     expect(subject.take_off(plane)).to be_left_airport
   end
@@ -57,10 +59,20 @@ describe Airport do
     it 'raises an error when the weather is stormy' do
       plane = Plane.new
       subject.land(plane)
-      weather = double(:weather)
+      weather = class_double('Weather').as_stubbed_const
       allow(weather).to receive(:stormy?).and_return(true)
       expect{ subject.take_off(plane) }.to raise_error 'Take-off not allowed due to adverse weather'
     end
+
+    it 'is allowed when the weather is NOT stormy' do
+      plane = Plane.new
+      subject.land(plane)
+      weather = class_double('Weather').as_stubbed_const
+      allow(weather).to receive(:stormy?).and_return(false)
+      expect(subject.take_off(plane)).to eq plane
+    end
+
+
   end 
 
 end
