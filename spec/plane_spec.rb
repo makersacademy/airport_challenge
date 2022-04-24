@@ -26,13 +26,15 @@ describe Plane do
 
   it 'can respond to takeoff' do
     plane = Plane.new
-    expect(plane).to respond_to(:takeoff)
+    expect(plane).to respond_to(:takeoff).with(1).argument
   end
 
-  # it 'can takeoff from an airport' do
-  #   plane = Plane.new
-  #   airport = Airport.new 
-  #   expect(plane.takeoff). to eq(airport.planes.delete_at(plane))
-  # end
+  it 'can takeoff from an airport' do
+    plane = Plane.new
+    airport = Airport.new
+    plane.land(airport)
+    plane.takeoff(airport)
+    expect(airport.planes).to eq([])
+  end
 
 end 

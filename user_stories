@@ -6,13 +6,13 @@ I want to instruct a plane to land at an airport
 #   - A Plane class ✅
 #   - A land method for the Plane class with argument ✅
 #   - A way for Airport to store instances of Plane when .land is called (insert plane instance into array inside airport instance) ✅
-#   - An error to be raised if a landed plane given the method to land again
+#   - An error to be raised if a landed plane given the method to land again ✅
 
 As an air traffic controller 
 So I can get passengers on the way to their destination 
 I want to instruct a plane to take off from an airport and confirm that it is no longer in the airport
 # I need:
-#   - A takeoff method for Plane that removes it from the Airport planes array
+#   - A takeoff method for Plane that removes it from the Airport planes array ✅ (try and find a way to do this without (airport) argument in tskeoff method, but is fine for now)
 #   - A string to confirm the plane is no longer in the aiport?
 
 # As an air traffic controller 

@@ -9,6 +9,7 @@ class Plane
     end 
   end
 
-  def takeoff
+  def takeoff(airport)
+    airport.planes.delete(self)
   end
 end 
