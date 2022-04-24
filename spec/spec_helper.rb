@@ -8,6 +8,8 @@ SimpleCov.formatter = SimpleCov::Formatter::MultiFormatter.new([
 ])
 SimpleCov.start do
   add_filter 'spec'
+  require 'shields_badge'
+SimpleCov.formatter = SimpleCov::Formatter::ShieldsBadge
 end
 
 require 'airport'

@@ -27,13 +27,12 @@ class Airport
 
   attr_reader :hangar, :capacity, :weather
 
-  def take_off_plane(plane)
-    plane.take_off
-    hangar.delete(plane)
+  def check_weather_condition
+    fail 'Weather is stormy' if stormy?
   end
 
-  def check_plane_at_airport(plane)
-    fail 'Plane not at airport' unless include?(plane)
+  def stormy?
+    weather.stormy?
   end
 
   def land_plane(plane)
@@ -45,15 +44,16 @@ class Airport
     fail 'Airport full' if full?
   end
 
-  def check_weather_condition
-    fail 'Weather is stormy' if stormy?
-  end
-
-  def stormy?
-    @weather.stormy?
-  end
-
   def full?
     hangar.length == capacity
+  end
+
+  def take_off_plane(plane)
+    plane.take_off
+    hangar.delete(plane)
+  end
+
+  def check_plane_at_airport(plane)
+    fail 'Plane not at airport' unless include?(plane)
   end
 end

@@ -2,6 +2,10 @@
 
 [![Ruby Style Guide](https://img.shields.io/badge/code_style-rubocop-brightgreen.svg)](https://github.com/rubocop/rubocop)
 
+[![Coverage](https://lukestorey95.github.io/airport_challenge/badge.svg)](https://github.com/lukestorey95/airport_challenge)
+
+[![Ruby](https://badgen.net/badge/icon/ruby?icon=ruby&label)](https://www.ruby-lang.org/)
+
 This program allows the user to simulate a working airport. Planes are able to land and take off from an airport so long as the weather isn't stormy.
 
 <br>
