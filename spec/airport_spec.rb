@@ -32,10 +32,12 @@ describe Airport do
 
   it 'take_off method removes a plane from the airport (testing capacity of 6 planes)' do
     capacity_test = 6
+    plane = Plane.new
     airport = Airport.new(capacity_test)
     allow(airport).to receive(:weather) { "sunny" }
-    capacity_test.times { airport.land(Plane.new) }
-    airport.take_off(Plane.new)
+    airport.land(plane)
+    (capacity_test - 1).times { airport.land(Plane.new) }
+    airport.take_off(plane)
     expect { airport.land(Plane.new) }.not_to raise_error
   end
 
@@ -60,6 +62,21 @@ describe Airport do
     allow(subject).to receive(:weather) { "stormy" }
     expect { subject.take_off(plane) }.to raise_error 'Plane cannot take off on stormy weather'
   end
-    
 
+  it 'take_off method to take out specific plane from airport' do
+    plane = Plane.new
+    airport = Airport.new(3)
+    allow(airport).to receive(:weather) { "sunny" }
+    airport.land(plane)
+    airport.land(Plane.new)
+    airport.take_off(plane)
+    expect(airport.planes).not_to include(plane)
+  end
+
+  it 'take_off raise error if plane is not in the airport' do
+    allow(subject).to receive(:weather) { "sunny" }
+    subject.land(Plane.new)
+    expect { subject.take_off(Plane.new) }.to raise_error ('Plane not in this airport')
+  end
+    
 end
