@@ -1,89 +1,92 @@
 Airport Challenge
 =================
 
-```
-        ______
-        _\____\___
-=  = ==(____MA____)
-          \_____\___________________,-~~~~~~~`-.._
-          /     o o o o o o o o o o o o o o o o  |\_
-          `~-.__       __..----..__                  )
-                `---~~\___________/------------`````
-                =  ===(_________)
-
-```
-
-Instructions
----------
-
-* Feel free to use google, your notes, books, etc. but work on your own
-* If you refer to the solution of another coach or student, please put a link to that in your README
-* If you have a partial solution, **still check in a partial solution**
-* You must submit a pull request to this repo with your code by 10am Monday morning
-
-Steps
+Overview
 -------
 
-1. Fork this repo, and clone to your local machine
-2. Run the command `gem install bundler` (if you don't have bundler already)
-3. When the installation completes, run `bundle`
-4. Complete the following task:
+This is a weekend coding challenge after the first week of a 12 week intensive coding bootcamp at Makers Academy. It is a simulation of code to run airports and planes in an air traffic control system. 
 
-Task
------
+Specification
+---------
+This software has been written from the point of view of the plane and runs in the Command Line. It is based around the following user stories:
 
-We have a request from a client to write the software to control the flow of planes at an airport. The planes can land and take off provided that the weather is sunny. Occasionally it may be stormy, in which case no planes can land or take off.  Here are the user stories that we worked out in collaboration with the client:
+> As an air traffic controller <br>
+> So I can get passengers to a destination <br>
+> **I want to instruct a plane to land at an airport**
+
+> As an air traffic controller <br>
+> So I can get passengers on the way to their destination <br>
+**I want to instruct a plane to take off from an airport and confirm that it is no longer in the airport**
+
+>As an air traffic controller <br>
+To ensure safety <br>
+**I want to prevent landing when the airport is full**
+
+>As the system designer<br>
+So that the software can be used for many different airports<br>
+**I would like a default airport capacity that can be overridden as appropriate**
+
+>As an air traffic controller <br>
+To ensure safety <br>
+**I want to prevent takeoff when weather is stormy**
+
+>As an air traffic controller <br>
+To ensure safety <br>
+**I want to prevent landing when weather is stormy**
+
+Instuctions
+----
+To run the software ensure you are in the same directory as the file plane.rb and access it using irb. 
+
+You will need to require two files to run this software
 
 ```
-As an air traffic controller 
-So I can get passengers to a destination 
-I want to instruct a plane to land at an airport
-
-As an air traffic controller 
-So I can get passengers on the way to their destination 
-I want to instruct a plane to take off from an airport and confirm that it is no longer in the airport
-
-As an air traffic controller 
-To ensure safety 
-I want to prevent landing when the airport is full 
-
-As the system designer
-So that the software can be used for many different airports
-I would like a default airport capacity that can be overridden as appropriate
-
-As an air traffic controller 
-To ensure safety 
-I want to prevent takeoff when weather is stormy 
-
-As an air traffic controller 
-To ensure safety 
-I want to prevent landing when weather is stormy 
+require './plane.rb'
+require './airport.rb'
 ```
 
-Your task is to test drive the creation of a set of classes/modules to satisfy all the above user stories. You will need to use a random number generator to set the weather (it is normally sunny but on rare occasions it may be stormy). In your tests, you'll need to use a stub to override random weather to ensure consistent test behaviour.
+To create a new airport with default capacity of 20 planes.
+```
+airport_name = Airport.new
+```
+To change the capacity of an airport
+```
+airport_name.capacity = new_capacity
+```
+To create a new plane
+```
+plane_name = plane.new
+```
+To land a plane
+```
+plane_name.land(airport_name)
+```
+To take_off
+```
+plane.take_off(airport_name)
+```
 
-Your code should defend against [edge cases](http://programmers.stackexchange.com/questions/125587/what-are-the-difference-between-an-edge-case-a-corner-case-a-base-case-and-a-b) such as inconsistent states of the system ensuring that planes can only take off from airports they are in; planes that are already flying cannot take off and/or be in an airport; planes that are landed cannot land again and must be in an airport, etc.
+Coding Process
+-------
 
-For overriding random weather behaviour, please read the documentation to learn how to use test doubles: https://www.relishapp.com/rspec/rspec-mocks/docs . There’s an example of using a test double to test a die that’s relevant to testing random weather in the test.
+I started this challenge by having a think about how I am going to set myself up and how I am going to approach it. I forked the repo, and I set myself up with this README to keep track of my process and the documentation as I go. 
 
-Please create separate files for every class, module and test suite.
+For the first couple of user stories I followed a simple process of reading the story, extracting a simple user expectation, testing it it irb - watch it fail, write a test in rspec, watch it fail, fix the tests until I have a passing test. 
 
-In code review we'll be hoping to see:
+Story 3, together with the edge cases felt a little different. I made a cup of tea and had a break. I felt that this one might need to be broken down into more parts, so I started with some notes and diagramming and then worked from these. 
 
-* All tests passing
-* High [Test coverage](https://github.com/makersacademy/course/blob/main/pills/test_coverage.md) (>95% is good)
-* The code is elegant: every class has a clear responsibility, methods are short etc. 
+From this I wrote some new user stories for each of the scenarios it brought up for me - I will test these, and I think consequently I will have fixed the others at the end.
 
-Reviewers will potentially be using this [code review rubric](docs/review.md).  Referring to this rubric in advance will make the challenge somewhat easier.  You should be the judge of how much challenge you want this at this moment.
+I then realised that design decisions I had made - to hold plane data within airports, not on the planes, might give me issues later in the software. Reflecting on it I came to the conclusion that this was serious enough to start again - so I deleted everything and started again with a new design strategy, following similar steps to above. 
 
-**BONUS**
+To test the weather cases I created a double that tells the airport that the weather is stormy. 
 
-* Write an RSpec **feature** test that lands and takes off a number of planes
+As I went, if I felt that new test made a previous one redundent, then I removed it. 
 
-Note that is a practice 'tech test' of the kinds that employers use to screen developer applicants.  More detailed submission requirements/guidelines are in [CONTRIBUTING.md](CONTRIBUTING.md)
+At the end I spent some time refactoring the code, and then tidying up this document. 
 
-Finally, don’t overcomplicate things. This task isn’t as hard as it may seem at first.
+Lastly I wrote a feature_spec.rb file. 
 
-* **Submit a pull request early.**
-
-* Finally, please submit a pull request before Monday at 10am with your solution or partial solution.  However much or little amount of code you wrote please please please submit a pull request before Monday at 10am.
+Reflections
+----
+I'm not clear whether my original design strategy (to control landing and take off of planes from the point of view of an airport) or my new one (to control it all from the point of the plane) is better. What I do know however, is that allowing a design emerge in this way feels sub-optimal, and I think that time spent diagramming and psuedo coding could lead to more clarity about the overal picture, what the implications of earlier decisions are / could be and allow me to start writing code with more clarity. 
