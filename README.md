@@ -72,14 +72,18 @@ In our `airport.rb` file, we can write:
 
 ## Installation
 Fork or download this repo.
+Use `bundle install` to install the correct gems to use and test this code.
 
-## How to use
+## How To Use
 Create a new airport using `airport = Airport.new`.\
 Create a plane using `plane = Plane.new`\
 Land a plane using `airport.land(plane)` to store it inside the Airport.\
 To have a plane take off from the Airport, use `airport.take_off(plane)`.
 
 There are times where the weather can be stormy. If so, the `land` and `take_off` will be suspended as it is not safe to fly out in such weather conditions.
+
+## How To Test
+Run `rspec` to run through tests.
 
 ## Bugs/Future Changes To The Code
 * The weather is currently hard-coded, I will update it to be random and automatic within the code.
