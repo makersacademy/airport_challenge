@@ -7,3 +7,4 @@ class Airport
     @capacity = capacity
   end 
 end
+

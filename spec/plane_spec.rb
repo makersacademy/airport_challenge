@@ -24,6 +24,20 @@ describe Plane do
     expect{plane.land(airport)}.to raise_error 'Plane has already landed'
   end 
 
+  it 'can raise an error if takeoff called on airport not containing plane' do
+    plane = Plane.new
+    airport1 = Airport.new
+    airport2 = Airport.new 
+    plane.land(airport1)
+    expect{plane.takeoff(airport2)}.to raise_error 'Plane not in airport'
+  end 
+
+  it 'can raise an error if takeoff called on plane already in the air' do
+    plane = Plane.new
+    airport = Airport.new 
+    expect{plane.takeoff(airport)}.to raise_error 'Plane already airbourne'
+  end 
+
   it 'can respond to takeoff' do
     plane = Plane.new
     expect(plane).to respond_to(:takeoff).with(1).argument

@@ -20,16 +20,21 @@ To ensure safety
 I want to prevent landing when the airport is full 
 # I need:
 #   - To establish a capacity for the airport ✅
-#   - To prevent (throw error) when attempts to land a plane at full airport are made 
+#   - To prevent (throw error) when attempts to land a plane at full airport are made ✅
 
 As the system designer
 So that the software can be used for many different airports
 I would like a default airport capacity that can be overridden as appropriate
+# I need:
+#   - To set a default capacity in initialization ✅
 
-# As an air traffic controller 
-# To ensure safety 
-# I want to prevent takeoff when weather is stormy 
+As an air traffic controller 
+To ensure safety 
+I want to prevent takeoff when weather is stormy
+# I need:
+#   - To make a dice program to decide the weather, and use a stub for the Rspec
+#   - To prevent takeoff if weather in stormy in plane takeoff method
 
-# As an air traffic controller 
-# To ensure safety 
-# I want to prevent landing when weather is stormy 
+As an air traffic controller 
+To ensure safety 
+I want to prevent landing when weather is stormy 
