@@ -1,3 +1,37 @@
+# Airport challenge
+
+- This program is designed to control the flow of planes at an airport.
+- This program can land and take off planes when the weather is sunny and prevent landing and taking off when the weather is stormy.
+- This program has a default airport capacity (10 planes) that can be overridden as appropriate.
+- This program can check if a plane is working.
+
+---
+
+## How to install the program
+
+```
+- Fork this repository
+- Use "git clone" + your fork URL
+```
+
+---
+
+## How to run the program
+
+```shell
+ruby airport.rb
+ruby plane.rb
+```
+
+---
+
+## How to run the test
+
+```shell
+rspec
+```
+
+
 Airport Challenge
 =================
 
