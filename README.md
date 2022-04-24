@@ -4,23 +4,23 @@ A sadly incomplete attempt at the airport challenge. Ideal for those who would l
 
 ## Getting started
 
-run git clone https://github.com/S-Spiegl/airport_challenge.git
-Run the command `gem install bundler` (if you don't have bundler already)
+- run git clone https://github.com/S-Spiegl/airport_challenge.git
+- Run the command `gem install bundler` (if you don't have bundler already)
 
 ## Usage
 
-run irb and require './lib/airport.rb'
-instantiate a new airport e.g. heathrow = Airport.new
-instantiate planes e.g. boeing_747 = plane.new
-land and fly those planes e.g. heathrow.land(boeing_747)
-if you want to change airport capacity, do so when instantiating a new airport e.g. la_guardia = Airport.new(10)
-You can also control the weather here if you don't want to leave it to chance... e.g. jfk = Airport.new(10, 'fine')
+- Run irb and require './lib/airport.rb'
+- Instantiate a new airport e.g. heathrow = Airport.new
+- Instantiate planes e.g. boeing_747 = plane.new
+- Land and fly those planes e.g. heathrow.land(boeing_747)
+- If you want to change airport capacity, do so when instantiating a new airport e.g. la_guardia = Airport.new(10)
+- You can also control the weather here if you don't want to leave it to chance... e.g. jfk = Airport.new(10, 'fine')
 
 ## Running tests
 
 run rspec
 
-Other notes:
+**Other notes:**
 
 - I needed to spend some time practising on Boris Bikes to get my head around this one, and as a result I wasn't able to completely finish. Planes can take off and land, default capacity can be overridden by passing the airport an argument when instantiating it, and exceptions are raised according to the weather, but I was didn't have time to learn about stubbing to ensure regular testing, and didn't have time to work out how to defend against all edge cases. Consequently, it's possible to land the same plane into two different airports, or into the same airport twice etc. Though at least planes can only take off from airports that they're in, as far as I can tell. I'll look more into how to guard against these errors - I'm assuming some kind of exception? - but will need to submit it in its current state for now. 
 - If you run the rspec, you'll get different errors according to what weather you get, but the lowest number of errors is 2, which seems to be to do with a single plane being returned in an array...
