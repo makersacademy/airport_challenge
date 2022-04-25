@@ -1,0 +1,8 @@
+require './docs/airport_challenge'
+
+describe weather do
+  it 'creates instance of weather' do
+    weather = Weather.new
+    expect(weather).to be_kind_of(weather)
+  end
+end
