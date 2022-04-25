@@ -10,7 +10,6 @@ class Airport
     @current_weather = check_weather
   end
 
-  # better to pass argument?
   def land_plane
     check_for_storm
     fail unless @planes_in_airport.length < @capacity

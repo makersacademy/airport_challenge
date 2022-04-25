@@ -15,7 +15,7 @@ describe Airport do
       subject.current_weather = 'sunny'
       subject.capacity.times { subject.land_plane }
 
-      expect { subject.land_plane }.to raise_error
+      expect { subject.land_plane }.to raise_error 
     end
 
     it 'does not allow plane to land in airport when stormy' do
