@@ -12,6 +12,11 @@ Airport Challenge
                 =  ===(_________)
 
 ```
+Sam Notes - Unfinished
+---------
+I ran out of time to finish the challenge but am also unsure of how/when to use or properly implement attr_readers & doubles.
+
+I would have written an random number generator with multiple outcomes for different weather options in stormy? then linked this to takeoff and landing.
 
 Instructions
 ---------
