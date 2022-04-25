@@ -16,6 +16,8 @@ describe Airport do
     expect(airport.capacity).to eq(Airport::DEFAULT_CAPACITY)
   end
 
-  
-
+  it 'generates local weather when initializing' do
+    airport = Airport.new
+    allow(@weather).to receive(:dice) { 3 }
+  end 
 end
