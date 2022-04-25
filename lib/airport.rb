@@ -49,6 +49,10 @@ class Airport
     @hanger.empty?
   end
 
+  def set_weather
+    self.instance_variable_set(:@weather, 'GOOD')
+  end
+
 end
 
 class Plane
