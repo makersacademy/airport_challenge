@@ -15,19 +15,18 @@ describe Airport do
       subject.current_weather = 'sunny'
       subject.capacity.times { subject.land_plane }
 
-      expect { subject.land_plane }.to raise_error 
+      expect { subject.land_plane }.to raise_error('Airport is full')
     end
 
     it 'does not allow plane to land in airport when stormy' do
       subject.current_weather = 'stormy'
 
-      expect { subject.land_plane }.to raise_error
+      expect { subject.land_plane }.to raise_error('Cannot fly when there is a storm')
     end
   end
 
   describe '#take_off' do
     it 'allows plane to leave airport' do
-      # try to refactor this Arrange section
       subject.current_weather = 'sunny'
       plane = Plane.new
       subject.planes_in_airport << plane
@@ -36,7 +35,6 @@ describe Airport do
     end
 
     it 'removes plane from airport' do
-      # try to refactor this Arrange section
       subject.current_weather = 'sunny'
       plane = Plane.new
       subject.planes_in_airport = [plane]
@@ -46,12 +44,11 @@ describe Airport do
     end
 
     it 'does not let planes take off when stormy' do
-      # try to refactor this Arrange section
       plane = Plane.new
       subject.planes_in_airport = [plane]
       subject.current_weather = 'stormy'
 
-      expect { subject.take_off(plane) }.to raise_error
+      expect { subject.take_off(plane) }.to raise_error('Cannot fly when there is a storm')
     end
   end
 

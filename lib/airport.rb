@@ -12,12 +12,11 @@ class Airport
 
   def land_plane
     check_for_storm
-    fail unless @planes_in_airport.length < @capacity
+    fail 'Airport is full' unless @planes_in_airport.length < @capacity
     @planes_in_airport << Plane.new
     @planes_in_airport.last
   end
 
-  # make sure that planes can't take off when planes_at_airport == 0
   def take_off(plane)
     check_for_storm
     @planes_in_airport.delete(plane)
@@ -33,6 +32,6 @@ class Airport
   end
 
   def check_for_storm
-    fail unless @current_weather != 'stormy'
+    fail 'Cannot fly when there is a storm' unless @current_weather != 'stormy'
   end
 end 
