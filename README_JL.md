@@ -1,5 +1,17 @@
 ## Airport Weekend Challenge
 
+# How to install
+Fork this repo, and clone to your local machine
+Run the command gem install bundler (if you don't have bundler already)
+When the installation completes, run bundle
+
+# How to Run
+Open IRB
+Require all .rb files.
+
+# How to test your code
+Run RSpec from the Airport directory.
+
 # Introduction
 
 This project is the weekend task following the first week at Makers Academy.
