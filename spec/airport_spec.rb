@@ -2,10 +2,11 @@ require 'airport'
 describe Airport do
   
   describe '#land' do
-    it 'expects a new instance of the class to respond to the land method' do
-      expect { subject.to respond_to(:land)}
+    it 'expects to return a plane' do
+      expect(subject.land).to eq plane
     end
   end
 
+  
 
 end
