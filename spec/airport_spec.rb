@@ -1,4 +1,6 @@
 require './docs/airport_challenge'
+require './docs/weather'
+require './docs/plane'
 
 describe Airport do
   it 'creates instance of airport' do

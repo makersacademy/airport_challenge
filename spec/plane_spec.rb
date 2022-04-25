@@ -1,4 +1,6 @@
 require './docs/airport_challenge'
+require './docs/weather'
+require './docs/plane'
 
 describe Plane do
   it 'creates instance of plane' do
@@ -11,4 +13,5 @@ describe Plane do
     plane.at_airport?
     expect(plane.at_airport?).to be false
   end
+
 end
