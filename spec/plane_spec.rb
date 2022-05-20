@@ -4,7 +4,7 @@ describe Plane do
   let(:boeing) { Plane.new }
 
   it 'can land in an airports hangar' do
-    heathrow = double("airport", :hangar => [], :capacity => 60, :weather => "Sunny")
+    heathrow = double("airport", hangar: [], :capacity => 60, :weather => "Sunny")
     expect(boeing.land(heathrow)).to eq [boeing]
   end
 
