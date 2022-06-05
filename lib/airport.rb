@@ -2,9 +2,8 @@ require_relative 'plane'
 
 class Airport
 
-CAPACITY = 5
-WEATHER = {0 => "stormy", 1 => "fine", 2 => "fine", 3 => "fine"}
-
+  CAPACITY = 5
+  WEATHER = { 0 => "stormy", 1 => "fine", 2 => "fine", 3 => "fine" }
 
   def initialize(capacity = CAPACITY, weather = WEATHER[rand(4)])
     @planes = []
@@ -12,7 +11,7 @@ WEATHER = {0 => "stormy", 1 => "fine", 2 => "fine", 3 => "fine"}
     @weather = weather
   end
 
-  def release_plane(plane)
+  def release_plane(_plane)
     fail 'weather too stormy for take-off' unless @weather != "stormy"
     @planes.pop
   end

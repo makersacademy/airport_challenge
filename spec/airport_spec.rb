@@ -12,9 +12,9 @@ describe Airport do
 
   describe '#release_plane' do
     it 'releases a plane' do
-    plane = Plane.new
-    subject.land_plane(plane)
-    expect(subject.release_plane(plane)).to eq plane
+      plane = Plane.new
+      subject.land_plane(plane)
+      expect(subject.release_plane(plane)).to eq plane
     end
   end
 
@@ -24,11 +24,10 @@ describe Airport do
 
   describe '#land_plane' do
     it 'prevents landing when airport is full' do
-      5.times {subject.land_plane Plane.new}
+      5.times { subject.land_plane Plane.new }
       expect { subject.land_plane Plane.new }.to raise_error 'airport full'
     end
   end
-
 
   it 'has a default capacity that can be overridden' do
     expect(subject.capacity).to eq 5
