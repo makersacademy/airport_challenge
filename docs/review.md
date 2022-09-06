@@ -8,7 +8,6 @@ You'll be using this to review someone else's code. Help them improve by looking
 
 Also, there's a tonne of stuff here. Pace yourself, take on the improvements that feel most powerful to you and keep the rest in mind for future.
 
-
 ## Does it pass the tests?
 
 Please checkout your reviewee's code and run their tests. Read the code and try some manual feature tests in IRB. How easy is it to understand the structure of their code? How readable is their code? Did you need to make any cognitive leaps to 'get it'?
@@ -18,14 +17,16 @@ Please checkout your reviewee's code and run their tests. Read the code and try 
 ### README is updated
 
 Please do update your README following the [contribution notes](https://github.com/makersacademy/airport_challenge/blob/main/CONTRIBUTING.md), i.e.
-* Make sure you have written your own README that briefly explains your approach to solving the challenge.
-* If your code isn't finished it's not ideal but acceptable as long as you explain in your README where you got to and how you would plan to finish the challenge.
+
+- Make sure you have written your own README that briefly explains your approach to solving the challenge.
+- If your code isn't finished it's not ideal but acceptable as long as you explain in your README where you got to and how you would plan to finish the challenge.
 
 The above is a relatively straightforward thing to do that doesn't involve much programming - I'll often get it done while thinking about other problems in the back of my mind :-)
 
-* http://stackoverflow.com/questions/2304863/how-to-write-a-good-readme
+- http://stackoverflow.com/questions/2304863/how-to-write-a-good-readme
 
 ### Instructions in README
+
 It's a great idea to show the full story of how your app is used (from a user's perspective) in the README, i.e. a code example or irb transcript
 
 ```
@@ -43,7 +44,7 @@ $ irb
 
 ### Use `context` and `describe` blocks to create test scopes
 
-If a group of tests share the same setup or are related logically, group them in a `context` block or a `describe` block.  Use `describe` when the tests are related by a subset of behaviour (e.g 'landing') and use `context` when the tests are related by program state (e.g. 'when it is stormy').
+If a group of tests share the same setup or are related logically, group them in a `context` block or a `describe` block. Use `describe` when the tests are related by a subset of behaviour (e.g 'landing') and use `context` when the tests are related by program state (e.g. 'when it is stormy').
 
 `let`, `subject` and `before` statements inside a context or describe block will only run for tests inside the block and will override similar statements in an outer block.
 
@@ -64,7 +65,7 @@ it 'is in the airport after landing' do
 end
 ```
 
-All this does is test the stubbing behaviour of the `airport` double - it's not testing any of the actual application code.  This is often caused by a test being in the wrong place.  Since the expectation is on the state of `airport`, this is a strong indication that this test should be in `airport_spec.rb`:
+All this does is test the stubbing behaviour of the `airport` double - it's not testing any of the actual application code. This is often caused by a test being in the wrong place. Since the expectation is on the state of `airport`, this is a strong indication that this test should be in `airport_spec.rb`:
 
 ```ruby
 # airport_spec.rb
@@ -109,7 +110,7 @@ describe Airport do
 end
 ```
 
-We are not testing that the `land` method of `plane` is called.  This should be included in a further test:
+We are not testing that the `land` method of `plane` is called. This should be included in a further test:
 
 ```ruby
 describe 'landing planes' do
@@ -126,7 +127,7 @@ describe 'landing planes' do
 end
 ```
 
-Does every implementation in the code have associated unit tests?  For example, if you take off a specific plane:
+Does every implementation in the code have associated unit tests? For example, if you take off a specific plane:
 
 ```ruby
 def take_off(plane)
@@ -148,7 +149,7 @@ it 'instructs the plane to land and then has the plane' do
 end
 ```
 
-Also, avoid additional `expect`s when stubbing.  Prefer `allow`.  Avoid the following double expect:
+Also, avoid additional `expect`s when stubbing. Prefer `allow`. Avoid the following double expect:
 
 ```ruby
 it 'does not allow plane to take off' do
@@ -192,6 +193,7 @@ it 'can land a plane' do
   is_expected.to respond_to(:land).with(1).argument
 end
 ```
+
 can be collapsed to one liners like this
 
 ```ruby
@@ -208,7 +210,7 @@ it 'fails when the airport is full' do
 end
 ```
 
-The `respond_to` tests are an initial step you go through using the tests to drive the creation of an objects public interface, and can safely be deleted once you have more sophisticated tests that check both the interface methods and their responses (and associated changes in state)  
+The `respond_to` tests are an initial step you go through using the tests to drive the creation of an objects public interface, and can safely be deleted once you have more sophisticated tests that check both the interface methods and their responses (and associated changes in state)
 
 ### Breaking over multiple lines redundancy
 
@@ -221,7 +223,7 @@ Note that by breaking some long lines (to go below 80 chars) in:
   end
 ```
 
-creates two separate lines that are interpreted separately.  The expect now checks for any error (regardless of message) and the single string 'The plane is not currently landed at this airport' on the following line is effectively discarded.  Prefer something like the following:
+creates two separate lines that are interpreted separately. The expect now checks for any error (regardless of message) and the single string 'The plane is not currently landed at this airport' on the following line is effectively discarded. Prefer something like the following:
 
 ```ruby
   it 'a plane can only take off from an airport it is at' do
@@ -230,12 +232,11 @@ creates two separate lines that are interpreted separately.  The expect now chec
   end
 ```
 
-
 ## Is the application code well-written?
 
 ### Naming Convention Matching the Domain Model
 
-In general it's critical for maintainability that code is readable.  We want to ensure that other developers (and ourself in the future) can come to the codebase and make sense of what's going on.  That's supported by having the naming conventions match that of the ruby community and of the domain model (in this case 'air traffic control').
+In general it's critical for maintainability that code is readable. We want to ensure that other developers (and ourself in the future) can come to the codebase and make sense of what's going on. That's supported by having the naming conventions match that of the ruby community and of the domain model (in this case 'air traffic control').
 
 So for example we might have the following:
 
@@ -248,7 +249,7 @@ class air_port
 end
 ```
 
-This breaks several [ruby coding conventions](https://github.com/bbatsov/ruby-style-guide).  If we don't follow these we will confuse other Ruby programmers. Critical fails in the above are that in Ruby class names should be in CamelCase and method names should be in snake_case, and that variables (such as method parameters) can't start with a sequence of numbers. We also have domain model issues here, in that `747-400` is too specific, and `ExtractEntityFromSky` is a convoluted way to say `land`. So we would prefer the following:
+This breaks several [ruby coding conventions](https://github.com/bbatsov/ruby-style-guide). If we don't follow these we will confuse other Ruby programmers. Critical fails in the above are that in Ruby class names should be in CamelCase and method names should be in snake_case, and that variables (such as method parameters) can't start with a sequence of numbers. We also have domain model issues here, in that `747-400` is too specific, and `ExtractEntityFromSky` is a convoluted way to say `land`. So we would prefer the following:
 
 ```ruby
 class Plane
@@ -266,12 +267,12 @@ $ airport = Airport.new
 $ airport.land(plane)
 ```
 
-* [Ruby Style Guide: CamelCase for classes and modules](https://github.com/bbatsov/ruby-style-guide#camelcase-classes)
-* [Ruby Style Guide: snake_case for symbols, methods and variables](https://github.com/bbatsov/ruby-style-guide#snake-case-symbols-methods-vars)
+- [Ruby Style Guide: CamelCase for classes and modules](https://github.com/bbatsov/ruby-style-guide#camelcase-classes)
+- [Ruby Style Guide: snake_case for symbols, methods and variables](https://github.com/bbatsov/ruby-style-guide#snake-case-symbols-methods-vars)
 
 ### Remove all Commented-out code
 
-When submitting delete all "commented out" code.  You may not yet trust git to store all your old code, and you might not feel confident about rolling back to old commits to see that code, but that shouldn't be an excuse for leaving big chunks of commented out code in your files.  Make sure you commit to git (and push to GitHub) regularly, and start to get familiar with how to check out previous versions of your code.  If you are still worried store old versions of code in other files that you don't check in.  What we're trying to get you into the habit of, is polishing your submission so that it would be acceptable as a submission to a company as a technical test. So we don't want to see any of this:
+When submitting delete all "commented out" code. You may not yet trust git to store all your old code, and you might not feel confident about rolling back to old commits to see that code, but that shouldn't be an excuse for leaving big chunks of commented out code in your files. Make sure you commit to git (and push to GitHub) regularly, and start to get familiar with how to check out previous versions of your code. If you are still worried store old versions of code in other files that you don't check in. What we're trying to get you into the habit of, is polishing your submission so that it would be acceptable as a submission to a company as a technical test. So we don't want to see any of this:
 
 ```ruby
 def initialize(capacity: 1, weather: Weather.new)
@@ -282,7 +283,7 @@ def initialize(capacity: 1, weather: Weather.new)
 end
 ```
 
-Just delete commented out lines in your final submission.  Descriptive comments are just about okay, but please prefer to try and make the code describe itself, e.g.
+Just delete commented out lines in your final submission. Descriptive comments are just about okay, but please prefer to try and make the code describe itself, e.g.
 
 ```ruby
 def land(plane) # this lands the plane at the airport
@@ -293,7 +294,7 @@ def land(plane) # this lands the plane at the airport
 end
 ```
 
-Are the above comments really necessary? Comments like this aren't tested, and so can easily go out of date.  Prefer to name your methods so they describe exactly what they do.
+Are the above comments really necessary? Comments like this aren't tested, and so can easily go out of date. Prefer to name your methods so they describe exactly what they do.
 
 ### Use guard clause to improve readability and unrelated conditionals:
 
@@ -317,8 +318,8 @@ fail 'Airport full' if full?
 planes << plane
 ```
 
-* [Style Guide: No Nested Conditionals](https://github.com/bbatsov/ruby-style-guide#no-nested-conditionals)
-* [Style Guide: If as a modifier](https://github.com/bbatsov/ruby-style-guide#if-as-a-modifier)
+- [Style Guide: No Nested Conditionals](https://github.com/bbatsov/ruby-style-guide#no-nested-conditionals)
+- [Style Guide: If as a modifier](https://github.com/bbatsov/ruby-style-guide#if-as-a-modifier)
 
 ### Use Implicit Return of Booleans
 
@@ -352,7 +353,7 @@ end
 
 ### Do not Expose Internal Implementation
 
-Be careful not to give 'public' access to objects and methods that are should only be accessed internally.  E.g.:
+Be careful not to give 'public' access to objects and methods that are should only be accessed internally. E.g.:
 
 ```ruby
 class Airport
@@ -364,7 +365,7 @@ class Airport
 end
 ```
 
-The `planes` method exposes the internal array of planes and so should not be publicly accessible.  Use the `private` keyword to prevent this:
+The `planes` method exposes the internal array of planes and so should not be publicly accessible. Use the `private` keyword to prevent this:
 
 ```ruby
 class Airport
@@ -382,7 +383,7 @@ end
 
 #### Classes
 
-A class should have one responsibility.  An airport is responsible for the coming and going of airplanes.  It needs access to weather information to make decisions, but it _should not be responsible for determining the weather_.  Weather information should be provided by a separate class and injected into airport as a dependency.  E.g.:
+A class should have one responsibility. An airport is responsible for the coming and going of airplanes. It needs access to weather information to make decisions, but it _should not be responsible for determining the weather_. Weather information should be provided by a separate class and injected into airport as a dependency. E.g.:
 
 ```ruby
 class Weather
@@ -406,10 +407,9 @@ class Airport
 end
 ```
 
-
 #### Methods
 
-A method also should have only one responsibility.  E.g _the following method is too long_:
+A method also should have only one responsibility. E.g _the following method is too long_:
 
 ```ruby
 def stormy?
@@ -421,12 +421,12 @@ end
 
 Although there are clearly several other issues with this method, the example is intended to show a method with too many responsibilities:
 
-* It defines the outlooks,
-* it handles the random number selection,
-* it extracts an outlook from the outlooks array and
-* it translates the random selection to a boolean to indicate `stormy?`
+- It defines the outlooks,
+- it handles the random number selection,
+- it extracts an outlook from the outlooks array and
+- it translates the random selection to a boolean to indicate `stormy?`
 
-It can be refactored to have only one responsibility.  Although this introduces more code, the goal is _readability_ and reducing cognitive overload when scanning the code:
+It can be refactored to have only one responsibility. Although this introduces more code, the goal is _readability_ and reducing cognitive overload when scanning the code:
 
 ```ruby
 def stormy?
@@ -441,6 +441,7 @@ def random_outlook
   OUTLOOKS.sample
 end
 ```
+
 Note: Ruby already handles the responsibility of choosing randomly from and array with the `sample` method.
 
 ### Avoid Magic Numbers (e.g. on capacity)
@@ -451,7 +452,7 @@ def initialize
 end
 ```
 
-`6` is a numeric literal and its purpose in this statement is unclear.  Encapsulate in a constant:
+`6` is a numeric literal and its purpose in this statement is unclear. Encapsulate in a constant:
 
 ```ruby
 DEFAULT_CAPACITY = 6
@@ -463,11 +464,11 @@ end
 
 ### Prefer Symbols over Strings
 
-Each time a string literal (e.g. `'flying'`) is interpreted by Ruby, a new string object is created in memory.  Therefore, every time a method is called that contains a string literal (e.g. `'sunny'`) a new object is created.  This can lead to lots of unnecessary objects being created when we're not interested in the _object identity_ of a string, just its _value_.  To overcome this, use symbols instead e.g.: `:flying`, `:sunny`.
+Each time a string literal (e.g. `'flying'`) is interpreted by Ruby, a new string object is created in memory. Therefore, every time a method is called that contains a string literal (e.g. `'sunny'`) a new object is created. This can lead to lots of unnecessary objects being created when we're not interested in the _object identity_ of a string, just its _value_. To overcome this, use symbols instead e.g.: `:flying`, `:sunny`.
 
 ### Separately name Command and Query methods
 
-Methods should be _either_ **commands** or **queries**, not both.  As a general rule:
+Methods should be _either_ **commands** or **queries**, not both. As a general rule:
 
 - Command method names should start with a verb: _what does the method do?_
 - Query method names should be nounal.
@@ -490,8 +491,7 @@ Prefer delegating to the reader method (`planes.count >= capacity`) if it is def
 
 ### Prefer `attr_reader` over `attr_accessor`
 
-`attr_accessor` allows a caller to change the attribute to any object they like.  In general, `attr_accessor` is a code smell.
-
+`attr_accessor` allows a caller to change the attribute to any object they like. In general, `attr_accessor` is a code smell.
 
 ### Avoid using `attr_accessor` and then defining another mutator (do one or the other)
 
@@ -516,11 +516,12 @@ or
 ```ruby
 plane.land
 ```
-*Prefer the custom method (`land`) for more control over the value of `@landed` and use `attr_reader` instead.*
+
+_Prefer the custom method (`land`) for more control over the value of `@landed` and use `attr_reader` instead._
 
 ### Avoid Redundant lines of code
 
-It's easy to have redundant lines of code hanging around.  Anything you think might be redundant can be checked by deleting it and re-running your tests.  If still green you didn't need that code.  If you think you really did then you need a test to match it - and you should have written that first before writing the code.
+It's easy to have redundant lines of code hanging around. Anything you think might be redundant can be checked by deleting it and re-running your tests. If still green you didn't need that code. If you think you really did then you need a test to match it - and you should have written that first before writing the code.
 
 Some examples of redundancy:
 
