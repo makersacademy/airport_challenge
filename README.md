@@ -13,6 +13,56 @@ Airport Challenge
 
 ```
 
+*  What I tried to do
+Firstly understand the User Stories:
+As a < type of user>, I want < some goal >, so that < some reason >
+
+OBJECTS                 |  MESSAGES
+-------------------------------------
+Air traffic controller  |
+Plane                   | Edge case tests - is plane fying?                  
+Airport                 | instruct plane to take off
+                        | instruct plane to land
+                        | Prevent landing when airport is full
+                        | Prevent take off when airport is empty
+                        | Take weather into account                        
+Weather                 | fine or stormy
+
+System designer
+Airport                 | Default capacity
+
+Create the following tests and then write the code to satisfy the failing conditions.
+(Use IRB)
+
+RSPEC tests for the Airport
+1. Landing tests
+   "Responds to landing with (1) argument:
+   "Responds to landing a plane at the airport"
+   "Prevents a plane landing when the airport is full"
+2. Taking off
+   "Confirm that a plane is no longer in the airport after take off - land 2 planes and take off 1"
+   "Confirm that a plane is no longer in the airport after take off - land 1 plane and then take it off"
+   "Prevents a plane taking off if the airport is empty"
+3. Capacity Changes
+   "Returns the DEFAULT capacity"
+   "Allow DEFAULT capacity to be overwritten with 100"
+4. Stormy weather
+   "Prevent take off when the weather is stormy" 
+   "Prevent landing when the weather is stormy"
+5. Edge Cases
+   "Expect plane to have a status of flying after take off"
+   "Expect plane to have a status of NOT flying after landing"
+
+RSPEC tests for the Plane
+1. "Check whether a plane is in_ light" 
+2. "Check whether a plane is not in flight"
+
+RSPEC tests for the Weather
+1. "Checks for bad weather" 
+2. "Checks for fine weather" 
+
+LASTLY REFACTOR the code and rerun the tests
+
 Instructions
 ---------
 
