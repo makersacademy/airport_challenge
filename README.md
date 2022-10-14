@@ -1,6 +1,106 @@
 Airport Challenge
 =================
 
+## Approach by Claire Nelson
+
+#### Break down the requirements using tables and Excalidraw following techniques learnt in Intro to TDD workshop
+
+- Capture the nouns in the user stories as objects and verbs in user stories as messages. Use the techniques learnt in the first week of Makers to create [object model tables](https://github.com/nelsonclaire/airport_challenge/blob/master/task_stories/user_stories.md) which should assist with how to create the tests, classes and methods for the six user stories worked out with the client.
+- Draw a diagram using [Excalidraw](https://github.com/nelsonclaire/airport_challenge/blob/master/task_stories/excalidraw.png) to outline how these interact which each other.
+
+
+#### Write the most basic first test using techniques learnt in Intro to TDD workshop
+
+- Set up first spec file for airport_spec.rb.
+- Update airport_spec.rb on first line to say Require 'airport.rb'.
+- Run rspec and see spec file fail.
+- Create 'airport.rb' file.
+- Run rspec and see spec file pass.
+- Write basic first test and see it fail when running rspec.
+- Write the minimum code required to pass test following the red-green-refactor process.
+
+#### Debug the error messages produced when running rspec using techniques learnt in Intro to Debugging Workshop
+
+- Work from the top fixing the first error.
+- Use the full path of the error line to drill down to the exact code that is erroring.
+- Do not be tempted to fix any error other than the one that is being highlighted.
+- Move onto the next error message and repeat. 
+- Continue until all tests pass.
+
+#### Run irb features tests to confirm that the expected behaviour is being demonstrated
+
+```
+Student@MA138C0DL7BH3QD airport_challenge % irb
+3.0.2 :001 > require './lib/airport.rb'
+ => true 
+3.0.2 :002 > airport = Airport.new(40)
+ => #<Airport:0x00007fa987875680 @capacity=40, @planes=[]> 
+3.0.2 :003 > airportb = Airport.new
+ => #<Airport:0x00007fa9871d1ba8 @capacity=20, @planes=[]> 
+3.0.2 :004 > plane = Plane.new
+ => #<Plane:0x00007fa9871716e0 @flying=true> 
+3.0.2 :005 > planea = Plane.new
+ => #<Plane:0x00007fa9871ba278 @flying=true> 
+3.0.2 :006 > planeb = Plane.new
+ => #<Plane:0x00007fa98711a278 @flying=true> 
+3.0.2 :007 > planec = Plane.new
+ => #<Plane:0x00007fa9871bb858 @flying=true> 
+3.0.2 :008 > airport.take_off(plane,airport)
+/Users/Student/Projects/airport_challenge/lib/airport.rb:36:in `take_off': Plane cannot take off as not at airport (RuntimeError)
+	from (irb):8:in `<main>'
+	from /Users/Student/.rvm/rubies/ruby-3.0.2/lib/ruby/gems/3.0.0/gems/irb-1.3.5/exe/irb:11:in `<top (required)>'
+	from /Users/Student/.rvm/rubies/ruby-3.0.2/bin/irb:23:in `load'
+	from /Users/Student/.rvm/rubies/ruby-3.0.2/bin/irb:23:in `<main>'
+3.0.2 :009 > airport.landing(plane, airport)
+ => false 
+3.0.2 :010 > airport.take_off(plane,airport)
+ => true 
+3.0.2 :011 > airport.planes
+ => [] 
+3.0.2 :012 > airport.landing(planeb, airport)
+ => false 
+3.0.2 :013 > airport.planes
+ => [#<Plane:0x00007fa98711a278 @flying=false>] 
+3.0.2 :014 > airport.landing(planeb, airportb)
+/Users/Student/Projects/airport_challenge/lib/airport.rb:24:in `landing': Plane cannot land as it is not flying (RuntimeError)
+	from (irb):14:in `<main>'
+	from /Users/Student/.rvm/rubies/ruby-3.0.2/lib/ruby/gems/3.0.0/gems/irb-1.3.5/exe/irb:11:in `<top (required)>'
+	from /Users/Student/.rvm/rubies/ruby-3.0.2/bin/irb:23:in `load'
+	from /Users/Student/.rvm/rubies/ruby-3.0.2/bin/irb:23:in `<main>'
+3.0.2 :015 > airport.landing(planeb, airport)
+/Users/Student/Projects/airport_challenge/lib/airport.rb:22:in `landing': Plane cannot land as it is already at this airport (RuntimeError)
+	from (irb):15:in `<main>'
+	from /Users/Student/.rvm/rubies/ruby-3.0.2/lib/ruby/gems/3.0.0/gems/irb-1.3.5/exe/irb:11:in `<top (required)>'
+	from /Users/Student/.rvm/rubies/ruby-3.0.2/bin/irb:23:in `load'
+	from /Users/Student/.rvm/rubies/ruby-3.0.2/bin/irb:23:in `<main>'
+3.0.2 :016 > airportb.landing(planea, airportb)
+ => false 
+3.0.2 :017 > airportb.landing(planec, airportb)
+ => false 
+3.0.2 :018 > airportb.planes
+ => [#<Plane:0x00007fa9871ba278 @flying=false>, #<Plane:0x00007fa9871bb858 @flying=false>] 
+3.0.2 :019 > airportb.take_off(planea,airportb)
+ => true 
+3.0.2 :020 > airportb.planes
+ => [#<Plane:0x00007fa9871bb858 @flying=false>] 
+3.0.2 :021 > airport.planes
+ => [#<Plane:0x00007fa98711a278 @flying=false>] 
+3.0.2 :022 > airport
+ => #<Airport:0x00007fa987875680 @capacity=40, @planes=[#<Plane:0x00007fa98711a278 @flying=false>]> 
+3.0.2 :023 > airportb
+ => #<Airport:0x00007fa9871d1ba8 @capacity=20, @planes=[#<Plane:0x00007fa9871bb858 @flying=false>]> 
+```
+
+#### What I know I need to work on
+- I have created Weather as a module as modules were mentioned but I am unclear if I have used it correctly since the documentation says to use test doubles and I have not implemented that in my code.
+
+
+
+---
+
+Airport Challenge
+=================
+
 ```
         ______
         _\____\___
