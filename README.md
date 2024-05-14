@@ -13,6 +13,20 @@ Airport Challenge
 
 ```
 
+Approach
+---------
+* Separate classes for airport, aircraft, atc and weather.
+* Aircraft when spawned are assumed to be on the ground; airport not specified.  This can be overriden.
+* Aircraft can only land when "in flight"
+* Aircraft can hold registration
+* Airport has a default capacity but this can be overriden.
+* Airport will not accept aircraft when full
+* Airport will refuse to release aircraft for takeoff if not present - it will say whey they are.
+* ATC will only request landings or takeoffs when weather is good.
+* Weather forecaster will generate storms 10% of the time but decision making on weather is made by ATC.
+
+
+
 Instructions
 ---------
 
