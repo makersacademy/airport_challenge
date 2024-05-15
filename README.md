@@ -1,3 +1,17 @@
+My Approach
+=================
+
+* I identified the classes (Airport, Plane) and methods (land, take_off, weather) required from the user stories.
+* I tied the 'land' and 'take_off' methods to the Airport class because the user stories are from the air traffic controller point of view, and they are tied to airports, not planes. 
+* I tied the weather method to the Airport class because the weather is tied to a place (airport), not an object (plane).
+* The one thing I wasn't sure about was how rarely the stormy weather would occur (I've put 1 out of 4 chances).
+
+Ressources used
+---------
+
+* [Rspec Udemy course](https://www.udemy.com/course/testing-ruby-with-rspec/)
+* [Rspec mocks](https://relishapp.com/rspec/rspec-mocks/docs)
+
 Airport Challenge
 =================
 
