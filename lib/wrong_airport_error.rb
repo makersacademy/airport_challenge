@@ -1,0 +1,3 @@
+class WrongAirportError < StandardError
+
+end
