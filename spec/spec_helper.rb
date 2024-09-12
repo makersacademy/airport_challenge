@@ -1,3 +1,4 @@
+=begin
 require 'simplecov'
 require 'simplecov-console'
 
@@ -15,3 +16,4 @@ RSpec.configure do |config|
     puts "\e[33mTry it now! Just run: rubocop\e[0m"
   end
 end
+=end
