@@ -1,0 +1,13 @@
+current directory: /Users/mike/Desktop/Makers/airport_challenge/.bundle/ruby/2.6.0/gems/json-2.3.0/ext/json
+/Users/mike/.rvm/rubies/ruby-2.6.5/bin/ruby -I /Users/mike/.rvm/rubies/ruby-2.6.5/lib/ruby/site_ruby/2.6.0 -r ./siteconf20210530-7921-16c2q8a.rb extconf.rb
+creating Makefile
+
+current directory: /Users/mike/Desktop/Makers/airport_challenge/.bundle/ruby/2.6.0/gems/json-2.3.0/ext/json
+make "DESTDIR=" clean
+
+current directory: /Users/mike/Desktop/Makers/airport_challenge/.bundle/ruby/2.6.0/gems/json-2.3.0/ext/json
+make "DESTDIR="
+make: Nothing to be done for `all'.
+
+current directory: /Users/mike/Desktop/Makers/airport_challenge/.bundle/ruby/2.6.0/gems/json-2.3.0/ext/json
+make "DESTDIR=" install
