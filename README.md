@@ -1,6 +1,54 @@
 Airport Challenge
 =================
 
+For this challenge, I began by creating a the Plane and Airport classes. Once done, 
+I created a land method for my Airport Class that could take 1 argument. 
+This solved User Story 1. 
+
+For User Story 2, in order to allow a plane to take-off and know it is no longer in the 
+airport, it seemed like the right time to introduce the ability to store planes in airport
+instances. This required an instance variable @plane to be created. I allowed said plane to 
+be set equal to the plane that is passed in to the land method. Only if a plane landed 
+would it be able to take off i.e. a plane that was never landed could not be passed into my 
+take_off method. Problem with this approach was my plane instance varaiable only remembered the 
+last plane that was landed. So if 2 planes landed at an airport, the second one overrides the first. 
+
+To fix this, i created part of the classes state so @planes could be tored in an array. 
+Each plane added upon landing and removed upon take-off. Only planes in the airport array could take-off. 
+Only planes that weren't already in the airport could land. I created it so that you could input any plane
+and you would get an error message if that plane was not in the airport but you tried to get that plane to 
+take_off. Also gave an error message if you tried to land a plane that was not in the airport array. 
+I did this using private methods to meet Single Responsibility Principles. 
+Edge cases taken care off here. 
+
+For user story 3, to stop landing when airport is full, I simply added a fail/error message
+in my land method that would not allow planes to land if the airport array had 20 planes in it.
+This was therefore the case for all airport instances. 
+
+For user story 4, I turned the idea of airport capacity into the classes state by creating
+capacity as an instance variable that is set when initializing a new airport. I allowed capacity
+to be set upon initializing an airport by taking an optional argument. If no argument provided upon 
+airport set-up, capacity was set equal a DEFAULT_CAPACITY constant variable i had set equal to 20.
+Changed my tests and code to use @capacity instead of value 20. 
+Final part of this was to turn @capacity into an attr_accessor so that it could be overridden 
+to a new capacity at any point. Carried out tests to ensure all the above worked as planned
+
+I did not get to user story 5 or 6, but I presume i would have created a random number generator,
+and based on the result used if statements to prevent planes landing or taking off in bad weather. 
+Looks like i would have had to use modules/mix-ins to achieve this. 
+
+
+
+
+
+
+
+
+
+
+
+
+
 ```
         ______
         _\____\___
