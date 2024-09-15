@@ -1,0 +1,3 @@
+describe Airplane do
+
+end
