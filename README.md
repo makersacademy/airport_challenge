@@ -12,6 +12,10 @@ Airport Challenge
                 =  ===(_________)
 
 ```
+My Approach:
+----------
+
+I broke down each user story into classes(nouns) and methods(verbs). The going through each user story, before writing any test or code would have a hypothesis for what I believe the User-Story wants to convey. I then planned this out in as many small and simple steps as possible and then write the test. Each test is not neccessarily for one user-story but for an aspect or part of it. Then I write the code in as simple a fashion as I can. Continue this with all User-stories until the end, when the refactoring process begins. 
 
 Instructions
 ---------
