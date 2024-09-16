@@ -1,0 +1,18 @@
+Nouns                   Verbs (Messages)          Rules
+
+Air Traffic Controllor  
+
+System Designer
+
+Plane                   take_off                  needs to know if airbourne
+                        land                      Can only take off at an airport they are in
+                                                  cannot land if already landed
+                                                  can land if airbourne
+
+Airport                 land                      cannot land if full
+                                                  cannot land if stormy
+                        take_off                  cannot take off if stormy
+                                                  remove plan from Airport 
+                                                  
+                                                  
+Weather                 is_stormy?
