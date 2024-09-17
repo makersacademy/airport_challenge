@@ -1,3 +1,50 @@
+# Read Me - Airport Challenge
+
+## Approach
+* Implement each story, looking for simplest step to increase complexity
+* Create plan for story, looking for edge cases or missing steps not documented. Ensure tests cover them.
+* I did not manage to implement the final two stories! 
+
+## How to run
+
+* **Plane** is designed to track the flying state, which airport it is currently in and handle errors around flying status.
+* **Airport** tracks planes in a specific airport, and the local weather. It will handle errors around weather state.
+* **Weather** generates a random current weather state for an airport, 25% of the time it is stormy, 75% sunny. 
+
+
+```Ruby 
+
+# declare plane new instance 
+plane = Plane.new
+
+# Returns flying state
+plane.flying?
+
+# land and set flying state 
+plane.land("airport")
+
+# take off and set flying state
+plane.takeoff
+
+# declare new airport instance 
+airport = Airport.new("Manchester")
+# declare new airport instance with default name
+heathrow = Airport.new
+
+# check if the airport is open 
+airport.open_for_landing?
+
+# land a plane
+airport.land(plane) 
+
+# take off a plane
+airport.takeoff(plane)
+
+
+
+
+```
+
 Airport Challenge
 =================
 
