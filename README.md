@@ -1,6 +1,14 @@
 Airport Challenge
 =================
 
+
+Approach
+=================
+
+To solve this challenge I took a TDD approach, first testing in IRB then writing rspec tests for each user story. 
+
+
+
 ```
         ______
         _\____\___
