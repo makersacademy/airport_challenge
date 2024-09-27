@@ -1,3 +1,6 @@
+A little summary: after getting the object/message relationships wrong from the start on Saturday I eventually started from scratch again on Sunday afternoon. After leaning very heavily on the Boris Bikes challenge material I've completed (I hope) 4/6 user stories and made a start on the fifth but couldn't get my head around the kinds of unit tests required.
+
+
 Airport Challenge
 =================
 
