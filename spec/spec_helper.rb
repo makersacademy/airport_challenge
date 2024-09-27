@@ -1,3 +1,4 @@
+require 'pry'
 require 'simplecov'
 require 'simplecov-console'
 
