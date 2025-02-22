@@ -1,0 +1,60 @@
+require_relative '../lib/airport'
+require_relative '../lib/plane'
+
+describe Airport do
+
+  let(:plane) { double('plane') }
+  let(:airport) { Airport.new }
+  let(:land) { airport.landing(plane) }
+  let(:take_off) { airport.take_off(plane) }
+  before do
+    allow(plane).to receive (:land)
+    allow(plane).to receive (:take_off)
+    allow(Airport).to receive(:stormy?) {false}
+  end
+
+  it 'allows capacity to be set' do
+    airport = Airport.new(5)
+    expect(airport.capacity).to eq(5)
+  end
+
+  it 'set default capacity to 3' do
+    expect(airport.capacity).to eq(3)
+  end
+
+  it 'planes can only take-off from airport they are in' do
+    expect{airport.take_off(plane)}.to raise_error 'You are not at this airport'
+  end
+  
+  it 'stores a landed plane' do
+    land
+    expect(airport.planes).to include (plane)
+  end
+
+  it 'removes a plane that has taken off' do
+    land
+    take_off
+    expect(airport.planes).not_to include (plane)
+  end
+
+  it 'prevents landing when airport is full' do
+    airport_3 = Airport.new
+    3.times do
+      plane_dbl = double('plane', :land => airport_3)
+      airport_3.landing(plane_dbl)
+    end
+    expect{ airport_3.landing(plane) }.to raise_error 'The airport is full.'
+  end
+
+  it 'prevents landing when stormy' do
+    allow(Airport).to receive(:stormy?) {true}
+    expect{land}.to raise_error 'It is too stormy'
+  end
+
+  it 'prevents take-off when weather is stormy' do
+    land
+    allow(Airport).to receive(:stormy?) {true}
+    expect{take_off}.to raise_error 'It is too stormy'
+  end
+
+end
