@@ -1,5 +1,19 @@
 Airport Challenge
 =================
+To creat a new airborne plane, call Plane.new. I know it's not ideal that planes are created in the air, but the user story said nothing against it. 
+
+Airport.new creates a new airport. 
+
+Let's say plane_1 = Plane.New and airport_1 = Airport.new
+
+To land plane_1 at airport_1, call plane_1.land(airport_1).
+
+For that plane to take off again, call plane_1.take_off(airport_1).
+
+To change the capacity of airport_1, call airport_1.capacity = desired_capacity
+
+The code is a mess, so I apologise to anyone reading it. I use fails when I probably shouldn't have, and put most of the methods in Plane rather than Airport, but it works, and at this stage that's all I'm interested in!!!!
+
 
 ```
         ______
